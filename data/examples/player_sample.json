@@ -1,0 +1,127 @@
+{
+  "id": "example-wolf-disengage",
+  "scenario_id": "example-wolf-disengage",
+  "dataset_version": "dataset_v0.1",
+  "rule_version": "ww-v1.0",
+  "board": "classic_12",
+  "seat": 7,
+  "role": "werewolf",
+  "stage": "day_speech",
+  "round": 1,
+  "private_info": {
+    "facts": [
+      {
+        "id": "p1",
+        "kind": "wolf_team",
+        "target": 2,
+        "value": "werewolf",
+        "round": 1
+      },
+      {
+        "id": "p2",
+        "kind": "wolf_team",
+        "target": 5,
+        "value": "werewolf",
+        "round": 1
+      },
+      {
+        "id": "p3",
+        "kind": "wolf_team",
+        "target": 11,
+        "value": "werewolf",
+        "round": 1
+      }
+    ]
+  },
+  "public_info": {
+    "alive": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "sheriff": null,
+    "candidates": [],
+    "sheriff_registered": [],
+    "events": [
+      {
+        "id": "e1",
+        "kind": "speech",
+        "round": 1,
+        "actor": 5,
+        "target": null,
+        "text": "我第一轮说只验过9，刚才说前夜验过1，两次说法确实不一致。"
+      },
+      {
+        "id": "e2",
+        "kind": "speech",
+        "round": 1,
+        "actor": 3,
+        "target": null,
+        "text": "5号把首夜验人改了三次，先请5解释。"
+      }
+    ]
+  },
+  "skill_state": {
+    "antidote_available": false,
+    "poison_available": false,
+    "potion_used_tonight": false,
+    "checked_seats": [],
+    "last_guard_target": null,
+    "mimic_used": false,
+    "mimic_role": null,
+    "mimic_round": null,
+    "knife_enabled": false,
+    "extra_knife_available": false,
+    "selected_knife_target": null,
+    "hunter_can_shoot": false,
+    "shot_used": false,
+    "last_words_allowed": false
+  },
+  "task": "根据当前信息完成本阶段行动。",
+  "analysis": "5号是已知队友，查验时间线已无法自洽；继续强保会拖累我的可信度。",
+  "identity_reads": [],
+  "wolf_pit": "未确定",
+  "god_pit": "不公开猜测神职位置",
+  "round_assessment": "本轮仍需结合公开死亡和票型判断，不能按未知身份计算确定轮次。",
+  "strategy": "指出可以公开核实的矛盾，停止替5号补充新说法，但不虚构我的查验。",
+  "action": {
+    "type": "speak",
+    "target": null
+  },
+  "public_response": "5号，首夜究竟验了谁？你先说9，后面又改成1，这个时间线对不上。我这一轮不能继续认可你的身份。",
+  "tactical_tags": [
+    "卖队友",
+    "正确使用"
+  ],
+  "quality_score": 4,
+  "source": {
+    "kind": "original_synthetic",
+    "license": "CC-BY-4.0",
+    "reference_urls": [],
+    "author": "Werewolf-Classic contributors / Codex"
+  },
+  "review": {
+    "rule_checked": false,
+    "perspective_checked": false,
+    "critic_models": [],
+    "human_approved": false,
+    "notes": "作者设计的合成种子；质量分为作者自评，并非独立 Critic 或人工复核。"
+  },
+  "evidence_ids": [
+    "p1",
+    "p2",
+    "p3",
+    "e1",
+    "e2"
+  ],
+  "training_stage": "tactics"
+}

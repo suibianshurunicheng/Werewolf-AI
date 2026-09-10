@@ -14,7 +14,7 @@
 ## 当前正在进行
 
 - CUDA 11.8 / torch 2.6.0 安装正在下载约 2.7GB wheel；此前仅有 CPU torch。
-- 下一独立阶段：Schema、最小样本、经典 Prompt、基础测试。
+- 下一独立阶段：经典 Gold 种子集、四类 Benchmark、不可覆盖的数据快照。
 
 ## 尚未完成
 
@@ -28,11 +28,14 @@
 - pyproject.toml、requirements*.txt。
 - src/werewolf_sft/{io,rules,perspective,validation}.py。
 - docs/{base_model_selection,rules_classic,rules_mirror_maze,rule_conflicts}.md。
+- data/schemas/sample.schema.json、data/examples/player_sample.json、8 份经典 prompts、tests/test_foundation.py。
+- scripts/generate_assets.py 与 scripts/validate_dataset.py；generate_assets 重跑只验证一致内容，拒绝覆盖修改。
 
 ## 已运行的测试与结果
 
 - `.venv/Scripts/python.exe -m compileall -q src`：退出码 0，语法检查通过。
-- 尚未运行单元测试；Schema 尚未生成，校验模块尚不能端到端运行。
+- `.venv/Scripts/python.exe scripts/generate_assets.py`：已实际生成 Schema、8 模板与 1 个明确标注的样本。
+- `.venv/Scripts/python.exe -m pytest --junitxml=reports/foundation-tests.xml`：**37 passed in 0.86s**。覆盖 schema、越权事实、未来信息、消息分离、模板、技能、死亡、票权、屠边、去重、跨集合污染。
 - 未进行模型 Benchmark，没有模型能力分数或正式训练成功证据。
 
 ## 当前阻塞项
@@ -42,15 +45,17 @@
 
 ## 下一步具体任务
 
-1. 完成 Schema、测试夹具、Prompt；运行规则和视角测试。
-2. commit 后再生成 Gold 与四类评测。
+1. Schema 与基础测试已完成，先保存第二个检查点。
+2. 生成经典 Gold 与四类独立评测，记录合成来源，不使用镜隐数据。
 3. 每阶段同步更新三份状态文件并 commit，长任务前先保存。
 
 ## Resume Here
 
 先读 README.md、PROJECT_STATUS.md、DECISIONS.md、TODO.md，再运行 `git log -5 --oneline`、`git status --short`，禁止重新初始化。
 
-**第一项任务：补齐 data/schemas/sample.schema.json 和 tests/，验证已有 src/werewolf_sft/。**
+**第一项任务：实现经典 Gold 种子生成与四类 Benchmark，形成 dataset_v0.1 不可覆盖快照。不要重复生成已有模板。**
+
+确认基础状态：`.venv/Scripts/python.exe -m pytest`（最近 37 项通过）。
 
 环境检查：`.venv/Scripts/python.exe -c "import torch; print(torch.__version__, torch.cuda.is_available())"`。
 

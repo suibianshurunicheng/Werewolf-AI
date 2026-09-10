@@ -1,0 +1,559 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Werewolf player SFT record",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dataset_version": {
+      "pattern": "^dataset_v0\\.[123]$",
+      "type": "string"
+    },
+    "rule_version": {
+      "const": "ww-v1.0"
+    },
+    "board": {
+      "enum": [
+        "classic_12",
+        "mirror_12"
+      ]
+    },
+    "seat": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "role": {
+      "enum": [
+        "werewolf",
+        "villager",
+        "seer",
+        "witch",
+        "hunter",
+        "guard",
+        "mirror_girl",
+        "awakened_hidden_wolf"
+      ]
+    },
+    "stage": {
+      "enum": [
+        "badge_transfer",
+        "day_speech",
+        "exile_vote",
+        "hunter_shot",
+        "last_words",
+        "night",
+        "sheriff_signup",
+        "sheriff_speech",
+        "sheriff_vote",
+        "sheriff_withdraw"
+      ]
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50
+    },
+    "private_info": {
+      "type": "object",
+      "properties": {
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "enum": [
+                  "wolf_team",
+                  "check_result",
+                  "mimic_result",
+                  "witch_knife"
+                ]
+              },
+              "target": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 12
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "round": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "target",
+              "value",
+              "round"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "facts"
+      ],
+      "additionalProperties": false
+    },
+    "public_info": {
+      "type": "object",
+      "properties": {
+        "alive": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "uniqueItems": true
+        },
+        "sheriff": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "uniqueItems": true
+        },
+        "sheriff_registered": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "uniqueItems": true
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kind": {
+                "enum": [
+                  "speech",
+                  "vote",
+                  "death",
+                  "moderator"
+                ]
+              },
+              "round": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 50
+              },
+              "actor": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "kind",
+              "round",
+              "actor",
+              "target",
+              "text"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": false
+        }
+      },
+      "required": [
+        "alive",
+        "sheriff",
+        "candidates",
+        "sheriff_registered",
+        "events"
+      ],
+      "additionalProperties": false
+    },
+    "skill_state": {
+      "type": "object",
+      "properties": {
+        "antidote_available": {
+          "type": "boolean"
+        },
+        "poison_available": {
+          "type": "boolean"
+        },
+        "potion_used_tonight": {
+          "type": "boolean"
+        },
+        "checked_seats": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "uniqueItems": true
+        },
+        "last_guard_target": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mimic_used": {
+          "type": "boolean"
+        },
+        "mimic_role": {
+          "enum": [
+            null,
+            "werewolf",
+            "villager",
+            "seer",
+            "witch",
+            "hunter",
+            "guard",
+            "mirror_girl",
+            "awakened_hidden_wolf"
+          ]
+        },
+        "mimic_round": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "knife_enabled": {
+          "type": "boolean"
+        },
+        "extra_knife_available": {
+          "type": "boolean"
+        },
+        "selected_knife_target": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hunter_can_shoot": {
+          "type": "boolean"
+        },
+        "shot_used": {
+          "type": "boolean"
+        },
+        "last_words_allowed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "antidote_available",
+        "poison_available",
+        "potion_used_tonight",
+        "checked_seats",
+        "last_guard_target",
+        "mimic_used",
+        "mimic_role",
+        "mimic_round",
+        "knife_enabled",
+        "extra_knife_available",
+        "selected_knife_target",
+        "hunter_can_shoot",
+        "shot_used",
+        "last_words_allowed"
+      ],
+      "additionalProperties": false
+    },
+    "task": {
+      "type": "string",
+      "minLength": 1
+    },
+    "analysis": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strategy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identity_reads": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "seat": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "assessment": {
+            "type": "string",
+            "minLength": 1
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "seat",
+          "assessment",
+          "confidence"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": false
+    },
+    "wolf_pit": {
+      "type": "string"
+    },
+    "god_pit": {
+      "type": "string"
+    },
+    "round_assessment": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "pass",
+            "speak",
+            "vote",
+            "check",
+            "poison",
+            "heal",
+            "guard",
+            "mimic",
+            "knife",
+            "extra_knife",
+            "shoot",
+            "transfer_badge",
+            "tear_badge",
+            "run_sheriff",
+            "withdraw",
+            "explode"
+          ]
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "public_response": {
+      "type": "string"
+    },
+    "tactical_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "quality_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "original_synthetic",
+            "licensed_match",
+            "teacher_generated"
+          ]
+        },
+        "license": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": false
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "license",
+        "reference_urls",
+        "author"
+      ],
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "rule_checked": {
+          "type": "boolean"
+        },
+        "perspective_checked": {
+          "type": "boolean"
+        },
+        "critic_models": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "human_approved": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_checked",
+        "perspective_checked",
+        "critic_models",
+        "human_approved",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "training_stage": {
+      "enum": [
+        "rules",
+        "strategy",
+        "tactics"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "scenario_id",
+    "dataset_version",
+    "rule_version",
+    "board",
+    "seat",
+    "role",
+    "stage",
+    "round",
+    "private_info",
+    "public_info",
+    "skill_state",
+    "task",
+    "analysis",
+    "strategy",
+    "identity_reads",
+    "wolf_pit",
+    "god_pit",
+    "round_assessment",
+    "action",
+    "public_response",
+    "tactical_tags",
+    "quality_score",
+    "source",
+    "review",
+    "evidence_ids",
+    "training_stage"
+  ],
+  "additionalProperties": false
+}

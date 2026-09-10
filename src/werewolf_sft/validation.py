@@ -11,7 +11,8 @@ from .rules import BOARDS, RULE_VERSION, STAGES, effective_role, legal_actions
 
 REQUIRED = {"id", "scenario_id", "dataset_version", "rule_version", "board", "seat", "role", "stage", "round",
             "private_info", "public_info", "skill_state", "task", "analysis", "identity_reads", "strategy", "action",
-            "public_response", "tactical_tags", "quality_score", "source", "review", "evidence_ids", "training_stage"}
+            "public_response", "tactical_tags", "quality_score", "source", "review", "evidence_ids", "training_stage",
+            "wolf_pit", "god_pit", "round_assessment"}
 SKILL_DEFAULTS = dict(antidote_available=False, poison_available=False, potion_used_tonight=False,
                       checked_seats=[], last_guard_target=None, mimic_used=False, mimic_role=None,
                       mimic_round=None, knife_enabled=False, extra_knife_available=False,

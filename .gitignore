@@ -21,10 +21,10 @@ logs/
 *.gguf
 *.onnx
 *.log
+reports/*-tests.xml
 dist/
 build/
 .DS_Store
 Thumbs.db
 data/silver/pending/*
 !data/silver/pending/.gitkeep
-
