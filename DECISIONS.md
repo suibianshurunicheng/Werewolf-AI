@@ -1,5 +1,12 @@
 # 工程决策
 
+## dataset_v0.1检查点
+
+- 首版185条原创种子，25战术各五条件、18策略主题、42规则；不靠座位轮换或大量改写凑数量。
+- 同scenario_id整体分训练/验证；36题Benchmark独立编写，4对仅变一个可见字段，dev/test预先固定。
+- Gold未做独立Critic和人工复核；参考动作不是完整策略质量指标。实际46项测试通过。
+- Primary revision固定cdbee75f17c01a7cc42f958dc650907174af0554。CUDA第二次下载成功且已识别GPU。
+
 ## 远程仓库与下载恢复
 
 - 用户指定 git@github.com:suibianshurunicheng/Werewolf-AI.git。插件确认空仓库，SSH ls-remote 成功，保留现有本地提交并正常 push，禁止 force push。

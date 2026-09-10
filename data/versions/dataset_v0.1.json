@@ -1,0 +1,38 @@
+{
+  "dataset_version": "dataset_v0.1",
+  "files": {
+    "data/gold/dataset_v0.1/rules.jsonl": "96149aa48dfe0dcf10a113973fcba90266bb5a937d8a9fc14e06192c49f4d231",
+    "data/gold/dataset_v0.1/strategy.jsonl": "8b9e09210167641d622bb21b34f76371bd6a696aa84a73e8768f95f398e19bfa",
+    "data/gold/dataset_v0.1/tactics.jsonl": "845ec322a652069ae56da93e0c8b5d799504e6a5f283301553c6fff0b8ffbd0b",
+    "data/prepared/dataset_v0.1/rules/train.jsonl": "328a86dc6553e9a2f8202d73312155dfd933795527d8a5192ba58b094f829741",
+    "data/prepared/dataset_v0.1/rules/train.messages.jsonl": "81783350f7faf5bd14411d91fbb18325d6073c92297b32ac7ae8c196064b8ab0",
+    "data/prepared/dataset_v0.1/rules/validation.jsonl": "03beb5a38435bc97ada708b61f3b6934dc4eb0d49f22024b1c51d44ee50e4228",
+    "data/prepared/dataset_v0.1/rules/validation.messages.jsonl": "632bffa24317ecce9ca5012f7d61eecf7f410f9f4fe6fc040807fd81d3747c4d",
+    "data/prepared/dataset_v0.1/strategy/train.jsonl": "23342be575dff7db910d421713753b9eefead012e9e7393ca56b0dc0e9717ac4",
+    "data/prepared/dataset_v0.1/strategy/train.messages.jsonl": "86cf7a8496d94d8dc0de99fb17f6d171a9417c4d82d70572f67bedcc81899d31",
+    "data/prepared/dataset_v0.1/strategy/validation.jsonl": "b407febe4bbfc86321e90690be30b5ddfa74c8380602a2b5da02f254dd0fdd5c",
+    "data/prepared/dataset_v0.1/strategy/validation.messages.jsonl": "9481b2fd0a54d228cd4eca17366b834c46a61d3fc3c0b397849c9f1935faad63",
+    "data/prepared/dataset_v0.1/tactics/train.jsonl": "957bd7b504c195b09ff6b08f7ca45788a9cfbb9f3cd4e45b733d0ed0215cf5dc",
+    "data/prepared/dataset_v0.1/tactics/train.messages.jsonl": "4dfa43fe423cbb72433c64e2b85f7b6b18c8cac73575692df41c074ce046d432",
+    "data/prepared/dataset_v0.1/tactics/validation.jsonl": "a4b92f5c6fc521c814374c42b8d0e079987c57aafda47cfccfe68857a3746d27",
+    "data/prepared/dataset_v0.1/tactics/validation.messages.jsonl": "53de2258af3f8d31aa06446414039b78d0ec54d8ef1d76414a95e64ae509437c",
+    "eval/blind.jsonl": "955320b225a2fe19ef5fda0e11022b01d9827c2be679d28d8715860d4c3c7da9",
+    "eval/counterfactual.jsonl": "9789cb6473e31168f0ecd6e096c1892443087a9973c571259764812a98d4c0e4",
+    "eval/rules.jsonl": "ec2cd391eb868813815acf403b739c45ddb285b3e77a28b028c2e8ad74e287de",
+    "eval/strategy.jsonl": "14cf769069a394c8c679421369bb3fa3ab3a45a3fa6e524196b34671a7da5048"
+  },
+  "counts": {
+    "rules": 42,
+    "strategy": 18,
+    "tactics": 125
+  },
+  "eval_counts": {
+    "rules": 12,
+    "strategy": 8,
+    "counterfactual": 8,
+    "blind": 8
+  },
+  "source": "original_synthetic",
+  "human_reviewed": false,
+  "notes": "Small authored seed corpus, not 3000+ independent human-reviewed games."
+}
