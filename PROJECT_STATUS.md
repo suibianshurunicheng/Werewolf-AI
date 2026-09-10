@@ -13,14 +13,14 @@
 
 ## 当前正在进行
 
-- CUDA 11.8 / torch 2.6.0 安装正在下载约 2.7GB wheel；此前仅有 CPU torch。
+- CUDA 11.8 / torch 2.6.0 首次下载约 2.2/2.7GB 后截断，SHA256 校验失败，未安装。已升级 pip 25.3，准备使用断点重试。
 - 下一独立阶段：经典 Gold 种子集、四类 Benchmark、不可覆盖的数据快照。
 
 ## 尚未完成
 
 - Gold、Benchmark、数据版本快照、训练/推理/评测脚本。
 - 模型下载、完整 Base Benchmark、真实 QLoRA、阶段 Adapter、比较报告、人工对局。
-- GitHub 远程创建与推送；插件已连接，本机 gh CLI 未登录。
+- GitHub 已指定为 suibianshurunicheng/Werewolf-AI；插件和 SSH 都确认仓库为空，可推送。
 
 ## 已生成的重要文件
 
@@ -29,6 +29,8 @@
 - src/werewolf_sft/{io,rules,perspective,validation}.py。
 - docs/{base_model_selection,rules_classic,rules_mirror_maze,rule_conflicts}.md。
 - data/schemas/sample.schema.json、data/examples/player_sample.json、8 份经典 prompts、tests/test_foundation.py。
+- configs/qlora_classic.yaml、lora_classic.yaml、12/16/24GB 与 3B 备用配置；配置加载集成待完成。
+- scripts/prepare_model.py：固定 revision 并支持 Hugging Face 缓存恢复下载，尚未运行。
 - scripts/generate_assets.py 与 scripts/validate_dataset.py；generate_assets 重跑只验证一致内容，拒绝覆盖修改。
 
 ## 已运行的测试与结果
@@ -40,8 +42,8 @@
 
 ## 当前阻塞项
 
-- CUDA 依赖下载正在进行；4GB 容量待真实验证，未发生可报告的 OOM。
-- gh CLI 未登录，插件未发现新建仓库工具；先完成本地工程。
+- CUDA 下载曾截断，正在修复；4GB 容量待真实验证，未发生可报告的 OOM。
+- GitHub 认证阻塞已解除：用户给出空仓库，SSH 可用。
 
 ## 下一步具体任务
 

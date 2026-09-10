@@ -16,7 +16,7 @@
 - [ ] 实现可恢复的 QLoRA/LoRA、推理、评测和 Adapter 合并。
 - [ ] 完成 4GB / 12GB / 16GB / 24GB 配置及 CPU 链路验证。
 - [ ] 完成 README、数据、训练、评测、手动对局和模型卡。
-- [ ] 完成提交前内容检查，推送 GitHub（当前 CLI 未登录，插件可读写现有仓库但未发现创建仓库能力）。
+- [ ] 完成提交前内容检查，推送 GitHub suibianshurunicheng/Werewolf-AI（已确认空仓库、SSH 可用）。
 
 ## Phase 1
 

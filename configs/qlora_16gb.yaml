@@ -1,0 +1,6 @@
+extends: qlora_12gb.yaml
+data:
+  max_length: 3072
+training:
+  output_root: outputs/classic_16gb_v01
+

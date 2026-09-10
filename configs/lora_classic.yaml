@@ -1,0 +1,7 @@
+extends: qlora_classic.yaml
+quantization:
+  enabled: false
+training:
+  optimizer: adamw_torch
+  output_root: outputs/classic_lora_v01
+

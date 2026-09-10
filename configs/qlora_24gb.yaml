@@ -1,0 +1,9 @@
+extends: qlora_16gb.yaml
+data:
+  max_length: 4096
+lora:
+  rank: 16
+  alpha: 32
+training:
+  output_root: outputs/classic_24gb_v01
+
