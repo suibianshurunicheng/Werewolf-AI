@@ -110,6 +110,9 @@ def prepare_trainable(model, dtype, config, adapter=None):
             task_type="CAUSAL_LM", r=config["lora"]["rank"], lora_alpha=config["lora"]["alpha"],
             lora_dropout=config["lora"]["dropout"], target_modules=config["lora"]["target_modules"], bias="none",
         ))
+    for peft_config in model.peft_config.values():
+        peft_config.base_model_name_or_path = config["model"]["name"]
+        peft_config.revision = model_revision(config)
     if not any(p.requires_grad for p in model.parameters()):
         raise RuntimeError("no trainable adapter parameters")
     if any(p.requires_grad and "lora_" not in name for name, p in model.named_parameters()):

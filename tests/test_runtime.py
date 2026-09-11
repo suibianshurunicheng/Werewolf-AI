@@ -193,6 +193,26 @@ def test_resume_skips_partial_and_corrupt_checkpoints(tmp_path):
     assert last_complete_checkpoint(tmp_path, {"stage": "different"}) is None
 
 
+def test_one_step_stage_has_a_real_nonzero_learning_rate():
+    torch = pytest.importorskip("torch")
+    transformers = pytest.importorskip("transformers")
+    from werewolf_sft.training import effective_schedule
+    config = load_config(ROOT / "configs/qlora_classic.yaml")
+    schedule = effective_schedule(13, config["training"])
+    assert schedule["optimizer_steps"] == 1
+    assert schedule["warmup_steps"] == 0
+    assert effective_schedule(35, config["training"])["warmup_steps"] == 1
+    param = torch.nn.Parameter(torch.tensor([1.0]))
+    optimizer = torch.optim.AdamW([param], lr=config["training"]["learning_rate"])
+    scheduler = transformers.get_cosine_schedule_with_warmup(
+        optimizer, num_warmup_steps=schedule["warmup_steps"], num_training_steps=1)
+    assert optimizer.param_groups[0]["lr"] > 0
+    param.square().sum().backward()
+    optimizer.step()
+    scheduler.step()
+    assert param.item() != 1.0
+
+
 def test_selected_completion_loss_and_gradients_match_standard():
     torch = pytest.importorskip("torch")
     transformers = pytest.importorskip("transformers")

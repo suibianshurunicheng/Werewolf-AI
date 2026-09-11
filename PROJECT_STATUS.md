@@ -4,7 +4,7 @@
 
 ## 已完成任务
 
-- 用户指定GitHub仓库已多阶段提交推送；最近确定完成工程点dfeb58d，未重新初始化或重做已冻结数据。
+- 用户指定GitHub仓库已多阶段提交推送；最近确定完成训练检查点4904dda，未重新初始化或重做已冻结数据。
 - classic_12 / ww-v1.0、严格玩家视角Schema、8模板、规则纯函数和完整工具链。
 - dataset_v0.1：42规则+18策略+125战术=185原创种子，分场景族训练/验证，无镜隐；未独立人工复核。
 - 独立36题Benchmark（规则12、策略8、反事实8、盲测8），dev/test固定，4对单变量反事实。
@@ -14,7 +14,7 @@
 
 ## 当前正在进行
 
-完整Base52514c6已推送。Rule QLoRA实际完成3step/1epoch，Adapter和checkpoint已核验；现在先修正极小Strategy数据的warmup问题，再继续Strategy。
+完整Base52514c6已推送。Rule QLoRA实际完成3step/1epoch，Adapter和checkpoint已核验；warmup修复及67项完整测试已通过；Strategy dry-run为15 train/3 val、1 step、0 warmup。保存修复后继续Strategy。新增D:/BiliDownload视频审核任务，已发现185条约77.98小时，尚未评定片段质量。
 
 ## 尚未完成任务
 
@@ -45,21 +45,27 @@
 - Rule真实训练：3step/1epoch，35 train/7 val，峰值3376.9MiB；验证Loss3.26995→2.96880。252个LoRA B矩阵非零，最终checkpoint-3完整哈希通过。证据reports/training/rules_v01，权重outputs/classic_v01/rules/final。
 - GitHub 2e55c70 CI已成功；后续提交CI尚未复查。
 
+## 新增视频审核与磁盘约束
+
+- 来源D:/BiliDownload：185条，元数据总时长77.98小时；没有独立字幕文件，m4s音视频需实际解码/转录，弹幕不是玩家转录。所有条目保持待审核，不按板子直接淘汰。
+- 审核执行docs/video_review_policy.md：CLASSIC_GOLD/TRANSFERABLE/BOARD_SPECIFIC/LOW_QUALITY，机制剥离后可生成CLASSIC_ADAPTED，特殊板子原样不得进Phase1。
+- 2026-09-11实测C盘剩余49.17GiB，D盘100.84GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
+
 ## 当前阻塞项
 
 没有外部阻塞。4GB已完成真实Rule QLoRA，不能据此保证所有长度或阶段都稳定。Base的精确动作匹配同时反映接口词汇问题；最终能力提升不能只依据该指标，必须另做语义审核或统一动作字典的新协议重测。
 
 ## 下一步具体任务
 
-1. 提交Rule真实成果、日志、配置和权重哈希。
-2. 修正单step阶段warmup不得占满全部step；Strategy数据少，原ratio0.05会令唯一step学习率为0。修正并测试后继续Strategy，不能宣称空更新为SFT成功。
+1. Rule4904dda已提交推送；提交warmup修复并开始Strategy。
+2. 继续Strategy/Tactics，逐阶段导出真实参数变化及日志；视频审核先建可恢复索引再完成一局，不批量伪造评级。
 3. 每完成一个阶段更新三份状态文档并commit。保持一个确定完成的可恢复检查点。
 
 ## Resume Here
 
 先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base。
 
-第一项任务：Rule已完成，不要重跑。修正training.py中的短阶段warmup，保证只有1个step时warmup_steps=0；保存effective_schedule，测试后commit，再执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage strategy 。默认从outputs/classic_v01/rules/final载入已完成Adapter。
+第一项任务：Rule已完成，不要重跑。warmup修复已通过67项测试和Strategy dry-run，提交后执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage strategy 。默认从outputs/classic_v01/rules/final载入已完成Adapter。
 
 训练CLI已开启HF_HUB_OFFLINE，避免PEFT保存时对未固定main的非必要查询；prepare_model.py仍是显式下载入口。Rule保存阶段出现网络探测警告，但最终保存成功，不是OOM。
 

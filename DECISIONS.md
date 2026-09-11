@@ -89,3 +89,10 @@
 - PEFT保存会尝试请求上游main/config.json，失败后继续并成功保存。后续训练CLI在导入HF库之前启用offline，下载仍单独prepare_model。
 - 发现Strategy只有1个优化step，ratio0.05会向上取整成1个warmup step，唯一更新lr=0。必须在Strategy开始前限制warmup小于总step，并保存effective_schedule；不让空更新冒充训练。
 - 跨主机恢复必须复制大权重目录并校验哈希，Git仓库中的报告不能代替实际Adapter/optimizer文件。
+
+## Strategy调度与视频审核新增要求
+
+- warmup=min(ceil(total_steps*ratio), total_steps-1)，effective_schedule写入manifest；1 step阶段有效warmup为0，已测试实际参数发生变化。完整67项测试通过，Strategy实际编码15/3、1 step、0 warmup。
+- 保留已完成Rule，不因该修复重训。以后Adapter配置也显式写固定Base revision。
+- 用户新增视频高级审核：策略质量优先于板子名称，未知板子不丢整局；跨板机制剥离、玩家当时合法视角、避免结果/事后偏差。审核候选单独版本化，未经经典兼容校验不进入现有SFT快照。
+- 用户授权C盘空间不足时迁整个项目到D盘；D盘也不足则提醒租云服务器。先持久化并结束活动写入、复制校验后再切换，不在训练或下载写入过程中搬目录。当前C49.17GiB/D100.84GiB，无需迁移。

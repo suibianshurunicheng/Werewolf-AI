@@ -20,7 +20,8 @@
 - [x] 工具链3110940已提交推送；增加中断精确恢复和运行锁测试。
 - [x] 完整Base36/36生成结束，reports/base_model_baseline.md已保存。
 - [x] Base52514c6提交后完成真实Rule QLoRA：3step/1epoch，无OOM，Adapter及checkpoint-3核验。
-- [ ] Strategy之前修复单step warmup=0的问题，并验证参数真实变化。
+- [x] Strategy单step warmup修复，67项测试通过；dry-run15/3、1step、0warmup。
+- [ ] Strategy训练后验证相对Rule参数真实变化。
 - [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
 - [x] 完整结果已统一--score-only，strict-actions-v1.1诊断列已保存，没有重做生成。
 - [ ] 分开检查动作词汇接入与真实策略能力；不得用格式改善冒充策略提升。
@@ -31,3 +32,12 @@
 ## Phase 2（暂停）
 
 - [ ] Phase1验收后才正式冻结镜隐、生成镜隐数据与训练。
+
+## 视频审核与磁盘恢复
+
+- [x] 初步清点185条、约77.98小时素材；不按板子过滤。
+- [ ] 写入可恢复素材索引和审核队列，首个视频实际解码、转录及证据审核。
+- [ ] 每局识别原板子，分类四类片段、机制剥离、玩家多维等级与视频统计。
+- [ ] 高价值迁移片段重写为CLASSIC_ADAPTED，并验证无特殊机制残留和上帝视角。
+- [x] 实测当前C/D磁盘余量，暂不需迁移。
+- [ ] 大文件任务和恢复前持续执行磁盘检查；触发不足时先保存并安全迁移，D也不足则提醒租云服务器。

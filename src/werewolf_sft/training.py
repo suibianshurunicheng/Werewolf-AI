@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import math
 from pathlib import Path
 
 from .config import load_config, model_revision
@@ -11,6 +12,17 @@ from .dataset import verify_snapshot
 from .io import ROOT, canonical, content_hash, read_jsonl, sha256_file, write_json
 from .modeling import load_base, load_tokenizer, prepare_trainable
 from .runtime import load_cases, protocol, adapter_digest, run_lock
+
+
+def effective_schedule(train_rows, training):
+    steps_per_epoch = math.ceil(train_rows / training["gradient_accumulation_steps"])
+    total = training["max_steps"] if training["max_steps"] > 0 else math.ceil(steps_per_epoch * training["epochs"])
+    if total <= 0:
+        raise ValueError("no optimizer steps")
+    # A one-step stage must not spend its sole update at zero learning rate.
+    warmup = min(math.ceil(total * training["warmup_ratio"]), total - 1)
+    return {"optimizer_steps": total, "warmup_steps": warmup,
+            "requested_warmup_ratio": training["warmup_ratio"]}
 
 
 def mark_checkpoint_complete(folder):
@@ -120,8 +132,9 @@ def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fal
     output = ROOT / config["training"]["output_root"] / stage
     tokenizer = load_tokenizer(config)
     train, val, data_info = prepare_stage_data(config, stage, tokenizer)
+    schedule = effective_schedule(len(train), config["training"])
     if dry_run:
-        return {"status": "dry_run", "stage": stage, **data_info}
+        return {"status": "dry_run", "stage": stage, "effective_schedule": schedule, **data_info}
     check_baseline(config)
     if stage != "rules" and initial_adapter is None:
         previous = {"strategy": "rules", "tactics": "strategy"}[stage]
@@ -136,6 +149,7 @@ def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fal
         "project": config["project"], "stage": stage, "base_model": config["model"]["name"],
         "revision": model_revision(config), "dataset": data_info, "config": config,
         "initial_adapter_digest": adapter_digest(initial_adapter),
+        "effective_schedule": schedule,
         "source_hashes": {name: sha256_file(Path(__file__).parent / (name + ".py"))
                           for name in ("training", "modeling", "encoding", "dataset")},
     }
@@ -174,7 +188,8 @@ def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fal
         output_dir=str(output), num_train_epochs=t["epochs"], max_steps=t["max_steps"],
         per_device_train_batch_size=1, per_device_eval_batch_size=1,
         gradient_accumulation_steps=t["gradient_accumulation_steps"],
-        learning_rate=t["learning_rate"], warmup_ratio=t["warmup_ratio"], weight_decay=t["weight_decay"],
+        learning_rate=t["learning_rate"], warmup_steps=schedule["warmup_steps"], warmup_ratio=0.0,
+        weight_decay=t["weight_decay"],
         max_grad_norm=t["max_grad_norm"], optim=t["optimizer"], lr_scheduler_type="cosine",
         bf16=dtype == torch.bfloat16, fp16=dtype == torch.float16,
         gradient_checkpointing=t["gradient_checkpointing"], gradient_checkpointing_kwargs={"use_reentrant": False},
