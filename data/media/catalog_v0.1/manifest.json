@@ -1,0 +1,16 @@
+{
+  "catalog_version": "catalog_v0.1",
+  "videos": 185,
+  "duration_hours": 77.98277777777778,
+  "source_bytes": 34552939994,
+  "series": {
+    "DeepSeek狼人杀，电子生命观测报告": 102,
+    "AI狼人杀上帝视角": 71,
+    "03双视角：误闯天家！AI狼人杀竟偷学【邪恶栀子花计划】！": 2,
+    "04双视角：顶级智斗！AI狼人杀颠覆认知的一期，假面舞会！": 2,
+    "AI狼人杀": 8
+  },
+  "reviewed": 0,
+  "pending": 185,
+  "board_classification_from_titles": false
+}

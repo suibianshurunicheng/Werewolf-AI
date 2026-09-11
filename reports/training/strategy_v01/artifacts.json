@@ -1,0 +1,147 @@
+{
+  "training_source_commit": "ba11f0a",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "files": {
+    "outputs/classic_v01/strategy/checkpoint-1/adapter_config.json": {
+      "bytes": 1140,
+      "sha256": "7b1a05e6b8c75d357a859181543d0edec4c368f7592f67db8ea92583af48b6a1"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/adapter_model.safetensors": {
+      "bytes": 66126768,
+      "sha256": "97f052d4ac404d1f4efd725807ff51e47b71800c52655b8c9b219a188d303d21"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/added_tokens.json": {
+      "bytes": 735,
+      "sha256": "79f6ec6fcc423d3a82bfac8b9033b1daac7b7bce06a5f5f441637b480cc605de"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/chat_template.jinja": {
+      "bytes": 2690,
+      "sha256": "0ab115e84509e86db2bb05a63edf63778ae7fe624972cdfa982b1e59053d6710"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/checkpoint_complete.json": {
+      "bytes": 1492,
+      "sha256": "574d55470debf134000517088d42829521cbdced92006a31e4fd24a4c4e8a2b1"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/merges.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/optimizer.pt": {
+      "bytes": 34136296,
+      "sha256": "e4fc96b00d08314523a5ed499a6c5eb50065634d4b768c0776690e6e6c2bbbca"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/README.md": {
+      "bytes": 5208,
+      "sha256": "a5f45a17df561d29585f8dd6ef95ea61a70787ca0558c4ba27f0e87979e3e984"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/rng_state.pth": {
+      "bytes": 14168,
+      "sha256": "28cc68298881686eede2de1fcc4c91150a5ed8976856fb200001f69b6915fb7f"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/run_manifest.json": {
+      "bytes": 2940,
+      "sha256": "02b00d264bbab78dab92d62bea278284f73e6ad6040b027a48db6e26ce0a7840"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/scheduler.pt": {
+      "bytes": 1056,
+      "sha256": "f4882f59b435501f052d3d8fb2ad511a1f3b0a814b988ad3e0dfa68e44273e82"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/special_tokens_map.json": {
+      "bytes": 644,
+      "sha256": "57255613bbe23c9497211ca68561ff429a51e871dbaf5a59998fa4c8f7fe168a"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/tokenizer.json": {
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/tokenizer_config.json": {
+      "bytes": 5644,
+      "sha256": "e1ff43043fd7fbe07a7656d301d3c59352984be693c69c4becd4b670f52a374b"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/trainer_state.json": {
+      "bytes": 1261,
+      "sha256": "fca670dd6fce062330a01b2c64ab4020097868dbd5a1256b0e2459f4ca8c3040"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/training_args.bin": {
+      "bytes": 5472,
+      "sha256": "0be8682924b107a155d86c1088049a1e57eda9ab8b94ef0ae885d2e5acb53762"
+    },
+    "outputs/classic_v01/strategy/checkpoint-1/vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "outputs/classic_v01/strategy/final/adapter_config.json": {
+      "bytes": 1140,
+      "sha256": "7b1a05e6b8c75d357a859181543d0edec4c368f7592f67db8ea92583af48b6a1"
+    },
+    "outputs/classic_v01/strategy/final/adapter_model.safetensors": {
+      "bytes": 66126768,
+      "sha256": "97f052d4ac404d1f4efd725807ff51e47b71800c52655b8c9b219a188d303d21"
+    },
+    "outputs/classic_v01/strategy/final/added_tokens.json": {
+      "bytes": 735,
+      "sha256": "79f6ec6fcc423d3a82bfac8b9033b1daac7b7bce06a5f5f441637b480cc605de"
+    },
+    "outputs/classic_v01/strategy/final/chat_template.jinja": {
+      "bytes": 2690,
+      "sha256": "0ab115e84509e86db2bb05a63edf63778ae7fe624972cdfa982b1e59053d6710"
+    },
+    "outputs/classic_v01/strategy/final/merges.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "outputs/classic_v01/strategy/final/README.md": {
+      "bytes": 5208,
+      "sha256": "a5f45a17df561d29585f8dd6ef95ea61a70787ca0558c4ba27f0e87979e3e984"
+    },
+    "outputs/classic_v01/strategy/final/run_manifest.json": {
+      "bytes": 2940,
+      "sha256": "02b00d264bbab78dab92d62bea278284f73e6ad6040b027a48db6e26ce0a7840"
+    },
+    "outputs/classic_v01/strategy/final/special_tokens_map.json": {
+      "bytes": 644,
+      "sha256": "57255613bbe23c9497211ca68561ff429a51e871dbaf5a59998fa4c8f7fe168a"
+    },
+    "outputs/classic_v01/strategy/final/tokenizer.json": {
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "outputs/classic_v01/strategy/final/tokenizer_config.json": {
+      "bytes": 5644,
+      "sha256": "e1ff43043fd7fbe07a7656d301d3c59352984be693c69c4becd4b670f52a374b"
+    },
+    "outputs/classic_v01/strategy/final/training_args.bin": {
+      "bytes": 5472,
+      "sha256": "0be8682924b107a155d86c1088049a1e57eda9ab8b94ef0ae885d2e5acb53762"
+    },
+    "outputs/classic_v01/strategy/final/vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "outputs/classic_v01/strategy/progress.json": {
+      "bytes": 662,
+      "sha256": "0bfdc98211d4ae685bc4d25a0fd36b12d173a48aa087b125631291cbb9a5ac13"
+    },
+    "outputs/classic_v01/strategy/run_manifest.json": {
+      "bytes": 2940,
+      "sha256": "02b00d264bbab78dab92d62bea278284f73e6ad6040b027a48db6e26ce0a7840"
+    },
+    "outputs/classic_v01/strategy/trainer_state.json": {
+      "bytes": 1713,
+      "sha256": "8b07d123a323332999c3213c47c62757f44cf6690aef1314d2c13cb51f2a86f2"
+    },
+    "outputs/classic_v01/strategy/training.jsonl": {
+      "bytes": 541,
+      "sha256": "884e18f6552886e859d6648bf50a769854df470c00e1856c325a06c220b4f0c7"
+    },
+    "outputs/classic_v01/strategy/training_result.json": {
+      "bytes": 662,
+      "sha256": "0bfdc98211d4ae685bc4d25a0fd36b12d173a48aa087b125631291cbb9a5ac13"
+    }
+  },
+  "adapter_tensors": 504,
+  "nonzero_lora_B_tensors": 252,
+  "changed_tensors_from_initial_adapter": 504,
+  "weights_location": "outputs/classic_v01/strategy",
+  "portability": "Weights stay in local outputs; copy this directory and verify hashes when moving hosts."
+}

@@ -1,0 +1,24 @@
+{
+  "status": "trained",
+  "stage": "strategy",
+  "global_step": 1,
+  "epoch": 1.0,
+  "best_checkpoint": "outputs/classic_v01/strategy/checkpoint-1",
+  "peak_vram_mib": 3315.78125,
+  "metrics": {
+    "train_runtime": 53.4016,
+    "train_samples_per_second": 0.281,
+    "train_steps_per_second": 0.019,
+    "total_flos": 242894697274368.0,
+    "train_loss": 3.1488845348358154,
+    "epoch": 1.0
+  },
+  "validation": {
+    "eval_loss": 3.058638334274292,
+    "eval_runtime": 2.9078,
+    "eval_samples_per_second": 1.032,
+    "eval_steps_per_second": 1.032,
+    "epoch": 1.0
+  },
+  "model_benchmark": "not_run"
+}

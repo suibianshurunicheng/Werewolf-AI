@@ -1,0 +1,12 @@
+{
+  "checked_at_utc": "2026-09-11T06:28:13.871536+00:00",
+  "workspace_drive": "C:\\",
+  "current_free_gib": 48.62046432495117,
+  "d_free_gib": 100.83962631225586,
+  "needed_gib": 3.0,
+  "reserve_gib": 5.0,
+  "project_bytes_if_measured": null,
+  "decision": "CONTINUE",
+  "migration_target": "D:/Projects/Werewolf-AI",
+  "instructions": "docs/disk_recovery.md"
+}

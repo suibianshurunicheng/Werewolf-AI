@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-11。当前Phase：Phase 1，完整Base和Rule QLoRA已完成，准备Strategy SFT。
+更新：2026-09-11。当前Phase：Phase 1，完整Base、Rule及Strategy QLoRA已完成，准备Tactics SFT。
 
 ## 已完成任务
 
@@ -14,11 +14,11 @@
 
 ## 当前正在进行
 
-完整Base52514c6已推送。Rule QLoRA实际完成3step/1epoch，Adapter和checkpoint已核验；warmup修复及67项完整测试已通过；Strategy dry-run为15 train/3 val、1 step、0 warmup。保存修复后继续Strategy。新增D:/BiliDownload视频审核任务，已发现185条约77.98小时，尚未评定片段质量。
+Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。完整证据已导出reports/training/strategy_v01。下一阶段Tactics。视频索引catalog_v0.1已保存185条/77.98小时，全部待审核；隔离.media-venv已安装CPU转录/解码依赖，尚未下载ASR模型或转录。
 
 ## 尚未完成任务
 
-- Strategy和Tactics顺序续训；Rule已完成，不要重跑。
+- Tactics从Strategy续训；Rule和Strategy已完成，不要重跑。
 - 如果OOM：依顺序保存并实施长度、rank、target modules、offload等合理调整，必要时备用3B；不能因估计显存而放弃。
 - 相同协议测Adapter，生成qlora_v01.md与base_vs_qlora.md。
 - dev失败修正dataset_v0.2及第二轮训练。
@@ -36,7 +36,7 @@
 
 ## 已运行测试与结果
 
-- 完整65项pytest通过；随后扩充空Benchmark配置拒绝用例，6项配置参数化测试通过（现共66项）。
+- 完整67项pytest通过，包含单step非零更新调度；实际Strategy训练再核验504个张量相对Rule改变。
 - CPU小型Qwen3验证completion-only损失和梯度与标准实现等价；LoRA保存重载一致；step1中断后恢复到step4与连续训练参数/验证结果一致。这不是4B训练成功证据。
 - 数据快照篡改拒绝、残缺/损坏checkpoint跳过、OS运行锁测试通过。
 - 185条实际Tokenizer长度649～931，全部适配1024。Rule dry-run35训练/7验证、零过滤。
@@ -49,7 +49,7 @@
 
 - 来源D:/BiliDownload：185条，元数据总时长77.98小时；没有独立字幕文件，m4s音视频需实际解码/转录，弹幕不是玩家转录。所有条目保持待审核，不按板子直接淘汰。
 - 审核执行docs/video_review_policy.md：CLASSIC_GOLD/TRANSFERABLE/BOARD_SPECIFIC/LOW_QUALITY，机制剥离后可生成CLASSIC_ADAPTED，特殊板子原样不得进Phase1。
-- 2026-09-11实测C盘剩余49.17GiB，D盘100.84GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
+- 2026-09-11实测C盘剩余48.64GiB，D盘100.84GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
 
 ## 当前阻塞项
 
@@ -57,18 +57,18 @@
 
 ## 下一步具体任务
 
-1. Rule4904dda已提交推送；提交warmup修复并开始Strategy。
-2. 继续Strategy/Tactics，逐阶段导出真实参数变化及日志；视频审核先建可恢复索引再完成一局，不批量伪造评级。
+1. Strategy真实结果、视频不可变索引和磁盘预检查入本次检查点后，执行Tactics。
+2. Tactics完成后导出参数变化/日志，按相同协议测Adapter；视频先实际解码首局，再获得带时间戳的证据并审核，不批量伪造评级。
 3. 每完成一个阶段更新三份状态文档并commit。保持一个确定完成的可恢复检查点。
 
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base。
+先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base/Rule/Strategy。
 
-第一项任务：Rule已完成，不要重跑。warmup修复已通过67项测试和Strategy dry-run，提交后执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage strategy 。默认从outputs/classic_v01/rules/final载入已完成Adapter。
+第一项任务：.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3 。仅CONTINUE后检查outputs/classic_v01/tactics/progress.json和training_result.json，确认无活动进程；若尚未启动，执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage tactics 。默认从outputs/classic_v01/strategy/final载入。若中断，用同命令加--resume，只恢复完整哈希checkpoint。
 
-训练CLI已开启HF_HUB_OFFLINE，避免PEFT保存时对未固定main的非必要查询；prepare_model.py仍是显式下载入口。Rule保存阶段出现网络探测警告，但最终保存成功，不是OOM。
+Tactics成功后用scripts/export_training.py导出日志/哈希，--initial-adapter outputs/classic_v01/strategy/final；更新三份文档commit。然后用README中的同协议evaluate命令生成qlora_v01和base_vs_qlora报告。
 
-Strategy成功后用scripts/export_training.py导出日志/哈希，并验证相对Rule权重确有变化；更新状态commit，再训练tactics。中断同配置加--resume，仅加载完整哈希checkpoint。旧Rule源代码由52514c6记录，规则训练结果保持不变。
+视频：data/media/catalog_v0.1已完整索引185条；不要重建覆盖。首个来源28287501902尚未审核，.media-venv已安装解码/转录依赖；下一项是实际probe、只读去除已观察到的9字节包装并获取时间戳证据。源D:/BiliDownload不改动。
 
-大权重未进Git：本机outputs/classic_v01/rules保存3个完整checkpoint和final。换主机时必须复制该目录，按reports/training/rules_v01/artifacts.json核对SHA；只有Git副本不含Adapter权重，不能伪称已恢复权重。
+大权重未进Git：本机outputs/classic_v01/{rules,strategy}含完整checkpoint和final；跨主机必须复制并按reports/training/*/artifacts.json核对SHA。Git副本本身不含权重。空间不足按docs/disk_recovery.md迁移，不能在活动训练或下载写入时搬目录。

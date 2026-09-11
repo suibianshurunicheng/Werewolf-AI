@@ -21,8 +21,8 @@
 - [x] 完整Base36/36生成结束，reports/base_model_baseline.md已保存。
 - [x] Base52514c6提交后完成真实Rule QLoRA：3step/1epoch，无OOM，Adapter及checkpoint-3核验。
 - [x] Strategy单step warmup修复，67项测试通过；dry-run15/3、1step、0warmup。
-- [ ] Strategy训练后验证相对Rule参数真实变化。
-- [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
+- [x] Strategy训练1step完成，相对Rule的504个张量真实变化；结果/日志/权重哈希已导出。
+- [ ] Tactics续训并保存checkpoint/log/config，Rule与Strategy已完成。
 - [x] 完整结果已统一--score-only，strict-actions-v1.1诊断列已保存，没有重做生成。
 - [ ] 分开检查动作词汇接入与真实策略能力；不得用格式改善冒充策略提升。
 - [ ] 相同Benchmark评Adapter，reports/qlora_v01.md及base_vs_qlora.md。
@@ -36,7 +36,8 @@
 ## 视频审核与磁盘恢复
 
 - [x] 初步清点185条、约77.98小时素材；不按板子过滤。
-- [ ] 写入可恢复素材索引和审核队列，首个视频实际解码、转录及证据审核。
+- [x] catalog_v0.1保存185条不可变素材索引和初始审核队列；隔离CPU媒体环境安装完成。
+- [ ] 首个视频实际解码、转录及证据审核，ASR模型尚未下载。
 - [ ] 每局识别原板子，分类四类片段、机制剥离、玩家多维等级与视频统计。
 - [ ] 高价值迁移片段重写为CLASSIC_ADAPTED，并验证无特殊机制残留和上帝视角。
 - [x] 实测当前C/D磁盘余量，暂不需迁移。

@@ -1,0 +1,114 @@
+{
+  "project": "Werewolf-3.5B-Classic",
+  "stage": "strategy",
+  "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "dataset": {
+    "version": "dataset_v0.1",
+    "train_hash": "86cf7a8496d94d8dc0de99fb17f6d171a9417c4d82d70572f67bedcc81899d31",
+    "validation_hash": "9481b2fd0a54d228cd4eca17366b834c46a61d3fc3c0b397849c9f1935faad63",
+    "train_rows": 15,
+    "validation_rows": 3,
+    "dropped_train": [],
+    "dropped_validation": [],
+    "train_lengths": [
+      748,
+      740,
+      741,
+      737,
+      736,
+      737,
+      746,
+      735,
+      735,
+      739,
+      735,
+      741,
+      730,
+      751,
+      740
+    ]
+  },
+  "config": {
+    "project": "Werewolf-3.5B-Classic",
+    "model": {
+      "name": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision_manifest": "reports/models/Qwen3-4B-Instruct-2507.json",
+      "trust_remote_code": false
+    },
+    "data": {
+      "version": "dataset_v0.1",
+      "root": "data/prepared/dataset_v0.1",
+      "board": "classic_12",
+      "max_length": 1024,
+      "packing": false,
+      "overlength": "reject"
+    },
+    "quantization": {
+      "enabled": true,
+      "type": "nf4",
+      "double_quant": true,
+      "compute_dtype": "auto"
+    },
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "training": {
+      "seed": 42,
+      "batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": true,
+      "epochs": 1,
+      "learning_rate": 5e-05,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "optimizer": "paged_adamw_8bit",
+      "save_steps": 1,
+      "logging_steps": 1,
+      "save_total_limit": 3,
+      "max_steps": -1,
+      "output_root": "outputs/classic_v01",
+      "cpu_offload": false
+    },
+    "inference": {
+      "max_input_tokens": 2048,
+      "max_new_tokens": 768,
+      "do_sample": false,
+      "use_cache": true
+    },
+    "evaluation": {
+      "suites": [
+        "rules",
+        "strategy",
+        "counterfactual",
+        "blind"
+      ],
+      "benchmark_version": "classic_benchmark_v0.1",
+      "baseline_dir": "reports/runs/base_primary"
+    }
+  },
+  "initial_adapter_digest": "12cb37a489d308fad500114da128dfb2b8cf3e4de0bf6bbf8ed35b5a23e62e6f",
+  "effective_schedule": {
+    "optimizer_steps": 1,
+    "warmup_steps": 0,
+    "requested_warmup_ratio": 0.05
+  },
+  "source_hashes": {
+    "training": "5ce75493df3e21f5096fb8740e68eb8e1bc01d91f6f60f5bbae41e052a795e33",
+    "modeling": "4f23d7b0be86dbc8f9ff9df82a3df2d376c71f9392b1de619c9d90e3eaea6f56",
+    "encoding": "581b9a1275add8f54d600a5935346153556890051498e8aad0a9c65a740cba17",
+    "dataset": "59a19393196ded4d64bddd948876fe1e0a6c978e550d7fd255c9cc5704f7c3ad"
+  }
+}
