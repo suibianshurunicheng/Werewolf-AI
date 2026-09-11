@@ -1,0 +1,16 @@
+{
+  "version": "transcript_v0.1",
+  "model": "Systran/faster-whisper-small",
+  "revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "device": "cpu",
+  "compute_type": "int8",
+  "cpu_threads": 2,
+  "language": "zh",
+  "beam_size": 5,
+  "chunk_seconds": 120,
+  "overlap_seconds": 2,
+  "condition_on_previous_text": false,
+  "vad_filter": true,
+  "speaker_assignment": "UNVERIFIED",
+  "review_status": "ASR_UNVERIFIED"
+}

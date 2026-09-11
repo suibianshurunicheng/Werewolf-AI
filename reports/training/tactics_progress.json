@@ -1,0 +1,13 @@
+{
+  "snapshot_only": true,
+  "checked_at_utc": "2026-09-11T06:49:33.896442+00:00",
+  "training_source_commit": "90a0416",
+  "status": {
+    "status": "training",
+    "step": 3,
+    "epoch": 0.45714285714285713,
+    "best_checkpoint": "C:\\Users\\XR\\Desktop\\AI狼人杀-7b小模型\\outputs\\classic_v01\\tactics\\checkpoint-2"
+  },
+  "latest_complete_checkpoint": "outputs\\classic_v01\\tactics\\checkpoint-3",
+  "result_exists": false
+}

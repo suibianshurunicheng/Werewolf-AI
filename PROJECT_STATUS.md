@@ -14,7 +14,7 @@
 
 ## 当前正在进行
 
-Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。完整证据已导出reports/training/strategy_v01。Tactics已在90a0416提交后启动（105 train/20 val，计划7step）；确认checkpoint-1已保存，当前进行step2验证，须检查实时progress，不另启重复任务。视频catalog_v0.1有185条/77.98小时；首局18帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。无完整音频转录。
+Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。完整证据已导出reports/training/strategy_v01。Tactics已在90a0416提交后启动（105 train/20 val，计划7step）；本次恢复已核验checkpoint-3完整SHA，原进程仍存活，须检查实时progress，不另启重复任务。视频catalog_v0.1有185条/77.98小时；首局累计31帧完成局部审核及票表补证，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。无完整音频转录。
 
 ## 尚未完成任务
 
@@ -50,7 +50,7 @@ Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实�
 
 - 来源D:/BiliDownload：185条，元数据总时长77.98小时；没有独立字幕文件，m4s音视频需实际解码/转录，弹幕不是玩家转录。所有条目保持待审核，不按板子直接淘汰。
 - 审核执行docs/video_review_policy.md：CLASSIC_GOLD/TRANSFERABLE/BOARD_SPECIFIC/LOW_QUALITY，机制剥离后可生成CLASSIC_ADAPTED，特殊板子原样不得进Phase1。
-- 2026-09-11实测C盘剩余48.64GiB，D盘100.84GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
+- 2026-09-11实测C盘剩余47.42GiB，D盘100.84GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
 
 ## 当前阻塞项
 
@@ -70,6 +70,6 @@ Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实�
 
 Tactics成功后用scripts/export_training.py导出日志/哈希，--initial-adapter outputs/classic_v01/strategy/final；更新三份文档commit。然后用README中的同协议evaluate命令生成qlora_v01和base_vs_qlora报告。
 
-视频：data/media/catalog_v0.1已完整索引185条；不要重建覆盖。首局28287501902已实际解码并保存18帧SHA及局部审核reports/media/28287501902/review_v0.1.md。读取该报告后补齐列出的房规、票型、说话者冲突及完整覆盖，再做review_v0.2与经典改写。复取画面：.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times 120 620 。原D:/BiliDownload不改动，视频未因9人板丢弃，正式SFT入库0。
+视频：data/media/catalog_v0.1已完整索引185条；不要重建覆盖。首局28287501902已实际解码并保存18帧SHA及局部审核reports/media/28287501902/review_v0.1.md。先读review_v0.2.md：两轮票表与刀7/毒4字幕已补证，说话者冲突和完整房规仍未解决。configs/media_asr_v01.json已固定辅助ASR模型版本；先执行 .media-venv/Scripts/python.exe scripts/transcribe_video.py --video-id 28287501902 --download-model ，再去掉--download-model进行本地逐块转录，已有chunk必须复用。ASR未校对不能直接入库。复取画面：.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times 120 620 。原D:/BiliDownload不改动，视频未因9人板丢弃，正式SFT入库0。
 
 大权重未进Git：本机outputs/classic_v01/{rules,strategy}含完整checkpoint和final；跨主机必须复制并按reports/training/*/artifacts.json核对SHA。Git副本本身不含权重。空间不足按docs/disk_recovery.md迁移，不能在活动训练或下载写入时搬目录。
