@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-11。当前Phase：Phase 1，完整Base已完成，即将实际Rule QLoRA。
+更新：2026-09-11。当前Phase：Phase 1，完整Base和Rule QLoRA已完成，准备Strategy SFT。
 
 ## 已完成任务
 
@@ -14,11 +14,11 @@
 
 ## 当前正在进行
 
-保存完整Base检查点，然后按configs/qlora_classic.yaml实际尝试Rule QLoRA。尚未启动正式训练，不能报告训练成功或OOM。
+完整Base52514c6已推送。Rule QLoRA实际完成3step/1epoch，Adapter和checkpoint已核验；现在先修正极小Strategy数据的warmup问题，再继续Strategy。
 
 ## 尚未完成任务
 
-- 真实Rule→Strategy→Tactics分阶段QLoRA及每阶段Adapter/完整checkpoint。
+- Strategy和Tactics顺序续训；Rule已完成，不要重跑。
 - 如果OOM：依顺序保存并实施长度、rank、target modules、offload等合理调整，必要时备用3B；不能因估计显存而放弃。
 - 相同协议测Adapter，生成qlora_v01.md与base_vs_qlora.md。
 - dev失败修正dataset_v0.2及第二轮训练。
@@ -42,24 +42,27 @@
 - 185条实际Tokenizer长度649～931，全部适配1024。Rule dry-run35训练/7验证、零过滤。
 - 完整Base：生成速度中位6.22 tokens/s，PyTorch峰值分配2909.2MiB，36题均未截断。
 - 精确参考动作匹配：rules0/12、strategy0/8、counterfactual0/8、blind2/8。JSON有效33/36。未知动作词约束造成明显接口混淆，不等同于狼人杀能力全为0，详见诊断。
+- Rule真实训练：3step/1epoch，35 train/7 val，峰值3376.9MiB；验证Loss3.26995→2.96880。252个LoRA B矩阵非零，最终checkpoint-3完整哈希通过。证据reports/training/rules_v01，权重outputs/classic_v01/rules/final。
 - GitHub 2e55c70 CI已成功；后续提交CI尚未复查。
 
 ## 当前阻塞项
 
-没有外部阻塞。正式4GB训练容量仍未实测。Base的精确动作匹配同时反映接口词汇问题；最终能力提升不能只依据该指标，必须另做语义审核或统一动作字典的新协议重测。
+没有外部阻塞。4GB已完成真实Rule QLoRA，不能据此保证所有长度或阶段都稳定。Base的精确动作匹配同时反映接口词汇问题；最终能力提升不能只依据该指标，必须另做语义审核或统一动作字典的新协议重测。
 
 ## 下一步具体任务
 
-1. 提交并推送完整Base成果，满足昂贵训练前保存要求。
-2. 执行Rule QLoRA，保存真实结果；若失败先查看reports/training_attempts中最后阶段和异常，不得伪称OOM。
+1. 提交Rule真实成果、日志、配置和权重哈希。
+2. 修正单step阶段warmup不得占满全部step；Strategy数据少，原ratio0.05会令唯一step学习率为0。修正并测试后继续Strategy，不能宣称空更新为SFT成功。
 3. 每完成一个阶段更新三份状态文档并commit。保持一个确定完成的可恢复检查点。
 
 ## Resume Here
 
 先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base。
 
-第一项任务：确认完整Base检查点已commit后，执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules 。Base进程22964/32380已经结束，不要重新启动评测。
+第一项任务：Rule已完成，不要重跑。修正training.py中的短阶段warmup，保证只有1个step时warmup_steps=0；保存effective_schedule，测试后commit，再执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage strategy 。默认从outputs/classic_v01/rules/final载入已完成Adapter。
 
-若Rule已经开始或中断，先读outputs/classic_v01/rules/progress.json、run_manifest.json和reports/training_attempts；同配置恢复用 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules --resume 。运行锁会拒绝并发重复启动，恢复仅使用带完整哈希标记的checkpoint。不要覆盖失败配置；修改参数时另存YAML并更换output_root。
+训练CLI已开启HF_HUB_OFFLINE，避免PEFT保存时对未固定main的非必要查询；prepare_model.py仍是显式下载入口。Rule保存阶段出现网络探测警告，但最终保存成功，不是OOM。
 
-Rule成功后保存并commit，再依次 --stage strategy、--stage tactics。所有成功都以training_result.json和完整Adapter为证据。
+Strategy成功后用scripts/export_training.py导出日志/哈希，并验证相对Rule权重确有变化；更新状态commit，再训练tactics。中断同配置加--resume，仅加载完整哈希checkpoint。旧Rule源代码由52514c6记录，规则训练结果保持不变。
+
+大权重未进Git：本机outputs/classic_v01/rules保存3个完整checkpoint和final。换主机时必须复制该目录，按reports/training/rules_v01/artifacts.json核对SHA；只有Git副本不含Adapter权重，不能伪称已恢复权重。

@@ -81,3 +81,11 @@
 - 36/36题实际生成完成，再统一strict-actions-v1.1评分；没有跳题、截断或OOM。中位6.22 tokens/s，PyTorch峰值2909.2MiB。
 - 精确参考匹配rules0/12、strategy0/8、CF0/8、blind2/8；33/36输出满足严格结构。未知动作词诊断保留原结果，不冒称Base不懂全部规则。
 - 先保存完整Base commit，再实际Rule QLoRA；不得跳过这道门禁。空Benchmark配置现在也明确拒绝。
+
+## 本机Rule QLoRA真实完成
+
+- 按52514c6源代码从固定4B Base实际训练35条/验证7条，r8、1024、BF16、NF4双量化、累积16，3step/1epoch完成；峰值3376.9MiB，没有OOM。
+- checkpoint-3验证Loss2.968798，完整校验通过；252个LoRA B矩阵非零。日志/参数/哈希导出reports/training/rules_v01，实际权重留outputs。Loss下降不当作狼人杀能力提升。
+- PEFT保存会尝试请求上游main/config.json，失败后继续并成功保存。后续训练CLI在导入HF库之前启用offline，下载仍单独prepare_model。
+- 发现Strategy只有1个优化step，ratio0.05会向上取整成1个warmup step，唯一更新lr=0。必须在Strategy开始前限制warmup小于总step，并保存effective_schedule；不让空更新冒充训练。
+- 跨主机恢复必须复制大权重目录并校验哈希，Git仓库中的报告不能代替实际Adapter/optimizer文件。

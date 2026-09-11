@@ -1,0 +1,129 @@
+{
+  "project": "Werewolf-3.5B-Classic",
+  "stage": "rules",
+  "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "dataset": {
+    "version": "dataset_v0.1",
+    "train_hash": "81783350f7faf5bd14411d91fbb18325d6073c92297b32ac7ae8c196064b8ab0",
+    "validation_hash": "632bffa24317ecce9ca5012f7d61eecf7f410f9f4fe6fc040807fd81d3747c4d",
+    "train_rows": 35,
+    "validation_rows": 7,
+    "dropped_train": [],
+    "dropped_validation": [],
+    "train_lengths": [
+      677,
+      775,
+      714,
+      718,
+      664,
+      651,
+      708,
+      668,
+      668,
+      659,
+      666,
+      672,
+      675,
+      674,
+      671,
+      674,
+      674,
+      676,
+      685,
+      667,
+      685,
+      674,
+      687,
+      659,
+      669,
+      681,
+      668,
+      663,
+      668,
+      669,
+      668,
+      680,
+      650,
+      671,
+      659
+    ]
+  },
+  "config": {
+    "project": "Werewolf-3.5B-Classic",
+    "model": {
+      "name": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision_manifest": "reports/models/Qwen3-4B-Instruct-2507.json",
+      "trust_remote_code": false
+    },
+    "data": {
+      "version": "dataset_v0.1",
+      "root": "data/prepared/dataset_v0.1",
+      "board": "classic_12",
+      "max_length": 1024,
+      "packing": false,
+      "overlength": "reject"
+    },
+    "quantization": {
+      "enabled": true,
+      "type": "nf4",
+      "double_quant": true,
+      "compute_dtype": "auto"
+    },
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "training": {
+      "seed": 42,
+      "batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": true,
+      "epochs": 1,
+      "learning_rate": 5e-05,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "optimizer": "paged_adamw_8bit",
+      "save_steps": 1,
+      "logging_steps": 1,
+      "save_total_limit": 3,
+      "max_steps": -1,
+      "output_root": "outputs/classic_v01",
+      "cpu_offload": false
+    },
+    "inference": {
+      "max_input_tokens": 2048,
+      "max_new_tokens": 768,
+      "do_sample": false,
+      "use_cache": true
+    },
+    "evaluation": {
+      "suites": [
+        "rules",
+        "strategy",
+        "counterfactual",
+        "blind"
+      ],
+      "benchmark_version": "classic_benchmark_v0.1",
+      "baseline_dir": "reports/runs/base_primary"
+    }
+  },
+  "initial_adapter_digest": null,
+  "source_hashes": {
+    "training": "64e1cd9be1d951eac68e6e658c4db4f8840b9faeccfcc5b29574cbffe837768a",
+    "modeling": "85d2b267de60fd90a08caed734b69398df5cd3b8cb2e582f8c3fa545ba4a65e8",
+    "encoding": "581b9a1275add8f54d600a5935346153556890051498e8aad0a9c65a740cba17",
+    "dataset": "59a19393196ded4d64bddd948876fe1e0a6c978e550d7fd255c9cc5704f7c3ad"
+  }
+}

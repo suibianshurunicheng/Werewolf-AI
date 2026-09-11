@@ -1,7 +1,13 @@
 import argparse
 import json
+import os
 from datetime import datetime, timezone
 from uuid import uuid4
+
+# Download explicitly with prepare_model.py; training and checkpoint saving
+# must not probe an unpinned remote main branch or wait on network retries.
+os.environ["HF_HUB_OFFLINE"] = "1"
+os.environ["TRANSFORMERS_OFFLINE"] = "1"
 
 import _bootstrap
 from werewolf_sft.config import load_config

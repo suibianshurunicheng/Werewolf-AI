@@ -19,7 +19,8 @@
 - [x] 所有训练样本实际Tokenizer长度检查；Rule dry-run零过滤。
 - [x] 工具链3110940已提交推送；增加中断精确恢复和运行锁测试。
 - [x] 完整Base36/36生成结束，reports/base_model_baseline.md已保存。
-- [ ] Base结果保存并commit后实际Rule QLoRA，记录任何OOM及逐项调整。
+- [x] Base52514c6提交后完成真实Rule QLoRA：3step/1epoch，无OOM，Adapter及checkpoint-3核验。
+- [ ] Strategy之前修复单step warmup=0的问题，并验证参数真实变化。
 - [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
 - [x] 完整结果已统一--score-only，strict-actions-v1.1诊断列已保存，没有重做生成。
 - [ ] 分开检查动作词汇接入与真实策略能力；不得用格式改善冒充策略提升。

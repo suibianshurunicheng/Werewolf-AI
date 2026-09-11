@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 模型卡
 
-状态：尚无完成训练的Adapter，当前为可恢复工程与原创种子数据。禁止把Base或CPU小模型单元测试当成专项模型成果。实时状态和实际分数以PROJECT_STATUS、reports为准。
+状态：4GB本机已完成Rule阶段Adapter（3step/1epoch），Strategy/Tactics及完整Adapter能力比较未完成。禁止把Base或CPU小模型单元测试当成专项模型成果。实时状态和实际分数以PROJECT_STATUS、reports为准。
 
 目标：3B～4B中文玩家视角决策，经典12人4狼4民预女守猎，ww-v1.0暗牌警长屠边。人工复制粘贴使用。镜隐不在Phase 1训练范围。
 
