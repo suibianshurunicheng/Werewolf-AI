@@ -75,6 +75,8 @@ def load_base(config, training=False, local_only=True):
         kwargs["device_map"] = {"": 0}
     model = AutoModelForCausalLM.from_pretrained(
         snapshot_path(config) if local_only else config["model"]["name"], **kwargs)
+    model.name_or_path = config["model"]["name"]
+    model.config._name_or_path = config["model"]["name"]
     if model.config.model_type not in {"qwen2", "qwen3"}:
         raise ValueError("unsupported V1 model architecture")
     if quantized:

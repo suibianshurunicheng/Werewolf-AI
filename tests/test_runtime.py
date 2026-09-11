@@ -162,6 +162,36 @@ def test_formal_training_requires_full_matching_baseline(tmp_path, monkeypatch):
         training.check_baseline(config)
 
 
+def test_training_snapshot_detects_modified_or_missing_files(tmp_path):
+    from werewolf_sft.dataset import verify_snapshot
+    from werewolf_sft.io import sha256_file
+    path = tmp_path / "data.jsonl"
+    path.write_text('{"id":"original"}\n', encoding="utf-8")
+    manifest = {"files": {"data.jsonl": sha256_file(path)}}
+    verify_snapshot(tmp_path, manifest)
+    path.write_text('{"id":"changed"}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="changed"):
+        verify_snapshot(tmp_path, manifest)
+    with pytest.raises(ValueError):
+        verify_snapshot(tmp_path, {"files": {"../outside": "x"}})
+
+
+def test_resume_skips_partial_and_corrupt_checkpoints(tmp_path):
+    from werewolf_sft.training import mark_checkpoint_complete, last_complete_checkpoint
+    from werewolf_sft.io import write_json
+    manifest = {"stage": "rules", "revision": "test-fixture"}
+    for step in (1, 2, 3):
+        path = tmp_path / f"checkpoint-{step}"
+        write_json(path / "run_manifest.json", manifest)
+        write_json(path / "trainer_state.json", {"global_step": step})
+        if step < 3:
+            mark_checkpoint_complete(path)
+    assert last_complete_checkpoint(tmp_path, manifest).endswith("checkpoint-2")
+    (tmp_path / "checkpoint-2/trainer_state.json").write_text("corrupt")
+    assert last_complete_checkpoint(tmp_path, manifest).endswith("checkpoint-1")
+    assert last_complete_checkpoint(tmp_path, {"stage": "different"}) is None
+
+
 def test_selected_completion_loss_and_gradients_match_standard():
     torch = pytest.importorskip("torch")
     transformers = pytest.importorskip("transformers")

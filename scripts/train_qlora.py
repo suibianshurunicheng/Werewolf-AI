@@ -1,5 +1,7 @@
 import argparse
 import json
+from datetime import datetime, timezone
+from uuid import uuid4
 
 import _bootstrap
 from werewolf_sft.config import load_config
@@ -24,8 +26,15 @@ def main(default_config="configs/qlora_classic.yaml", expected_quantized=True):
         print(json.dumps(result, ensure_ascii=False), flush=True)
     except Exception as exc:
         folder = ROOT / config["training"]["output_root"] / args.stage
-        write_json(folder / "attempt_failure.json", {"status": "failed", "stage": args.stage, "config": config,
-                   "error_type": type(exc).__name__, "error": str(exc).replace(str(ROOT), "<workspace>")})
+        identifier = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:8]
+        progress_path = folder / "progress.json"
+        progress = json.loads(progress_path.read_text(encoding="utf-8")) if progress_path.exists() else None
+        failure = {"status": "failed", "stage": args.stage, "config": config, "dry_run": args.dry_run,
+                   "time_utc": identifier[:16], "last_progress": progress,
+                   "error_type": type(exc).__name__, "error": str(exc).replace(str(ROOT), "<workspace>")}
+        write_json(folder / "attempts" / (identifier + ".json"), failure)
+        write_json(ROOT / "reports/training_attempts" / (identifier + ".json"), failure)
+        write_json(folder / "attempt_failure.json", failure)
         raise
 
 

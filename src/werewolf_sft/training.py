@@ -7,9 +7,34 @@ from pathlib import Path
 from .config import load_config, model_revision
 from .encoding import SFTCollator, encode_rows
 from .evaluation import SCORING_VERSION
+from .dataset import verify_snapshot
 from .io import ROOT, canonical, content_hash, read_jsonl, sha256_file, write_json
 from .modeling import load_base, load_tokenizer, prepare_trainable
 from .runtime import load_cases, protocol, adapter_digest, run_lock
+
+
+def mark_checkpoint_complete(folder):
+    folder = Path(folder)
+    files = {p.name: sha256_file(p) for p in folder.iterdir()
+             if p.is_file() and p.name != "checkpoint_complete.json" and not p.name.endswith(".pending")}
+    write_json(folder / "checkpoint_complete.json", {"files": files})
+
+
+def last_complete_checkpoint(folder, manifest):
+    candidates = [p for p in Path(folder).glob("checkpoint-*")
+                  if p.is_dir() and p.name.removeprefix("checkpoint-").isdigit()]
+    for path in sorted(candidates, key=lambda p: int(p.name.split("-")[-1]), reverse=True):
+        try:
+            marker = json.loads((path / "checkpoint_complete.json").read_text(encoding="utf-8"))
+            saved = json.loads((path / "run_manifest.json").read_text(encoding="utf-8"))
+            if saved != manifest:
+                continue
+            if all((path / name).is_file() and sha256_file(path / name) == digest
+                   for name, digest in marker["files"].items()) and marker["files"]:
+                return str(path)
+        except (FileNotFoundError, json.JSONDecodeError):
+            continue
+    return None
 
 
 def completion_loss(model, inputs):
@@ -61,8 +86,15 @@ def check_baseline(config):
 
 
 def prepare_stage_data(config, stage, tokenizer):
+    version_manifest = ROOT / "data/versions" / (config["data"]["version"] + ".json")
+    frozen = json.loads(version_manifest.read_text(encoding="utf-8"))
+    if frozen["dataset_version"] != config["data"]["version"]:
+        raise ValueError("dataset manifest version mismatch")
+    verify_snapshot(ROOT, frozen)
     root = ROOT / config["data"]["root"] / stage
     train_path, val_path = root / "train.messages.jsonl", root / "validation.messages.jsonl"
+    if any(path.relative_to(ROOT).as_posix() not in frozen["files"] for path in (train_path, val_path)):
+        raise ValueError("training data paths are not covered by the frozen manifest")
     train_rows, val_rows = read_jsonl(train_path), read_jsonl(val_path)
     for row in train_rows + val_rows:
         if row["dataset_version"] != config["data"]["version"]:
@@ -84,7 +116,6 @@ def run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fals
 def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=False):
     import torch
     from transformers import TrainingArguments, TrainerCallback, set_seed
-    from transformers.trainer_utils import get_last_checkpoint
     set_seed(config["training"]["seed"])
     output = ROOT / config["training"]["output_root"] / stage
     tokenizer = load_tokenizer(config)
@@ -105,7 +136,8 @@ def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fal
         "project": config["project"], "stage": stage, "base_model": config["model"]["name"],
         "revision": model_revision(config), "dataset": data_info, "config": config,
         "initial_adapter_digest": adapter_digest(initial_adapter),
-        "training_source_sha256": sha256_file(Path(__file__)),
+        "source_hashes": {name: sha256_file(Path(__file__).parent / (name + ".py"))
+                          for name in ("training", "modeling", "encoding", "dataset")},
     }
     manifest_path = output / "run_manifest.json"
     if manifest_path.exists():
@@ -117,8 +149,11 @@ def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fal
             raise ValueError("run exists; use --resume to continue")
     output.mkdir(parents=True, exist_ok=True)
     write_json(manifest_path, manifest)
-    last_checkpoint = get_last_checkpoint(str(output)) if resume else None
+    last_checkpoint = last_complete_checkpoint(output, manifest) if resume else None
+    write_json(output / "progress.json", {"status": "loading_model", "stage": stage,
+               "resume_checkpoint": Path(last_checkpoint).name if last_checkpoint else None})
     model, dtype = load_base(config, training=True)
+    write_json(output / "progress.json", {"status": "preparing_adapter", "stage": stage})
     model = prepare_trainable(model, dtype, config, adapter=last_checkpoint or initial_adapter)
     t = config["training"]
 
@@ -133,6 +168,7 @@ def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=Fal
         def on_save(self, args, state, control, **kwargs):
             path = output / f"checkpoint-{state.global_step}"
             write_json(path / "run_manifest.json", manifest)
+            mark_checkpoint_complete(path)
 
     args = TrainingArguments(
         output_dir=str(output), num_train_epochs=t["epochs"], max_steps=t["max_steps"],

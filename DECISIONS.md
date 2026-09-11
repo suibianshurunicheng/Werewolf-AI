@@ -66,3 +66,12 @@
 - GitHub 2e55c70的Linux轻量和CPU Trainer CI已成功，证据reports/ci.json。
 
 - strict-actions-v1.1只增加未知动作词诊断列，原精确匹配定义、Prompt、参考答案和原始生成全部不变。没有加入针对Base的别名放宽。当前生成进程结束后用--score-only统一重算；Base和Adapter比较强制相同scoring_version。
+
+## 训练前完整性与失败证据
+
+- 训练入口逐个核验冻结版本清单，禁止文件改变后沿用旧dataset_version。实际Rule dry-run仍35/7零过滤。
+- 每个checkpoint的Trainer保存完成后，写入文件SHA清单及完成标记；恢复只选择最新完整匹配点，跳过断电残缺或损坏目录，不删除旧数据。
+- 训练manifest记录training/modeling/encoding/dataset源代码哈希，避免代码变化后冒称精确恢复。
+- 每次训练失败独立写入带UTC时间与唯一ID的reports/training_attempts，包含config、dry_run标记、最后阶段和原始异常文本；不只保留被覆盖的最后一个错误。
+- 模型离线加载后恢复上游模型标识，避免Adapter把本机缓存绝对目录作为未来Base地址。
+- 完整65项pytest通过。

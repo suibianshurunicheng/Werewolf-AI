@@ -392,5 +392,182 @@
         "target": null
       }
     }
+  },
+  {
+    "id": "eval-cf-guard-a",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-cf-guard-b",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 11
+      }
+    }
+  },
+  {
+    "id": "eval-cf-hunter-a",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "hunter_shot",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-cf-hunter-b",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "hunter_shot",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-cf-witch-a",
+    "split": "test",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": false,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parse_error": "invalid action"
+    }
+  },
+  {
+    "id": "eval-cf-witch-b",
+    "split": "test",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-cf-team-a",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "exile",
+        "target": 1
+      }
+    }
+  },
+  {
+    "id": "eval-cf-team-b",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "exile",
+        "target": 4
+      }
+    }
+  },
+  {
+    "id": "eval-blind-00",
+    "split": "test",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "exile_vote",
+        "target": 1
+      }
+    }
   }
 ]

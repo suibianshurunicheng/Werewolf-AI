@@ -7,3 +7,5 @@
 新增中断精确恢复及OS运行锁测试后，完整62项pytest通过，退出0。GitHub CI定义已创建，远端结果尚未确认。
 
 strict-actions-v1.1的未知动作词与非法已知动作区分测试通过；新增基线门禁测试验证missing/partial/旧评分/不同协议均拒绝正式训练，1项通过。现共63项。
+
+数据版本哈希及残缺/损坏checkpoint回退测试加入后，完整65项pytest通过，退出0。Rule真实Tokenizer dry-run仍35/7，零过滤。

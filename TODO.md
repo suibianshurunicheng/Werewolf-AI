@@ -8,7 +8,7 @@
 - [x] 固定3B～4B主备模型、经典ww-v1.0；镜隐保留Phase2。
 - [x] 规则纯函数、严格Schema、视角验证、8模板和基础37测试。
 - [x] 185原创种子及独立36题Benchmark，分组去污染，dataset_v0.1版本化；46测试。
-- [x] 可恢复训练/推理/评测/合并脚本与60测试。
+- [x] 可恢复训练/推理/评测/合并脚本与65测试。
 - [x] 4GB/12GB/16GB/24GB配置和CPU小模型链路验证（不等于各档GPU实测）。
 - [x] README、数据、训练、评测、人工使用和模型卡。
 
@@ -18,7 +18,7 @@
 - [x] 实测CUDA、BF16支持和NF4前向反向。
 - [x] 所有训练样本实际Tokenizer长度检查；Rule dry-run零过滤。
 - [x] 工具链3110940已提交推送；增加中断精确恢复和运行锁测试。
-- [ ] 完整Base评测正在运行，已落盘22/36，最近评分快照20/36，实时见progress.json；完成后写reports/base_model_baseline.md。
+- [ ] 完整Base评测正在运行，已落盘30/36，最近评分快照29/36，实时见progress.json；完成后写reports/base_model_baseline.md。
 - [ ] Base结果保存并commit后实际Rule QLoRA，记录任何OOM及逐项调整。
 - [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
 - [ ] 生成完成后--score-only，补齐strict-actions-v1.1诊断列，不重做生成。

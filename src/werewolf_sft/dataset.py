@@ -4,7 +4,17 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
-from .io import canonical, content_hash
+from .io import canonical, content_hash, sha256_file
+
+
+def verify_snapshot(root, manifest):
+    """Reject edited or missing versioned data before tokenization/training."""
+    root = Path(root).resolve()
+    for relative, expected in manifest["files"].items():
+        path = (root / relative).resolve()
+        path.relative_to(root)
+        if not path.is_file() or sha256_file(path) != expected:
+            raise ValueError(f"dataset snapshot missing or changed: {relative}; restore it or create a new version")
 from .perspective import to_messages
 from .validation import validate_dataset
 

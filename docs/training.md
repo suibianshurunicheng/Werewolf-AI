@@ -29,3 +29,5 @@ modeling保留冻结大词表参数的计算dtype；训练只更新LoRA。comple
 普通LoRA：python scripts/train_lora.py --config configs/lora_classic.yaml --stage rules。4GB不承诺容纳非量化4B。
 
 合并：python scripts/merge_adapter.py --adapter outputs/classic_v01/tactics/final --output outputs/merged-v01。在CPU加载完整FP32基础权重，RAM和磁盘需充足；不在NF4权重上直接合并。输出继承上游许可。正式模型无成功Adapter时不得运行或发布虚构权重。
+
+训练入口逐个核验数据版本SHA清单；每个checkpoint在Trainer写完后添加checkpoint_complete.json哈希清单，恢复跳过残缺/损坏目录。失败证据另存reports/training_attempts/{UTC-unique}.json，不覆盖历史尝试。代码哈希变化需新run目录或明确warm-start，不能称为同一优化过程的精确续跑。
