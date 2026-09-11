@@ -1,24 +1,49 @@
 # Werewolf-3.5B-Classic V1
 
-用 3B～4B 通用中文模型，通过分阶段 QLoRA 学习经典 12 人预女守猎。用户人工输入合法私有信息和公开记录，仅复制模型的正式公开发言回对局。
+3B～4B 中文狼人杀专项 SFT 工程，当前仅经典12人预女守猎。操作者人工输入合法视角，只复制正式公开发言。项目未提供自动竞技场、RL或Web前端。
 
-当前处于 Phase 0 工程建设；没有训练完成的专项 Adapter，也没有模型能力结果。最新事实以 [PROJECT_STATUS.md](PROJECT_STATUS.md) 为准。
+最新真实状态见 PROJECT_STATUS.md。目前已有185条原创种子、36题独立Benchmark和训练/评测工具；尚无训练完成的专项Adapter，不宣称能力提升。
 
-## 恢复项目
+## 恢复
 
-每次继续工作先读取本文件、[PROJECT_STATUS.md](PROJECT_STATUS.md)、[DECISIONS.md](DECISIONS.md)、[TODO.md](TODO.md) 和最近 Git commits。按状态文件末尾的 `Resume Here` 继续，禁止重新初始化或无依据重复调研与生成数据。
+先读取 README.md、PROJECT_STATUS.md、DECISIONS.md、TODO.md 和 git log -5 --oneline，直接执行状态末尾 Resume Here。不得重新初始化或覆盖已有数据版本。当前GitHub仓库：https://github.com/suibianshurunicheng/Werewolf-AI。
 
-## 已有工程
+## 安装与准备
 
-- `src/werewolf_sft/rules.py`：动作合法性、夜间效果、屠边、警长票权等纯函数。
-- `src/werewolf_sft/perspective.py`：玩家信息白名单、教师视角投影、私有与公开分离。
-- `src/werewolf_sft/validation.py`：数据、技能、事实授权与跨集合污染检查。
-- `requirements-dev.txt`：轻量数据/测试依赖；`requirements.txt`：训练依赖。
+使用 Python 3.10～3.12 创建虚拟环境：python -m venv .venv。Windows激活 .venv/Scripts/Activate.ps1；Linux激活 .venv/bin/activate。下列python均指该虚拟环境。
 
-这些模块仍在集成。完整命令与验证结果将在各阶段完成时更新，不能将当前状态理解为训练就绪。
+1. python -m pip install -r requirements-dev.txt
+2. 本机546.30驱动使用：python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu118
+3. python -m pip install -r requirements.txt
+4. python -m pytest
+5. python scripts/check_environment.py
+6. python scripts/prepare_model.py
+7. python scripts/check_lengths.py
 
-Phase 1 仅支持 `classic_12`；镜隐迷踪仅保留 Phase 2 规则调研和接口。不开自动竞技场、不做 RL、不做 Web 前端。
+模型首次下载需要网络；以后从固定revision本地目录加载。缓存和权重不进Git。若仓库已包含dataset_v0.1，直接使用；python scripts/prepare_dataset.py仅验证一致快照并补齐缺失文件，不覆盖异内容。
 
-## 许可证
+## 基线、训练、比较
 
-项目原创代码使用 MIT；基础模型、数据、Adapter 和合并模型另按 [模型选择](docs/base_model_selection.md) 中的上游条款处理。
+先完整运行：python scripts/evaluate.py --report reports/base_model_baseline.md。中断后执行原命令，只继续未完成题。每题原子保存，修改模型或生成配置会拒绝混入原目录。
+
+按顺序运行：
+
+- python scripts/train_qlora.py --stage rules
+- python scripts/train_qlora.py --stage strategy
+- python scripts/train_qlora.py --stage tactics
+
+恢复同阶段追加 --resume；脚本保存完整配置、数据哈希、日志、Adapter、optimizer、step/epoch和最佳checkpoint。没有完整Base报告会拒绝正式训练。运行前可加 --dry-run，仅检查真实Tokenizer编码，不代表训练成功。
+
+完成后：python scripts/evaluate.py --adapter outputs/classic_v01/tactics/final --output reports/runs/qlora_v01 --compare-to reports/runs/base_primary --report reports/qlora_v01.md。自动输出reports/base_vs_qlora.md。相同题目与生成协议才允许比较；动作匹配不能替代策略盲审或真实胜率。
+
+4GB起始配置为configs/qlora_classic.yaml；12/16/24GB预设可通过 --config 指定，但不承诺未经实测的显存需求。普通LoRA、合并和OOM处理详见docs/training.md。
+
+## 人工使用
+
+python scripts/inference.py --input-json data/examples/player_sample.json。自由文本用 --prompt-file 填好的模板.txt。成功训练后追加 --adapter outputs/classic_v01/tactics/final。只复制【正式公开发言】；--public-only仅显示这一部分。详见docs/manual_match.md。
+
+## 文档与许可
+
+规则及房规差异：docs/rules_classic.md、docs/rule_conflicts.md。数据、评测、模型选择及模型卡见docs目录。镜隐仅为Phase 2调研，禁止混入当前训练。
+
+代码MIT；原创合成种子CC-BY-4.0，未做独立专家复核。Primary Qwen3-4B-Instruct-2507为Apache-2.0；Backup Qwen2.5-3B-Instruct限非商业研究。Adapter和合并权重仍须遵守相应上游许可。

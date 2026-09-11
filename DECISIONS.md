@@ -41,3 +41,14 @@
 - 只实现两个固定板子的玩家视角决策、静态 Benchmark、人工复制粘贴推理；不实现自动竞技场或 Web UI。
 - 数据、规则、实验按版本与哈希追踪；合成数据明确来源，不冒充真人对局或人工复核。
 - 4GB GPU 不能承担正式 7B～9B QLoRA。尽可能运行 CPU 工程测试与小模型训练链路验证，后者不算专项模型训练结果。
+
+## 2026-09-11：工具链验证与本地加载
+
+- 保持原Base、dataset_v0.1和ww-v1.0，不重做已完成数据。固定revision权重已完整下载。
+- 实测所有185样本长度649～931，保留max_length1024且overlength=reject，不需删样本。
+- 生成上限在首次Base之前从384改768，为8字段JSON留余量；Base和Adapter必须同协议。不能只给微调模型更多token。
+- 小数据每阶段只有少量step，save/eval从10改每1优化step，保证中间恢复和最佳checkpoint。
+- 使用原生Qwen logits_to_keep仅计算assistant监督位置、分块softmax；标准loss与梯度等价测试通过。避免大词表全序列logits占用，非截断训练。
+- Tokenizer在4.57.6即使local_files_only仍有Mistral探测联网；用已固定的缓存snapshot绝对目录加载，验证离线可运行。
+- 评测单题JSON原子落盘为事实来源，JSONL为导出；run指纹固定题目、渲染输入、Base revision、量化与生成参数、Adapter摘要，防止混跑。
+- CUDA/NF4微测试通过不等于4B整模型训练成功。60项软件测试与Rule dry-run通过；正式Benchmark尚未开始。

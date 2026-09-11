@@ -1,0 +1,1276 @@
+{
+  "rules": {
+    "min": 649,
+    "max": 775,
+    "rows": [
+      {
+        "id": "rule-狼人刀口",
+        "split": "train",
+        "tokens": 677,
+        "assistant_tokens": 117
+      },
+      {
+        "id": "rule-狼人队友",
+        "split": "train",
+        "tokens": 775,
+        "assistant_tokens": 120
+      },
+      {
+        "id": "rule-金水不是女巫",
+        "split": "train",
+        "tokens": 714,
+        "assistant_tokens": 127
+      },
+      {
+        "id": "rule-首夜自救",
+        "split": "train",
+        "tokens": 718,
+        "assistant_tokens": 122
+      },
+      {
+        "id": "rule-药已耗尽",
+        "split": "train",
+        "tokens": 664,
+        "assistant_tokens": 106
+      },
+      {
+        "id": "rule-不能自毒",
+        "split": "train",
+        "tokens": 651,
+        "assistant_tokens": 98
+      },
+      {
+        "id": "rule-解药限刀口",
+        "split": "train",
+        "tokens": 708,
+        "assistant_tokens": 114
+      },
+      {
+        "id": "rule-守卫自守",
+        "split": "train",
+        "tokens": 668,
+        "assistant_tokens": 105
+      },
+      {
+        "id": "rule-守卫连守",
+        "split": "train",
+        "tokens": 668,
+        "assistant_tokens": 108
+      },
+      {
+        "id": "rule-守卫空守",
+        "split": "train",
+        "tokens": 659,
+        "assistant_tokens": 102
+      },
+      {
+        "id": "rule-守救冲突",
+        "split": "train",
+        "tokens": 666,
+        "assistant_tokens": 102
+      },
+      {
+        "id": "rule-守不挡毒",
+        "split": "train",
+        "tokens": 672,
+        "assistant_tokens": 110
+      },
+      {
+        "id": "rule-刀毒同中",
+        "split": "train",
+        "tokens": 675,
+        "assistant_tokens": 110
+      },
+      {
+        "id": "rule-夜末结算",
+        "split": "train",
+        "tokens": 674,
+        "assistant_tokens": 108
+      },
+      {
+        "id": "rule-计划不是验人",
+        "split": "train",
+        "tokens": 671,
+        "assistant_tokens": 104
+      },
+      {
+        "id": "rule-屠民",
+        "split": "train",
+        "tokens": 674,
+        "assistant_tokens": 110
+      },
+      {
+        "id": "rule-屠神",
+        "split": "train",
+        "tokens": 674,
+        "assistant_tokens": 108
+      },
+      {
+        "id": "rule-清狼",
+        "split": "train",
+        "tokens": 676,
+        "assistant_tokens": 114
+      },
+      {
+        "id": "rule-人数相等",
+        "split": "train",
+        "tokens": 685,
+        "assistant_tokens": 120
+      },
+      {
+        "id": "rule-暗牌",
+        "split": "train",
+        "tokens": 667,
+        "assistant_tokens": 104
+      },
+      {
+        "id": "rule-票权",
+        "split": "train",
+        "tokens": 685,
+        "assistant_tokens": 120
+      },
+      {
+        "id": "rule-平票",
+        "split": "train",
+        "tokens": 674,
+        "assistant_tokens": 112
+      },
+      {
+        "id": "rule-夜间顺序",
+        "split": "train",
+        "tokens": 687,
+        "assistant_tokens": 130
+      },
+      {
+        "id": "rule-上警",
+        "split": "train",
+        "tokens": 659,
+        "assistant_tokens": 105
+      },
+      {
+        "id": "rule-退水",
+        "split": "train",
+        "tokens": 669,
+        "assistant_tokens": 102
+      },
+      {
+        "id": "rule-退水无票",
+        "split": "train",
+        "tokens": 681,
+        "assistant_tokens": 112
+      },
+      {
+        "id": "rule-警下选警",
+        "split": "train",
+        "tokens": 668,
+        "assistant_tokens": 97
+      },
+      {
+        "id": "rule-弃票",
+        "split": "train",
+        "tokens": 663,
+        "assistant_tokens": 110
+      },
+      {
+        "id": "rule-中毒枪禁",
+        "split": "train",
+        "tokens": 668,
+        "assistant_tokens": 110
+      },
+      {
+        "id": "rule-被刀枪权",
+        "split": "train",
+        "tokens": 669,
+        "assistant_tokens": 111
+      },
+      {
+        "id": "rule-枪已用",
+        "split": "train",
+        "tokens": 668,
+        "assistant_tokens": 110
+      },
+      {
+        "id": "rule-首夜遗言",
+        "split": "train",
+        "tokens": 680,
+        "assistant_tokens": 124
+      },
+      {
+        "id": "rule-后夜无遗言",
+        "split": "train",
+        "tokens": 650,
+        "assistant_tokens": 94
+      },
+      {
+        "id": "rule-普通狼自爆",
+        "split": "train",
+        "tokens": 671,
+        "assistant_tokens": 112
+      },
+      {
+        "id": "rule-投票禁自爆",
+        "split": "train",
+        "tokens": 659,
+        "assistant_tokens": 98
+      },
+      {
+        "id": "rule-平民夜间",
+        "split": "validation",
+        "tokens": 656,
+        "assistant_tokens": 102
+      },
+      {
+        "id": "rule-不能自验",
+        "split": "validation",
+        "tokens": 669,
+        "assistant_tokens": 112
+      },
+      {
+        "id": "rule-预言家查验",
+        "split": "validation",
+        "tokens": 672,
+        "assistant_tokens": 111
+      },
+      {
+        "id": "rule-后夜禁自救",
+        "split": "validation",
+        "tokens": 698,
+        "assistant_tokens": 106
+      },
+      {
+        "id": "rule-同夜一药",
+        "split": "validation",
+        "tokens": 666,
+        "assistant_tokens": 106
+      },
+      {
+        "id": "rule-死者不可投",
+        "split": "validation",
+        "tokens": 649,
+        "assistant_tokens": 96
+      },
+      {
+        "id": "rule-移交警徽",
+        "split": "validation",
+        "tokens": 667,
+        "assistant_tokens": 111
+      }
+    ]
+  },
+  "strategy": {
+    "min": 730,
+    "max": 751,
+    "rows": [
+      {
+        "id": "strategy-01",
+        "split": "train",
+        "tokens": 748,
+        "assistant_tokens": 135
+      },
+      {
+        "id": "strategy-03",
+        "split": "train",
+        "tokens": 740,
+        "assistant_tokens": 131
+      },
+      {
+        "id": "strategy-04",
+        "split": "train",
+        "tokens": 741,
+        "assistant_tokens": 128
+      },
+      {
+        "id": "strategy-05",
+        "split": "train",
+        "tokens": 737,
+        "assistant_tokens": 127
+      },
+      {
+        "id": "strategy-06",
+        "split": "train",
+        "tokens": 736,
+        "assistant_tokens": 127
+      },
+      {
+        "id": "strategy-07",
+        "split": "train",
+        "tokens": 737,
+        "assistant_tokens": 129
+      },
+      {
+        "id": "strategy-08",
+        "split": "train",
+        "tokens": 746,
+        "assistant_tokens": 135
+      },
+      {
+        "id": "strategy-10",
+        "split": "train",
+        "tokens": 735,
+        "assistant_tokens": 129
+      },
+      {
+        "id": "strategy-11",
+        "split": "train",
+        "tokens": 735,
+        "assistant_tokens": 128
+      },
+      {
+        "id": "strategy-12",
+        "split": "train",
+        "tokens": 739,
+        "assistant_tokens": 131
+      },
+      {
+        "id": "strategy-13",
+        "split": "train",
+        "tokens": 735,
+        "assistant_tokens": 128
+      },
+      {
+        "id": "strategy-14",
+        "split": "train",
+        "tokens": 741,
+        "assistant_tokens": 133
+      },
+      {
+        "id": "strategy-15",
+        "split": "train",
+        "tokens": 730,
+        "assistant_tokens": 124
+      },
+      {
+        "id": "strategy-16",
+        "split": "train",
+        "tokens": 751,
+        "assistant_tokens": 136
+      },
+      {
+        "id": "strategy-18",
+        "split": "train",
+        "tokens": 740,
+        "assistant_tokens": 132
+      },
+      {
+        "id": "strategy-02",
+        "split": "validation",
+        "tokens": 733,
+        "assistant_tokens": 127
+      },
+      {
+        "id": "strategy-09",
+        "split": "validation",
+        "tokens": 741,
+        "assistant_tokens": 132
+      },
+      {
+        "id": "strategy-17",
+        "split": "validation",
+        "tokens": 730,
+        "assistant_tokens": 130
+      }
+    ]
+  },
+  "tactics": {
+    "min": 829,
+    "max": 931,
+    "rows": [
+      {
+        "id": "tactic-01-正确使用",
+        "split": "train",
+        "tokens": 899,
+        "assistant_tokens": 183
+      },
+      {
+        "id": "tactic-01-错误使用",
+        "split": "train",
+        "tokens": 903,
+        "assistant_tokens": 182
+      },
+      {
+        "id": "tactic-01-被识破",
+        "split": "train",
+        "tokens": 921,
+        "assistant_tokens": 182
+      },
+      {
+        "id": "tactic-01-对方反制",
+        "split": "train",
+        "tokens": 925,
+        "assistant_tokens": 182
+      },
+      {
+        "id": "tactic-01-调整策略",
+        "split": "train",
+        "tokens": 926,
+        "assistant_tokens": 182
+      },
+      {
+        "id": "tactic-03-正确使用",
+        "split": "train",
+        "tokens": 916,
+        "assistant_tokens": 192
+      },
+      {
+        "id": "tactic-03-错误使用",
+        "split": "train",
+        "tokens": 894,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-03-被识破",
+        "split": "train",
+        "tokens": 912,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-03-对方反制",
+        "split": "train",
+        "tokens": 916,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-03-调整策略",
+        "split": "train",
+        "tokens": 925,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-04-正确使用",
+        "split": "train",
+        "tokens": 899,
+        "assistant_tokens": 180
+      },
+      {
+        "id": "tactic-04-错误使用",
+        "split": "train",
+        "tokens": 892,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-04-被识破",
+        "split": "train",
+        "tokens": 910,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-04-对方反制",
+        "split": "train",
+        "tokens": 914,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-04-调整策略",
+        "split": "train",
+        "tokens": 918,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-05-正确使用",
+        "split": "train",
+        "tokens": 895,
+        "assistant_tokens": 177
+      },
+      {
+        "id": "tactic-05-错误使用",
+        "split": "train",
+        "tokens": 895,
+        "assistant_tokens": 178
+      },
+      {
+        "id": "tactic-05-被识破",
+        "split": "train",
+        "tokens": 913,
+        "assistant_tokens": 178
+      },
+      {
+        "id": "tactic-05-对方反制",
+        "split": "train",
+        "tokens": 917,
+        "assistant_tokens": 178
+      },
+      {
+        "id": "tactic-05-调整策略",
+        "split": "train",
+        "tokens": 920,
+        "assistant_tokens": 178
+      },
+      {
+        "id": "tactic-06-正确使用",
+        "split": "train",
+        "tokens": 904,
+        "assistant_tokens": 182
+      },
+      {
+        "id": "tactic-06-错误使用",
+        "split": "train",
+        "tokens": 893,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-06-被识破",
+        "split": "train",
+        "tokens": 911,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-06-对方反制",
+        "split": "train",
+        "tokens": 915,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-06-调整策略",
+        "split": "train",
+        "tokens": 922,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-07-正确使用",
+        "split": "train",
+        "tokens": 903,
+        "assistant_tokens": 184
+      },
+      {
+        "id": "tactic-07-错误使用",
+        "split": "train",
+        "tokens": 890,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-07-被识破",
+        "split": "train",
+        "tokens": 908,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-07-对方反制",
+        "split": "train",
+        "tokens": 912,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-07-调整策略",
+        "split": "train",
+        "tokens": 916,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-08-正确使用",
+        "split": "train",
+        "tokens": 886,
+        "assistant_tokens": 170
+      },
+      {
+        "id": "tactic-08-错误使用",
+        "split": "train",
+        "tokens": 888,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-08-被识破",
+        "split": "train",
+        "tokens": 906,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-08-对方反制",
+        "split": "train",
+        "tokens": 910,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-08-调整策略",
+        "split": "train",
+        "tokens": 911,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-09-正确使用",
+        "split": "train",
+        "tokens": 903,
+        "assistant_tokens": 183
+      },
+      {
+        "id": "tactic-09-错误使用",
+        "split": "train",
+        "tokens": 885,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-09-被识破",
+        "split": "train",
+        "tokens": 903,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-09-对方反制",
+        "split": "train",
+        "tokens": 907,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-09-调整策略",
+        "split": "train",
+        "tokens": 912,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-10-正确使用",
+        "split": "train",
+        "tokens": 895,
+        "assistant_tokens": 178
+      },
+      {
+        "id": "tactic-10-错误使用",
+        "split": "train",
+        "tokens": 886,
+        "assistant_tokens": 173
+      },
+      {
+        "id": "tactic-10-被识破",
+        "split": "train",
+        "tokens": 904,
+        "assistant_tokens": 173
+      },
+      {
+        "id": "tactic-10-对方反制",
+        "split": "train",
+        "tokens": 908,
+        "assistant_tokens": 173
+      },
+      {
+        "id": "tactic-10-调整策略",
+        "split": "train",
+        "tokens": 910,
+        "assistant_tokens": 173
+      },
+      {
+        "id": "tactic-12-正确使用",
+        "split": "train",
+        "tokens": 899,
+        "assistant_tokens": 181
+      },
+      {
+        "id": "tactic-12-错误使用",
+        "split": "train",
+        "tokens": 879,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-12-被识破",
+        "split": "train",
+        "tokens": 897,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-12-对方反制",
+        "split": "train",
+        "tokens": 901,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-12-调整策略",
+        "split": "train",
+        "tokens": 904,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-14-正确使用",
+        "split": "train",
+        "tokens": 829,
+        "assistant_tokens": 161
+      },
+      {
+        "id": "tactic-14-错误使用",
+        "split": "train",
+        "tokens": 879,
+        "assistant_tokens": 166
+      },
+      {
+        "id": "tactic-14-被识破",
+        "split": "train",
+        "tokens": 897,
+        "assistant_tokens": 166
+      },
+      {
+        "id": "tactic-14-对方反制",
+        "split": "train",
+        "tokens": 901,
+        "assistant_tokens": 166
+      },
+      {
+        "id": "tactic-14-调整策略",
+        "split": "train",
+        "tokens": 901,
+        "assistant_tokens": 166
+      },
+      {
+        "id": "tactic-15-正确使用",
+        "split": "train",
+        "tokens": 897,
+        "assistant_tokens": 181
+      },
+      {
+        "id": "tactic-15-错误使用",
+        "split": "train",
+        "tokens": 896,
+        "assistant_tokens": 177
+      },
+      {
+        "id": "tactic-15-被识破",
+        "split": "train",
+        "tokens": 914,
+        "assistant_tokens": 177
+      },
+      {
+        "id": "tactic-15-对方反制",
+        "split": "train",
+        "tokens": 918,
+        "assistant_tokens": 177
+      },
+      {
+        "id": "tactic-15-调整策略",
+        "split": "train",
+        "tokens": 919,
+        "assistant_tokens": 177
+      },
+      {
+        "id": "tactic-16-正确使用",
+        "split": "train",
+        "tokens": 895,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-16-错误使用",
+        "split": "train",
+        "tokens": 877,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-16-被识破",
+        "split": "train",
+        "tokens": 895,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-16-对方反制",
+        "split": "train",
+        "tokens": 899,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-16-调整策略",
+        "split": "train",
+        "tokens": 904,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-17-正确使用",
+        "split": "train",
+        "tokens": 893,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-17-错误使用",
+        "split": "train",
+        "tokens": 884,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-17-被识破",
+        "split": "train",
+        "tokens": 902,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-17-对方反制",
+        "split": "train",
+        "tokens": 906,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-17-调整策略",
+        "split": "train",
+        "tokens": 909,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-18-正确使用",
+        "split": "train",
+        "tokens": 894,
+        "assistant_tokens": 176
+      },
+      {
+        "id": "tactic-18-错误使用",
+        "split": "train",
+        "tokens": 878,
+        "assistant_tokens": 163
+      },
+      {
+        "id": "tactic-18-被识破",
+        "split": "train",
+        "tokens": 896,
+        "assistant_tokens": 163
+      },
+      {
+        "id": "tactic-18-对方反制",
+        "split": "train",
+        "tokens": 900,
+        "assistant_tokens": 163
+      },
+      {
+        "id": "tactic-18-调整策略",
+        "split": "train",
+        "tokens": 903,
+        "assistant_tokens": 163
+      },
+      {
+        "id": "tactic-19-正确使用",
+        "split": "train",
+        "tokens": 896,
+        "assistant_tokens": 178
+      },
+      {
+        "id": "tactic-19-错误使用",
+        "split": "train",
+        "tokens": 881,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-19-被识破",
+        "split": "train",
+        "tokens": 899,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-19-对方反制",
+        "split": "train",
+        "tokens": 903,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-19-调整策略",
+        "split": "train",
+        "tokens": 906,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-20-正确使用",
+        "split": "train",
+        "tokens": 879,
+        "assistant_tokens": 164
+      },
+      {
+        "id": "tactic-20-错误使用",
+        "split": "train",
+        "tokens": 875,
+        "assistant_tokens": 162
+      },
+      {
+        "id": "tactic-20-被识破",
+        "split": "train",
+        "tokens": 893,
+        "assistant_tokens": 162
+      },
+      {
+        "id": "tactic-20-对方反制",
+        "split": "train",
+        "tokens": 897,
+        "assistant_tokens": 162
+      },
+      {
+        "id": "tactic-20-调整策略",
+        "split": "train",
+        "tokens": 905,
+        "assistant_tokens": 162
+      },
+      {
+        "id": "tactic-21-正确使用",
+        "split": "train",
+        "tokens": 888,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-21-错误使用",
+        "split": "train",
+        "tokens": 887,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-21-被识破",
+        "split": "train",
+        "tokens": 905,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-21-对方反制",
+        "split": "train",
+        "tokens": 909,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-21-调整策略",
+        "split": "train",
+        "tokens": 908,
+        "assistant_tokens": 171
+      },
+      {
+        "id": "tactic-22-正确使用",
+        "split": "train",
+        "tokens": 906,
+        "assistant_tokens": 188
+      },
+      {
+        "id": "tactic-22-错误使用",
+        "split": "train",
+        "tokens": 890,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-22-被识破",
+        "split": "train",
+        "tokens": 908,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-22-对方反制",
+        "split": "train",
+        "tokens": 912,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-22-调整策略",
+        "split": "train",
+        "tokens": 915,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-23-正确使用",
+        "split": "train",
+        "tokens": 895,
+        "assistant_tokens": 176
+      },
+      {
+        "id": "tactic-23-错误使用",
+        "split": "train",
+        "tokens": 874,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-23-被识破",
+        "split": "train",
+        "tokens": 892,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-23-对方反制",
+        "split": "train",
+        "tokens": 896,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-23-调整策略",
+        "split": "train",
+        "tokens": 900,
+        "assistant_tokens": 165
+      },
+      {
+        "id": "tactic-24-正确使用",
+        "split": "train",
+        "tokens": 891,
+        "assistant_tokens": 175
+      },
+      {
+        "id": "tactic-24-错误使用",
+        "split": "train",
+        "tokens": 882,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-24-被识破",
+        "split": "train",
+        "tokens": 900,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-24-对方反制",
+        "split": "train",
+        "tokens": 904,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-24-调整策略",
+        "split": "train",
+        "tokens": 905,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-02-正确使用",
+        "split": "validation",
+        "tokens": 899,
+        "assistant_tokens": 181
+      },
+      {
+        "id": "tactic-02-错误使用",
+        "split": "validation",
+        "tokens": 906,
+        "assistant_tokens": 185
+      },
+      {
+        "id": "tactic-02-被识破",
+        "split": "validation",
+        "tokens": 924,
+        "assistant_tokens": 185
+      },
+      {
+        "id": "tactic-02-对方反制",
+        "split": "validation",
+        "tokens": 928,
+        "assistant_tokens": 185
+      },
+      {
+        "id": "tactic-02-调整策略",
+        "split": "validation",
+        "tokens": 931,
+        "assistant_tokens": 185
+      },
+      {
+        "id": "tactic-11-正确使用",
+        "split": "validation",
+        "tokens": 904,
+        "assistant_tokens": 184
+      },
+      {
+        "id": "tactic-11-错误使用",
+        "split": "validation",
+        "tokens": 898,
+        "assistant_tokens": 179
+      },
+      {
+        "id": "tactic-11-被识破",
+        "split": "validation",
+        "tokens": 916,
+        "assistant_tokens": 179
+      },
+      {
+        "id": "tactic-11-对方反制",
+        "split": "validation",
+        "tokens": 920,
+        "assistant_tokens": 179
+      },
+      {
+        "id": "tactic-11-调整策略",
+        "split": "validation",
+        "tokens": 925,
+        "assistant_tokens": 179
+      },
+      {
+        "id": "tactic-13-正确使用",
+        "split": "validation",
+        "tokens": 900,
+        "assistant_tokens": 182
+      },
+      {
+        "id": "tactic-13-错误使用",
+        "split": "validation",
+        "tokens": 887,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-13-被识破",
+        "split": "validation",
+        "tokens": 905,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-13-对方反制",
+        "split": "validation",
+        "tokens": 909,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-13-调整策略",
+        "split": "validation",
+        "tokens": 912,
+        "assistant_tokens": 172
+      },
+      {
+        "id": "tactic-25-正确使用",
+        "split": "validation",
+        "tokens": 883,
+        "assistant_tokens": 169
+      },
+      {
+        "id": "tactic-25-错误使用",
+        "split": "validation",
+        "tokens": 892,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-25-被识破",
+        "split": "validation",
+        "tokens": 910,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-25-对方反制",
+        "split": "validation",
+        "tokens": 914,
+        "assistant_tokens": 174
+      },
+      {
+        "id": "tactic-25-调整策略",
+        "split": "validation",
+        "tokens": 913,
+        "assistant_tokens": 174
+      }
+    ]
+  },
+  "benchmark_inputs": [
+    {
+      "id": "eval-rule-guard-repeat",
+      "tokens": 566
+    },
+    {
+      "id": "eval-rule-witch-spent",
+      "tokens": 564
+    },
+    {
+      "id": "eval-rule-witch-current-target",
+      "tokens": 604
+    },
+    {
+      "id": "eval-rule-self-save-night3",
+      "tokens": 595
+    },
+    {
+      "id": "eval-rule-seer-dead",
+      "tokens": 559
+    },
+    {
+      "id": "eval-rule-hunter-no-permission",
+      "tokens": 562
+    },
+    {
+      "id": "eval-rule-hunter-permission",
+      "tokens": 561
+    },
+    {
+      "id": "eval-rule-vote-dead",
+      "tokens": 559
+    },
+    {
+      "id": "eval-rule-badge",
+      "tokens": 559
+    },
+    {
+      "id": "eval-rule-sheriff-withdrawn",
+      "tokens": 573
+    },
+    {
+      "id": "eval-rule-two-potions",
+      "tokens": 567
+    },
+    {
+      "id": "eval-rule-parity",
+      "tokens": 572
+    },
+    {
+      "id": "eval-strategy-double-claim",
+      "tokens": 623
+    },
+    {
+      "id": "eval-strategy-silver",
+      "tokens": 622
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "tokens": 621
+    },
+    {
+      "id": "eval-strategy-gods",
+      "tokens": 618
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "tokens": 617
+    },
+    {
+      "id": "eval-strategy-dead-dark",
+      "tokens": 616
+    },
+    {
+      "id": "eval-strategy-public-injection",
+      "tokens": 620
+    },
+    {
+      "id": "eval-strategy-later-check",
+      "tokens": 624
+    },
+    {
+      "id": "eval-cf-guard-a",
+      "tokens": 570
+    },
+    {
+      "id": "eval-cf-guard-b",
+      "tokens": 569
+    },
+    {
+      "id": "eval-cf-hunter-a",
+      "tokens": 565
+    },
+    {
+      "id": "eval-cf-hunter-b",
+      "tokens": 565
+    },
+    {
+      "id": "eval-cf-witch-a",
+      "tokens": 568
+    },
+    {
+      "id": "eval-cf-witch-b",
+      "tokens": 568
+    },
+    {
+      "id": "eval-cf-team-a",
+      "tokens": 766
+    },
+    {
+      "id": "eval-cf-team-b",
+      "tokens": 765
+    },
+    {
+      "id": "eval-blind-00",
+      "tokens": 713
+    },
+    {
+      "id": "eval-blind-01",
+      "tokens": 716
+    },
+    {
+      "id": "eval-blind-02",
+      "tokens": 717
+    },
+    {
+      "id": "eval-blind-03",
+      "tokens": 612
+    },
+    {
+      "id": "eval-blind-04",
+      "tokens": 617
+    },
+    {
+      "id": "eval-blind-05",
+      "tokens": 618
+    },
+    {
+      "id": "eval-blind-06",
+      "tokens": 610
+    },
+    {
+      "id": "eval-blind-07",
+      "tokens": 616
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "python": "3.12.14",
+  "os": "Windows",
+  "packages": {
+    "torch": "2.6.0+cu118",
+    "transformers": "4.57.6",
+    "peft": "0.18.1",
+    "accelerate": "1.12.0",
+    "bitsandbytes": "0.49.2",
+    "safetensors": "0.7.0",
+    "pytest": "8.3.5",
+    "PyYAML": "6.0.2"
+  },
+  "cuda_available": true,
+  "cuda_build": "11.8",
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "vram_mib": 4095.5,
+  "bf16": true,
+  "compute_capability": [
+    8,
+    6
+  ],
+  "nf4_forward_backward": true
+}

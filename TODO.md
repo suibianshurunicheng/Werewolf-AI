@@ -1,35 +1,29 @@
-# 可独立恢复的任务
+# 可恢复的小任务
 
-状态：`[x]` 已完成；`[ ]` 尚未完成。只依据文件和真实运行证据打勾。
+[x]已完成；[ ]未完成。只凭真实文件和运行证据勾选。
 
 ## Phase 0
 
-- [x] 读取用户两版要求，并以 3B～4B / classic_12 为当前目标。
-- [x] 初始化一个本地 Git Repository，建立状态、决策、恢复文档。
-- [x] 检查本机 GPU、驱动、磁盘与 Python 环境。
-- [x] 完成 3B～4B 候选模型调研和初步选择。
-- [x] 冻结经典规则 ww-v1.0，镜隐标为 Phase 2。
-- [x] 完成数据 Schema、最小合法样本、8 份经典 Prompt；37 项基础测试通过。
-- [x] 建立185条经典Gold种子，标注合成来源及未独立复核状态。
-- [x] 建立36题Benchmark与4组单变量反事实、污染检查。
-- [x] 生成dataset_v0.1结构化/messages/哈希快照，46项测试通过。
-- [ ] 实现可恢复的 QLoRA/LoRA、推理、评测和 Adapter 合并。
-- [ ] 完成 4GB / 12GB / 16GB / 24GB 配置及 CPU 链路验证。
-- [ ] 完成 README、数据、训练、评测、手动对局和模型卡。
-- [x] 初期内容扫描无匹配，前三个检查点已推送GitHub；以后每阶段继续检查推送。
+- [x] 初始化并推送用户指定GitHub仓库，建立状态/决策/恢复文档。
+- [x] 固定3B～4B主备模型、经典ww-v1.0；镜隐保留Phase2。
+- [x] 规则纯函数、严格Schema、视角验证、8模板和基础37测试。
+- [x] 185原创种子及独立36题Benchmark，分组去污染，dataset_v0.1版本化；46测试。
+- [x] 可恢复训练/推理/评测/合并脚本与60测试。
+- [x] 4GB/12GB/16GB/24GB配置和CPU小模型链路验证（不等于各档GPU实测）。
+- [x] README、数据、训练、评测、人工使用和模型卡。
 
 ## Phase 1
 
-- [ ] 下载并固定 Primary 模型与 Tokenizer revision。
-- [x] Primary revision已固定；CUDA 11.8 / torch 2.6.0已实际识别GPU。
-- [ ] 验证 CUDA 和 NF4 实际加载情况。
-- [ ] 完整运行并保存 Base Benchmark，逐条可恢复。
-- [ ] 真实尝试 Rule QLoRA；失败时保存错误及逐项低显存调整。
-- [ ] 顺序续训 Strategy、Tactics，保留每阶段 Adapter 和日志。
-- [ ] 同一 Benchmark 测 Adapter，保留失败案例与配对比较。
-- [ ] 依据开发集失败修正数据，生成 dataset_v0.2 并训练第二轮。
-- [ ] 通过未参与修正的保留集和人工复制粘贴测试验收。
+- [x] Primary固定revision并完整下载权重及Tokenizer。
+- [x] 实测CUDA、BF16支持和NF4前向反向。
+- [x] 所有训练样本实际Tokenizer长度检查；Rule dry-run零过滤。
+- [ ] 工具链提交推送后完整Base评测，写reports/base_model_baseline.md。
+- [ ] Base结果保存并commit后实际Rule QLoRA，记录任何OOM及逐项调整。
+- [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
+- [ ] 相同Benchmark评Adapter，reports/qlora_v01.md及base_vs_qlora.md。
+- [ ] 仅用dev失败修正并生成dataset_v0.2，第二轮训练。
+- [ ] 未用于修正的保留集及真实人工复制粘贴对局验收。
 
 ## Phase 2（暂停）
 
-- [ ] 只有 Phase 1 正式训练和 Benchmark 完成后才冻结完整镜隐规则并生成数据。
+- [ ] Phase1验收后才正式冻结镜隐、生成镜隐数据与训练。

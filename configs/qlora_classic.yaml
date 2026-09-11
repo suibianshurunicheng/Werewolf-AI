@@ -31,7 +31,7 @@ training:
   weight_decay: 0.01
   max_grad_norm: 1.0
   optimizer: paged_adamw_8bit
-  save_steps: 10
+  save_steps: 1
   logging_steps: 1
   save_total_limit: 3
   max_steps: -1
@@ -39,11 +39,10 @@ training:
   cpu_offload: false
 inference:
   max_input_tokens: 2048
-  max_new_tokens: 384
+  max_new_tokens: 768
   do_sample: false
   use_cache: true
 evaluation:
   suites: [rules, strategy, counterfactual, blind]
   benchmark_version: classic_benchmark_v0.1
   baseline_dir: reports/runs/base_primary
-

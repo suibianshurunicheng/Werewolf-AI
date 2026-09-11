@@ -39,7 +39,9 @@ def write_jsonl(path, rows):
 def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary = path.with_suffix(path.suffix + ".pending")
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    temporary.replace(path)
 
 
 def sha256_file(path):
@@ -48,4 +50,3 @@ def sha256_file(path):
 
 def content_hash(value):
     return hashlib.sha256(canonical(value).encode("utf-8")).hexdigest()
-
