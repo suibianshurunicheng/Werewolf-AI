@@ -83,6 +83,10 @@ def validate_config(data):
         raise ValueError("invalid dropout")
     if not data["lora"]["target_modules"]:
         raise ValueError("empty LoRA targets")
+    if set(data["evaluation"]["suites"]) != {"rules", "strategy", "counterfactual", "blind"} or len(data["evaluation"]["suites"]) != 4:
+        raise ValueError("V1 requires all four benchmark suites exactly once")
+    if data["training"]["epochs"] <= 0 or (data["training"]["max_steps"] != -1 and data["training"]["max_steps"] <= 0):
+        raise ValueError("training must have a positive duration")
     for value in [data["data"]["root"], data["training"]["output_root"], data["evaluation"]["baseline_dir"]]:
         (ROOT / value).resolve().relative_to(ROOT.resolve())
 

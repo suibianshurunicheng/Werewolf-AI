@@ -33,6 +33,7 @@ def test_all_saved_configs_load():
     lambda c: c["data"].update(overlength="truncate"),
     lambda c: c["training"].update(output_root="../outside"),
     lambda c: c["lora"].update(rnak=8),
+    lambda c: c["evaluation"].update(suites=[]),
 ])
 def test_unsafe_or_misspelled_config_rejected(change):
     config = load_config(ROOT / "configs/qlora_classic.yaml")

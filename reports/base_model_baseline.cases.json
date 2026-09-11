@@ -1,0 +1,713 @@
+[
+  {
+    "id": "eval-rule-guard-repeat",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 2,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "guard",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-witch-spent",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-rule-witch-current-target",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "save",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-self-save-night3",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "self_save",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-rule-seer-dead",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": true,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 11
+      }
+    }
+  },
+  {
+    "id": "eval-rule-hunter-no-permission",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": false,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parse_error": "invalid identity seat/assessment"
+    }
+  },
+  {
+    "id": "eval-rule-hunter-permission",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "shot",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-vote-dead",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-rule-badge",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "badge_transfer",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-sheriff-withdrawn",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-two-potions",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "poison",
+        "target": 11
+      }
+    }
+  },
+  {
+    "id": "eval-rule-parity",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": false,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parse_error": "invalid action"
+    }
+  },
+  {
+    "id": "eval-strategy-double-claim",
+    "split": "test",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-silver",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-vote-change",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-gods",
+    "split": "test",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-ambiguous",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-dead-dark",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-public-injection",
+    "split": "test",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-later-check",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-cf-guard-a",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-cf-guard-b",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 11
+      }
+    }
+  },
+  {
+    "id": "eval-cf-hunter-a",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "hunter_shot",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-cf-hunter-b",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "hunter_shot",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-cf-witch-a",
+    "split": "test",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": false,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parse_error": "invalid action"
+    }
+  },
+  {
+    "id": "eval-cf-witch-b",
+    "split": "test",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-cf-team-a",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "exile",
+        "target": 1
+      }
+    }
+  },
+  {
+    "id": "eval-cf-team-b",
+    "split": "dev",
+    "suite": "counterfactual",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "exile",
+        "target": 4
+      }
+    }
+  },
+  {
+    "id": "eval-blind-00",
+    "split": "test",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "exile_vote",
+        "target": 1
+      }
+    }
+  },
+  {
+    "id": "eval-blind-01",
+    "split": "dev",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "speech",
+        "target": 1
+      }
+    }
+  },
+  {
+    "id": "eval-blind-02",
+    "split": "dev",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": true,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "pass",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-blind-03",
+    "split": "test",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": true,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "pass",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-blind-04",
+    "split": "dev",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": true,
+      "action_match": true,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-blind-05",
+    "split": "dev",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "guard",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-blind-06",
+    "split": "test",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": true,
+      "action_match": true,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "pass",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-blind-07",
+    "split": "dev",
+    "suite": "blind",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "speech",
+        "target": null
+      }
+    }
+  }
+]

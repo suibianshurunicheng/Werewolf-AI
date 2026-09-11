@@ -1,63 +1,65 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-11。当前 Phase：Phase 0 工具链验证完成，进入 Phase 1 Base Benchmark。
+更新：2026-09-11。当前Phase：Phase 1，完整Base已完成，即将实际Rule QLoRA。
 
 ## 已完成任务
 
-- 保留原项目与4个已推送提交，当前仅3B～4B/classic_12；镜隐暂停。
-- 冻结ww-v1.0规则、严格玩家视角Schema、8份复制粘贴模板。
-- dataset_v0.1：42规则、18策略、125战术，共185条原创种子；独立36题Benchmark，4对单变量反事实。未独立人工复核，不冒充3000条Gold。
-- Primary Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554 权重和Tokenizer已下载完成；不需要再次下载或选型。
-- RTX3050Ti 4095.5MiB，torch2.6.0+cu118、BF16支持、NF4前向反向实测通过。
-- 实现配置校验、assistant-only编码、顺序QLoRA/LoRA、checkpoint恢复、推理、逐题评测、Markdown报告及CPU合并入口。
-- README、训练、人工使用、模型卡已补齐。
+- 用户指定GitHub仓库已多阶段提交推送；最近确定完成工程点dfeb58d，未重新初始化或重做已冻结数据。
+- classic_12 / ww-v1.0、严格玩家视角Schema、8模板、规则纯函数和完整工具链。
+- dataset_v0.1：42规则+18策略+125战术=185原创种子，分场景族训练/验证，无镜隐；未独立人工复核。
+- 独立36题Benchmark（规则12、策略8、反事实8、盲测8），dev/test固定，4对单变量反事实。
+- Primary Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554 已下载；不需要再次选型或下载。
+- CUDA/NF4前向反向微测试通过；真实4B Base已在RTX3050Ti 4GB完成36/36题，未出现OOM。
+- Base以strict-actions-v1.1统一评分完成，reports/base_model_baseline.md及runs/base_primary已保存全部原始回答。
 
 ## 当前正在进行
 
-工具链3110940已提交并推送。Base评测正在运行，已逐题落盘30/36（规则、策略、反事实已生成完；实时数量见progress.json）；当前进程为22964/32380（本机2026-09-11 09:18:22启动）。尚未完成全量Base，尚未启动正式QLoRA。
+保存完整Base检查点，然后按configs/qlora_classic.yaml实际尝试Rule QLoRA。尚未启动正式训练，不能报告训练成功或OOM。
 
 ## 尚未完成任务
 
-- 完整Base Benchmark及失败分析。
-- 实际4GB QLoRA尝试及有必要时按顺序调整显存配置。
-- Rule→Strategy→Tactics Adapter及相同Benchmark比较。
-- dev失败驱动dataset_v0.2、第二轮训练、保留集和人工对局验收。
-- 4GB/12GB/16GB/24GB全模型训练的实测容量与速度。
+- 真实Rule→Strategy→Tactics分阶段QLoRA及每阶段Adapter/完整checkpoint。
+- 如果OOM：依顺序保存并实施长度、rank、target modules、offload等合理调整，必要时备用3B；不能因估计显存而放弃。
+- 相同协议测Adapter，生成qlora_v01.md与base_vs_qlora.md。
+- dev失败修正dataset_v0.2及第二轮训练。
+- 独立语义审核、未用于修正的保留集及真实人工复制粘贴对局验收。
 
-## 已生成的重要文件
+## 重要文件
 
-- src/werewolf_sft/：rules、perspective、validation、schema、dataset、seed_data、benchmark_data、config、encoding、modeling、runtime、evaluation、reporting、training。
-- scripts/：prepare_model、prepare_dataset、validate_dataset、convert_messages、check_environment、check_lengths、train_qlora、train_lora、inference、evaluate、merge_adapter。
-- configs/*.yaml、data/gold/dataset_v0.1、data/prepared/dataset_v0.1、data/versions/dataset_v0.1.json、eval/*.jsonl。
-- reports/environment.json、reports/token_lengths.json、reports/models/Qwen3-4B-Instruct-2507.json、reports/toolchain.md。
-- 本地cache/huggingface保存固定revision权重，不提交Git；outputs保存未来训练状态，同样忽略。
+- configs/qlora_classic.yaml：NF4双量化、r8/alpha16、batch1、累积16、1024、每step保存评估、1 epoch、BF16自动、无packing。
+- data/versions/dataset_v0.1.json及data/gold、data/prepared；禁止覆盖版本快照。
+- scripts/train_qlora.py、train_lora.py、evaluate.py、inference.py、merge_adapter.py、checkpoint_evaluation.py。
+- src/werewolf_sft/training.py：版本哈希检查、基线门禁、assistant-only loss、逐步日志、完整checkpoint哈希标记和恢复。
+- reports/environment.json、token_lengths.json、toolchain.md、base_model_baseline.md、base_model_baseline.cases.json、base_dev_diagnostics.md、runs/base_primary/{run,summary,predictions,progress}.json/jsonl及cases/。
+- reports/base_progress.*保留早期partial历史快照，不是当前最终报告。
+- cache/huggingface与outputs为本地大文件目录，不进Git。训练失败会独立保存到reports/training_attempts。
 
-## 已运行测试和结果
+## 已运行测试与结果
 
-- 65项完整pytest全部通过，退出0，测试进程退出0。小型随机Qwen3的优化loss及全部参数梯度与标准实现一致；LoRA一次更新后保存重载输出一致。它们不是4B专项训练成功证据。
-- 实际NF4微测试前向、反向梯度有限，详见environment。
-- 实际Tokenizer：rules649～775，strategy730～751，tactics829～931 tokens；Benchmark输入最长766。全部训练样本适配1024，不截断。
-- Rule dry-run成功：35 train、7 validation，零过滤。
-- 发现并修复Tokenizer在local_files_only下仍探测网络的问题，改为固定revision本地目录加载。
-- 发现并修复评测协议字典共享引用，防止后改配置时指纹快照跟着变化。
-- GitHub CI在2e55c70上completed/success，报告reports/ci.json。
-- 训练前核验版本清单全部文件哈希；checkpoint写完后保存哈希标记，恢复跳过残缺/损坏checkpoint；测试通过。
-- 规则、策略、反事实题生成结束，完整运行仍未完成；部分快照base_progress，诊断base_dev_diagnostics明确动作词汇与规则能力混淆。
+- 完整65项pytest通过；随后扩充空Benchmark配置拒绝用例，6项配置参数化测试通过（现共66项）。
+- CPU小型Qwen3验证completion-only损失和梯度与标准实现等价；LoRA保存重载一致；step1中断后恢复到step4与连续训练参数/验证结果一致。这不是4B训练成功证据。
+- 数据快照篡改拒绝、残缺/损坏checkpoint跳过、OS运行锁测试通过。
+- 185条实际Tokenizer长度649～931，全部适配1024。Rule dry-run35训练/7验证、零过滤。
+- 完整Base：生成速度中位6.22 tokens/s，PyTorch峰值分配2909.2MiB，36题均未截断。
+- 精确参考动作匹配：rules0/12、strategy0/8、counterfactual0/8、blind2/8。JSON有效33/36。未知动作词约束造成明显接口混淆，不等同于狼人杀能力全为0，详见诊断。
+- GitHub 2e55c70 CI已成功；后续提交CI尚未复查。
 
 ## 当前阻塞项
 
-暂无外部阻塞。4B已能在GPU生成，观测峰值约2821MiB；正式训练容量尚未验证；不能预报OOM或伪称训练成功。GitHub SSH可用，禁止force push。
+没有外部阻塞。正式4GB训练容量仍未实测。Base的精确动作匹配同时反映接口词汇问题；最终能力提升不能只依据该指标，必须另做语义审核或统一动作字典的新协议重测。
 
 ## 下一步具体任务
 
-1. 已保存并推送工具链3110940；运行锁与恢复强化检查点继续保存。
-2. 完整运行Base评测，逐题持久化；发生异常保留failure.json并修复后原命令续跑。
-3. 基线完成后更新状态并commit，再真实尝试Rule QLoRA。
+1. 提交并推送完整Base成果，满足昂贵训练前保存要求。
+2. 执行Rule QLoRA，保存真实结果；若失败先查看reports/training_attempts中最后阶段和异常，不得伪称OOM。
+3. 每完成一个阶段更新三份状态文档并commit。保持一个确定完成的可恢复检查点。
 
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO和最近5个Git commits，检查git status。禁止初始化第二套仓库或重做已有数据。
+先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base。
 
-第一项任务：先检查reports/runs/base_primary/progress.json和cases，以及本机Get-Process python。当前Base进程22964/32380尚在运行时等待其继续，不要启动第二个进程；原进程结束且summary未完成时执行 .venv/Scripts/python.exe scripts/evaluate.py --report reports/base_model_baseline.md 。如果reports/runs/base_primary已有cases，原命令自动跳过已完成题；不得删除或覆盖。先确认没有同一评测进程在运行。
+第一项任务：确认完整Base检查点已commit后，执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules 。Base进程22964/32380已经结束，不要重新启动评测。
 
-完整36题结束后，先执行 .venv/Scripts/python.exe scripts/evaluate.py --score-only --report reports/base_model_baseline.md 。这一步只重算已保存回答的评分，不重新生成，补充strict-actions-v1.1未知动作词诊断。确认summary.json为complete且scoring_version正确，保存commit，再执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules 。同阶段中断用 --resume。不要跳过Base前置检查。所有超参数修改另存YAML和新的output_root。
+若Rule已经开始或中断，先读outputs/classic_v01/rules/progress.json、run_manifest.json和reports/training_attempts；同配置恢复用 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules --resume 。运行锁会拒绝并发重复启动，恢复仅使用带完整哈希标记的checkpoint。不要覆盖失败配置；修改参数时另存YAML并更换output_root。
+
+Rule成功后保存并commit，再依次 --stage strategy、--stage tactics。所有成功都以training_result.json和完整Adapter为证据。

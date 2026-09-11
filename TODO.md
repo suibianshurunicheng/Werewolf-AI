@@ -18,10 +18,10 @@
 - [x] 实测CUDA、BF16支持和NF4前向反向。
 - [x] 所有训练样本实际Tokenizer长度检查；Rule dry-run零过滤。
 - [x] 工具链3110940已提交推送；增加中断精确恢复和运行锁测试。
-- [ ] 完整Base评测正在运行，已落盘30/36，最近评分快照29/36，实时见progress.json；完成后写reports/base_model_baseline.md。
+- [x] 完整Base36/36生成结束，reports/base_model_baseline.md已保存。
 - [ ] Base结果保存并commit后实际Rule QLoRA，记录任何OOM及逐项调整。
 - [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
-- [ ] 生成完成后--score-only，补齐strict-actions-v1.1诊断列，不重做生成。
+- [x] 完整结果已统一--score-only，strict-actions-v1.1诊断列已保存，没有重做生成。
 - [ ] 分开检查动作词汇接入与真实策略能力；不得用格式改善冒充策略提升。
 - [ ] 相同Benchmark评Adapter，reports/qlora_v01.md及base_vs_qlora.md。
 - [ ] 仅用dev失败修正并生成dataset_v0.2，第二轮训练。

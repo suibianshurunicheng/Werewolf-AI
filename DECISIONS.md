@@ -75,3 +75,9 @@
 - 每次训练失败独立写入带UTC时间与唯一ID的reports/training_attempts，包含config、dry_run标记、最后阶段和原始异常文本；不只保留被覆盖的最后一个错误。
 - 模型离线加载后恢复上游模型标识，避免Adapter把本机缓存绝对目录作为未来Base地址。
 - 完整65项pytest通过。
+
+## 完整Base先于训练
+
+- 36/36题实际生成完成，再统一strict-actions-v1.1评分；没有跳题、截断或OOM。中位6.22 tokens/s，PyTorch峰值2909.2MiB。
+- 精确参考匹配rules0/12、strategy0/8、CF0/8、blind2/8；33/36输出满足严格结构。未知动作词诊断保留原结果，不冒称Base不懂全部规则。
+- 先保存完整Base commit，再实际Rule QLoRA；不得跳过这道门禁。空Benchmark配置现在也明确拒绝。
