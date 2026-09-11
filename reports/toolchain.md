@@ -5,3 +5,5 @@
 真实Tokenizer检查见token_lengths.json，所有185样本适配1024。Rule dry-run35训练/7验证，零过滤。NF4微测试实际通过，环境版本见environment.json。4B完整训练与Benchmark尚未完成；不把CPU随机模型测试记作专项能力。
 
 新增中断精确恢复及OS运行锁测试后，完整62项pytest通过，退出0。GitHub CI定义已创建，远端结果尚未确认。
+
+strict-actions-v1.1的未知动作词与非法已知动作区分测试通过；新增基线门禁测试验证missing/partial/旧评分/不同协议均拒绝正式训练，1项通过。现共63项。

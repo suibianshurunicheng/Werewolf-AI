@@ -7,6 +7,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 1,
       "concept_total": 2,
@@ -26,6 +27,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 1,
       "concept_total": 1,
@@ -45,6 +47,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 1,
       "concept_total": 1,
@@ -64,6 +67,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 1,
       "concept_total": 1,
@@ -83,6 +87,7 @@
       "format_valid": true,
       "action_legal": true,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 1,
@@ -102,6 +107,7 @@
       "format_valid": false,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 1,
@@ -118,6 +124,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 0,
@@ -137,6 +144,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 1,
       "concept_total": 1,
@@ -156,6 +164,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 0,
@@ -175,6 +184,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 1,
@@ -194,6 +204,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 1,
       "concept_total": 1,
@@ -213,6 +224,7 @@
       "format_valid": false,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": false,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 1,
@@ -229,6 +241,7 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 1,
@@ -248,6 +261,127 @@
       "format_valid": true,
       "action_legal": false,
       "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-vote-change",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-gods",
+    "split": "test",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-ambiguous",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-dead-dark",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-public-injection",
+    "split": "test",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-later-check",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "unknown_action_type": true,
       "public_leak_flag": false,
       "concept_hits": 0,
       "concept_total": 1,

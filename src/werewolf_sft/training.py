@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .config import load_config, model_revision
 from .encoding import SFTCollator, encode_rows
+from .evaluation import SCORING_VERSION
 from .io import ROOT, canonical, content_hash, read_jsonl, sha256_file, write_json
 from .modeling import load_base, load_tokenizer, prepare_trainable
 from .runtime import load_cases, protocol, adapter_digest, run_lock
@@ -53,6 +54,8 @@ def check_baseline(config):
     expected = content_hash(protocol(config, load_cases(config)))
     if report["summary"]["status"] != "complete" or report["adapter_digest"] is not None:
         raise ValueError("baseline must be complete and use the unmodified Base")
+    if report.get("scoring_version") != SCORING_VERSION:
+        raise ValueError("re-score the completed Base with evaluate.py --score-only before training")
     if report["protocol_fingerprint"] != expected:
         raise ValueError("baseline protocol differs from this training/evaluation config")
 

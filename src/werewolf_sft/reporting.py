@@ -13,11 +13,12 @@ def write_evaluation_report(path, report, cases, predictions):
         f"协议指纹：{report['protocol_fingerprint']}。Adapter：{report['adapter_digest'] or '无'}。",
         "", "下列为固定静态题的自动指标；不代表真实对局胜率，也不替代人工策略评价。",
         "动作匹配只检查预先冻结的参考动作，不能单独证明发言策略正确。泄漏为有限规则标记，0不证明无泄漏。",
-        "", "| 集合 | 题数 | JSON有效 | 动作合法 | 参考动作匹配 | 截断 |",
-        "|---|---:|---:|---:|---:|---:|",
+        "", "| 集合 | 题数 | JSON有效 | 动作合法 | 参考动作匹配 | 未知动作词 | 截断 |",
+        "|---|---:|---:|---:|---:|---:|---:|",
     ]
     for suite, m in summary["metrics"].items():
-        lines.append(f"| {suite} | {m['total']} | {m['format_valid_rate']:.1%} | {m['action_legal_rate']:.1%} | {m['action_match_rate']:.1%} | {m['truncated_rate']:.1%} |")
+        lines.append(f"| {suite} | {m['total']} | {m['format_valid_rate']:.1%} | {m['action_legal_rate']:.1%} | {m['action_match_rate']:.1%} | {m['unknown_action_type_rate']:.1%} | {m['truncated_rate']:.1%} |")
+    lines += ["", "未知动作词是接口兼容问题，不能直接当成规则不懂。当前v0.1 Prompt未枚举动作词典；策略提升必须另做语义审核。"]
     if predictions:
         lines += ["", f"观测生成速度中位数：{statistics.median(p['output_tokens_per_second'] for p in predictions):.2f} tokens/s。",
                   f"观测PyTorch最大已分配显存：{max(p['peak_vram_mib'] for p in predictions):.1f} MiB；不含桌面和驱动占用。",

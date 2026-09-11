@@ -4,7 +4,7 @@ import json
 
 import _bootstrap
 from werewolf_sft.config import load_config
-from werewolf_sft.evaluation import summarize, comparison
+from werewolf_sft.evaluation import summarize, comparison, SCORING_VERSION
 from werewolf_sft.io import ROOT, content_hash, write_json, write_jsonl
 from werewolf_sft.perspective import to_messages
 from werewolf_sft.reporting import write_evaluation_report, write_comparison_report
@@ -54,7 +54,7 @@ def evaluate(config, args, cases, run, directory):
             write_json(directory / "failure.json", {"status": "failed", "error_type": type(exc).__name__,
                        "error": str(exc).replace(str(ROOT), "<workspace>"), "completed": len(predictions)})
             raise
-    report = {**run, "summary": summarize(cases, predictions)}
+    report = {**run, "scoring_version": SCORING_VERSION, "summary": summarize(cases, predictions)}
     write_json(directory / "summary.json", report)
     write_jsonl(directory / "predictions.jsonl", predictions)
     write_evaluation_report(ROOT / args.report if args.report else directory / "report.md", report, cases, predictions)

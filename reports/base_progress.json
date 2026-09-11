@@ -22,24 +22,27 @@
   },
   "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
   "adapter_digest": null,
+  "scoring_version": "strict-actions-v1.1",
   "summary": {
     "status": "partial",
     "expected_cases": 36,
-    "completed_cases": 14,
+    "completed_cases": 20,
     "metrics": {
       "rules": {
         "total": 12,
         "format_valid_rate": 0.8333333333333334,
         "action_legal_rate": 0.08333333333333333,
         "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.4166666666666667,
         "public_leak_flag_rate": 0.0,
         "truncated_rate": 0.0
       },
       "strategy": {
         "total": 8,
-        "format_valid_rate": 0.25,
+        "format_valid_rate": 1.0,
         "action_legal_rate": 0.0,
         "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.75,
         "public_leak_flag_rate": 0.0,
         "truncated_rate": 0.0
       },
@@ -48,6 +51,7 @@
         "format_valid_rate": 0.0,
         "action_legal_rate": 0.0,
         "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.0,
         "public_leak_flag_rate": 0.0,
         "truncated_rate": 0.0
       },
@@ -56,6 +60,7 @@
         "format_valid_rate": 0.0,
         "action_legal_rate": 0.0,
         "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.0,
         "public_leak_flag_rate": 0.0,
         "truncated_rate": 0.0
       }
@@ -82,7 +87,13 @@
     "eval-rule-vote-dead",
     "eval-rule-witch-current-target",
     "eval-rule-witch-spent",
+    "eval-strategy-ambiguous",
+    "eval-strategy-dead-dark",
     "eval-strategy-double-claim",
-    "eval-strategy-silver"
+    "eval-strategy-gods",
+    "eval-strategy-later-check",
+    "eval-strategy-public-injection",
+    "eval-strategy-silver",
+    "eval-strategy-vote-change"
   ]
 }

@@ -103,6 +103,12 @@ def test_evaluation_denominators_and_json_errors():
     assert parse_response(raw) == payload
     assert score_case(case, raw)["action_legal"]
     assert not score_case(case, raw, truncated=True)["format_valid"]
+    payload["action"] = {"type": "guard", "target": 12}
+    illegal = score_case(case, json.dumps(payload))
+    assert not illegal["action_legal"] and not illegal["unknown_action_type"]
+    payload["action"] = {"type": "none", "target": None}
+    interface = score_case(case, json.dumps(payload))
+    assert not interface["action_legal"] and interface["unknown_action_type"]
     summary = summarize(cases, [{"id": case["id"], "raw_response": raw}])
     assert summary["status"] == "partial"
     assert summary["metrics"]["rules"]["total"] == 12
@@ -124,6 +130,36 @@ def test_generation_changes_invalidate_comparison():
     assert protocol(config, cases) != old
     with pytest.raises(ValueError, match="protocol"):
         comparison({"protocol_fingerprint": "old"}, {"protocol_fingerprint": "new"})
+
+
+def test_formal_training_requires_full_matching_baseline(tmp_path, monkeypatch):
+    from werewolf_sft import training
+    from werewolf_sft.evaluation import SCORING_VERSION
+    from werewolf_sft.io import content_hash, write_json
+    config = load_config(ROOT / "configs/qlora_classic.yaml")
+    config["evaluation"]["baseline_dir"] = "baseline"
+    monkeypatch.setattr(training, "ROOT", tmp_path)
+    with pytest.raises(ValueError, match="full Base"):
+        training.check_baseline(config)
+    report = {"summary": {"status": "partial"}, "adapter_digest": None,
+              "protocol_fingerprint": content_hash(protocol(config, load_cases(config))),
+              "scoring_version": SCORING_VERSION}
+    path = tmp_path / "baseline/summary.json"
+    write_json(path, report)
+    with pytest.raises(ValueError, match="complete"):
+        training.check_baseline(config)
+    report["summary"]["status"] = "complete"
+    write_json(path, report)
+    training.check_baseline(config)
+    report["scoring_version"] = "old"
+    write_json(path, report)
+    with pytest.raises(ValueError, match="re-score"):
+        training.check_baseline(config)
+    report["scoring_version"] = SCORING_VERSION
+    report["protocol_fingerprint"] = "different"
+    write_json(path, report)
+    with pytest.raises(ValueError, match="protocol"):
+        training.check_baseline(config)
 
 
 def test_selected_completion_loss_and_gradients_match_standard():

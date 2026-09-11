@@ -14,7 +14,7 @@
 
 ## 当前正在进行
 
-工具链3110940已提交并推送。Base评测正在运行，已逐题落盘14/36（规则12题已生成完；实时数量见progress.json）；当前进程为22964/32380（本机2026-09-11 09:18:22启动）。尚未完成全量Base，尚未启动正式QLoRA。
+工具链3110940已提交并推送。Base评测正在运行，已逐题落盘22/36（规则12和策略8题已生成完；实时数量见progress.json）；当前进程为22964/32380（本机2026-09-11 09:18:22启动）。尚未完成全量Base，尚未启动正式QLoRA。
 
 ## 尚未完成任务
 
@@ -34,14 +34,14 @@
 
 ## 已运行测试和结果
 
-- 62项完整pytest全部通过（原46项+16项工具链测试），测试进程退出0。小型随机Qwen3的优化loss及全部参数梯度与标准实现一致；LoRA一次更新后保存重载输出一致。它们不是4B专项训练成功证据。
+- 62项完整pytest全部通过；随后修改的2项评分测试和新增1项正式训练基线门禁测试也通过（现共63项），测试进程退出0。小型随机Qwen3的优化loss及全部参数梯度与标准实现一致；LoRA一次更新后保存重载输出一致。它们不是4B专项训练成功证据。
 - 实际NF4微测试前向、反向梯度有限，详见environment。
 - 实际Tokenizer：rules649～775，strategy730～751，tactics829～931 tokens；Benchmark输入最长766。全部训练样本适配1024，不截断。
 - Rule dry-run成功：35 train、7 validation，零过滤。
 - 发现并修复Tokenizer在local_files_only下仍探测网络的问题，改为固定revision本地目录加载。
 - 发现并修复评测协议字典共享引用，防止后改配置时指纹快照跟着变化。
 - GitHub CI在2e55c70上completed/success，报告reports/ci.json。
-- 规则12题生成结束，完整运行仍未完成；部分快照base_progress，诊断base_dev_diagnostics明确动作词汇与规则能力混淆。
+- 规则12和策略8题生成结束，完整运行仍未完成；部分快照base_progress，诊断base_dev_diagnostics明确动作词汇与规则能力混淆。
 
 ## 当前阻塞项
 
@@ -59,4 +59,4 @@
 
 第一项任务：先检查reports/runs/base_primary/progress.json和cases，以及本机Get-Process python。当前Base进程22964/32380尚在运行时等待其继续，不要启动第二个进程；原进程结束且summary未完成时执行 .venv/Scripts/python.exe scripts/evaluate.py --report reports/base_model_baseline.md 。如果reports/runs/base_primary已有cases，原命令自动跳过已完成题；不得删除或覆盖。先确认没有同一评测进程在运行。
 
-完整36题结果在reports/runs/base_primary/summary.json且status=complete后，保存commit，再执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules 。同阶段中断用 --resume。不要跳过Base前置检查。所有超参数修改另存YAML和新的output_root。
+完整36题结束后，先执行 .venv/Scripts/python.exe scripts/evaluate.py --score-only --report reports/base_model_baseline.md 。这一步只重算已保存回答的评分，不重新生成，补充strict-actions-v1.1未知动作词诊断。确认summary.json为complete且scoring_version正确，保存commit，再执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules 。同阶段中断用 --resume。不要跳过Base前置检查。所有超参数修改另存YAML和新的output_root。

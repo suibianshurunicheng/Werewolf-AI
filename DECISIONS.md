@@ -64,3 +64,5 @@
 - 规则12题已生成完，完整36题仍在运行。checkpoint_evaluation读取已原子保存的题目，生成单独partial快照，绝不覆盖活动progress或伪造完整summary。
 - dev输出暴露动作词汇接入与规则能力混淆。保持当前v0.1协议原样完成，明确不以精确动作匹配独立证明专项能力；正式能力验收需语义审核或给两方同一动作字典后另版重测。
 - GitHub 2e55c70的Linux轻量和CPU Trainer CI已成功，证据reports/ci.json。
+
+- strict-actions-v1.1只增加未知动作词诊断列，原精确匹配定义、Prompt、参考答案和原始生成全部不变。没有加入针对Base的别名放宽。当前生成进程结束后用--score-only统一重算；Base和Adapter比较强制相同scoring_version。
