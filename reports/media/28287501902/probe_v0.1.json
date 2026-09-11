@@ -1,0 +1,146 @@
+{
+  "video_id": "28287501902",
+  "bvid": "BV1p4N5eJEtL",
+  "streams": [
+    {
+      "source_relative_path": "28287501902/28287501902-1-100050.m4s",
+      "source_sha256": "52f1b9aa8b6127d94f6a9045c354ea973890bbf1e50ff7a2302ad15712cca35c",
+      "removed_prefix_bytes": 9,
+      "decoded_container": "cache/media/28287501902/28287501902-1-100050.mp4",
+      "decoded_container_sha256": "eeb1b8599f3ae4057e0b66ca0110c86e9ce304f9e17dd1dcc9cd6f021e3a3ab1",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "duration_seconds": 1146.733
+        }
+      ]
+    },
+    {
+      "source_relative_path": "28287501902/28287501902-1-30280.m4s",
+      "source_sha256": "95f0410188f1e74eb1bf38fed74152db9c8157655fec7582ec104dbf11654140",
+      "removed_prefix_bytes": 9,
+      "decoded_container": "cache/media/28287501902/28287501902-1-30280.mp4",
+      "decoded_container_sha256": "c1b4fedb491f21d06d01e80d67ab698b8a0c91fcd82606d859912ab031d7f326",
+      "streams": [
+        {
+          "type": "audio",
+          "codec": "aac",
+          "duration_seconds": 1146.7426757369615
+        }
+      ]
+    }
+  ],
+  "frames": {
+    "0.000": {
+      "requested_seconds": 0,
+      "actual_seconds": 0.0,
+      "path": "cache/media/28287501902/frame_0000.000.jpg",
+      "sha256": "a52b511945691701f593ccb37fecfaff29569931c21b513f00416568747ab104"
+    },
+    "30.000": {
+      "requested_seconds": 30,
+      "actual_seconds": 30.0,
+      "path": "cache/media/28287501902/frame_0030.000.jpg",
+      "sha256": "9cd9d6569532d4b7ef33dd6a3cbfe0bfe56a0885e656be5f90fb923044feb326"
+    },
+    "120.000": {
+      "requested_seconds": 120,
+      "actual_seconds": 120.0,
+      "path": "cache/media/28287501902/frame_0120.000.jpg",
+      "sha256": "84dd094a0052949b907196914d9dbc8d63bd5a8a98e2ca15b66e13551d2803e8"
+    },
+    "300.000": {
+      "requested_seconds": 300,
+      "actual_seconds": 300.0,
+      "path": "cache/media/28287501902/frame_0300.000.jpg",
+      "sha256": "210af46bc49b007204343da1945f6fb51263f95d376ce88a26956f4ad4c425a4"
+    },
+    "600.000": {
+      "requested_seconds": 600,
+      "actual_seconds": 600.0,
+      "path": "cache/media/28287501902/frame_0600.000.jpg",
+      "sha256": "240510ae10b171b166aa8b88c5bb1ea555bd6ead669bc994ed712fe0e0d7947c"
+    },
+    "900.000": {
+      "requested_seconds": 900,
+      "actual_seconds": 900.0,
+      "path": "cache/media/28287501902/frame_0900.000.jpg",
+      "sha256": "3cd6f22634ad51244bd4d1b8dbd48f19fb57b2074a047abdaee9b66cc6180432"
+    },
+    "10.000": {
+      "requested_seconds": 10.0,
+      "actual_seconds": 10.0,
+      "path": "cache/media/28287501902/frame_0010.000.jpg",
+      "sha256": "0aeda487ff291f3ba19f121a173ef982572e01fc4d3bb66a24acbd0a3a912248"
+    },
+    "20.000": {
+      "requested_seconds": 20.0,
+      "actual_seconds": 20.0,
+      "path": "cache/media/28287501902/frame_0020.000.jpg",
+      "sha256": "fd928da51c0759138b8ee45bac02b9eac8566121069b2a5584dbf223cae2fa22"
+    },
+    "60.000": {
+      "requested_seconds": 60.0,
+      "actual_seconds": 60.0,
+      "path": "cache/media/28287501902/frame_0060.000.jpg",
+      "sha256": "4225d93d303471ca86ad698fd3871e18b3ef72fcfdb2ccaa4560c5d4c5a1624e"
+    },
+    "80.000": {
+      "requested_seconds": 80.0,
+      "actual_seconds": 80.0,
+      "path": "cache/media/28287501902/frame_0080.000.jpg",
+      "sha256": "ec75d2664e4e1c6a169080a041ecb374d5c147bec9bb8fd83974f102a10b25db"
+    },
+    "160.000": {
+      "requested_seconds": 160.0,
+      "actual_seconds": 160.0,
+      "path": "cache/media/28287501902/frame_0160.000.jpg",
+      "sha256": "fc559449e9624784a11b7938b7d7a06d0f2003ea9f649e4b6fabd3bdcfe69a3d"
+    },
+    "200.000": {
+      "requested_seconds": 200.0,
+      "actual_seconds": 200.0,
+      "path": "cache/media/28287501902/frame_0200.000.jpg",
+      "sha256": "e0794407b5a316b52e3a519ad8af5fee313c4a8a5c79e38d6c77013fe1894168"
+    },
+    "400.000": {
+      "requested_seconds": 400.0,
+      "actual_seconds": 400.0,
+      "path": "cache/media/28287501902/frame_0400.000.jpg",
+      "sha256": "f9b31136da9a86566a3974d9ece5028950f4db4cad91070193ef1d795e3fd556"
+    },
+    "480.000": {
+      "requested_seconds": 480.0,
+      "actual_seconds": 480.0,
+      "path": "cache/media/28287501902/frame_0480.000.jpg",
+      "sha256": "ff0030486563af7a8e3a553c2d42b10229c9b9468377032a94f25933575b4692"
+    },
+    "620.000": {
+      "requested_seconds": 620.0,
+      "actual_seconds": 620.0,
+      "path": "cache/media/28287501902/frame_0620.000.jpg",
+      "sha256": "47db5385fa26bdef8f4868743753367c1b200d275c76cd84a73bcf1f9fae38ca"
+    },
+    "700.000": {
+      "requested_seconds": 700.0,
+      "actual_seconds": 700.0,
+      "path": "cache/media/28287501902/frame_0700.000.jpg",
+      "sha256": "f255fb6920df944b3358a39a4bbed7125df30916424cd90a8f575fa87ae8b96d"
+    },
+    "780.000": {
+      "requested_seconds": 780.0,
+      "actual_seconds": 780.0,
+      "path": "cache/media/28287501902/frame_0780.000.jpg",
+      "sha256": "08b3bec4a088bed522b4c6c8b22cde9d09aad55ae9e8e7ba838e7ad5bd6e27da"
+    },
+    "840.000": {
+      "requested_seconds": 840.0,
+      "actual_seconds": 840.0,
+      "path": "cache/media/28287501902/frame_0840.000.jpg",
+      "sha256": "7b8f710d211d4ddcb0c643fbfc8a27be36ee2bbd2f9fe96ac2c6373e2d7c0462"
+    }
+  },
+  "review_status": "NOT_REVIEWED",
+  "warning": "Frames may contain audience-only identities; do not put these into player inputs."
+}

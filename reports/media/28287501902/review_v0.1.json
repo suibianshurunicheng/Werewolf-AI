@@ -1,0 +1,107 @@
+{
+  "review_version": "review_v0.1",
+  "video_id": "28287501902",
+  "bvid": "BV1p4N5eJEtL",
+  "reviewer": "model_review",
+  "status": "PARTIAL_REVIEW",
+  "coverage": {
+    "method": "read actual frame text",
+    "timestamps_seconds": [
+      0,
+      10,
+      20,
+      30,
+      60,
+      80,
+      120,
+      160,
+      200,
+      300,
+      400,
+      480,
+      600,
+      620,
+      700,
+      780,
+      840,
+      900
+    ],
+    "full_audio_transcribed": false,
+    "full_video_reviewed": false
+  },
+  "board": {
+    "observed_roster": "9-player seer witch hunter",
+    "total_players": 9,
+    "wolves": 3,
+    "villagers": 3,
+    "seer": 1,
+    "witch": 1,
+    "hunter": 1,
+    "guard": 0,
+    "complete_rules_status": "BOARD_UNKNOWN",
+    "roster_evidence": "840/900s postgame overlay; audit only, excluded from earlier player inputs"
+  },
+  "clips": [
+    {
+      "id": "M01",
+      "category": "TRANSFERABLE",
+      "grade": "B",
+      "evidence_seconds": [
+        10,
+        30,
+        60,
+        80
+      ],
+      "admitted_to_sft": false
+    },
+    {
+      "id": "M02",
+      "category": "TRANSFERABLE",
+      "grade": "B",
+      "evidence_seconds": [
+        120,
+        620
+      ],
+      "admitted_to_sft": false
+    },
+    {
+      "id": "M03",
+      "category": "TRANSFERABLE",
+      "grade": "B",
+      "evidence_seconds": [
+        120,
+        300,
+        480
+      ],
+      "admitted_to_sft": false
+    },
+    {
+      "id": "M04",
+      "category": "LOW_QUALITY",
+      "grade": "D",
+      "evidence_seconds": [
+        840
+      ],
+      "negative_candidate": true,
+      "admitted_to_sft": false
+    }
+  ],
+  "partial_counts": {
+    "CLASSIC_GOLD": 0,
+    "TRANSFERABLE": 3,
+    "BOARD_SPECIFIC": 0,
+    "LOW_QUALITY": 1,
+    "Negative_candidates_subset": 1,
+    "admitted_gold": 0
+  },
+  "details": "review_v0.1.md",
+  "pending": [
+    "full source coverage",
+    "house rules",
+    "verified vote table",
+    "original wolf private information",
+    "400s speaker arrow/text conflict",
+    "classic adaptation and validation",
+    "independent review"
+  ]
+}

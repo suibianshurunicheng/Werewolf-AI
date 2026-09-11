@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-11。当前Phase：Phase 1，完整Base、Rule及Strategy QLoRA已完成，准备Tactics SFT。
+更新：2026-09-11。当前Phase：Phase 1，完整Base、Rule及Strategy QLoRA已完成，Tactics SFT正在运行。
 
 ## 已完成任务
 
@@ -14,7 +14,7 @@
 
 ## 当前正在进行
 
-Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。完整证据已导出reports/training/strategy_v01。下一阶段Tactics。视频索引catalog_v0.1已保存185条/77.98小时，全部待审核；隔离.media-venv已安装CPU转录/解码依赖，尚未下载ASR模型或转录。
+Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。完整证据已导出reports/training/strategy_v01。Tactics已在90a0416提交后启动（105 train/20 val，计划7step）；确认checkpoint-1已保存，当前进行step2验证，须检查实时progress，不另启重复任务。视频catalog_v0.1有185条/77.98小时；首局18帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。无完整音频转录。
 
 ## 尚未完成任务
 
@@ -43,6 +43,7 @@ Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实�
 - 完整Base：生成速度中位6.22 tokens/s，PyTorch峰值分配2909.2MiB，36题均未截断。
 - 精确参考动作匹配：rules0/12、strategy0/8、counterfactual0/8、blind2/8。JSON有效33/36。未知动作词约束造成明显接口混淆，不等同于狼人杀能力全为0，详见诊断。
 - Rule真实训练：3step/1epoch，35 train/7 val，峰值3376.9MiB；验证Loss3.26995→2.96880。252个LoRA B矩阵非零，最终checkpoint-3完整哈希通过。证据reports/training/rules_v01，权重outputs/classic_v01/rules/final。
+- 实际probe解码H264/AAC、抽取18帧；重复请求120/620秒校验SHA后复用，无覆盖。
 - GitHub 2e55c70 CI已成功；后续提交CI尚未复查。
 
 ## 新增视频审核与磁盘约束
@@ -65,10 +66,10 @@ Strategy已从Rule续训完成1step/1epoch（15 train/3 val），相对Rule实�
 
 先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base/Rule/Strategy。
 
-第一项任务：.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3 。仅CONTINUE后检查outputs/classic_v01/tactics/progress.json和training_result.json，确认无活动进程；若尚未启动，执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage tactics 。默认从outputs/classic_v01/strategy/final载入。若中断，用同命令加--resume，只恢复完整哈希checkpoint。
+第一项任务：.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3 。检查outputs/classic_v01/tactics/progress.json与training_result.json和活动进程。Tactics已启动，训练源提交90a0416；活动进程存在时等待，不重复启动。若确已中断，执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage tactics --resume ，只恢复完整哈希checkpoint。完成时先导出证据、更新状态commit。
 
 Tactics成功后用scripts/export_training.py导出日志/哈希，--initial-adapter outputs/classic_v01/strategy/final；更新三份文档commit。然后用README中的同协议evaluate命令生成qlora_v01和base_vs_qlora报告。
 
-视频：data/media/catalog_v0.1已完整索引185条；不要重建覆盖。首个来源28287501902尚未审核，.media-venv已安装解码/转录依赖；下一项是实际probe、只读去除已观察到的9字节包装并获取时间戳证据。源D:/BiliDownload不改动。
+视频：data/media/catalog_v0.1已完整索引185条；不要重建覆盖。首局28287501902已实际解码并保存18帧SHA及局部审核reports/media/28287501902/review_v0.1.md。读取该报告后补齐列出的房规、票型、说话者冲突及完整覆盖，再做review_v0.2与经典改写。复取画面：.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times 120 620 。原D:/BiliDownload不改动，视频未因9人板丢弃，正式SFT入库0。
 
 大权重未进Git：本机outputs/classic_v01/{rules,strategy}含完整checkpoint和final；跨主机必须复制并按reports/training/*/artifacts.json核对SHA。Git副本本身不含权重。空间不足按docs/disk_recovery.md迁移，不能在活动训练或下载写入时搬目录。
