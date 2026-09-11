@@ -1,0 +1,262 @@
+[
+  {
+    "id": "eval-rule-guard-repeat",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 2,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "guard",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-witch-spent",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-rule-witch-current-target",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "save",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-self-save-night3",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "self_save",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-rule-seer-dead",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": true,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "check",
+        "target": 11
+      }
+    }
+  },
+  {
+    "id": "eval-rule-hunter-no-permission",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": false,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parse_error": "invalid identity seat/assessment"
+    }
+  },
+  {
+    "id": "eval-rule-hunter-permission",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "shot",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-vote-dead",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-rule-badge",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 0,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "badge_transfer",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-sheriff-withdrawn",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "vote",
+        "target": 12
+      }
+    }
+  },
+  {
+    "id": "eval-rule-two-potions",
+    "split": "test",
+    "suite": "rules",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 1,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "poison",
+        "target": 11
+      }
+    }
+  },
+  {
+    "id": "eval-rule-parity",
+    "split": "dev",
+    "suite": "rules",
+    "score": {
+      "format_valid": false,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parse_error": "invalid action"
+    }
+  },
+  {
+    "id": "eval-strategy-double-claim",
+    "split": "test",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  },
+  {
+    "id": "eval-strategy-silver",
+    "split": "dev",
+    "suite": "strategy",
+    "score": {
+      "format_valid": true,
+      "action_legal": false,
+      "action_match": false,
+      "public_leak_flag": false,
+      "concept_hits": 0,
+      "concept_total": 1,
+      "truncated": false,
+      "human_review": "pending",
+      "parsed_action": {
+        "type": "none",
+        "target": null
+      }
+    }
+  }
+]

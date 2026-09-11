@@ -58,3 +58,9 @@
 - 工具链3110940已推送后开始完整Base，已有逐题真实输出。当前运行早于运行锁补丁，恢复须先确认旧进程是否仍活跃；后续运行自动取得OS排他锁，进程异常退出会释放，不依赖聊天或陈旧PID文件。
 - CPU小型Qwen3+LoRA测试中断于step1，恢复optimizer/scheduler/RNG后跑到step4，与连续训练参数和验证loss一致；不是4B训练结果。
 - 新增GitHub Actions轻量数据测试和CPU Trainer测试；远端CI结果尚待检查。
+
+## Base部分快照
+
+- 规则12题已生成完，完整36题仍在运行。checkpoint_evaluation读取已原子保存的题目，生成单独partial快照，绝不覆盖活动progress或伪造完整summary。
+- dev输出暴露动作词汇接入与规则能力混淆。保持当前v0.1协议原样完成，明确不以精确动作匹配独立证明专项能力；正式能力验收需语义审核或给两方同一动作字典后另版重测。
+- GitHub 2e55c70的Linux轻量和CPU Trainer CI已成功，证据reports/ci.json。

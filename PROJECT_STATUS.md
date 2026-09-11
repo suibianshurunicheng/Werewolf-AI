@@ -14,7 +14,7 @@
 
 ## 当前正在进行
 
-工具链3110940已提交并推送。Base评测正在运行，已逐题落盘7/36；当前进程为22964/32380（本机2026-09-11 09:18:22启动）。尚未完成全量Base，尚未启动正式QLoRA。
+工具链3110940已提交并推送。Base评测正在运行，已逐题落盘14/36（规则12题已生成完；实时数量见progress.json）；当前进程为22964/32380（本机2026-09-11 09:18:22启动）。尚未完成全量Base，尚未启动正式QLoRA。
 
 ## 尚未完成任务
 
@@ -40,10 +40,12 @@
 - Rule dry-run成功：35 train、7 validation，零过滤。
 - 发现并修复Tokenizer在local_files_only下仍探测网络的问题，改为固定revision本地目录加载。
 - 发现并修复评测协议字典共享引用，防止后改配置时指纹快照跟着变化。
+- GitHub CI在2e55c70上completed/success，报告reports/ci.json。
+- 规则12题生成结束，完整运行仍未完成；部分快照base_progress，诊断base_dev_diagnostics明确动作词汇与规则能力混淆。
 
 ## 当前阻塞项
 
-暂无外部阻塞。整模型4GB推理/训练容量尚未验证；不能预报OOM或伪称训练成功。GitHub SSH可用，禁止force push。
+暂无外部阻塞。4B已能在GPU生成，观测峰值约2821MiB；正式训练容量尚未验证；不能预报OOM或伪称训练成功。GitHub SSH可用，禁止force push。
 
 ## 下一步具体任务
 
