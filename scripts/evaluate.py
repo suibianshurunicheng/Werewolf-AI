@@ -8,7 +8,7 @@ from werewolf_sft.evaluation import summarize, comparison
 from werewolf_sft.io import ROOT, content_hash, write_json, write_jsonl
 from werewolf_sft.perspective import to_messages
 from werewolf_sft.reporting import write_evaluation_report, write_comparison_report
-from werewolf_sft.runtime import load_cases, protocol, adapter_digest, prepare_journal, append_prediction, load_generator, generate
+from werewolf_sft.runtime import load_cases, protocol, adapter_digest, prepare_journal, append_prediction, load_generator, generate, run_lock
 
 
 def main():
@@ -27,6 +27,11 @@ def main():
     run = {"protocol": protocol(config, cases), "protocol_fingerprint": content_hash(protocol(config, cases)),
            "adapter_digest": adapter_digest(ROOT / args.adapter) if args.adapter else None}
     directory = ROOT / args.output
+    with run_lock(directory):
+        evaluate(config, args, cases, run, directory)
+
+
+def evaluate(config, args, cases, run, directory):
     predictions = prepare_journal(directory, run)
     done = {p["id"] for p in predictions}
     if any(p["run_fingerprint"] != content_hash(run) for p in predictions):

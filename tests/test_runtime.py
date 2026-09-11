@@ -8,7 +8,18 @@ from werewolf_sft.encoding import encode_messages, encode_rows, SequenceTooLong
 from werewolf_sft.evaluation import parse_response, score_case, summarize, comparison
 from werewolf_sft.io import ROOT
 from werewolf_sft.perspective import response_payload
-from werewolf_sft.runtime import load_cases, prepare_journal, append_prediction, protocol
+from werewolf_sft.runtime import load_cases, prepare_journal, append_prediction, protocol, run_lock
+
+
+def test_exclusive_lock_is_released_on_error(tmp_path):
+    with pytest.raises(ValueError):
+        with run_lock(tmp_path):
+            with pytest.raises(RuntimeError, match="already active"):
+                with run_lock(tmp_path):
+                    pass
+            raise ValueError("interrupted")
+    with run_lock(tmp_path):
+        pass
 
 
 def test_all_saved_configs_load():
@@ -164,3 +175,51 @@ def test_tiny_lora_checkpoint_roundtrip(tmp_path):
     assert torch.allclose(model(input_ids=inputs["input_ids"]).logits,
                           loaded(input_ids=inputs["input_ids"]).logits, atol=1e-6)
     assert any(p.requires_grad and "lora_" in name for name, p in loaded.named_parameters())
+
+
+def test_trainer_interrupt_resume_matches_continuous_run(tmp_path):
+    torch = pytest.importorskip("torch")
+    transformers = pytest.importorskip("transformers")
+    peft = pytest.importorskip("peft")
+    from werewolf_sft.encoding import SFTCollator
+    from werewolf_sft.training import make_trainer_class
+    cfg = transformers.Qwen3Config(vocab_size=41, hidden_size=16, intermediate_size=24,
+        num_hidden_layers=1, num_attention_heads=2, num_key_value_heads=1, head_dim=8)
+    transformers.set_seed(19)
+    base = transformers.Qwen3ForCausalLM(cfg)
+    model = peft.get_peft_model(base, peft.LoraConfig(task_type="CAUSAL_LM", r=2,
+        lora_alpha=4, target_modules=["q_proj", "v_proj"], lora_dropout=0.0))
+    initial = copy.deepcopy(model)
+    features = [{"input_ids": [1, 2, i, i + 1, 7], "attention_mask": [1] * 5,
+                 "labels": [-100, -100, i, i + 1, 7]} for i in range(3, 13)]
+
+    class StopAfterOne(transformers.TrainerCallback):
+        def on_step_end(self, args, state, control, **kwargs):
+            if state.global_step == 1:
+                control.should_training_stop = True
+                control.should_save = True
+
+    def trainer(model, directory, callbacks=None):
+        args = transformers.TrainingArguments(output_dir=str(directory), use_cpu=True,
+            max_steps=4, per_device_train_batch_size=1, gradient_accumulation_steps=2,
+            learning_rate=0.001, save_steps=1, logging_steps=1, report_to="none",
+            remove_unused_columns=False, seed=19, dataloader_pin_memory=False,
+            disable_tqdm=True, prediction_loss_only=True)
+        return make_trainer_class()(model=model, args=args, train_dataset=features,
+            eval_dataset=features[:2], data_collator=SFTCollator(0), callbacks=callbacks or [])
+
+    full = trainer(model, tmp_path / "full")
+    full.train()
+    interrupted = trainer(copy.deepcopy(initial), tmp_path / "resumed", [StopAfterOne()])
+    interrupted.train()
+    assert interrupted.state.global_step == 1
+    checkpoint = tmp_path / "resumed/checkpoint-1"
+    assert (checkpoint / "optimizer.pt").exists()
+    assert (checkpoint / "rng_state.pth").exists()
+    resumed = trainer(copy.deepcopy(initial), tmp_path / "resumed")
+    resumed.train(resume_from_checkpoint=str(checkpoint))
+    assert resumed.state.global_step == full.state.global_step == 4
+    assert resumed.evaluate()["eval_loss"] == pytest.approx(full.evaluate()["eval_loss"], abs=1e-6)
+    for name, param in full.model.named_parameters():
+        if param.requires_grad:
+            assert torch.allclose(param, dict(resumed.model.named_parameters())[name], atol=1e-6)

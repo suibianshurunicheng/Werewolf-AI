@@ -14,7 +14,7 @@
 
 ## 当前正在进行
 
-保存工具链检查点，然后首次完整运行Base。尚无4B模型Benchmark或正式QLoRA结果。
+工具链3110940已提交并推送。Base评测正在运行，已逐题落盘7/36；当前进程为22964/32380（本机2026-09-11 09:18:22启动）。尚未完成全量Base，尚未启动正式QLoRA。
 
 ## 尚未完成任务
 
@@ -34,7 +34,7 @@
 
 ## 已运行测试和结果
 
-- 60项pytest全部通过（原46项+14项工具链测试），测试进程退出0。小型随机Qwen3的优化loss及全部参数梯度与标准实现一致；LoRA一次更新后保存重载输出一致。它们不是4B专项训练成功证据。
+- 62项完整pytest全部通过（原46项+16项工具链测试），测试进程退出0。小型随机Qwen3的优化loss及全部参数梯度与标准实现一致；LoRA一次更新后保存重载输出一致。它们不是4B专项训练成功证据。
 - 实际NF4微测试前向、反向梯度有限，详见environment。
 - 实际Tokenizer：rules649～775，strategy730～751，tactics829～931 tokens；Benchmark输入最长766。全部训练样本适配1024，不截断。
 - Rule dry-run成功：35 train、7 validation，零过滤。
@@ -47,7 +47,7 @@
 
 ## 下一步具体任务
 
-1. 保存并推送当前工具链commit。
+1. 已保存并推送工具链3110940；运行锁与恢复强化检查点继续保存。
 2. 完整运行Base评测，逐题持久化；发生异常保留failure.json并修复后原命令续跑。
 3. 基线完成后更新状态并commit，再真实尝试Rule QLoRA。
 
@@ -55,6 +55,6 @@
 
 先读README、PROJECT_STATUS、DECISIONS、TODO和最近5个Git commits，检查git status。禁止初始化第二套仓库或重做已有数据。
 
-第一项任务：保存尚未提交的工具链后，执行 .venv/Scripts/python.exe scripts/evaluate.py --report reports/base_model_baseline.md 。如果reports/runs/base_primary已有cases，原命令自动跳过已完成题；不得删除或覆盖。先确认没有同一评测进程在运行。
+第一项任务：先检查reports/runs/base_primary/progress.json和cases，以及本机Get-Process python。当前Base进程22964/32380尚在运行时等待其继续，不要启动第二个进程；原进程结束且summary未完成时执行 .venv/Scripts/python.exe scripts/evaluate.py --report reports/base_model_baseline.md 。如果reports/runs/base_primary已有cases，原命令自动跳过已完成题；不得删除或覆盖。先确认没有同一评测进程在运行。
 
 完整36题结果在reports/runs/base_primary/summary.json且status=complete后，保存commit，再执行 .venv/Scripts/python.exe scripts/train_qlora.py --stage rules 。同阶段中断用 --resume。不要跳过Base前置检查。所有超参数修改另存YAML和新的output_root。

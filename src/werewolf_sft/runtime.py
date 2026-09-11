@@ -1,6 +1,7 @@
 """Pinned generation and fingerprinted, resumable per-case journals."""
 import json
 import copy
+from contextlib import contextmanager
 import os
 import time
 from pathlib import Path
@@ -9,6 +10,36 @@ from .config import model_revision
 from .io import ROOT, canonical, content_hash, read_jsonl, sha256_file, write_json
 from .modeling import load_base, load_tokenizer
 from .perspective import SYSTEM_PROMPT, to_messages
+
+
+@contextmanager
+def run_lock(directory):
+    """OS releases this lock on process exit, including crashes; no stale PID."""
+    directory = Path(directory)
+    directory.mkdir(parents=True, exist_ok=True)
+    with (directory / ".run.lock").open("a+b") as handle:
+        handle.seek(0, os.SEEK_END)
+        if handle.tell() == 0:
+            handle.write(b"0")
+            handle.flush()
+        handle.seek(0)
+        try:
+            if os.name == "nt":
+                import msvcrt
+                msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+            else:
+                import fcntl
+                fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError as exc:
+            raise RuntimeError("this run is already active; do not start it twice") from exc
+        try:
+            yield
+        finally:
+            handle.seek(0)
+            if os.name == "nt":
+                msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
 def load_cases(config, split="all"):

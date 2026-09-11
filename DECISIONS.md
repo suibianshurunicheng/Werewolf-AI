@@ -52,3 +52,9 @@
 - Tokenizer在4.57.6即使local_files_only仍有Mistral探测联网；用已固定的缓存snapshot绝对目录加载，验证离线可运行。
 - 评测单题JSON原子落盘为事实来源，JSONL为导出；run指纹固定题目、渲染输入、Base revision、量化与生成参数、Adapter摘要，防止混跑。
 - CUDA/NF4微测试通过不等于4B整模型训练成功。60项软件测试与Rule dry-run通过；正式Benchmark尚未开始。
+
+## 运行锁与精确恢复
+
+- 工具链3110940已推送后开始完整Base，已有逐题真实输出。当前运行早于运行锁补丁，恢复须先确认旧进程是否仍活跃；后续运行自动取得OS排他锁，进程异常退出会释放，不依赖聊天或陈旧PID文件。
+- CPU小型Qwen3+LoRA测试中断于step1，恢复optimizer/scheduler/RNG后跑到step4，与连续训练参数和验证loss一致；不是4B训练结果。
+- 新增GitHub Actions轻量数据测试和CPU Trainer测试；远端CI结果尚待检查。

@@ -8,7 +8,7 @@ from .config import load_config, model_revision
 from .encoding import SFTCollator, encode_rows
 from .io import ROOT, canonical, content_hash, read_jsonl, sha256_file, write_json
 from .modeling import load_base, load_tokenizer, prepare_trainable
-from .runtime import load_cases, protocol, adapter_digest
+from .runtime import load_cases, protocol, adapter_digest, run_lock
 
 
 def completion_loss(model, inputs):
@@ -74,6 +74,11 @@ def prepare_stage_data(config, stage, tokenizer):
 
 
 def run_training(config, stage, resume=False, initial_adapter=None, dry_run=False):
+    with run_lock(ROOT / config["training"]["output_root"] / stage):
+        return _run_training(config, stage, resume, initial_adapter, dry_run)
+
+
+def _run_training(config, stage, resume=False, initial_adapter=None, dry_run=False):
     import torch
     from transformers import TrainingArguments, TrainerCallback, set_seed
     from transformers.trainer_utils import get_last_checkpoint

@@ -21,6 +21,8 @@ logs/
 *.gguf
 *.onnx
 *.log
+.run.lock
+*.pending
 reports/*-tests.xml
 dist/
 build/

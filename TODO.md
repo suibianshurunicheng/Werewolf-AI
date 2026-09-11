@@ -17,7 +17,8 @@
 - [x] Primary固定revision并完整下载权重及Tokenizer。
 - [x] 实测CUDA、BF16支持和NF4前向反向。
 - [x] 所有训练样本实际Tokenizer长度检查；Rule dry-run零过滤。
-- [ ] 工具链提交推送后完整Base评测，写reports/base_model_baseline.md。
+- [x] 工具链3110940已提交推送；增加中断精确恢复和运行锁测试。
+- [ ] 完整Base评测正在运行，已落盘7/36；完成后写reports/base_model_baseline.md。
 - [ ] Base结果保存并commit后实际Rule QLoRA，记录任何OOM及逐项调整。
 - [ ] 顺序Strategy、Tactics训练与每阶段checkpoint/log/config。
 - [ ] 相同Benchmark评Adapter，reports/qlora_v01.md及base_vs_qlora.md。
