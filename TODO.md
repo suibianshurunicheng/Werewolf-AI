@@ -22,7 +22,8 @@
 - [x] Base52514c6提交后完成真实Rule QLoRA：3step/1epoch，无OOM，Adapter及checkpoint-3核验。
 - [x] Strategy单step warmup修复，67项测试通过；dry-run15/3、1step、0warmup。
 - [x] Strategy训练1step完成，相对Rule的504个张量真实变化；结果/日志/权重哈希已导出。
-- [ ] Tactics续训并保存checkpoint/log/config，Rule与Strategy已完成。
+- [x] Tactics完成7step/1epoch；checkpoint-7最佳，504张量变化，最终导出与SHA证据保存。
+- [x] 补全训练结束后中断的导出流程；完整71项测试通过，原检查点不变。
 - [x] 完整结果已统一--score-only，strict-actions-v1.1诊断列已保存，没有重做生成。
 - [ ] 分开检查动作词汇接入与真实策略能力；不得用格式改善冒充策略提升。
 - [ ] 相同Benchmark评Adapter，reports/qlora_v01.md及base_vs_qlora.md。
@@ -39,7 +40,8 @@
 - [x] catalog_v0.1保存185条不可变素材索引和初始审核队列；隔离CPU媒体环境安装完成。
 - [x] 首局实际解码、18个证据画面、SHA与review_v0.1局部审核；3迁移候选+1负例候选，入库0。
 - [x] 首局review_v0.2新增13帧，核实两轮票表与刀7/毒4字幕，候选不重复计数。
-- [ ] 固定版本CPU转录、完整覆盖及房规/说话者冲突核查；然后经典改写，不重复已核票表。
+- [x] 固定CPU ASR模型下载；首局第0块完成，原文未校对，1/10覆盖。
+- [ ] 继续余下9块转录并核验第0块复用；完整覆盖及房规/说话者冲突核查，然后经典改写。
 - [ ] 每局识别原板子，分类四类片段、机制剥离、玩家多维等级与视频统计。
 - [ ] 高价值迁移片段重写为CLASSIC_ADAPTED，并验证无特殊机制残留和上帝视角。
 - [x] 实测当前C/D磁盘余量，暂不需迁移。

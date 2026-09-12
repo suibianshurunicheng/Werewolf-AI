@@ -37,6 +37,8 @@ def main():
         raise ValueError("final and run manifests differ")
     for name in ("run_manifest.json", "training_result.json", "progress.json"):
         write_json(destination / name, clean(json.loads((folder / name).read_text(encoding="utf-8"))))
+    if (folder / "finalization.json").exists():
+        write_json(destination / "finalization.json", clean(json.loads((folder / "finalization.json").read_text(encoding="utf-8"))))
     logs = [clean(json.loads(line)) for line in (folder / "training.jsonl").read_text(encoding="utf-8").splitlines()]
     (destination / "training.jsonl").write_text(
         "".join(json.dumps(log, ensure_ascii=False) + "\n" for log in logs), encoding="utf-8", newline="\n")
@@ -63,15 +65,18 @@ def main():
               "weights_location": folder.relative_to(ROOT).as_posix(),
               "portability": "Weights stay in local outputs; copy this directory and verify hashes when moving hosts."}
     write_json(destination / "artifacts.json", report)
+    peak = result.get("peak_vram_mib")
+    peak_text = f"{peak:.1f} MiB" if peak is not None else "未记录（中断前未持久化，不能估造）"
     text = [
         "# " + manifest["stage"] + " QLoRA 实测", "",
         f"状态：trained；epoch={result['epoch']}，step={result['global_step']}。",
         f"数据：{manifest['dataset']['version']}；训练{manifest['dataset']['train_rows']}，验证{manifest['dataset']['validation_rows']}。",
-        f"PyTorch峰值分配显存：{result['peak_vram_mib']:.1f} MiB；验证Loss：{result['validation']['eval_loss']:.6f}。",
+        f"PyTorch峰值分配显存：{peak_text}；验证Loss：{result['validation']['eval_loss']:.6f}。",
         f"最优验证Loss checkpoint：{clean(result['best_checkpoint'])}。",
         f"非零LoRA B矩阵：{nonzero_b}；相对上一阶段改变的张量数：{changed if changed is not None else '首阶段'}。",
         "", "这里只证明真实SFT与保存成功。专项能力是否提升必须看相同Benchmark和语义审核，不能用Loss代替。",
         "Adapter和optimizer等大文件留在本机outputs；迁移主机必须复制weights_location并校验artifacts.json中的SHA，Git仓库不含这些权重。",
+        result.get("metrics_note", ""),
     ]
     (destination / "report.md").write_text("\n".join(text) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"exported": args.output, "nonzero_lora_B": nonzero_b, "changed_from_initial": changed}))

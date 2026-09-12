@@ -116,3 +116,12 @@
 - 原Tactics进程继续，checkpoint-3完整SHA核验成功；不重训Base/Rule/Strategy，不改活动训练配置。
 - 首局review_v0.2新增13帧，核实首日8投1、次日4投8及夜间刀7/毒4字幕。候选数量不重复计数，后续票型不前灌620秒输入。
 - 转录辅助模型固定Systran/faster-whisper-small revision 536b0662742c02347bc0e980a01041f333bce120（公开API核实），CPU int8/2线程、120秒分块两侧2秒重叠，只做证据检索；不是专项Base更换。chunk原子保存、内容哈希/配置/源音频/模型/代码指纹恢复，完整文本留本地cache。
+
+## Tactics完整检查点最终导出恢复（2026-09-12）
+
+- 训练从checkpoint-4恢复后已完成7/7优化步、1epoch及验证，checkpoint-7最佳Loss2.8225455；原进程在final导出前结束。只补最终导出，不重新训练已完成步。
+- finalize_training先取得运行锁，校验计划步数、完整文件SHA、manifest、最佳验证指标及路径，再按哈希复制最佳Adapter/Tokenizer。已有相同文件复用，异内容拒绝，optimizer仍保留原checkpoint。finalization.json记录复制来源和SHA，export_training输出紧凑审计证据。
+- 原进程训练峰值未写入最终报告，保存null并说明；恢复片段Trainer聚合train_loss/runtime不当作全程统计，逐步日志照原样保留。
+- 相对Strategy有504个张量变化、252个LoRA B矩阵非零；真实final与checkpoint-7权重SHA一致。完整71项测试通过；未据验证Loss宣称博弈能力提升。
+- Adapter采用已冻结36题/生成协议及strict-actions-v1.1与完整Base对比，不改Prompt/标签补救Base分数。数据仍dataset_v0.1，后续只使用dev失败修订v0.2。
+- 首局ASR模型已就绪、1/10块完成，存在“警徽流先报”等识别错误；只能作检索证据，另存校对后再考虑片段入库，不覆盖原块或重复生成。

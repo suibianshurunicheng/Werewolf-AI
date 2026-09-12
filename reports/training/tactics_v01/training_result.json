@@ -1,0 +1,20 @@
+{
+  "status": "trained",
+  "stage": "tactics",
+  "global_step": 7,
+  "epoch": 1.0,
+  "best_checkpoint": "outputs/classic_v01/tactics/checkpoint-7",
+  "peak_vram_mib": null,
+  "peak_vram_note": "Not persisted before interruption; do not substitute evaluation GPU memory.",
+  "metrics": {},
+  "metrics_note": "Per-step losses remain in training.jsonl; resumed Trainer aggregate loss/runtime are not whole-run statistics.",
+  "validation": {
+    "epoch": 1.0,
+    "eval_loss": 2.8225455284118652,
+    "eval_runtime": 195.7992,
+    "eval_samples_per_second": 0.102,
+    "eval_steps_per_second": 0.102
+  },
+  "model_benchmark": "not_run",
+  "finalization_method": "verified_completed_checkpoint_export"
+}
