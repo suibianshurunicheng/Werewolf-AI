@@ -1,0 +1,70 @@
+{
+  "review_version": "review_v0.3",
+  "video_id": "28287501902",
+  "reviewer": "model_review",
+  "status": "PARTIAL_REVIEW_WITH_FULL_RAW_ASR",
+  "previous": [
+    "review_v0.1",
+    "review_v0.2"
+  ],
+  "full_audio_processed": true,
+  "full_transcript_verified": false,
+  "frame_count": 37,
+  "new_frames": [
+    382,
+    406,
+    754,
+    755,
+    785,
+    833
+  ],
+  "board_complete_rules_status": "BOARD_UNKNOWN",
+  "findings": [
+    {
+      "id": "V03-SPEAKER",
+      "frame_seconds": [
+        382,
+        390,
+        400,
+        406,
+        410
+      ],
+      "conclusion": "Announcer subtitle at 382 starts seat 9; at 406 starts seat 8. Central dialogue at 390/400 is attributed to seat 9 for video-transcript alignment; arrow remains conflicting. Original private prompts not verified.",
+      "training_admission": false
+    },
+    {
+      "id": "V03-ASR-OMISSION",
+      "chunk": 6,
+      "segment_start": 749.32,
+      "segment_end": 759.37,
+      "frame_seconds": [
+        754,
+        755
+      ],
+      "observed_subtitles": [
+        "2号和8号已经被投出局",
+        "现在只剩下我一个人"
+      ],
+      "conclusion": "ASR omits critical teammate-death clauses. Do not label the original wolf decision as unaware of dead teammates based on this ASR segment.",
+      "training_admission": false
+    },
+    {
+      "id": "V03-RECAP",
+      "frame_seconds": [
+        785,
+        833
+      ],
+      "conclusion": "Witch night statement says antidote used on self; recap says saved seer 1 and incorrectly says wolf 8 remains after wolf 4 poisoned. Corroborates existing M04 unreliable-recap candidate, not a new count.",
+      "training_admission": false
+    }
+  ],
+  "partial_counts": {
+    "CLASSIC_GOLD": 0,
+    "TRANSFERABLE": 3,
+    "BOARD_SPECIFIC": 0,
+    "LOW_QUALITY": 1,
+    "Negative_candidates_subset": 1,
+    "admitted_gold": 0
+  },
+  "details": "review_v0.3.md"
+}

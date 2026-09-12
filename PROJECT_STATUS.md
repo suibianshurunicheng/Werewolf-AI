@@ -16,7 +16,7 @@
 
 三阶段训练均完成，Tactics证据已commit/push e7785d0并经GitHub接口核实。36题同协议Adapter评测已启动（reports/runs/qlora_v01），规则12题已全部生成，reports/qlora_progress为13/36题部分快照；实时进度以progress.json与逐题文件为准。Strategy为1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。Tactics为7step/1epoch（105 train/20 val），相对Strategy改变504个张量，最佳checkpoint-7验证Loss2.8225455；训练进程在最后checkpoint保存后、final导出前中断，已从完整哈希检查点恢复导出，没有重跑优化步。原训练峰值显存未落盘，记为null，不估造。
 
-视频catalog_v0.1有185条/77.98小时；首局累计31帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。固定ASR模型已下载，首局已完成前2块并核验第0块复用，正在继续余下8块原始转录（未校对），不代表完整音频审核。
+视频catalog_v0.1有185条/77.98小时；首局累计37帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。首局10/10块音轨处理完成，全部SHA核验、首块复用通过；全文仍ASR_UNVERIFIED，实际37帧的局部审核不代表完整音频校对。review_v0.3补证说话者顺序并发现关键ASR漏句，未误判为玩家低水平。
 
 ## 尚未完成任务
 
@@ -45,7 +45,7 @@
 - 完整Base：生成速度中位6.22 tokens/s，PyTorch峰值分配2909.2MiB，36题均未截断。
 - 精确参考动作匹配：rules0/12、strategy0/8、counterfactual0/8、blind2/8。JSON有效33/36。未知动作词约束造成明显接口混淆，不等同于狼人杀能力全为0，详见诊断。
 - Rule真实训练：3step/1epoch，35 train/7 val，峰值3376.9MiB；验证Loss3.26995→2.96880。252个LoRA B矩阵非零，最终checkpoint-3完整哈希通过。证据reports/training/rules_v01，权重outputs/classic_v01/rules/final。
-- 实际probe解码H264/AAC、累计31帧；重复请求120/620秒校验SHA后复用，无覆盖。
+- 实际probe解码H264/AAC、累计37帧；重复请求120/620秒校验SHA后复用，无覆盖。
 - Tactics完整7step checkpoint SHA核验与final逐文件复制核验通过；reports/training/tactics_v01含配置、日志、最终结果、参数差异及finalization来源。原训练峰值未持久化，恢复片段的Trainer聚合loss/runtime不冒充全程统计。
 - GitHub e7785d0 CI已成功（34691066338），本机71项测试通过。
 
@@ -81,12 +81,8 @@
 
 Tactics训练源提交90a0416，step7/epoch1全部完成。reports/training/tactics_v01已保存finalization证据，final权重SHA为b1103c4bdb6600a04b3fa4dfe87de131a896a9a41e858fcdf342a8bce70cea6d。不需要再训练或重新导出。
 
-视频：先读reports/media/28287501902/review_v0.2.md；两轮票表与刀7/毒4字幕已补证，说话者冲突和完整房规仍未解决。configs/media_asr_v01.json固定模型已下载，不需再次download-model。cache/media/28287501902/transcript_v0.1已有chunks/0000.json及0001.json且确认首块内容哈希不变；后续块正在生成，以progress.json为准，ASR_UNVERIFIED，尚未入库。继续下一块：
+视频：先读reports/media/28287501902/review_v0.3.md和asr_evidence_v0.1.json。固定模型已下载且首局10/10块全部处理，cache/media/28287501902/transcript_v0.1保留全文，不需要重新转录。37帧局部审核已用382/406秒主持字幕补证9号→8号发言顺序，箭头冲突保留；754/755秒证明ASR漏掉“队友已出局、只剩自己”，不能给原玩家错误扣分。下一项是校对M01～M03完整历史并进行经典合法视角改写。BOARD_UNKNOWN房规不强行补齐，正式SFT入库0。
 
-```powershell
-.media-venv/Scripts/python.exe scripts/transcribe_video.py --video-id 28287501902 --max-chunks 1
-```
-
-去掉max-chunks即可继续剩余全部，已完成chunk须哈希校验复用。首块内容哈希d107efb68693c7e52f8abf521db7e7eda76a531f76a4915265f376ad09c99704；8.72～9.76秒有明显识别错误，需要另存校对，不覆盖原转录。原D:/BiliDownload不改动，非经典板不丢弃，正式SFT入库0。
+原D:/BiliDownload不改动。补取片段用 .media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数> ，核验后复用旧帧；新的审核报告另起版本。整份ASR的配置、每块SHA及覆盖见asr_evidence_v0.1.json，原始全文不进公开Git。
 
 大权重未进Git：本机outputs/classic_v01/{rules,strategy,tactics}含完整checkpoint和final；跨主机必须复制并按reports/training/*/artifacts.json核对SHA。Git副本本身不含权重。空间不足按docs/disk_recovery.md迁移，不能在活动训练或下载写入时搬目录。

@@ -1,0 +1,158 @@
+{
+  "version": "asr_evidence_v0.1",
+  "video_id": "28287501902",
+  "manifest": {
+    "config": {
+      "version": "transcript_v0.1",
+      "model": "Systran/faster-whisper-small",
+      "revision": "536b0662742c02347bc0e980a01041f333bce120",
+      "device": "cpu",
+      "compute_type": "int8",
+      "cpu_threads": 2,
+      "language": "zh",
+      "beam_size": 5,
+      "chunk_seconds": 120,
+      "overlap_seconds": 2,
+      "condition_on_previous_text": false,
+      "vad_filter": true,
+      "speaker_assignment": "UNVERIFIED",
+      "review_status": "ASR_UNVERIFIED"
+    },
+    "video_id": "28287501902",
+    "audio_sha256": "c1b4fedb491f21d06d01e80d67ab698b8a0c91fcd82606d859912ab031d7f326",
+    "model_files": {
+      "config.json": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+      "model.bin": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+      "tokenizer.json": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+      "vocabulary.txt": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913"
+    },
+    "script_sha256": "0bda050fd8b906da50b051737602ad040f355b5ed3938e725ac433c86ef7528a",
+    "dependencies": {
+      "faster-whisper": "1.2.1",
+      "ctranslate2": "4.8.2",
+      "av": "18.1.0",
+      "numpy": "2.5.3"
+    }
+  },
+  "summary": {
+    "fingerprint": "4ea9c5b15e5cb20a5c84a604db5cd5f12282d90450ddbbeda65d91497105646c",
+    "completed_chunks": 10,
+    "total_chunks": 10,
+    "complete_audio_coverage": true,
+    "human_reviewed": false,
+    "training_admission": false,
+    "overlap_note": "Chunks overlap by 2 seconds on each side; do not concatenate as unique speech.",
+    "chunks": {
+      "0": "d107efb68693c7e52f8abf521db7e7eda76a531f76a4915265f376ad09c99704",
+      "1": "3cd688644697f8572052e4b1a3d6d60740ad93194547be36950604e06adb9b05",
+      "2": "bbe6332cfc0fbb693766c1c959c31c6c13969a2b8eeebfa1791ca92c0312ccf7",
+      "3": "8855787e9b4b963b19f947d41f34e1fe6b2f5b26127c2e6b8da8d312eeb666e7",
+      "4": "2043226a028d7f98cdd7e4dfdfe1caa7b5f237b49c00f42066bb7ca6bd9b4b3e",
+      "5": "4190867ad1ffae24e870101236fefc0dcc54c0d9c807bf218e29500603a1dba4",
+      "6": "7cf42d812b656ef3be7e3766c2f869b2bf4f604015a9b1f06f39af6cde30b219",
+      "7": "aaf5679d5f44beb6cde142c356e9d7ca8057a69d7f94c87d94e62266dedea1fc",
+      "8": "726a2add978b2c759c015d9e9a107b85754ac609821486ebbf0126542d1cf0ee",
+      "9": "7bde3f810e21568286c3bfcf5d6e7f086aeea1081f56ec0ff345b89f37c3ef43"
+    }
+  },
+  "chunks": [
+    {
+      "index": 0,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0000.json",
+      "content_hash": "d107efb68693c7e52f8abf521db7e7eda76a531f76a4915265f376ad09c99704",
+      "file_sha256": "2f92d5634f5250da9601bbbee71d90cebba004d75b4e143153371feb706c4b31",
+      "start_seconds": 0,
+      "end_seconds": 122,
+      "segments": 75
+    },
+    {
+      "index": 1,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0001.json",
+      "content_hash": "3cd688644697f8572052e4b1a3d6d60740ad93194547be36950604e06adb9b05",
+      "file_sha256": "b7aef98a3bb26f057587529a5c5d990a0a7f23b7acc2e7368c0b35e584a0f1bf",
+      "start_seconds": 118,
+      "end_seconds": 242,
+      "segments": 79
+    },
+    {
+      "index": 2,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0002.json",
+      "content_hash": "bbe6332cfc0fbb693766c1c959c31c6c13969a2b8eeebfa1791ca92c0312ccf7",
+      "file_sha256": "b08747976c972c474071e24f68a1ab3caff05fdd8f7c87113d2f7fd819fa86a3",
+      "start_seconds": 238,
+      "end_seconds": 362,
+      "segments": 46
+    },
+    {
+      "index": 3,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0003.json",
+      "content_hash": "8855787e9b4b963b19f947d41f34e1fe6b2f5b26127c2e6b8da8d312eeb666e7",
+      "file_sha256": "b1946b1fe3d63d47795f56cd58172b9675fd96703371a5f1519cb52c3f137d98",
+      "start_seconds": 358,
+      "end_seconds": 482,
+      "segments": 65
+    },
+    {
+      "index": 4,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0004.json",
+      "content_hash": "2043226a028d7f98cdd7e4dfdfe1caa7b5f237b49c00f42066bb7ca6bd9b4b3e",
+      "file_sha256": "72769b750eaffbeec46a9ab3241923d0e7a06bc980e8fdfee298d5dde7807183",
+      "start_seconds": 478,
+      "end_seconds": 602,
+      "segments": 42
+    },
+    {
+      "index": 5,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0005.json",
+      "content_hash": "4190867ad1ffae24e870101236fefc0dcc54c0d9c807bf218e29500603a1dba4",
+      "file_sha256": "6af377020be5903a21a7625f808deba2251a0614f2b7ed167f334e2cff595fb4",
+      "start_seconds": 598,
+      "end_seconds": 722,
+      "segments": 74
+    },
+    {
+      "index": 6,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0006.json",
+      "content_hash": "7cf42d812b656ef3be7e3766c2f869b2bf4f604015a9b1f06f39af6cde30b219",
+      "file_sha256": "a9d875f519e3c2d22629ccc44bed69e712f44f2dc4476a4edec575f6af26c80f",
+      "start_seconds": 718,
+      "end_seconds": 842,
+      "segments": 54
+    },
+    {
+      "index": 7,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0007.json",
+      "content_hash": "aaf5679d5f44beb6cde142c356e9d7ca8057a69d7f94c87d94e62266dedea1fc",
+      "file_sha256": "643c0e37cc7c24f2a4634fb5534a51fbfe920b8952994d6b86f8cfa31724cd4a",
+      "start_seconds": 838,
+      "end_seconds": 962,
+      "segments": 75
+    },
+    {
+      "index": 8,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0008.json",
+      "content_hash": "726a2add978b2c759c015d9e9a107b85754ac609821486ebbf0126542d1cf0ee",
+      "file_sha256": "a75b7585fbc745e5fd0460c4c1fd92504971dc992447e89ee10c11f970133720",
+      "start_seconds": 958,
+      "end_seconds": 1082,
+      "segments": 68
+    },
+    {
+      "index": 9,
+      "path": "cache/media/28287501902/transcript_v0.1/chunks/0009.json",
+      "content_hash": "7bde3f810e21568286c3bfcf5d6e7f086aeea1081f56ec0ff345b89f37c3ef43",
+      "file_sha256": "b3f207605f7c0a80d67598754dd16f737a811515850c0629fb2c7240a6239f03",
+      "start_seconds": 1078,
+      "end_seconds": 1146.7406875,
+      "segments": 38
+    }
+  ],
+  "duration_seconds": 1146.7406875,
+  "original_chunk_0_reused_verified": true,
+  "raw_transcript_status": "ASR_UNVERIFIED",
+  "full_audio_processed": true,
+  "full_transcript_reviewed": false,
+  "full_video_reviewed": false,
+  "training_admission": false,
+  "note": "All 10 audio chunks processed. Silence may be omitted by VAD; overlapped segments are not unique turns. Complete processing does not establish transcription accuracy."
+}
