@@ -1,0 +1,92 @@
+{
+  "protocol": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "cases_hash": "415d21bc4f2ff6770410c8188179545d3be6e572d764e3993e37e8c2ea3a69d0",
+    "system_prompt_hash": "fca8c04ef6f689617e48c5691e277fb779c0ea06c7b4b27fd92eea3a2463dce3",
+    "rendered_inputs_hash": "bbdf4a58a8c4abd115d6f7aac4b29e70dac37bbd2c5cac9b42766c51a216e785",
+    "generation": {
+      "max_input_tokens": 2048,
+      "max_new_tokens": 768,
+      "do_sample": false,
+      "use_cache": true
+    },
+    "quantization": {
+      "enabled": true,
+      "type": "nf4",
+      "double_quant": true,
+      "compute_dtype": "auto"
+    },
+    "cpu_offload": false,
+    "seed": 42
+  },
+  "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+  "adapter_digest": "0d2005e4757fc8e79556bd05affb12ba26d1084e043dc1d338a3a1c11babba6a",
+  "scoring_version": "strict-actions-v1.1",
+  "summary": {
+    "status": "partial",
+    "expected_cases": 36,
+    "completed_cases": 13,
+    "metrics": {
+      "rules": {
+        "total": 12,
+        "format_valid_rate": 0.8333333333333334,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.5,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "strategy": {
+        "total": 8,
+        "format_valid_rate": 0.125,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.125,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "counterfactual": {
+        "total": 8,
+        "format_valid_rate": 0.0,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.0,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "blind": {
+        "total": 8,
+        "format_valid_rate": 0.0,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.0,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      }
+    },
+    "counterfactual": {
+      "pairs": 4,
+      "both_correct": 0,
+      "action_changed": 0
+    },
+    "human_strategy_quality": "pending",
+    "note": "Automated action metrics are not a full Werewolf reasoning score."
+  },
+  "snapshot_only": true,
+  "completed_case_ids": [
+    "eval-rule-badge",
+    "eval-rule-guard-repeat",
+    "eval-rule-hunter-no-permission",
+    "eval-rule-hunter-permission",
+    "eval-rule-parity",
+    "eval-rule-seer-dead",
+    "eval-rule-self-save-night3",
+    "eval-rule-sheriff-withdrawn",
+    "eval-rule-two-potions",
+    "eval-rule-vote-dead",
+    "eval-rule-witch-current-target",
+    "eval-rule-witch-spent",
+    "eval-strategy-double-claim"
+  ]
+}

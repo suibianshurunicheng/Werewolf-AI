@@ -1,0 +1,28 @@
+{
+  "version": "asr_corrections_v0.1",
+  "video_id": "28287501902",
+  "reviewer": "model_review",
+  "status": "PARTIAL_SUBTITLE_ALIGNMENT",
+  "raw_transcript_version": "transcript_v0.1",
+  "audio_verified_by_reviewer": false,
+  "training_admission": false,
+  "annotations": [
+    {
+      "id": "ASR-C001",
+      "chunk": 0,
+      "segment_start": 8.72,
+      "segment_end": 9.76,
+      "raw_text": "锦辉刘先暴",
+      "subtitle_text": "警徽流先报",
+      "verification": "central dialogue text manually read in frame at 10.0 seconds; audio not independently verified",
+      "frame": {
+        "requested_seconds": 10.0,
+        "actual_seconds": 10.0,
+        "path": "cache/media/28287501902/frame_0010.000.jpg",
+        "sha256": "0aeda487ff291f3ba19f121a173ef982572e01fc4d3bb66a24acbd0a3a912248"
+      },
+      "scope": "terminology correction only; this utterance does not prove actual sheriff election rules"
+    }
+  ],
+  "policy": "Apply annotations as a separate review layer. Do not overwrite raw ASR chunks. Do not infer roles from recognition errors such as 猎人 -> 恋人."
+}

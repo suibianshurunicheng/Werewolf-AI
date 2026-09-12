@@ -125,3 +125,9 @@
 - 相对Strategy有504个张量变化、252个LoRA B矩阵非零；真实final与checkpoint-7权重SHA一致。完整71项测试通过；未据验证Loss宣称博弈能力提升。
 - Adapter采用已冻结36题/生成协议及strict-actions-v1.1与完整Base对比，不改Prompt/标签补救Base分数。数据仍dataset_v0.1，后续只使用dev失败修订v0.2。
 - 首局ASR模型已就绪、1/10块完成，存在“警徽流先报”等识别错误；只能作检索证据，另存校对后再考虑片段入库，不覆盖原块或重复生成。
+
+## Adapter规则组与ASR续作检查点
+
+- 规则12题已全部生成；qlora_progress为13/36题部分快照，不伪称完整评测、不覆盖活动progress。原36题和Base输出不变。
+- ASR第二块单独续作成功，第一块内容哈希与先前一致。原始“锦辉刘先暴”在10秒画面中央文字对应“警徽流先报”，另存asr_corrections_v0.1；这是字幕对齐，不声称独立听音核验。口头提到警徽不证明实际有警长竞选，“恋人”等ASR错误不作为新角色证据。
+- e7785d0的GitHub push工作流成功，CI证据更新reports/ci.json。

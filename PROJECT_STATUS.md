@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-12。当前Phase：Phase 1，完整Base及Rule→Strategy→Tactics三阶段QLoRA已完成；下一项为同协议Adapter评测。
+更新：2026-09-12。当前Phase：Phase 1，完整Base及Rule→Strategy→Tactics三阶段QLoRA已完成；同协议Adapter评测已启动。
 
 ## 已完成任务
 
@@ -14,9 +14,9 @@
 
 ## 当前正在进行
 
-三阶段训练均完成，正在保存Tactics最终导出证据，随后执行36题同协议Adapter评测。Strategy为1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。Tactics为7step/1epoch（105 train/20 val），相对Strategy改变504个张量，最佳checkpoint-7验证Loss2.8225455；训练进程在最后checkpoint保存后、final导出前中断，已从完整哈希检查点恢复导出，没有重跑优化步。原训练峰值显存未落盘，记为null，不估造。
+三阶段训练均完成，Tactics证据已commit/push e7785d0并经GitHub接口核实。36题同协议Adapter评测已启动（reports/runs/qlora_v01），规则12题已全部生成，reports/qlora_progress为13/36题部分快照；实时进度以progress.json与逐题文件为准。Strategy为1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。Tactics为7step/1epoch（105 train/20 val），相对Strategy改变504个张量，最佳checkpoint-7验证Loss2.8225455；训练进程在最后checkpoint保存后、final导出前中断，已从完整哈希检查点恢复导出，没有重跑优化步。原训练峰值显存未落盘，记为null，不估造。
 
-视频catalog_v0.1有185条/77.98小时；首局累计31帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。固定ASR模型已下载，首局完成1/10块原始转录（未校对），不代表完整音频审核。
+视频catalog_v0.1有185条/77.98小时；首局累计31帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。固定ASR模型已下载，首局已完成前2块并核验第0块复用，正在继续余下8块原始转录（未校对），不代表完整音频审核。
 
 ## 尚未完成任务
 
@@ -47,13 +47,13 @@
 - Rule真实训练：3step/1epoch，35 train/7 val，峰值3376.9MiB；验证Loss3.26995→2.96880。252个LoRA B矩阵非零，最终checkpoint-3完整哈希通过。证据reports/training/rules_v01，权重outputs/classic_v01/rules/final。
 - 实际probe解码H264/AAC、累计31帧；重复请求120/620秒校验SHA后复用，无覆盖。
 - Tactics完整7step checkpoint SHA核验与final逐文件复制核验通过；reports/training/tactics_v01含配置、日志、最终结果、参数差异及finalization来源。原训练峰值未持久化，恢复片段的Trainer聚合loss/runtime不冒充全程统计。
-- GitHub 2e55c70 CI已成功；后续提交CI尚未复查。
+- GitHub e7785d0 CI已成功（34691066338），本机71项测试通过。
 
 ## 新增视频审核与磁盘约束
 
 - 来源D:/BiliDownload：185条，元数据总时长77.98小时；没有独立字幕文件，m4s音视频需实际解码/转录，弹幕不是玩家转录。所有条目保持待审核，不按板子直接淘汰。
 - 审核执行docs/video_review_policy.md：CLASSIC_GOLD/TRANSFERABLE/BOARD_SPECIFIC/LOW_QUALITY，机制剥离后可生成CLASSIC_ADAPTED，特殊板子原样不得进Phase1。
-- 2026-09-12实测C盘剩余46.09GiB，D盘101.50GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
+- 2026-09-12实测C盘剩余42.64GiB，D盘101.48GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
 
 ## 当前阻塞项
 
@@ -61,7 +61,7 @@
 
 ## 下一步具体任务
 
-1. Tactics最终导出证据、71项测试和恢复工具先commit/push，保存一个完整阶段。
+1. Tactics最终导出证据、71项测试和恢复工具已commit/push e7785d0，GitHub CI通过。
 2. 相同协议测Tactics最终Adapter，逐题原子保存；不重做Base，不改变题目、Prompt或动作匹配定义。
 3. 首局继续可恢复CPU转录，再校对说话者/房规与可迁移片段；不得把ASR未校对原文作为SFT。
 4. 每完成独立阶段更新三份状态文档并commit；只用dev失败改进下一数据版本。
@@ -70,7 +70,7 @@
 
 先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base/Rule/Strategy/Tactics。
 
-第一项任务：执行磁盘预检查后，从已有逐题结果继续同协议Adapter评测（当前尚未启动）。有活动同目录评测进程时等待，不重复启动。
+第一项任务：执行磁盘预检查后，从已有逐题结果继续同协议Adapter评测（已启动，先检查活动进程及progress.json）。有活动同目录评测进程时等待，不重复启动。
 
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
@@ -81,7 +81,7 @@
 
 Tactics训练源提交90a0416，step7/epoch1全部完成。reports/training/tactics_v01已保存finalization证据，final权重SHA为b1103c4bdb6600a04b3fa4dfe87de131a896a9a41e858fcdf342a8bce70cea6d。不需要再训练或重新导出。
 
-视频：先读reports/media/28287501902/review_v0.2.md；两轮票表与刀7/毒4字幕已补证，说话者冲突和完整房规仍未解决。configs/media_asr_v01.json固定模型已下载，不需再次download-model。cache/media/28287501902/transcript_v0.1已有chunks/0000.json；总10块仅完成1块，ASR_UNVERIFIED，尚未入库。继续下一块：
+视频：先读reports/media/28287501902/review_v0.2.md；两轮票表与刀7/毒4字幕已补证，说话者冲突和完整房规仍未解决。configs/media_asr_v01.json固定模型已下载，不需再次download-model。cache/media/28287501902/transcript_v0.1已有chunks/0000.json及0001.json且确认首块内容哈希不变；后续块正在生成，以progress.json为准，ASR_UNVERIFIED，尚未入库。继续下一块：
 
 ```powershell
 .media-venv/Scripts/python.exe scripts/transcribe_video.py --video-id 28287501902 --max-chunks 1
