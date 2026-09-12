@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 模型卡
 
-状态：4GB本机已完成Rule（3step）、Strategy（1step）、Tactics（7step）三阶段Adapter，各1epoch；同协议Adapter能力比较未完成。Tactics最终权重从最佳checkpoint-7核验导出，验证Loss2.8225455，训练峰值显存未在中断前落盘。禁止把Base或CPU小模型单元测试当成专项模型成果。实时状态和实际分数以PROJECT_STATUS、reports为准。
+状态：4GB本机已完成Rule（3step）、Strategy（1step）、Tactics（7step）三阶段Adapter，各1epoch；同协议36题Adapter比较完成：严格结构有效33/36→27/36、合法动作5/36→1/36、参考匹配2/36→0/36，未通过能力验收。开发集语义复核仍发现角色技能/证据利用错误，不能宣称高手模型。Tactics最终权重从最佳checkpoint-7核验导出，验证Loss2.8225455，训练峰值显存未在中断前落盘。禁止把Base或CPU小模型单元测试当成专项模型成果。实时状态和实际分数以PROJECT_STATUS、reports为准。
 
 目标：3B～4B中文玩家视角决策，经典12人4狼4民预女守猎，ww-v1.0暗牌警长屠边。人工复制粘贴使用。镜隐不在Phase 1训练范围。
 

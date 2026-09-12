@@ -1,88 +1,84 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-12。当前Phase：Phase 1，完整Base及Rule→Strategy→Tactics三阶段QLoRA已完成；同协议Adapter评测已启动。
+更新：2026-09-12。当前Phase：Phase 1，dataset_v0.1三阶段QLoRA及完整Base/Adapter同协议比较已完成；验收未通过，下一阶段从dev失败修正dataset_v0.2。
 
 ## 已完成任务
 
-- 用户指定GitHub仓库已多阶段提交推送；Rule、Strategy、Tactics的完整训练检查点均已保存，未重新初始化或重做已冻结数据。
-- classic_12 / ww-v1.0、严格玩家视角Schema、8模板、规则纯函数和完整工具链。
-- dataset_v0.1：42规则+18策略+125战术=185原创种子，分场景族训练/验证，无镜隐；未独立人工复核。
-- 独立36题Benchmark（规则12、策略8、反事实8、盲测8），dev/test固定，4对单变量反事实。
-- Primary Qwen3-4B-Instruct-2507 revision cdbee75f17c01a7cc42f958dc650907174af0554 已下载；不需要再次选型或下载。
-- CUDA/NF4前向反向微测试通过；真实4B Base已在RTX3050Ti 4GB完成36/36题，未出现OOM。
-- Base以strict-actions-v1.1统一评分完成，reports/base_model_baseline.md及runs/base_primary已保存全部原始回答。
+- 仓库多阶段commit/push，沿既有Resume Here继续；没有重新初始化、重新选Base或覆盖冻结数据。
+- classic_12 / ww-v1.0、严格玩家视角Schema、规则纯函数、8模板和训练/评测/人工推理工具。
+- Primary Qwen/Qwen3-4B-Instruct-2507，固定revision cdbee75f17c01a7cc42f958dc650907174af0554；完整权重已缓存，不需再次下载。Backup仍未启用。
+- dataset_v0.1为185条原创合成种子：42规则、18策略、125战术；场景族划分，无独立专家复核，不宣称3000+高质量对局。
+- 独立Benchmark36题（rules12/strategy8/counterfactual8/blind8），23 dev/13 test；两方全部完成。没有把test文本用于本次修正建议。
+- Rule：35 train/7 val，3step/1epoch，最佳Loss2.9687984，峰值3376.9MiB，252个LoRA B矩阵非零。
+- Strategy：15/3，1step/1epoch，实际warmup0，最佳Loss3.0586383，峰值3315.8MiB，相对Rule改变504张量。
+- Tactics：105/20，7step/1epoch，最佳checkpoint-7 Loss2.8225455，相对Strategy改变504张量。最后checkpoint保存后中断，已核验SHA补齐final导出，未重跑完成步。训练峰值未持久化，记null；不把恢复片段聚合loss/runtime冒充全程统计。
+- 真实训练源Tactics为90a0416；完整导出及恢复工具提交e7785d0，规则组快照bf0638f，首局全音轨与画面纠错eecf348均已推送。
+- 23/23 dev逐题语义复核及两方原始回答SHA已保存reports/dev_semantic_review_v01.*；这是model_review，不是独立人工盲审。
 
 ## 当前正在进行
 
-三阶段训练均完成，Tactics证据已commit/push e7785d0并经GitHub接口核实。36题同协议Adapter评测已启动（reports/runs/qlora_v01），规则12题已全部生成，reports/qlora_progress为13/36题部分快照；实时进度以progress.json与逐题文件为准。Strategy为1step/1epoch（15 train/3 val），相对Rule实际改变504个张量，峰值3315.8MiB，验证Loss3.058638。Tactics为7step/1epoch（105 train/20 val），相对Strategy改变504个张量，最佳checkpoint-7验证Loss2.8225455；训练进程在最后checkpoint保存后、final导出前中断，已从完整哈希检查点恢复导出，没有重跑优化步。原训练峰值显存未落盘，记为null，不估造。
-
-视频catalog_v0.1有185条/77.98小时；首局累计37帧完成局部审核，3条迁移候选、1条复盘负例候选，正式入库0，其余184条未审核。首局10/10块音轨处理完成，全部SHA核验、首块复用通过；全文仍ASR_UNVERIFIED，实际37帧的局部审核不代表完整音频校对。review_v0.3补证说话者顺序并发现关键ASR漏句，未误判为玩家低水平。
-
-## 尚未完成任务
-
-- 三阶段训练均已完成，不要重跑；待同协议Adapter评测及能力审核。
-- 如果OOM：依顺序保存并实施长度、rank、target modules、offload等合理调整，必要时备用3B；不能因估计显存而放弃。
-- 相同协议测Adapter，生成qlora_v01.md与base_vs_qlora.md。
-- dev失败修正dataset_v0.2及第二轮训练。
-- 独立语义审核、未用于修正的保留集及真实人工复制粘贴对局验收。
-
-## 重要文件
-
-- configs/qlora_classic.yaml：NF4双量化、r8/alpha16、batch1、累积16、1024、每step保存评估、1 epoch、BF16自动、无packing。
-- data/versions/dataset_v0.1.json及data/gold、data/prepared；禁止覆盖版本快照。
-- scripts/train_qlora.py、train_lora.py、evaluate.py、inference.py、merge_adapter.py、checkpoint_evaluation.py；scripts/finalize_training.py仅补全已完成训练的最终导出。
-- src/werewolf_sft/training.py：版本哈希检查、基线门禁、assistant-only loss、逐步日志、完整checkpoint哈希标记和恢复。
-- reports/environment.json、token_lengths.json、toolchain.md、base_model_baseline.md、base_model_baseline.cases.json、base_dev_diagnostics.md、runs/base_primary/{run,summary,predictions,progress}.json/jsonl及cases/。
-- reports/base_progress.*保留早期partial历史快照，不是当前最终报告。
-- cache/huggingface与outputs为本地大文件目录，不进Git。训练失败会独立保存到reports/training_attempts。
+本轮训练、36题评测和首局10块ASR进程均已结束，完整比较和恢复状态已写入项目目录。下一项为dataset_v0.2第一小批规则修正，尚未开始生成或训练。不要重跑已完成的v0.1。
 
 ## 已运行测试与结果
 
-- 2026-09-12完整71项pytest通过（foundation37、dataset9、runtime21、finalization4）。新增已完成检查点幂等导出、未完成拒绝、SHA损坏拒绝和已有异内容拒绝；真实Tactics导出后504张量相对Strategy改变。
-- CPU小型Qwen3验证completion-only损失和梯度与标准实现等价；LoRA保存重载一致；step1中断后恢复到step4与连续训练参数/验证结果一致。这不是4B训练成功证据。
-- 数据快照篡改拒绝、残缺/损坏checkpoint跳过、OS运行锁测试通过。
-- 185条实际Tokenizer长度649～931，全部适配1024。Rule dry-run35训练/7验证、零过滤。
-- 完整Base：生成速度中位6.22 tokens/s，PyTorch峰值分配2909.2MiB，36题均未截断。
-- 精确参考动作匹配：rules0/12、strategy0/8、counterfactual0/8、blind2/8。JSON有效33/36。未知动作词约束造成明显接口混淆，不等同于狼人杀能力全为0，详见诊断。
-- Rule真实训练：3step/1epoch，35 train/7 val，峰值3376.9MiB；验证Loss3.26995→2.96880。252个LoRA B矩阵非零，最终checkpoint-3完整哈希通过。证据reports/training/rules_v01，权重outputs/classic_v01/rules/final。
-- 实际probe解码H264/AAC、累计37帧；重复请求120/620秒校验SHA后复用，无覆盖。
-- Tactics完整7step checkpoint SHA核验与final逐文件复制核验通过；reports/training/tactics_v01含配置、日志、最终结果、参数差异及finalization来源。原训练峰值未持久化，恢复片段的Trainer聚合loss/runtime不冒充全程统计。
-- GitHub e7785d0 CI已成功（34691066338），本机71项测试通过。
+- 完整71项pytest通过（foundation37/dataset9/runtime21/finalization4）。包含CPU损失与梯度等价、LoRA保存重载、step1中断恢复至step4与连续训练等价、单step实际参数更新、运行锁与损坏checkpoint拒绝。
+- 新增最终导出4测试：完整检查点幂等导出、未完成拒绝、SHA损坏拒绝、已有异内容拒绝；实际Tactics final与checkpoint-7逐文件SHA一致。
+- 185种子实际Tokenizer长度649～931，1024内零过滤；三阶段均真实完成。CPU小模型测试不冒充4B训练成果。
+- 两方36题完全相同协议指纹1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569、评分strict-actions-v1.1；Adapter36个唯一case及run指纹核验通过，均未截断，没有生成失败/OOM。
+- Base→Adapter严格结构有效33/36→27/36，合法动作5/36→1/36，参考动作2/36→0/36。参考动作分组Base为0/12、0/8、0/8、2/8；Adapter四组全0。反事实成对命中均0/4，动作变化2/4→1/4。
+- Base生成速度中位6.22 tokens/s、PyTorch峰值2909.2MiB；Adapter中位5.18 tokens/s、峰值2973.4MiB。桌面/并行CPU媒体处理负载未控制，这不是严格吞吐基准；评测峰值不能代替Tactics训练峰值。
+- 语义复核证实角色技能混淆、忽略技能/公开历史、编造规则、夜间公开泄漏。也有个别目标/公开表态局部改善，但整体没有证明专项能力提升。未知动作词导致接口混淆，0匹配不等于所有狼人杀理解为0。
+- GitHub e7785d0的Ubuntu foundation与CPU Trainer工作流成功，证据reports/ci.json。
 
-## 新增视频审核与磁盘约束
+## 视频审核
 
-- 来源D:/BiliDownload：185条，元数据总时长77.98小时；没有独立字幕文件，m4s音视频需实际解码/转录，弹幕不是玩家转录。所有条目保持待审核，不按板子直接淘汰。
-- 审核执行docs/video_review_policy.md：CLASSIC_GOLD/TRANSFERABLE/BOARD_SPECIFIC/LOW_QUALITY，机制剥离后可生成CLASSIC_ADAPTED，特殊板子原样不得进Phase1。
-- 2026-09-12实测C盘剩余42.64GiB，D盘101.48GiB，目前无需迁移。恢复和大文件处理前检查；C不足时保存checkpoint后迁移整个项目到D；D也不足时提醒租云服务器。
+- D:/BiliDownload只读索引185条、77.98小时；catalog_v0.1不重建覆盖，弹幕不是发言逐字稿，多视角game_family仍需确认。
+- 首局28287501902 / BV1p4N5eJEtL：9人预女猎阵容，完整房规仍BOARD_UNKNOWN。累计37帧实际阅读；全音轨1146.7406875秒、10/10块ASR处理完成，全块指纹/SHA核验，首块复用确认。
+- ASR全文留cache/media/28287501902/transcript_v0.1，状态仍ASR_UNVERIFIED。Git只保存asr_evidence_v0.1配置/哈希/覆盖与少量审核引用，不上传整段转录或素材。
+- review_v0.1/v0.2/v0.3：3条B级TRANSFERABLE候选M01～M03，1条LOW_QUALITY复盘负例M04，CLASSIC_GOLD/BOARD_SPECIFIC/正式SFT入库均0。不是完整全局玩家评级；其余184条未审核。
+- 两轮票表、刀7/毒4字幕已核；382/406秒主持字幕支持9号→8号发言顺序，箭头冲突保留；754/755秒证实ASR漏掉“队友出局、只剩自己”，未据误转录误判玩家。
+- 遵守docs/video_review_policy.md：非经典不丢局，机制剥离、合法当时视角、避免结果/事后偏差；经典改写须验证后才入新数据版本。
 
-## 当前阻塞项
+## 重要文件
 
-没有外部阻塞。4GB已完成真实Rule QLoRA，不能据此保证所有长度或阶段都稳定。Base的精确动作匹配同时反映接口词汇问题；最终能力提升不能只依据该指标，必须另做语义审核或统一动作字典的新协议重测。
+- README.md、DECISIONS.md、TODO.md及docs/{model_card,training,evaluation,video_review_policy,disk_recovery}.md。
+- configs/qlora_classic.yaml：NF4双量化、r8/alpha16、batch1/累积16、1024、1epoch、BF16自动、无packing。固定CPU媒体配置configs/media_asr_v01.json。
+- data/versions/dataset_v0.1.json，data/{gold,prepared}/dataset_v0.1；禁止覆盖。
+- reports/{base_model_baseline,qlora_v01,base_vs_qlora,dev_semantic_review_v01}.md及相关JSON；reports/runs/{base_primary,qlora_v01}完整case/原回答/progress/summary。
+- reports/base_progress.*与qlora_progress.*为早期partial历史，不是最终报告。
+- reports/training/{rules,strategy,tactics}_v01含配置、结果、日志、权重SHA；Tactics额外finalization.json。
+- scripts/finalize_training.py只补全已完成步数的导出；scripts/export_training.py导出紧凑证据。正常训练恢复仍由train_qlora --resume处理。
+- reports/media/28287501902/{review_v0.3.md,review_v0.3.json,probe_v0.3.json,asr_evidence_v0.1.json,asr_corrections_v0.1.json}。
+- 大权重与缓存仅在本机outputs/cache，不进Git。跨主机必须复制并按reports/training/*/artifacts.json校验；仅Git副本无法恢复optimizer/Adapter。
 
-## 下一步具体任务
+## 尚未完成任务与当前阻塞项
 
-1. Tactics最终导出证据、71项测试和恢复工具已commit/push e7785d0，GitHub CI通过。
-2. 相同协议测Tactics最终Adapter，逐题原子保存；不重做Base，不改变题目、Prompt或动作匹配定义。
-3. 首局继续可恢复CPU转录，再校对说话者/房规与可迁移片段；不得把ASR未校对原文作为SFT。
-4. 每完成独立阶段更新三份状态文档并commit；只用dev失败改进下一数据版本。
+- 没有外部阻塞，但当前模型未达能力验收。185条小种子、11个计划优化步的结果不能被包装为高手模型；未证明退化的唯一原因。
+- 按已保存dev诊断生成并冻结dataset_v0.2，做第二轮训练及评测；先完成小批规则修正，再扩展策略。
+- 若另立明确动作词典/清理非经典提示词的新协议，必须对Base与Adapter共同评测并另版保存，不能覆盖v0.1结果或改变一方Prompt。
+- 独立语义复核、保留集及真实人工复制粘贴对局验收；Phase2镜隐仍暂停。
+- 首局M01～M03完整逐字稿/当时合法历史校对、经典改写和视角验证，后续184素材审核。
+
+## 磁盘状态
+
+2026-09-12末次检查：C45.09GiB、D101.48GiB，CONTINUE，无需迁移。恢复和大文件处理前检查。C不足时先保存checkpoint、结束活动写入，再按docs/disk_recovery.md迁整个项目到D；D也不足提醒租云服务器。没有声称会话结束后后台监控。
 
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status；不初始化、不重做数据、不重跑已完成Base/Rule/Strategy/Tactics。
+先读取README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status。v0.1三阶段及两方36题已完成，不重训、不重测、不重新选Base、不覆盖数据。已无本轮活动训练/评测/ASR进程。
 
-第一项任务：执行磁盘预检查后，从已有逐题结果继续同协议Adapter评测（已启动，先检查活动进程及progress.json）。有活动同目录评测进程时等待，不重复启动。
+第一项工程任务：依据23条dev诊断，为dataset_v0.2实现第一小批成对规则修正（守卫连守、猎人开枪权限、女巫药量/刀口、警上退水投票权、屠边、夜间不公开技能、动作/目标类型）。先查阅现有生成器、验证器；新版本必须只写新路径，保留v0.1与eval原文件不变。不要直接执行当前prepare_dataset并假装得到v0.2；它目前仅支持v0.1。
 
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-.venv/Scripts/python.exe scripts/evaluate.py --adapter outputs/classic_v01/tactics/final --output reports/runs/qlora_v01 --compare-to reports/runs/base_primary --report reports/qlora_v01.md
+Get-Content reports/dev_semantic_review_v01.md
+Get-Content src/werewolf_sft/seed_data.py
+Get-Content scripts/prepare_dataset.py
+Get-Content src/werewolf_sft/validation.py
 ```
 
-评测结果在reports/runs/qlora_v01逐题保存，中断后原命令只补缺题；完整结束生成reports/qlora_v01.md与reports/base_vs_qlora.md。比较协议指纹应为1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569，评分strict-actions-v1.1。能力解释须分清动作词汇/规则/策略，不能仅凭Loss或格式宣称高手模型。
+实现时复用dataset.save_snapshot与场景族划分，新增独立场景而不是复制Benchmark题目或用test答案修正；测试数据版本不可变、合法动作和玩家视角，再保存小阶段commit。随后才扩展策略/战术修正、固定v0.2训练配置与实际Tokenizer长度检查并训练。
 
-Tactics训练源提交90a0416，step7/epoch1全部完成。reports/training/tactics_v01已保存finalization证据，final权重SHA为b1103c4bdb6600a04b3fa4dfe87de131a896a9a41e858fcdf342a8bce70cea6d。不需要再训练或重新导出。
+视频并行支线从reports/media/28287501902/review_v0.3.md与asr_evidence_v0.1.json继续校对M01～M03，无需再次下载或转录首局。必要时用.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数>补帧，旧帧复用；新审核另起版本，不擅自填补房规或私密信息。
 
-视频：先读reports/media/28287501902/review_v0.3.md和asr_evidence_v0.1.json。固定模型已下载且首局10/10块全部处理，cache/media/28287501902/transcript_v0.1保留全文，不需要重新转录。37帧局部审核已用382/406秒主持字幕补证9号→8号发言顺序，箭头冲突保留；754/755秒证明ASR漏掉“队友已出局、只剩自己”，不能给原玩家错误扣分。下一项是校对M01～M03完整历史并进行经典合法视角改写。BOARD_UNKNOWN房规不强行补齐，正式SFT入库0。
-
-原D:/BiliDownload不改动。补取片段用 .media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数> ，核验后复用旧帧；新的审核报告另起版本。整份ASR的配置、每块SHA及覆盖见asr_evidence_v0.1.json，原始全文不进公开Git。
-
-大权重未进Git：本机outputs/classic_v01/{rules,strategy,tactics}含完整checkpoint和final；跨主机必须复制并按reports/training/*/artifacts.json核对SHA。Git副本本身不含权重。空间不足按docs/disk_recovery.md迁移，不能在活动训练或下载写入时搬目录。
+Tactics final权重SHA b1103c4bdb6600a04b3fa4dfe87de131a896a9a41e858fcdf342a8bce70cea6d，本机outputs/classic_v01/{rules,strategy,tactics}保留完整checkpoint和final。跨主机或迁盘必须复制、验证后再切换；Git仓库只有报告和哈希。

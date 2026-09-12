@@ -2,7 +2,7 @@
 
 3B～4B 中文狼人杀专项 SFT 工程，当前仅经典12人预女守猎。操作者人工输入合法视角，只复制正式公开发言。项目未提供自动竞技场、RL或Web前端。
 
-最新真实状态见 PROJECT_STATUS.md。目前已有185条原创种子、36题独立Benchmark和训练/评测工具；已在4GB完成Rule、Strategy、Tactics三阶段Adapter及完整Base基线；同协议Adapter能力比较尚未完成，不宣称专项能力提升。
+最新真实状态见 PROJECT_STATUS.md。目前已有185条原创种子、36题独立Benchmark和训练/评测工具；已在4GB完成Rule、Strategy、Tactics三阶段Adapter及完整Base基线；同协议36题Adapter比较已完成，参考动作2/36→0/36，未通过能力验收。23条dev诊断已保存，下一阶段修正dataset_v0.2；不宣称专项能力提升。
 
 ## 恢复
 

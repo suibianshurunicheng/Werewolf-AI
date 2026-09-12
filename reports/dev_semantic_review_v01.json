@@ -1,0 +1,492 @@
+{
+  "status": "complete_dev_review",
+  "reviewer": "model_review",
+  "independent_human_review": false,
+  "test_used_for_diagnosis": false,
+  "reviewed_dev_cases": 23,
+  "total_dev_cases": 23,
+  "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+  "rows": [
+    {
+      "id": "eval-rule-guard-repeat",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "两者都继续守上夜12，明确违反连守限制；都把夜间操作写入公开发言。",
+      "failure_tags": [
+        "rule_violation",
+        "night_public_disclosure"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-guard-repeat.json",
+          "sha256": "43bb7739079137365f4b39ee2b2201e75b568ac207e85110a3405ef05ddebea9"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-guard-repeat.json",
+          "sha256": "1ba18d619cccb84cd345b321a94aae4e591fa4f4c142b6f3dcb4f5127b5d5464"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-witch-spent",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "两者都知道无药不能救，但动作none不兼容；仍使用不属于女巫的查验措辞，公开暴露药量。",
+      "failure_tags": [
+        "action_vocabulary",
+        "role_skill_confusion",
+        "night_public_disclosure"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-witch-spent.json",
+          "sha256": "366828edaea396d32f93284073de40f2c076c267538f4588d20dd6b3cb186f93"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-witch-spent.json",
+          "sha256": "531e05522f5216faebd1db694b094255c240e008c8c61a650e333b2a3cec9edd"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-witch-current-target",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "两者都选对救12的语义目标，save不兼容；Adapter还把identity_reads.seat写成字符串。夜间公开声明用药。",
+      "failure_tags": [
+        "action_vocabulary",
+        "schema_type",
+        "night_public_disclosure"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-witch-current-target.json",
+          "sha256": "01fc6ccbeb7bf83e2c81f8e016f2521684317bdba206ed62ae717d80e691e335"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-witch-current-target.json",
+          "sha256": "d3ee2591c48d862197ebaec9ef255c4466f5a2fda941c322f0b7ef806434dfba"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-hunter-no-permission",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "Base按裁判禁枪正确拒绝但none/座位字符串不兼容；Adapter额外捏造已开枪、猎人只第一轮能开枪、12人3狼等规则与状态，构成语义退化。",
+      "failure_tags": [
+        "action_vocabulary",
+        "hallucinated_rule",
+        "state_ignored"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-hunter-no-permission.json",
+          "sha256": "0ab93d5e5367ac0753ea39f29e72ab7a22fbd9a4f51c02c5459b6d6fc3df0c23"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-hunter-no-permission.json",
+          "sha256": "65f77e8a482c036bdc9d94e488e8d3985d311789d5ecd81eb184352978142a57"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-vote-dead",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "两者都没投死者；Base理由偏向身份未知，Adapter明确提到12已死。投票弃权动作分别vote:null和none，均未符合pass接口；不能把本题全归规则不懂。",
+      "failure_tags": [
+        "action_vocabulary",
+        "incomplete_rationale"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-vote-dead.json",
+          "sha256": "4d6b1164cefdd33ae28216fadeb8f027631c0a84daf54a602a36bd1b34c34182"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-vote-dead.json",
+          "sha256": "6fea3696c827c7b942f4054db9f69f2d4387eacb4da05e7ee3a4c02f793cd969"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-sheriff-withdrawn",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "两者都想投12，忽略上警后退水仍无警长投票权；不只是vote与sheriff_vote词汇差异。",
+      "failure_tags": [
+        "rule_violation",
+        "state_ignored"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-sheriff-withdrawn.json",
+          "sha256": "39afd4634d9b9dc5947b78967fd47060e83758eb1e37579dd0cba7719e35ffcd"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-sheriff-withdrawn.json",
+          "sha256": "e16f374d79b7fe373fe0400fbbc3879e00c93eb48d3fc7dd96ce991225fa4e0c"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-parity",
+      "split": "dev",
+      "suite": "rules",
+      "assessment": "两者均回避三狼一民两神的规则假设，未解释屠边与人数持平不同；动作none/null也不兼容。",
+      "failure_tags": [
+        "question_ignored",
+        "action_vocabulary"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-rule-parity.json",
+          "sha256": "cf306aff209b4a98edad91b9d96936a4ba404ff2b863a625e923a91f178f3311"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-rule-parity.json",
+          "sha256": "b7381473c54d1b1acb3dd1b32b800cb9696063d1f046a84e862469e6923acbb3"
+        }
+      }
+    },
+    {
+      "id": "eval-strategy-silver",
+      "split": "dev",
+      "suite": "strategy",
+      "assessment": "两者均没有分析银水不等于好人、存在自刀可能，公开回答等待或无。没有消费已提供的公开主张。",
+      "failure_tags": [
+        "evidence_ignored",
+        "non_answer"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-strategy-silver.json",
+          "sha256": "8fcb0e5dac3c66ceb64404b38215283862d09e4c9b83cbb2e3e840f09a4cdd1e"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-strategy-silver.json",
+          "sha256": "f772ce230eb6190b4bda11af282dc695143f12c51f2d607c2429c08f190acbe5"
+        }
+      }
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "split": "dev",
+      "suite": "strategy",
+      "assessment": "Base注意到换边但缺少追问理由；Adapter把有公开解释的换边直接视为跳跃，又捏造1号发言更连贯并在发言阶段投1。",
+      "failure_tags": [
+        "unsupported_claim",
+        "phase_action_mismatch"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-strategy-vote-change.json",
+          "sha256": "7ecf0cbc29e703e746208f1273a884211402ffa651746137199e00f78438a3c3"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-strategy-vote-change.json",
+          "sha256": "7a8242658a9497d58da6013910650939b9f6be10aafb9f013eee68b70fd8ab16"
+        }
+      }
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "split": "dev",
+      "suite": "strategy",
+      "assessment": "两者保留信息不足、拒绝硬定真预言家的方向合理；但不给可执行核对问题，none也未符合发言接口。不能把保留可能性本身判为错误。",
+      "failure_tags": [
+        "action_vocabulary",
+        "incomplete_rationale"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-strategy-ambiguous.json",
+          "sha256": "aa62dbe49fff2fcb2740223bf80cf8b0e7a7d18589b91697c3bd5954ac4f1434"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-strategy-ambiguous.json",
+          "sha256": "0e24f8a211508cf098774d0c102824d2b2275770b6965eafb0c07e3450c35f60"
+        }
+      }
+    },
+    {
+      "id": "eval-strategy-dead-dark",
+      "split": "dev",
+      "suite": "strategy",
+      "assessment": "两者质疑12号未经核验的死亡/狼坑主张有合理性；Adapter另编造每轮只能死1或2人来反驳，且未解释暗牌不能直接扣除确定狼数。",
+      "failure_tags": [
+        "hallucinated_rule",
+        "incomplete_rationale"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-strategy-dead-dark.json",
+          "sha256": "a1ecc3f851e2eb9c2ebc975c3affb3ac78469f951b20eee55fa34ed9588b3c6e"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-strategy-dead-dark.json",
+          "sha256": "2ff7ebfa4d1e942a7b7ab7a178b0c380780e853c28249bd85f0b4b2ed24be077"
+        }
+      }
+    },
+    {
+      "id": "eval-strategy-later-check",
+      "split": "dev",
+      "suite": "strategy",
+      "assessment": "两者没有区分未来警徽流计划调整与篡改已报查验；Adapter直接无发言。记录中的死亡是公开发言主张，不能擅自视作裁判认证。",
+      "failure_tags": [
+        "concept_confusion",
+        "non_answer"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-strategy-later-check.json",
+          "sha256": "53bf4815be96ed3bba457e1c0d9b21f7aa630e69a637f3a686dfc057fcfee42c"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-strategy-later-check.json",
+          "sha256": "49d9bfc807ce0d6fb2c3ef597b5b805914fc5d90610d7b0ec0ab54ae87c9c1de"
+        }
+      }
+    },
+    {
+      "id": "eval-cf-guard-a",
+      "split": "dev",
+      "suite": "counterfactual",
+      "assessment": "两者都给守卫check查验技能，并忽略昨夜已守12；这是角色机制错误。",
+      "failure_tags": [
+        "role_skill_confusion",
+        "state_ignored"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-cf-guard-a.json",
+          "sha256": "75824ea432b057732512a773596eace6f7eed2db88b2da0d823ad379b73d227f"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-cf-guard-a.json",
+          "sha256": "1a6206d7587db0c2213dc0435e073eb3e765d4e78e16c57db4e16dbd879a1fcd"
+        }
+      }
+    },
+    {
+      "id": "eval-cf-guard-b",
+      "split": "dev",
+      "suite": "counterfactual",
+      "assessment": "Base随意改成查验11；Adapter称无明确目标而不行动。任务已指定12且昨夜守6，可守12，两者均未正确响应变量。",
+      "failure_tags": [
+        "role_skill_confusion",
+        "task_ignored"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-cf-guard-b.json",
+          "sha256": "fdb74745fa259ed195318122b16012d32bc7741aba094fcac10b98b6ffa97ec3"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-cf-guard-b.json",
+          "sha256": "b27404cd0c536c959d30c75c00dfb4d8e0d09f75fca5bae10798eeae508b09ba"
+        }
+      }
+    },
+    {
+      "id": "eval-cf-hunter-a",
+      "split": "dev",
+      "suite": "counterfactual",
+      "assessment": "两者都在hunter_can_shoot=false时使用猎人技能，解释为查验；Adapter还把指定12改成11。",
+      "failure_tags": [
+        "role_skill_confusion",
+        "state_ignored",
+        "task_ignored"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-cf-hunter-a.json",
+          "sha256": "965486f65b1ee71c048e2e7929f0f9ad1b039b8e2fccaf7cc99e6eee4511bd93"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-cf-hunter-a.json",
+          "sha256": "18123472fb381df50bf1c4eb7e369fd420b961e6fe1da1b3140b83d865a2edab"
+        }
+      }
+    },
+    {
+      "id": "eval-cf-hunter-b",
+      "split": "dev",
+      "suite": "counterfactual",
+      "assessment": "两者行动目标为12，但把开枪解释成查验，hunter_shot不是接口shoot，不能只按别名算全对。",
+      "failure_tags": [
+        "role_skill_confusion",
+        "action_vocabulary"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-cf-hunter-b.json",
+          "sha256": "d44e995c95d0b6cca78ee1698f403dfb71547dd436a308f54cf7e14c7e09adbb"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-cf-hunter-b.json",
+          "sha256": "e9d4e1ba370b4d5256c9ac1183b61ce3360077bfef40350309e0a0c8ba2dff84"
+        }
+      }
+    },
+    {
+      "id": "eval-cf-team-a",
+      "split": "dev",
+      "suite": "counterfactual",
+      "assessment": "Base把确定狼队私有信息当未确认查验，投1缺乏切割依据；Adapter保护队友而投12，但未权衡1的公开矛盾，仍称狼人验人。12未必唯一不合理，冻结参考1不等于唯一最优策略。",
+      "failure_tags": [
+        "private_information_misread",
+        "incomplete_rationale",
+        "reference_not_exhaustive"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-cf-team-a.json",
+          "sha256": "f46d10dbdb9ef4180f7f7c5bdd0becf0c8c40c542199ab4ef2db32dc40d48656"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-cf-team-a.json",
+          "sha256": "d95a28d78cffe74e0f6379461d34057e473454d791d618ac30400114aa2f9f30"
+        }
+      }
+    },
+    {
+      "id": "eval-cf-team-b",
+      "split": "dev",
+      "suite": "counterfactual",
+      "assessment": "Base无依据投已知队友4；Adapter转投12与参考目标一致，并使用12改票未解释作为公开理由，但A/B均投12未体现针对1澄清的动态权衡。仍输出exile而非vote。",
+      "failure_tags": [
+        "action_vocabulary",
+        "incomplete_adaptation"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-cf-team-b.json",
+          "sha256": "0148016978a4560531c67c0aacb62e3ff81bc457cf39170412bf0f8664fbc6bb"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-cf-team-b.json",
+          "sha256": "d4401d3015d49df50b5d50925307b51167a93205ecccddf83e909ac2caf65c10"
+        }
+      }
+    },
+    {
+      "id": "eval-blind-01",
+      "split": "dev",
+      "suite": "blind",
+      "assessment": "Base公开发言复读对自己的质询；Adapter开始质疑1号矛盾，有局部改善，但未解释此前连续维护1，也未给切割代价/后续方案；私有判断把确定狼队信息又写成身份可疑。",
+      "failure_tags": [
+        "partial_public_response_improvement",
+        "private_information_misread",
+        "incomplete_replanning"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-blind-01.json",
+          "sha256": "9d10c50488267de99d76cbea9386d64324c31af98a8e317c6baf013ca2d55b67"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-blind-01.json",
+          "sha256": "f3d8d9dc5e259f4ec86ca65cbc86b959524e9fe55c147e2ba21f025106e1b317"
+        }
+      }
+    },
+    {
+      "id": "eval-blind-02",
+      "split": "dev",
+      "suite": "blind",
+      "assessment": "两者都在轮到发言时等待而未响应已有队友8起跳受认可的局面；Adapter还把第1轮获知的狼队信息误读成死亡信息，转而观察6是否报验，偏离输入。",
+      "failure_tags": [
+        "state_misread",
+        "evidence_ignored",
+        "non_answer"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-blind-02.json",
+          "sha256": "fff3b69c56e3f45d9de15d9187365f2e1d7d5732c35010caee5b7bef114a0cef"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-blind-02.json",
+          "sha256": "1a15214fefe0e22be287ef9a17cecff491f419cb52d0f7590a309fd14c5842e2"
+        }
+      }
+    },
+    {
+      "id": "eval-blind-04",
+      "split": "dev",
+      "suite": "blind",
+      "assessment": "Base依据公开冲突选择未查验12，动作正确但夜间公开透露目标；Adapter忽略该信息，输出无目标的check并等待下一轮，构成任务和合法动作退化。",
+      "failure_tags": [
+        "evidence_ignored",
+        "invalid_target",
+        "night_public_disclosure"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-blind-04.json",
+          "sha256": "dec3e3156ccfa8a13aacedceaef77e9cf0484ec2697aee9947023ba24d15cc9d"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-blind-04.json",
+          "sha256": "2be0a1fb85e085d3b21e128f9470eede72a156d1de9a4a67374b48d03f0b5a95"
+        }
+      }
+    },
+    {
+      "id": "eval-blind-05",
+      "split": "dev",
+      "suite": "blind",
+      "assessment": "Base直接连守12；Adapter不再指定12，但输出guard:null并仍谈查验，没有说明不可连守或用合法pass，不能认定学会规则。",
+      "failure_tags": [
+        "rule_not_explained",
+        "invalid_target",
+        "role_skill_confusion"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-blind-05.json",
+          "sha256": "6fcf4fa89019968329e81a4687600bbe05c521db1ef7c016f7c9b0fdf0e04b29"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-blind-05.json",
+          "sha256": "2a8beb41a1c6b1e718d7a70d2cb6315584784f804ca0ef5d1d40c4463e189bc1"
+        }
+      }
+    },
+    {
+      "id": "eval-blind-07",
+      "split": "dev",
+      "suite": "blind",
+      "assessment": "Base提出可能有隐藏关系，但未明确核对票型同向；Adapter将互不信任误读成互信，并给无发言，遗漏互踩与一致投票的核心线索。",
+      "failure_tags": [
+        "evidence_misread",
+        "non_answer"
+      ],
+      "evidence": {
+        "base": {
+          "path": "reports/runs/base_primary/cases/eval-blind-07.json",
+          "sha256": "b2eca2669e1e459401b2a9b670e7d8c05974d523216be040a5a5e81a41df38d6"
+        },
+        "adapter": {
+          "path": "reports/runs/qlora_v01/cases/eval-blind-07.json",
+          "sha256": "90295d23066363b041c08f78566445378f47090006ee50679df90304abb0ec25"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Not a blinded human evaluation or real game win rate.",
+    "Frozen action references are not exhaustive strategic optima.",
+    "No test answers used for these diagnostic recommendations."
+  ],
+  "next_version_priorities": [
+    "角色专属能力、技能状态与动作接口分离训练；成对变更权限/目标/轮次并解释为何变化。",
+    "依据当前公开证据作出条件判断，区分主张与已核事实，不能用信息不足复读代替完成任务。",
+    "确定狼队私有信息与公开伪装分开；练习队友崩坏时权衡切割、保护与抗推目标。",
+    "夜间public_response留空；实际seat使用整数，合法action与target按阶段输出。",
+    "只用开发集的失败类型构造独立新场景族；不得复制Benchmark题目、test答案或修改v0.1快照。"
+  ]
+}
