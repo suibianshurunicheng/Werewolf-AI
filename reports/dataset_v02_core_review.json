@@ -1,0 +1,881 @@
+{
+  "review_kind": "model_semantic_review_not_independent_human",
+  "accepted_core": 86,
+  "video_admitted": 0,
+  "independent_expert_review": false,
+  "scope": "Reviewed legality, information source, temporal boundary, decision rationale and public/private separation; strategic answers are defensible examples, not uniquely optimal.",
+  "items": [
+    {
+      "id": "v02-rule-guard_repeat-a",
+      "row_sha256": "06674d4973cca291cdae098ab1ed5c093819a96cc6111b07ea8aa3e950a2bea0",
+      "verdict": "accept_core",
+      "reason": "依上一夜目标决定能否守；pass是任务限定不换目标，不扩展为守卫不能主动改守。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-guard_repeat-b",
+      "row_sha256": "2db4867f2accf833b8c5436d4fbb18c79fad5bb1e4b0d16883becccc5f01d38d",
+      "verdict": "accept_core",
+      "reason": "依上一夜目标决定能否守；pass是任务限定不换目标，不扩展为守卫不能主动改守。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-guard_empty_break-a",
+      "row_sha256": "03e555060993933ff7383823faca4c8c38b459618c27296a9989fa30c3b5e512",
+      "verdict": "accept_core",
+      "reason": "空守打断连续性，轮次4不影响自守；另一条件确为上一夜已自守。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-guard_empty_break-b",
+      "row_sha256": "e1161a52a15ff390524a3c0d85f87b09985287954179bb05e7cf6a13f8fbae66",
+      "verdict": "accept_core",
+      "reason": "空守打断连续性，轮次4不影响自守；另一条件确为上一夜已自守。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-hunter_permission-a",
+      "row_sha256": "97f8d47e0510fc720d02b6f97dc5cd4160cdf7aca084d5e36074c257d39de4cd",
+      "verdict": "accept_core",
+      "reason": "死亡、许可、是否已开枪分开读取；射击不产出身份。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-hunter_permission-b",
+      "row_sha256": "0732869fb6cc4b38ba11970d3ac2149a8f6e67f6062692ab392f12e39d9a2875",
+      "verdict": "accept_core",
+      "reason": "死亡、许可、是否已开枪分开读取；射击不产出身份。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-hunter_spent-a",
+      "row_sha256": "d153cfd15b51a7d340e3f269452267c5b5b4042f56fd2beabe50e80aea5628e3",
+      "verdict": "accept_core",
+      "reason": "残留许可不能授权第二枪，未使用分支目标仍存活。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-hunter_spent-b",
+      "row_sha256": "702ad8f1b873ad453ae04e6b63a5a3ff55ac0cc907d6e084486b4b7fac29ebae",
+      "verdict": "accept_core",
+      "reason": "残留许可不能授权第二枪，未使用分支目标仍存活。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-hunter_late_round-a",
+      "row_sha256": "7a08832fc3e7b94b8cba3514fefd04e59265118789a30aae28cfa92088644ae9",
+      "verdict": "accept_core",
+      "reason": "第4/5轮均有许可和未用枪，保持动作是合理不变性控制。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-hunter_late_round-b",
+      "row_sha256": "04195c1a9fa4cc990138ce59c03b668a0ac71bb7d8dbd2c07aa5a427fe39ca7a",
+      "verdict": "accept_core",
+      "reason": "第4/5轮均有许可和未用枪，保持动作是合理不变性控制。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_poison_stock-a",
+      "row_sha256": "10633ef5434f5e63cbb423c465afbab34ccf2d601d9573de98484fc94009e86a",
+      "verdict": "accept_core",
+      "reason": "只按题设检查毒药存量与目标合法，不把预定毒人标为自主最优战略。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_poison_stock-b",
+      "row_sha256": "5e60317a5e8e1736c18358915ddffc875ab587d0e38f8136822128806f4bfdaf",
+      "verdict": "accept_core",
+      "reason": "只按题设检查毒药存量与目标合法，不把预定毒人标为自主最优战略。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_current_target-a",
+      "row_sha256": "95c5e47c5a585059701db47e79a4e933fa285512337c3e7779e40caee4843d3e",
+      "verdict": "accept_core",
+      "reason": "解药绑定当前刀口，选择不等于结算，也不确认目标好人。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_current_target-b",
+      "row_sha256": "5f1d0bc34cc04797b01701a8deec1848a827f91c6902541d0a21c9fded684e61",
+      "verdict": "accept_core",
+      "reason": "解药绑定当前刀口，选择不等于结算，也不确认目标好人。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_self_round-a",
+      "row_sha256": "eb7d692558df0a95d9577036be1d20aaad8c8b70b7c173227d6a07f529913590",
+      "verdict": "accept_core",
+      "reason": "首夜允许、次夜禁止自救，私有通知时间同步，未制造陈旧通知。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_self_round-b",
+      "row_sha256": "012972a3cada998465e1a4badadf23b0b4fa7fe1b05eba25757ea9704d0209d1",
+      "verdict": "accept_core",
+      "reason": "首夜允许、次夜禁止自救，私有通知时间同步，未制造陈旧通知。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_one_potion-a",
+      "row_sha256": "9d6027002aded60466c8a2f2829321c507c49a0a8c39b531c9c298ea3b03309e",
+      "verdict": "accept_core",
+      "reason": "本夜已用药分支不再毒；未用药分支按预定目标执行。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-witch_one_potion-b",
+      "row_sha256": "7d3c5d950492cbb18e5ed2f6fd014ceb7fb632c6776e0771baecb2b499d6befa",
+      "verdict": "accept_core",
+      "reason": "本夜已用药分支不再毒；未用药分支按预定目标执行。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-sheriff_registration-a",
+      "row_sha256": "fcca40de5effc49f16bba4e3602e71929ee5a181b4904f09a40f7a1073e6c0d8",
+      "verdict": "accept_core",
+      "reason": "报名后退水仍无警徽票；未报名者可投存活候选。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-sheriff_registration-b",
+      "row_sha256": "334183b1cef8ea5ac4e4aeb510f0296d4a1b919788bfc79e50071813a05d556b",
+      "verdict": "accept_core",
+      "reason": "报名后退水仍无警徽票；未报名者可投存活候选。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-vote_living_target-a",
+      "row_sha256": "03a3b2d2037e15332492988c85a7ce47eb5cad6be5b80411cb2177ad5a2cfbe8",
+      "verdict": "accept_core",
+      "reason": "死亡使投票非法，信息不足本身不使投票非法。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-vote_living_target-b",
+      "row_sha256": "252f8cf177e49294820ad176dfa5f19e3b41c4ebf44850bebbbb9fad81cb0a74",
+      "verdict": "accept_core",
+      "reason": "死亡使投票非法，信息不足本身不使投票非法。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-role_skill-a",
+      "row_sha256": "96084437697093af9fa10fb4f712e51c4bd29555661f30c093373c7cdc16a60a",
+      "verdict": "accept_core",
+      "reason": "角色不同导致技能权限不同，任务不授予平民查验。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-role_skill-b",
+      "row_sha256": "acf23fc341857ddaa68dd35a7a778048ad338d43bd6fd4e790e9c45a5db86316",
+      "verdict": "accept_core",
+      "reason": "角色不同导致技能权限不同，任务不授予平民查验。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-public_boundary-a",
+      "row_sha256": "82a1ae9fe0706ce9e6b4535ce6115cfee1c21fe371ba44663d43c9b7e4aee648",
+      "verdict": "accept_core",
+      "reason": "夜间技能请求与白天公布既有结果分离，未捏造11结果。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-public_boundary-b",
+      "row_sha256": "5f599b4e74f69bcfdab52a3e6951560e0516d78c0add7c87bafd167f556e5b3a",
+      "verdict": "accept_core",
+      "reason": "夜间技能请求与白天公布既有结果分离，未捏造11结果。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-victory_villagers-a",
+      "row_sha256": "c3339f5c6cba7fb0d4858d8b23b42859619c3822f4df7d3c644634a2d4d891ea",
+      "verdict": "accept_core",
+      "reason": "明确为假设构成，不向当前玩家注入底牌；人数持平与屠民分开。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-victory_villagers-b",
+      "row_sha256": "af27543e2c70050c9aa207bb0df3cc8610014d993eb5ecfe1f4e70251f92760f",
+      "verdict": "accept_core",
+      "reason": "明确为假设构成，不向当前玩家注入底牌；人数持平与屠民分开。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-victory_gods-a",
+      "row_sha256": "ddf8ead9ac4056120d9da62be6103374ca7f924ecc38ac4b6fe746c5c73573fc",
+      "verdict": "accept_core",
+      "reason": "明确为假设结算，无待处理猎枪；屠神无需清空平民。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-victory_gods-b",
+      "row_sha256": "5ca6f408735e24612cf3781489cb6c937a429f121ed729f10149ec38b9989d38",
+      "verdict": "accept_core",
+      "reason": "明确为假设结算，无待处理猎枪；屠神无需清空平民。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-victory_no_wolves-a",
+      "row_sha256": "b27f90541386e12b54628f11960823187acbc5f4b4c9ccca2fbd90cf69d785fe",
+      "verdict": "accept_core",
+      "reason": "仅在题设狼全灭时好人赢，未据假设宣告实际局面结束。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-rule-victory_no_wolves-b",
+      "row_sha256": "b5c15c4cde206f1701309beff40c9c3718599064b23574ff9d5e5580a58057c5",
+      "verdict": "accept_core",
+      "reason": "仅在题设狼全灭时好人赢，未据假设宣告实际局面结束。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-vote_revision-before",
+      "row_sha256": "d5b9e1ce29924846e336b18e38d6f684a1f4eb249cb0df4657abfa1740c2031a",
+      "verdict": "accept_core",
+      "reason": "追加补录后撤回无理由改票，下一步核对理由本身，不认证7好人。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-vote_revision-after",
+      "row_sha256": "e05f37610e2ec9b3d6ddbb6fc342775f78ac672b317efb99425e3fcd8944fc39",
+      "verdict": "accept_core",
+      "reason": "追加补录后撤回无理由改票，下一步核对理由本身，不认证7好人。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-silver_sources-before",
+      "row_sha256": "e144b1eb0347ac603834ae640874d9ef33d70665ac69ede156f2891ef7e6cc4d",
+      "verdict": "accept_core",
+      "reason": "玩家救援声称始终不升级成自己的私有通知；自刀可能仍保留。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-silver_sources-after",
+      "row_sha256": "9b07ba01a7af82785bbfd0c2d4f3d2f742b0ca491e7e1904941906beb3fd94ab",
+      "verdict": "accept_core",
+      "reason": "玩家救援声称始终不升级成自己的私有通知；自刀可能仍保留。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-check_plan-before",
+      "row_sha256": "5771cb61562fc63c0020f3a96440f3e99f7fae01630a6684913beae279e23502",
+      "verdict": "accept_core",
+      "reason": "前一条只有未来计划变化，后一条明确变更历史对象；不同可信度调整成立。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-check_plan-after",
+      "row_sha256": "b7c116d754af36deb7244b4ded1369276667160d5f5aa9e05095a74cfd6fde5d",
+      "verdict": "accept_core",
+      "reason": "前一条只有未来计划变化，后一条明确变更历史对象；不同可信度调整成立。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-dark_counts-before",
+      "row_sha256": "e61083ac2c278298738faf9f987c8da12ca896d4b3fdeb6ae31101c633a4afb4",
+      "verdict": "accept_core",
+      "reason": "暗牌出局与确定狼数分离，承认猜测后收紧结论不直接判7狼。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-dark_counts-after",
+      "row_sha256": "5b147e3204cdf10d9685505713555e5261aa013087c521df60adea34ec4e4e49",
+      "verdict": "accept_core",
+      "reason": "暗牌出局与确定狼数分离，承认猜测后收紧结论不直接判7狼。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-claim_conflict-before",
+      "row_sha256": "95e7939792ed97ea66a6395d96a45d03a38c6666d9d98dcfbff31cbbe226e961",
+      "verdict": "accept_core",
+      "reason": "一夜两查声称违反技能；否定该说法不自动认证另一预言家。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-claim_conflict-after",
+      "row_sha256": "169f75aea62a0029fa6f1faeab37caabed42a77e3662acbd3882016818286c25",
+      "verdict": "accept_core",
+      "reason": "一夜两查声称违反技能；否定该说法不自动认证另一预言家。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-reciprocal_votes-before",
+      "row_sha256": "2bf32ff6ccbdf3382c235f25b65fed572f9ef319f386e7b3722b4af95aecc133",
+      "verdict": "accept_core",
+      "reason": "新增共同优先目标说明削弱无解释同票嫌疑；同票不等于同阵营。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-reciprocal_votes-after",
+      "row_sha256": "bb6e3daa121375b9be4396a86a52f0ed23c4bc78d05b405608b334e948f316f6",
+      "verdict": "accept_core",
+      "reason": "新增共同优先目标说明削弱无解释同票嫌疑；同票不等于同阵营。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-seer_retarget-before",
+      "row_sha256": "bd5d50cf449884f42c5b538ac9e795eb9b6a076e5d704050b2653317cacb1de6",
+      "verdict": "accept_core",
+      "reason": "9出局使旧计划非法，改查已在旧计划中的5；既有7结果不变且夜间不公开。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-seer_retarget-after",
+      "row_sha256": "2ea5194f3b927288c943d55b85a2fe0c9a1a3ddd4b9c28a4df79a508fdca582b",
+      "verdict": "accept_core",
+      "reason": "9出局使旧计划非法，改查已在旧计划中的5；既有7结果不变且夜间不公开。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-collapse_cut-before",
+      "row_sha256": "2ee348cdbb81b3ebaf2c65eddfebf9ff350adc1fc6614a1ec9e07256208eb79d",
+      "verdict": "accept_core",
+      "reason": "私有队伍不改变；原文证实队友失信后切割有代价，不声称切割必洗白。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-collapse_cut-after",
+      "row_sha256": "bcbb8dd93b58e6b21d4aa23491762b779b9bc5d948c5ffc5cba633a67d6a91d6",
+      "verdict": "accept_core",
+      "reason": "私有队伍不改变；原文证实队友失信后切割有代价，不声称切割必洗白。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-cut_rebuttal-before",
+      "row_sha256": "6e862bb5867add87c50aae56a90d81939151d032522908c9b351d20dc375f1af",
+      "verdict": "accept_core",
+      "reason": "反证推翻切割理由，撤回历史误读，不因为知道队友是狼就编公开矛盾。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-cut_rebuttal-after",
+      "row_sha256": "e5500c6c8c9e980c67f1fea596738414d767d5b0a7778a26ac5c9056cd56e2ed",
+      "verdict": "accept_core",
+      "reason": "反证推翻切割理由，撤回历史误读，不因为知道队友是狼就编公开矛盾。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-pressure_revision-before",
+      "row_sha256": "1e9312e2cff93be0cc1baf256aaba648b3f77ce9e1400608801c740161377a35",
+      "verdict": "accept_core",
+      "reason": "5的时间线被澄清后转向11实际未答问题，没有虚构神职或保证抗推。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-pressure_revision-after",
+      "row_sha256": "6e4d739fdf28a1cbab7c9c0525bfe285ab70fa5ce158c07c510a527a6b4e8451",
+      "verdict": "accept_core",
+      "reason": "5的时间线被澄清后转向11实际未答问题，没有虚构神职或保证抗推。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-ally_support-before",
+      "row_sha256": "d48604f959f21085fcff95a9e05ecde05c3c7aaddd6b480ae02716a69cc4f71b",
+      "verdict": "accept_core",
+      "reason": "队友撤回声称使旧支持前提失效，警上必须回应，不假装无技能不能发言。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-ally_support-after",
+      "row_sha256": "0000a0c47b370fa1cc9133a3e88c3e18fd399fa3030cd2768520fbe732aa13a5",
+      "verdict": "accept_core",
+      "reason": "队友撤回声称使旧支持前提失效，警上必须回应，不假装无技能不能发言。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-public_defense-before",
+      "row_sha256": "052a1a7eaed300b6686e8766f194daac86ba643afa24048e754e609012d48e23",
+      "verdict": "accept_core",
+      "reason": "新增公开承认及反切割质疑后回应自己历史，公开无队伍名单。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-strategy-public_defense-after",
+      "row_sha256": "08ddbcbab015653065559bbd5568f4e667b819c83483ea259b6a4d1c61788028",
+      "verdict": "accept_core",
+      "reason": "新增公开承认及反切割质疑后回应自己历史，公开无队伍名单。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-guard_protect_claim",
+      "row_sha256": "72222b6ebf6b8beb210ef3fcbd83b5f14236c668dead6cb9db7c4cae33c31c54",
+      "verdict": "accept_core",
+      "reason": "主动改守不同的存活声称神职，身份仍不确定；不连守5。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-guard_empty_choice",
+      "row_sha256": "fe365d8d8c36b3c4ab9729f93563ac158e1a13d06123f1b8518928a3605540dd",
+      "verdict": "accept_core",
+      "reason": "无高确定目标时自守属于合法风险取舍，不宣称唯一最佳。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-witch_save_tradeoff",
+      "row_sha256": "9f08db0ac715af6bb66b1a2dcca9e134b77e0c710c3cef2f9296b95091eb7503",
+      "verdict": "accept_core",
+      "reason": "首夜当前刀口为自己，两药在但只自救，留毒有合理未来价值。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-witch_late_survival",
+      "row_sha256": "9ebb3bc1666ef219e1fe5b88fc2fe33f0f6effcc6f9a2afcc16137267e434db1",
+      "verdict": "accept_core",
+      "reason": "后夜不可自救；没有强毒人依据时不因将死乱毒。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-villager_night_boundary",
+      "row_sha256": "cb2f36137283578da1551e0af0eaee5fff1e50f420ae46e00da505540f224ac6",
+      "verdict": "accept_core",
+      "reason": "第三方要求不能授予平民技能，夜间pass无公开泄漏。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-hunter_public_boundary",
+      "row_sha256": "f158f94c1b80cf9f4f3c06a2e4997a2b68e4fd4f918dd2b246fcb34ece7c9705",
+      "verdict": "accept_core",
+      "reason": "存活白天发言不能开枪，直接回应并提出可核对问题。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-seer_conflict_choice",
+      "row_sha256": "34e9a487ef4c9f838d2adcc2b93142ddb8e5983c5dc0dbfceececd58cce0f0ee",
+      "verdict": "accept_core",
+      "reason": "从公开解释缺口自主选择未验目标，8旧查验为好人且未公开夜间操作。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-seer_dead_backup",
+      "row_sha256": "2c1970e25d90466e9175ea36ad7d7890060b29265926e9e4d2af365ff4dfa634",
+      "verdict": "accept_core",
+      "reason": "死亡公告否定原验人目标，从新争议中选择4，不把死亡当狼身份。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-vote_relation_priority",
+      "row_sha256": "75192ad5b0f13933e4cf8e362aa04c8e2c41acad466660f50e68d6b2c9849fa9",
+      "verdict": "accept_core",
+      "reason": "共同优先理由已在历史，不得遗漏它制造假关系矛盾。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-vote_relation_rebuttal",
+      "row_sha256": "124c03267550a96b6932c76001dbf8357277b4d3f53316e90b69ef6e8df85115",
+      "verdict": "accept_core",
+      "reason": "核对票表推翻旧同票假设，撤回但不认证不同阵营。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_exile_cost",
+      "row_sha256": "b059aa0863a5e95419152fb8951abcc4394ba1baeb0b693cf7d8d57789761f85",
+      "verdict": "accept_core",
+      "reason": "投失信队友有公开依据和真实团队成本，不将弃队友当自动最优。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_exile_cleared",
+      "row_sha256": "c6a417fe7554a435a5b12b63148a9aea6d8078be5d5ede25a8fcd3baa2cf1d0a",
+      "verdict": "accept_core",
+      "reason": "队友公开澄清与另一人未答形成合理差别，投票依据不泄露狼队。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_knife_claim",
+      "row_sha256": "8ae4d46b552302a3151e10b830090272effcd65580f6c578227e10aa071f4168",
+      "verdict": "accept_core",
+      "reason": "对可能信息源刀人而非查验，保留守救/假身份风险。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_knife_counter",
+      "row_sha256": "931a40ffbadb0548fcb2bece96876da040227570c68991e209f92c6536f31a36",
+      "verdict": "accept_core",
+      "reason": "刀潜在女巫是对声称守护的风险博弈，不将药量或守护当已知。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_speech_accountability",
+      "row_sha256": "e997f196e696651668ea67ef0488ca6e80edf4fbf4f5575543e772a0de72c152",
+      "verdict": "accept_core",
+      "reason": "新证据撤销旧维护理由，公开承认自己历史而不复读质询。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_teammate_exit",
+      "row_sha256": "f3ac6da8d2e30ed0924a177879b7606e87b7ea9abe323bd26a5d26bcd15c482e",
+      "verdict": "accept_core",
+      "reason": "名单与公开死亡相交才能知道队友全出局；轮次字段不是死亡。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-blind_village_vote",
+      "row_sha256": "31f245bcf221912c3524fbc01df8f21c4d5f65490cf503a67faf0ce357970d8a",
+      "verdict": "accept_core",
+      "reason": "在真实矛盾与已解释改判之间自主比较并投票，保留新解释改变决定的空间。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-blind_hunter_choice",
+      "row_sha256": "d21ea74a7185452b2d392f945ec4dcf90eed45e2e3c31a5503257fe6b9e88c50",
+      "verdict": "accept_core",
+      "reason": "有枪权不等于必须随机开枪，无可靠目标选择pass合法且有容错理由。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-blind_witch_restraint",
+      "row_sha256": "4e265602d9a6d8bc12dc9b1ef6296aeb73aa2f0311c09f35531599c36ce18710",
+      "verdict": "accept_core",
+      "reason": "短发言不足以支持毒人，留药而非虚构验人能力。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-blind_guard_risk",
+      "row_sha256": "5a82fade849ed7472db5c41d2b7c2589d30ee2a848e207aa19ebc8e44907eaf8",
+      "verdict": "accept_core",
+      "reason": "不能连守10，保护潜在女巫5是合法且承认不确定性的自主选择。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-sheriff_abstain",
+      "row_sha256": "9c20bfb1c66347afccd20b4d43444c6fccad04f3da13487becf27c0f98c4678c",
+      "verdict": "accept_core",
+      "reason": "已修正为第1轮警徽票，上警退水无票权，即便偏好明确仍pass。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-sheriff_informed_vote",
+      "row_sha256": "bb653b069a33ed5edd6b5af9f11b1e9ab86df1101cde2e7ea48223c96ebf526f",
+      "verdict": "accept_core",
+      "reason": "已修正为第1轮，未上警有票权；以可核回应比较存活候选。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-claim_death_verification",
+      "row_sha256": "35be3390cbdf7a82da17f057e8b1b63e8ae1e91901b92ec46b97a4b2881df46c",
+      "verdict": "accept_core",
+      "reason": "明确主持确认7仍存活，投票可执行；玩家死亡声称不覆盖公告。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-round_claim_uncertainty",
+      "row_sha256": "75bfc23ba02c387b1f68976a5c83881a38a5c616b0def5b6e48ed8a5daf108bf",
+      "verdict": "accept_core",
+      "reason": "纠正人数占优即赢的错误，不编造当局狼数。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_election_support",
+      "row_sha256": "f8e9ce75add5908dd12a2423ff33cbf3c60d902f9757daba385b3a0064de70b2",
+      "verdict": "accept_core",
+      "reason": "已修正为第1轮，9未报名可投6；公开理由独立于私有团队名单。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_endgame_vote",
+      "row_sha256": "728c73255ecb6ee4900be971d9a9ef1b00e34d29da5c5153d72e71b41773a80d",
+      "verdict": "accept_core",
+      "reason": "集中票是狼队策略；不知道神民构成不能宣布必胜，目标为非队友存活4。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_explain_abstention",
+      "row_sha256": "44403c6b107c0a910a13aa6317c15a9ace60de74f56a76922a441727f737a627",
+      "verdict": "accept_core",
+      "reason": "承认弃票历史，新增时间线使继续信息不足不再成立。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_knife_witch_claim",
+      "row_sha256": "4b34e821be2ace73086591fc97bdea3b9dde25a0c51fb56ed6c6ac12be9f68a2",
+      "verdict": "accept_core",
+      "reason": "撤回声称后重新估计目标价值，刀3而非编造7必是假神。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_public_claim_rebuttal",
+      "row_sha256": "91f896b7c281fe214a97693b5c4d88ac98e392e1198ec25b505bbe07df26906f",
+      "verdict": "accept_core",
+      "reason": "银水反驳基于普通公开逻辑，私有队伍不构成公开身份查验。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    },
+    {
+      "id": "v02-core-wolf_order_pressure",
+      "row_sha256": "c0e75b34213e4ba02defe0525b7f8b43f92082ef12b62a48898b0fecc3a142b9",
+      "verdict": "accept_core",
+      "reason": "当前发言顺序推翻照搬指控，合理维护但不把先发言当身份认证。",
+      "reviewer": "Codex model semantic review",
+      "not_expert_gold": true
+    }
+  ],
+  "superseded_components": {
+    "core_supplement_v0.1": [
+      {
+        "id": "v02-core-guard_protect_claim",
+        "row_sha256": "72222b6ebf6b8beb210ef3fcbd83b5f14236c668dead6cb9db7c4cae33c31c54",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-guard_empty_choice",
+        "row_sha256": "fe365d8d8c36b3c4ab9729f93563ac158e1a13d06123f1b8518928a3605540dd",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-witch_save_tradeoff",
+        "row_sha256": "9f08db0ac715af6bb66b1a2dcca9e134b77e0c710c3cef2f9296b95091eb7503",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-witch_late_survival",
+        "row_sha256": "9ebb3bc1666ef219e1fe5b88fc2fe33f0f6effcc6f9a2afcc16137267e434db1",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-villager_night_boundary",
+        "row_sha256": "cb2f36137283578da1551e0af0eaee5fff1e50f420ae46e00da505540f224ac6",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-hunter_public_boundary",
+        "row_sha256": "f158f94c1b80cf9f4f3c06a2e4997a2b68e4fd4f918dd2b246fcb34ece7c9705",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-seer_conflict_choice",
+        "row_sha256": "34e9a487ef4c9f838d2adcc2b93142ddb8e5983c5dc0dbfceececd58cce0f0ee",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-seer_dead_backup",
+        "row_sha256": "2c1970e25d90466e9175ea36ad7d7890060b29265926e9e4d2af365ff4dfa634",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-vote_relation_priority",
+        "row_sha256": "75192ad5b0f13933e4cf8e362aa04c8e2c41acad466660f50e68d6b2c9849fa9",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-vote_relation_rebuttal",
+        "row_sha256": "124c03267550a96b6932c76001dbf8357277b4d3f53316e90b69ef6e8df85115",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_exile_cost",
+        "row_sha256": "b059aa0863a5e95419152fb8951abcc4394ba1baeb0b693cf7d8d57789761f85",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_exile_cleared",
+        "row_sha256": "c6a417fe7554a435a5b12b63148a9aea6d8078be5d5ede25a8fcd3baa2cf1d0a",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_knife_claim",
+        "row_sha256": "8ae4d46b552302a3151e10b830090272effcd65580f6c578227e10aa071f4168",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_knife_counter",
+        "row_sha256": "931a40ffbadb0548fcb2bece96876da040227570c68991e209f92c6536f31a36",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_speech_accountability",
+        "row_sha256": "e997f196e696651668ea67ef0488ca6e80edf4fbf4f5575543e772a0de72c152",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_teammate_exit",
+        "row_sha256": "f3ac6da8d2e30ed0924a177879b7606e87b7ea9abe323bd26a5d26bcd15c482e",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-blind_village_vote",
+        "row_sha256": "31f245bcf221912c3524fbc01df8f21c4d5f65490cf503a67faf0ce357970d8a",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-blind_hunter_choice",
+        "row_sha256": "d21ea74a7185452b2d392f945ec4dcf90eed45e2e3c31a5503257fe6b9e88c50",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-blind_witch_restraint",
+        "row_sha256": "4e265602d9a6d8bc12dc9b1ef6296aeb73aa2f0311c09f35531599c36ce18710",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-blind_guard_risk",
+        "row_sha256": "5a82fade849ed7472db5c41d2b7c2589d30ee2a848e207aa19ebc8e44907eaf8",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-sheriff_abstain",
+        "row_sha256": "5cff4eef6958b1686b1704c1c14f051eb16488a4d7c39c4378cbfdf04dec56c1",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-sheriff_informed_vote",
+        "row_sha256": "09aeb57b9f242cb8380070f4eecc46b59ae226370a5b90859cd27415b1eff951",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-claim_death_verification",
+        "row_sha256": "35be3390cbdf7a82da17f057e8b1b63e8ae1e91901b92ec46b97a4b2881df46c",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-round_claim_uncertainty",
+        "row_sha256": "75bfc23ba02c387b1f68976a5c83881a38a5c616b0def5b6e48ed8a5daf108bf",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_election_support",
+        "row_sha256": "3ede63c331c3bd2b015b1743b95b9f1afc037854ff60a92f19135a9eda35765e",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_endgame_vote",
+        "row_sha256": "728c73255ecb6ee4900be971d9a9ef1b00e34d29da5c5153d72e71b41773a80d",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_explain_abstention",
+        "row_sha256": "44403c6b107c0a910a13aa6317c15a9ace60de74f56a76922a441727f737a627",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_knife_witch_claim",
+        "row_sha256": "4b34e821be2ace73086591fc97bdea3b9dde25a0c51fb56ed6c6ac12be9f68a2",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_public_claim_rebuttal",
+        "row_sha256": "91f896b7c281fe214a97693b5c4d88ac98e392e1198ec25b505bbe07df26906f",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      },
+      {
+        "id": "v02-core-wolf_order_pressure",
+        "row_sha256": "c0e75b34213e4ba02defe0525b7f8b43f92082ef12b62a48898b0fecc3a142b9",
+        "verdict": "superseded_not_admitted",
+        "reason": "组件v0.2取代；三条警徽投票第2轮错误已在新组件改为第1轮，其余内容复用。"
+      }
+    ]
+  }
+}

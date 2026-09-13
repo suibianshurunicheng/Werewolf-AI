@@ -1,0 +1,78 @@
+{
+  "version": "video_distilled_v0.1_evidence",
+  "source_sha256": {
+    "docs/video_review_policy.md": "7223af8e4ac2e0556c56b8aa5bf390cc2fe869708ab3f8085743a748a8ad1b15",
+    "reports/media/28287501902/review_v0.1.json": "b890e5afc48e34aec785e3590124749db8827cc6fbb9208a3ab903a5bbd70dba",
+    "reports/media/28287501902/review_v0.1.md": "e16c9366cc28478508b5ecf0152f5484aa02558829418f1961f8c05931c4fb09",
+    "reports/media/28287501902/review_v0.2.md": "f20d9863b2e593974422be54df0a5733c387dc183a9ba19553a7874235567497",
+    "reports/media/28287501902/review_v0.3.json": "49171593e7e55b6e49815a3b6cf4bb03b45375f76750bd365009a5953e3b644a",
+    "reports/media/28287501902/review_v0.3.md": "fd7f917a81812df66faa1f7affad760e458de7d5c50d794760655c650a80ee2e",
+    "reports/media/28287501902/asr_evidence_v0.1.json": "963f05d106957bb024acb0717da7bb620704e2bee7cd1cf86509991d8974ca58",
+    "reports/media/28287501902/asr_corrections_v0.1.json": "32dfec8cc4c14f10d875b4e245a1605c3a6a8c10636a4f6567e4a0267f0d7d6d",
+    "reports/media/28287501902/probe_v0.1.json": "48d5ceaaba95ef2370d384c71d5862ea7a203fe6b872369683e51ddf10af0ae5",
+    "reports/media/28287501902/probe_v0.2.json": "42c71b541cc83fc82ae0870d750665cb4580247f552eb8a73948ec0be73580ad",
+    "reports/media/28287501902/probe_v0.3.json": "0e88d5be6e0c2d77c517272dcc91d9d6a921cc52d84c279fe09087043f090a6f"
+  },
+  "source_stream_fingerprints_from_existing_probe": [
+    {
+      "source_relative_path": "28287501902/28287501902-1-100050.m4s",
+      "source_sha256": "52f1b9aa8b6127d94f6a9045c354ea973890bbf1e50ff7a2302ad15712cca35c",
+      "removed_prefix_bytes": 9,
+      "decoded_container": "cache/media/28287501902/28287501902-1-100050.mp4",
+      "decoded_container_sha256": "eeb1b8599f3ae4057e0b66ca0110c86e9ce304f9e17dd1dcc9cd6f021e3a3ab1",
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "duration_seconds": 1146.733
+        }
+      ]
+    },
+    {
+      "source_relative_path": "28287501902/28287501902-1-30280.m4s",
+      "source_sha256": "95f0410188f1e74eb1bf38fed74152db9c8157655fec7582ec104dbf11654140",
+      "removed_prefix_bytes": 9,
+      "decoded_container": "cache/media/28287501902/28287501902-1-30280.mp4",
+      "decoded_container_sha256": "c1b4fedb491f21d06d01e80d67ab698b8a0c91fcd82606d859912ab031d7f326",
+      "streams": [
+        {
+          "type": "audio",
+          "codec": "aac",
+          "duration_seconds": 1146.7426757369615
+        }
+      ]
+    }
+  ],
+  "source_files_rehashed_this_stage": false,
+  "frames_reinspected": [
+    {
+      "seconds": 10,
+      "path": "cache/media/28287501902/frame_0010.000.jpg",
+      "sha256": "0aeda487ff291f3ba19f121a173ef982572e01fc4d3bb66a24acbd0a3a912248",
+      "legacy_probe_match": true,
+      "viewed": true
+    },
+    {
+      "seconds": 30,
+      "path": "cache/media/28287501902/frame_0030.000.jpg",
+      "sha256": "9cd9d6569532d4b7ef33dd6a3cbfe0bfe56a0885e656be5f90fb923044feb326",
+      "legacy_probe_match": true,
+      "viewed": true
+    },
+    {
+      "seconds": 60,
+      "path": "cache/media/28287501902/frame_0060.000.jpg",
+      "sha256": "4225d93d303471ca86ad698fd3871e18b3ef72fcfdb2ccaa4560c5d4c5a1624e",
+      "legacy_probe_match": true,
+      "viewed": true
+    },
+    {
+      "seconds": 80,
+      "path": "cache/media/28287501902/frame_0080.000.jpg",
+      "sha256": "ec75d2664e4e1c6a169080a041ecb374d5c147bec9bb8fd83974f102a10b25db",
+      "legacy_probe_match": true,
+      "viewed": true
+    }
+  ],
+  "verification_boundary": "只复核保存的4帧和旧证据文档，不重新处理原音视频；原流哈希来自既有probe，未宣称本轮重算。"
+}

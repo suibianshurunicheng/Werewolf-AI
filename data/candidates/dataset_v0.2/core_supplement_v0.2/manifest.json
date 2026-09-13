@@ -1,0 +1,12 @@
+{
+  "dataset_version": "dataset_v0.2",
+  "files": {
+    "data/candidates/dataset_v0.2/core_supplement_v0.2/samples.jsonl": "4831787f796c74b0fa17ffb81194a9ecceac6b5c3d9a09bd5881a1336b3f9762"
+  },
+  "component": "core_supplement_v0.2",
+  "rows": 30,
+  "ready_for_training": false,
+  "source": "original_synthetic",
+  "supersedes": "core_supplement_v0.1",
+  "notes": "Review corrected three sheriff-vote round fields to day one; previous candidate remains immutable and excluded. Independent core situations, not video or expert Gold."
+}

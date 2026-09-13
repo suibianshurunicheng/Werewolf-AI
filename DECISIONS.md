@@ -171,3 +171,15 @@
 ## v0.2-core与视频池隔离（2026-09-13）
 
 用户固定dataset_v0.2为v0.1定向修复实验；视频仅进入data/candidates/video_distilled_v0.1/，禁止提前合并。沿当前覆盖缺口补齐并逐条审核core，冻结messages/Tokenizer长度/训练配置，commit后正式QLoRA，同v0.1协议比较。v0.3须等待v0.2比较且没有明显退化；具体门禁见docs/data_version_policy.md。
+
+## v0.2-core完整冻结与训练前检查（2026-09-13）
+
+- 最终86条/50族：42规则、22策略、22战术；stage train/val为32/10、17/5、21/1。覆盖11项能力两侧均非空；存在覆盖不等于大样本充分，Tactics验证1例尤其有限。
+- 补充30条自主决策，固定任务不提示答案目标。初版三条警徽投票误标第2轮，语义审核发现后新建core_supplement_v0.2修正为第1轮，保留旧v0.1及逐条superseded记录，不改变原56条快照。
+- 86条准入均保存原始行SHA与具体审核理由，审核为本模型语义审核，不假称独立人工。视频候选池4片段未通过Critic，SFT入库0；组装只允许三个命名core组件，禁止候选目录通配合并及视频来源。
+- 训练消息另版classic_core_sft_v0.2，只给Classic字段及合法动作词，保持8字段答案。旧评测仍使用已冻结共用Prompt，避免改变比较协议；因此实验包含定向数据与训练呈现格式变化，不能将结果归因于单一因素。
+- 实际Tokenizer长度规则525～635、策略571～731、战术653～791，全部1024内零过滤。check_core_ready保存完整配置、数据manifest哈希、同Base协议指纹及各阶段编码/dry-run计划。
+- 保持既定Base/revision与NF4、r8/alpha16、累积16、1epoch、5e-5配置，从Base新建outputs/classic_v02，不从旧Adapter继续。每阶段2步、warmup1，总6步，是小规模定向修复实验；不以Loss或步数包装高手能力。
+- 训练前保存commit；各阶段真实训练后导出日志、配置、step/epoch、最优checkpoint和Adapter SHA，提交再评测。Benchmark与v0.1完全同协议同评分；预先固定v0.3门禁，不观察成绩后改阈值。
+
+- 冻结前完整85项测试通过，9条既有PEFT夹具警告；完整v0.2的16个文件实际重跑SHA/mtime不变，v0.1的19文件SHA通过。详细报告reports/v02_preflight_tests.json。

@@ -1,0 +1,11 @@
+{
+  "dataset_version": "dataset_v0.2",
+  "files": {
+    "data/candidates/dataset_v0.2/core_supplement_v0.1/samples.jsonl": "69442fc5660a6eb1f6c041fd08d1f5dc7be47606a310605589c8c2885b14c331"
+  },
+  "component": "core_supplement_v0.1",
+  "rows": 30,
+  "ready_for_training": false,
+  "source": "original_synthetic",
+  "notes": "Independent core repair situations; authored review is separate, not video or expert Gold."
+}

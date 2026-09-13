@@ -1,0 +1,123 @@
+{
+  "id": "28287501902-M01",
+  "record_version": "reconstruction_v0.1",
+  "status": "PARTIAL_SOURCE_RECONSTRUCTION_AND_ABSTRACTION_NOT_TRAINING_SAMPLE",
+  "category": "TRANSFERABLE",
+  "source_grade": "B",
+  "reviewer": "model_review",
+  "human_reviewed": false,
+  "critic_passed": false,
+  "admitted_to_sft": false,
+  "source_scene": {
+    "decision_phase": "首日3号发言",
+    "observed_response_frame_seconds": [
+      60,
+      80
+    ],
+    "exact_turn_start_end": "unknown",
+    "available_before_observed_response": [
+      {
+        "id": "M01-E01",
+        "source_frame_seconds": 10,
+        "speaker": 1,
+        "type": "public_claim",
+        "content_summary": "1号自称预言家，称首夜查杀2号，要求放逐2号。",
+        "identity_truth": "unverified"
+      },
+      {
+        "id": "M01-E02",
+        "source_frame_seconds": 30,
+        "speaker": 2,
+        "type": "public_claim",
+        "content_summary": "2号对跳预言家，称首夜查6号为好人，要求放逐1号。",
+        "identity_truth": "unverified"
+      }
+    ],
+    "own_role_basis": "3号当轮公开自述村民，与画面视角标签一致；缺少后台原始Prompt，暂不认证原局完整私有状态",
+    "source_response_summary": "3号暂站1号，同时保留后续反转再调整；其支持依据包含前置位风险、情绪与对6号的过强好人判断。",
+    "summary_is_verbatim_transcript": false
+  },
+  "legal_view_boundary": {
+    "known_public_claims": [
+      "M01-E01",
+      "M01-E02"
+    ],
+    "unknown": [
+      "1号是否真预言家",
+      "2号是否真预言家",
+      "6号真实身份",
+      "原后台Prompt",
+      "完整公开历史是否有剪辑遗漏",
+      "全部房规"
+    ],
+    "explicitly_excluded": [
+      "840/900秒赛后身份表",
+      "后续放逐票型及死亡结果",
+      "其他玩家私密验人及夜间选择",
+      "60/80秒3号本人的答案不能倒放成自身决策前输入"
+    ],
+    "complete_original_player_view_verified": false
+  },
+  "strategy_quality": {
+    "retain": "有限证据下给出可撤回的判断，并保留其他解释。",
+    "reject": [
+      "发言早本身不能证真预言家",
+      "情绪激动本身不能证身份",
+      "疑似假预言家的金水不能自动成为高确定性好人"
+    ],
+    "dynamic_change_observed": false,
+    "no_outcome_evidence_used": true,
+    "gold_priority": "B级局部候选；没有足够证据证明高手操作，不占S/A名额"
+  },
+  "mechanism_stripping": {
+    "original_play": "双预言家对跳时暂站一边，并称后面有反转会调整。",
+    "special_mechanism_dependencies": "保留修正空间不依赖9人专属技能；警徽流、9人狼比例、女巫和猎人具体技能均不是此局部策略的必要条件。",
+    "remove": [
+      "9人身份配额与概率先验",
+      "警徽流暗示的未确认警长机制",
+      "未确认用药和开枪房规",
+      "原发言缺乏证据的身份确定性"
+    ],
+    "core_strategy": "将身份主张与事实分开，暂定判断需要可检验依据，说明可能推翻当前判断的公开证据，并在证据到来后重评。",
+    "does_logic_survive_without_special_skills": true,
+    "conditions": [
+      "可获得后续合法公开证据",
+      "暂定立场仍须给依据，不能以可调整掩盖拍脑袋",
+      "本素材仅观察“准备调整”，未观察实际完成调整"
+    ]
+  },
+  "classic_adaptation_proposal": {
+    "allowed": true,
+    "status": "BLUEPRINT_ONLY_NOT_SFT",
+    "source_kind_if_created": "CLASSIC_ADAPTED",
+    "proposed_board": "classic_12 / ww-v1.0",
+    "proposed_player_role": "villager",
+    "inherit_from_source": [
+      "对跳仅是公开主张",
+      "保留相反解释的思想"
+    ],
+    "must_be_new_synthetic_assumptions": [
+      "12人合法开局与自身角色",
+      "其他座位公开历史如需补足必须显式标合成",
+      "有实际改判样本时，后续证据必须新增为合成情境而非伪称视频发生"
+    ],
+    "requirements": [
+      "最终输入/答案删除视频9人配额、特殊房规与观众标签",
+      "不给双方真实身份",
+      "不强行保留站1号的结论",
+      "不能把纯证据不足局面当优秀站边答案",
+      "不使用原ASR或原话充当SFT答案"
+    ]
+  },
+  "critic_handoff": {
+    "status": "PENDING_NOT_REVIEWED",
+    "questions": [
+      "新增经典局面是否自然形成暂定判断依据？",
+      "候选是否误将观点“会调整”宣传为实际动态改判？",
+      "所有真值是否来自该时刻合法视角？",
+      "是否残留原视频低质量金水推断？",
+      "B级局部是否值得占正向样本，而不是仅作对比拒绝项？"
+    ]
+  },
+  "next_action": "在视频支线独立重构一个有明确证据边界的经典候选，再做 Critic；在完成前不生成 messages，不进入 v0.2。"
+}

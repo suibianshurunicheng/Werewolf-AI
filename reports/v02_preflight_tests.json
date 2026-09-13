@@ -1,0 +1,12 @@
+{
+  "complete_suite": {
+    "passed": 85,
+    "warnings": 9,
+    "seconds": null
+  },
+  "core_targeted_tests": "4 passed",
+  "core_snapshot_reused_files": 16,
+  "old_v01_verified_files": 19,
+  "video_pool_integrity": "11 documents and 4 local frame hashes passed; training admission false",
+  "note": "No benchmark or formal QLoRA executed in this preflight; model semantic review is not independent expert certification."
+}

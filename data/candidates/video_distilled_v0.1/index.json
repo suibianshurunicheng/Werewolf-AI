@@ -1,0 +1,248 @@
+{
+  "version": "video_distilled_v0.1",
+  "status": "ISOLATED_REVIEW_POOL_NOT_SFT",
+  "dataset_v02_admission": false,
+  "board": {
+    "total_players": 9,
+    "roster_summary": "3狼人、3村民、预言家、女巫、猎人；未见守卫",
+    "roster_evidence": "840/900秒赛后阵容仅用于素材审核，不进入此前玩家视角",
+    "complete_rules_status": "BOARD_UNKNOWN",
+    "third_party": "未见，未独立取得完整规则",
+    "sheriff": "unknown；警徽流用词不能单独证明警长机制",
+    "special_mechanisms": "unknown",
+    "victory_conditions": "unknown",
+    "house_rules": [
+      "女巫自救",
+      "同夜双药",
+      "死亡身份公开",
+      "猎人开枪裁决",
+      "遗言规则均待核"
+    ]
+  },
+  "coverage": {
+    "full_audio_processed": true,
+    "full_transcript_verified": false,
+    "full_video_reviewed": false,
+    "existing_reviewed_frame_count": 37,
+    "frames_reinspected_this_stage": [
+      10,
+      30,
+      60,
+      80
+    ],
+    "new_frames_extracted": 0,
+    "new_asr_chunks": 0,
+    "other_videos_reviewed_this_stage": 0
+  },
+  "counts": {
+    "CLASSIC_GOLD": 0,
+    "TRANSFERABLE": 3,
+    "BOARD_SPECIFIC": 0,
+    "LOW_QUALITY": 1,
+    "Negative_candidates_subset": 1,
+    "critic_passed": 0,
+    "classic_adapted_samples": 0,
+    "admitted_gold": 0
+  },
+  "clips": [
+    {
+      "video_id": "28287501902",
+      "bvid": "BV1p4N5eJEtL",
+      "admitted_to_sft": false,
+      "admitted_to_gold": false,
+      "critic_status": "PENDING",
+      "reviewer": "model_review",
+      "classification_scope": "partial_clip_only",
+      "id": "28287501902-M01",
+      "legacy_clip_id": "M01",
+      "category": "TRANSFERABLE",
+      "grade": "B",
+      "player_seat": 3,
+      "source_role": "村民：公开自述与视角标签一致，后台身份输入未取得",
+      "evidence_seconds": [
+        10,
+        30,
+        60,
+        80
+      ],
+      "full_clip_boundaries_verified": false,
+      "tactical_tags": [
+        "uncertainty_management",
+        "evidence_update_readiness"
+      ],
+      "record": "M01_reconstruction_v0.1.json",
+      "review_notes": [
+        "未观察实际新证据后的改判，不标 adaptive_strategy",
+        "原发言先置位风险及情绪依据不足",
+        "不能把2号报6金水直接视为6号大概率好人"
+      ],
+      "negative_candidate": false,
+      "future_board_specific": false,
+      "positive_candidate": true,
+      "classic_adaptation_status": "NOT_GENERATED",
+      "pipeline": {
+        "source_index": "COMPLETE",
+        "legal_view_reconstruction": "PARTIAL",
+        "strategy_quality": "MODEL_PARTIAL_REVIEW_B",
+        "mechanism_stripping": "DOCUMENTED_LIMITED_CORE",
+        "abstraction": "DOCUMENTED",
+        "classic_rewrite": "PENDING",
+        "critic": "PENDING",
+        "candidate_training_sample": "NOT_GENERATED"
+      }
+    },
+    {
+      "video_id": "28287501902",
+      "bvid": "BV1p4N5eJEtL",
+      "admitted_to_sft": false,
+      "admitted_to_gold": false,
+      "critic_status": "PENDING",
+      "reviewer": "model_review",
+      "classification_scope": "partial_clip_only",
+      "id": "28287501902-M02",
+      "legacy_clip_id": "M02",
+      "category": "TRANSFERABLE",
+      "grade": "B",
+      "player_seat": 4,
+      "source_role": "狼人：赛后核对，不复制赛后全身份表为其当时私有输入",
+      "evidence_seconds": [
+        120,
+        360,
+        370,
+        620
+      ],
+      "full_clip_boundaries_verified": false,
+      "tactical_tags": [
+        "team_cutting",
+        "identity_management"
+      ],
+      "record": null,
+      "review_notes": [
+        "首日完整公开票表已由 review_v0.2 核对；8投1，可供次日620秒使用",
+        "710/730秒次日投8结果发生在620秒后，禁止注入其当时输入",
+        "狼队私聊、原Prompt、决策前资源未完整核对，dynamic_replanning 尚未确认"
+      ],
+      "negative_candidate": false,
+      "future_board_specific": false,
+      "positive_candidate": true,
+      "classic_adaptation_status": "NOT_GENERATED",
+      "pipeline": {
+        "source_index": "COMPLETE",
+        "legal_view_reconstruction": "PENDING",
+        "strategy_quality": "MODEL_PARTIAL_REVIEW_B",
+        "mechanism_stripping": "LEGACY_PROPOSAL_ONLY",
+        "abstraction": "LEGACY_PROPOSAL_ONLY",
+        "classic_rewrite": "PENDING",
+        "critic": "PENDING",
+        "candidate_training_sample": "NOT_GENERATED"
+      }
+    },
+    {
+      "video_id": "28287501902",
+      "bvid": "BV1p4N5eJEtL",
+      "admitted_to_sft": false,
+      "admitted_to_gold": false,
+      "critic_status": "PENDING",
+      "reviewer": "model_review",
+      "classification_scope": "partial_clip_only",
+      "id": "28287501902-M03",
+      "legacy_clip_id": "M03",
+      "category": "TRANSFERABLE",
+      "grade": "B",
+      "player_seat": 7,
+      "source_role": "猎人：赛后核对；仅提取公开推理，不补开枪状态",
+      "evidence_seconds": [
+        120,
+        300,
+        480
+      ],
+      "full_clip_boundaries_verified": false,
+      "tactical_tags": [
+        "counter_strategy",
+        "anti_bussing"
+      ],
+      "record": null,
+      "review_notes": [
+        "遗言点名仍是主张，不是裁判验人",
+        "不能用单次站对边直接排除倒钩",
+        "泛化毒人建议无轮次容错计算，排除正向答案"
+      ],
+      "negative_candidate": false,
+      "future_board_specific": false,
+      "positive_candidate": true,
+      "classic_adaptation_status": "NOT_GENERATED",
+      "pipeline": {
+        "source_index": "COMPLETE",
+        "legal_view_reconstruction": "PENDING",
+        "strategy_quality": "MODEL_PARTIAL_REVIEW_B",
+        "mechanism_stripping": "LEGACY_PROPOSAL_ONLY",
+        "abstraction": "LEGACY_PROPOSAL_ONLY",
+        "classic_rewrite": "PENDING",
+        "critic": "PENDING",
+        "candidate_training_sample": "NOT_GENERATED"
+      }
+    },
+    {
+      "video_id": "28287501902",
+      "bvid": "BV1p4N5eJEtL",
+      "admitted_to_sft": false,
+      "admitted_to_gold": false,
+      "critic_status": "PENDING",
+      "reviewer": "model_review",
+      "classification_scope": "partial_clip_only",
+      "id": "28287501902-M04",
+      "legacy_clip_id": "M04",
+      "category": "LOW_QUALITY",
+      "grade": "D",
+      "player_seat": null,
+      "source_role": "赛后复盘模型，不是当轮玩家",
+      "evidence_seconds": [
+        785,
+        833,
+        840
+      ],
+      "full_clip_boundaries_verified": false,
+      "tactical_tags": [
+        "internal_contradiction",
+        "outcome_bias"
+      ],
+      "record": null,
+      "review_notes": [
+        "仅保留复盘一致性错误的 Negative/Preference rejected 候选",
+        "夜间自述与复盘冲突不能把任一材料直接当完整裁判日志",
+        "不新建 M05：749秒附近 ASR 漏掉2/8已出局，不能由此评价玩家不知道队友死亡"
+      ],
+      "negative_candidate": true,
+      "future_board_specific": false,
+      "positive_candidate": false,
+      "classic_adaptation_status": "NOT_GENERATED",
+      "pipeline": {
+        "source_index": "COMPLETE",
+        "legal_view_reconstruction": "PENDING",
+        "strategy_quality": "MODEL_ERROR_REVIEW_D",
+        "mechanism_stripping": "NOT_APPLICABLE_NEGATIVE",
+        "abstraction": "LEGACY_PROPOSAL_ONLY",
+        "classic_rewrite": "NOT_POSITIVE_SFT",
+        "critic": "PENDING",
+        "candidate_training_sample": "NOT_GENERATED"
+      }
+    }
+  ],
+  "recommended_gold": [],
+  "recommended_classic_rewrite": [
+    "28287501902-M01:仅保留修正空间局部",
+    "28287501902-M02:补齐私有视角后",
+    "28287501902-M03:仅反倒钩局部"
+  ],
+  "future_board_specific": [],
+  "discard_positive_parts": [
+    "M01:未经核验的金水高好人面论证",
+    "M03:泛化毒人建议",
+    "M04:原复盘答案"
+  ],
+  "release_gate": [
+    "v0.2 正式训练和同协议 Benchmark 完成且至少没有继续明显退化",
+    "候选自身完成合法视角重建、质量审核、机制剥离、经典化和 Critic",
+    "另建 dataset_v0.3，并比较 v0.1 vs v0.2 vs v0.3-video；永不追加入已冻结 v0.2"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": "video_distilled_v0.1_checkpoint_1",
+  "status": "ISOLATED_REVIEW_ONLY",
+  "training_admission": false,
+  "files_sha256": {
+    "data/candidates/video_distilled_v0.1/evidence_manifest.json": "b16e8f0012ca0aa23a171a27a4f3f0be9ace1181b3bd5323221744bb0981d0cf",
+    "data/candidates/video_distilled_v0.1/index.json": "a4eb316fe73d818a40357f1fce6aebb57502b6b5a425097fabc699ae4f5273e8",
+    "data/candidates/video_distilled_v0.1/M01_reconstruction_v0.1.json": "0c4927188ae5a38d3406df42f569b41d443d19878eac61e1514268c8b6025eb3",
+    "data/candidates/video_distilled_v0.1/README.md": "97fe4e08613ba86d49e87110bb438207bca651282961ae325308854fd138adec",
+    "data/candidates/video_distilled_v0.1/verify_pool.py": "b98ee16383d5e995423fc12bd3754d9ca1e29ac206b3ed4fb987e4872a91cd56"
+  }
+}

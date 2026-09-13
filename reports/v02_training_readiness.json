@@ -1,0 +1,228 @@
+{
+  "status": "ready_for_formal_training",
+  "config": {
+    "project": "Werewolf-3.5B-Classic",
+    "model": {
+      "name": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision_manifest": "reports/models/Qwen3-4B-Instruct-2507.json",
+      "trust_remote_code": false
+    },
+    "data": {
+      "version": "dataset_v0.2",
+      "root": "data/prepared/dataset_v0.2",
+      "board": "classic_12",
+      "max_length": 1024,
+      "packing": false,
+      "overlength": "reject"
+    },
+    "quantization": {
+      "enabled": true,
+      "type": "nf4",
+      "double_quant": true,
+      "compute_dtype": "auto"
+    },
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "training": {
+      "seed": 42,
+      "batch_size": 1,
+      "gradient_accumulation_steps": 16,
+      "gradient_checkpointing": true,
+      "epochs": 1,
+      "learning_rate": 5e-05,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "optimizer": "paged_adamw_8bit",
+      "save_steps": 1,
+      "logging_steps": 1,
+      "save_total_limit": 3,
+      "max_steps": -1,
+      "output_root": "outputs/classic_v02",
+      "cpu_offload": false
+    },
+    "inference": {
+      "max_input_tokens": 2048,
+      "max_new_tokens": 768,
+      "do_sample": false,
+      "use_cache": true
+    },
+    "evaluation": {
+      "suites": [
+        "rules",
+        "strategy",
+        "counterfactual",
+        "blind"
+      ],
+      "benchmark_version": "classic_benchmark_v0.1",
+      "baseline_dir": "reports/runs/base_primary"
+    }
+  },
+  "config_sha256": "1d417ce9fbd0ff518de97b4cfc2c1c61deadf9926afbb9f80c4029b72e0acdcc",
+  "dataset_manifest_sha256": "494f518b4cfbfa072b113f99d42f5470d2fb1a16fd33d7c6ef68327137dcf6aa",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+  "initial_adapter": null,
+  "stages": {
+    "rules": {
+      "version": "dataset_v0.2",
+      "train_hash": "3f5abe66644b2cca9eaacfd23c4f5769f8b4602a8f515acf2d151038b77a4174",
+      "validation_hash": "b4cd9858726ccc3f3f6968889daf2cadfe6cc2c5eb0ae35cdde58b5727559a45",
+      "train_rows": 32,
+      "validation_rows": 10,
+      "dropped_train": [],
+      "dropped_validation": [],
+      "train_lengths": [
+        541,
+        553,
+        547,
+        541,
+        564,
+        555,
+        558,
+        571,
+        601,
+        601,
+        546,
+        548,
+        551,
+        556,
+        528,
+        532,
+        589,
+        618,
+        627,
+        635,
+        611,
+        619,
+        579,
+        591,
+        563,
+        556,
+        597,
+        600,
+        525,
+        561,
+        547,
+        561
+      ],
+      "min_tokens": 525,
+      "max_tokens": 635,
+      "validation_lengths": [
+        569,
+        545,
+        546,
+        549,
+        578,
+        562,
+        538,
+        533,
+        573,
+        561
+      ],
+      "effective_schedule": {
+        "optimizer_steps": 2,
+        "warmup_steps": 1,
+        "requested_warmup_ratio": 0.05
+      }
+    },
+    "strategy": {
+      "version": "dataset_v0.2",
+      "train_hash": "30e3ecab10770af380b71ce6b57a074dae11bcd5ec302b7bd5aff95bb98b6f0d",
+      "validation_hash": "fd804232e337a1838772c0fb23d73f6b4aa11ead8c2609d4c8b414bfbdb1693f",
+      "train_rows": 17,
+      "validation_rows": 5,
+      "dropped_train": [],
+      "dropped_validation": [],
+      "train_lengths": [
+        622,
+        683,
+        596,
+        664,
+        677,
+        731,
+        686,
+        720,
+        604,
+        655,
+        592,
+        595,
+        571,
+        619,
+        606,
+        588,
+        582
+      ],
+      "min_tokens": 571,
+      "max_tokens": 731,
+      "validation_lengths": [
+        607,
+        678,
+        593,
+        635,
+        598
+      ],
+      "effective_schedule": {
+        "optimizer_steps": 2,
+        "warmup_steps": 1,
+        "requested_warmup_ratio": 0.05
+      }
+    },
+    "tactics": {
+      "version": "dataset_v0.2",
+      "train_hash": "f30b2d8cffa64c60cdbf0cca654149af69230a29d4693ac16b49d3882688c200",
+      "validation_hash": "2dcbc7e99b1bb55cca52cf4517f279069d44b5d757cffa7074aeab776b246c61",
+      "train_rows": 21,
+      "validation_rows": 1,
+      "dropped_train": [],
+      "dropped_validation": [],
+      "train_lengths": [
+        722,
+        791,
+        689,
+        744,
+        710,
+        760,
+        702,
+        761,
+        683,
+        751,
+        705,
+        696,
+        672,
+        671,
+        695,
+        659,
+        687,
+        673,
+        706,
+        653,
+        692
+      ],
+      "min_tokens": 653,
+      "max_tokens": 791,
+      "validation_lengths": [
+        725
+      ],
+      "effective_schedule": {
+        "optimizer_steps": 2,
+        "warmup_steps": 1,
+        "requested_warmup_ratio": 0.05
+      }
+    }
+  },
+  "video_rows": 0,
+  "notes": "Real pinned tokenizer and baseline protocol verified; no truncation or filtering. Starting from Base. Requires Git commit before formal training. Does not establish model quality."
+}
