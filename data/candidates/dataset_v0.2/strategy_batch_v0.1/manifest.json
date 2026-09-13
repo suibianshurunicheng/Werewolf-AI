@@ -1,0 +1,46 @@
+{
+  "dataset_version": "dataset_v0.2",
+  "files": {
+    "data/candidates/dataset_v0.2/strategy_batch_v0.1/pairs.json": "b16780c698e9d57f02090ab7082d4f966e98a71d343308da53d23e5a914b9031",
+    "data/candidates/dataset_v0.2/strategy_batch_v0.1/samples.jsonl": "73ef118ae2f7f77f67c2864491afee48db4d0d7287d57c9084143a7f97252875",
+    "data/candidates/dataset_v0.2/strategy_batch_v0.1/train.jsonl": "3988410b7117a04a21c3626b708f133d93cd1158bd6ef0cb1b4f04e3fe50d153",
+    "data/candidates/dataset_v0.2/strategy_batch_v0.1/validation.jsonl": "b04f6707a0ef799856d6a49608f60bcc100c622181f6f7da9d9c600fe533046a"
+  },
+  "component": "strategy_batch_v0.1",
+  "status": "candidate_component_frozen",
+  "ready_for_training": false,
+  "source": "original_synthetic",
+  "human_reviewed": false,
+  "rows": 24,
+  "pairs": 12,
+  "families": 10,
+  "train_rows": 20,
+  "validation_rows": 4,
+  "stage_counts": {
+    "strategy": 14,
+    "tactics": 10
+  },
+  "split_families": {
+    "train": [
+      "v02-strategy-claim_consistency",
+      "v02-strategy-claim_sources",
+      "v02-strategy-past_vs_plan",
+      "v02-strategy-uncertain_counts",
+      "v02-strategy-vote_reason",
+      "v02-strategy-wolf_binding",
+      "v02-strategy-wolf_role_coordination",
+      "v02-strategy-wolf_targets"
+    ],
+    "validation": [
+      "v02-strategy-legal_plan_update",
+      "v02-strategy-relationship_votes"
+    ]
+  },
+  "protected_manifest_sha256": {
+    "data/versions/dataset_v0.1.json": "14f9f757381f4f666137a1b6e93df3a924effcf7f2834282a4e80c04dfb15a73",
+    "data/candidates/dataset_v0.2/rules_batch_v0.1/manifest.json": "28ef7ef12b2c27cc07303d8b3af048e17cfbb955a13083d2e18149951930807a"
+  },
+  "protected_files_verified": 23,
+  "diagnostic_source_sha256": "061963e9e07c7856aec19e13b716f72eaf3ce61d2f4b914fd6086591f760fba3",
+  "notes": "Original synthetic candidate, not video Gold or a complete training snapshot. No messages, tokenizer pass, independent review or training yet. Pair siblings stay in the same scenario family."
+}

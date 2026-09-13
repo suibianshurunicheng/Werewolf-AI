@@ -1,0 +1,171 @@
+[
+  {
+    "id": "vote_revision",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-vote_revision-before",
+      "v02-strategy-vote_revision-after"
+    ],
+    "scenario_id": "v02-strategy-vote_reason",
+    "decision_shift": "新增时间线证据使原质疑失效；撤回质疑不等于认证身份",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e3"
+  },
+  {
+    "id": "silver_sources",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-silver_sources-before",
+      "v02-strategy-silver_sources-after"
+    ],
+    "scenario_id": "v02-strategy-claim_sources",
+    "decision_shift": "支持来源增加但仍是玩家声称，不能升级为自己的技能事实",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "check_plan",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-check_plan-before",
+      "v02-strategy-check_plan-after"
+    ],
+    "scenario_id": "v02-strategy-past_vs_plan",
+    "decision_shift": "区分可变未来计划和不可用计划变化解释的历史结果矛盾",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e4"
+  },
+  {
+    "id": "dark_counts",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-dark_counts-before",
+      "v02-strategy-dark_counts-after"
+    ],
+    "scenario_id": "v02-strategy-uncertain_counts",
+    "decision_shift": "暗牌死亡不能当作确认狼数，新增承认只推测后收紧轮次表述",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e5"
+  },
+  {
+    "id": "claim_conflict",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-claim_conflict-before",
+      "v02-strategy-claim_conflict-after"
+    ],
+    "scenario_id": "v02-strategy-claim_consistency",
+    "decision_shift": "声称出现可定位规则矛盾后更新可信度，避免二选一假设",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "reciprocal_votes",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-reciprocal_votes-before",
+      "v02-strategy-reciprocal_votes-after"
+    ],
+    "scenario_id": "v02-strategy-relationship_votes",
+    "decision_shift": "团队关系判断随真实投票理由更新，不能用同票直接锁双狼",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "seer_retarget",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-seer_retarget-before",
+      "v02-strategy-seer_retarget-after"
+    ],
+    "scenario_id": "v02-strategy-legal_plan_update",
+    "decision_shift": "新死亡证据使原目标非法，改为既定合法备选而不改写历史查验",
+    "changed_paths": [
+      "public_info.alive",
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "collapse_cut",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-collapse_cut-before",
+      "v02-strategy-collapse_cut-after"
+    ],
+    "scenario_id": "v02-strategy-wolf_binding",
+    "decision_shift": "队友失信后由有限保护转为公开切割，承担历史立场和被识别风险",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e3"
+  },
+  {
+    "id": "cut_rebuttal",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-cut_rebuttal-before",
+      "v02-strategy-cut_rebuttal-after"
+    ],
+    "scenario_id": "v02-strategy-wolf_binding",
+    "decision_shift": "狼踩狼也必须回应反证，不能为了切割强留已失效理由",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "pressure_revision",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-pressure_revision-before",
+      "v02-strategy-pressure_revision-after"
+    ],
+    "scenario_id": "v02-strategy-wolf_targets",
+    "decision_shift": "攻击目标根据反证改变，利用真实待解释行为而不捏造罪名",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "ally_support",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-ally_support-before",
+      "v02-strategy-ally_support-after"
+    ],
+    "scenario_id": "v02-strategy-wolf_role_coordination",
+    "decision_shift": "队友身份声称变化后重新协调公开打法，当前发言阶段仍必须回应",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  },
+  {
+    "id": "public_defense",
+    "kind": "sequential_public_update",
+    "members": [
+      "v02-strategy-public_defense-before",
+      "v02-strategy-public_defense-after"
+    ],
+    "scenario_id": "v02-strategy-wolf_binding",
+    "decision_shift": "对手识别切割后调整辩护，承认历史而非声称切割即好人",
+    "changed_paths": [
+      "public_info.events"
+    ],
+    "latest_evidence": "e2"
+  }
+]

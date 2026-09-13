@@ -14,10 +14,18 @@ from werewolf_sft.validation import validate_dataset, assert_disjoint
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--version", default="dataset_v0.1", choices=["dataset_v0.1", "dataset_v0.2"])
+    parser.add_argument("--component", default="rules", choices=["rules", "strategy"],
+                        help="v0.2 candidate component; the default preserves the first rules batch")
     args = parser.parse_args()
+    if args.version != "dataset_v0.2" and args.component != "rules":
+        parser.error("--component strategy requires --version dataset_v0.2")
     if args.version == "dataset_v0.2":
-        from werewolf_sft.rule_repairs import prepare_rule_repair_batch
-        result = prepare_rule_repair_batch(ROOT)
+        if args.component == "strategy":
+            from werewolf_sft.strategy_repairs import prepare_strategy_repair_batch
+            result = prepare_strategy_repair_batch(ROOT)
+        else:
+            from werewolf_sft.rule_repairs import prepare_rule_repair_batch
+            result = prepare_rule_repair_batch(ROOT)
         print(json.dumps({k: result[k] for k in ("status", "component", "rows", "pairs", "families",
                                                "train_rows", "validation_rows", "ready_for_training")}))
         return

@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-09-13T06:31:14.272868+00:00",
+  "checked_at_utc": "2026-09-13T06:51:57.765590+00:00",
   "workspace_drive": "C:\\",
-  "current_free_gib": 44.906768798828125,
-  "d_free_gib": 101.48365783691406,
+  "current_free_gib": 44.69710922241211,
+  "d_free_gib": 101.48136901855469,
   "needed_gib": 3.0,
   "reserve_gib": 5.0,
   "project_bytes_if_measured": null,

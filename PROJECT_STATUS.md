@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；dataset_v0.2第一批规则修正组件已完成，尚未冻结完整训练版。
+更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；dataset_v0.2规则与策略修正两个组件已完成，共56条候选，尚未冻结完整训练版。
 
 ## 已完成任务
 
@@ -17,9 +17,11 @@
 
 ## 当前正在进行
 
-本轮训练、36题评测和首局10块ASR进程均已结束，完整比较和恢复状态已写入项目目录。已完成dataset_v0.2/rules_batch_v0.1规则组件（32条、16对、10族；24训练侧/8验证侧），完整76项测试已通过，验证结果已写入报告；尚未开始第二轮训练。下一项是策略/战术修正与完整v0.2整合。不要重跑已完成的v0.1。
+v0.1训练、36题评测和首局10块ASR均已结束。本轮承接Resume Here完成第二个策略修正组件：24条/12对/10族，20训练侧/4验证侧；第一批规则32条保持原样。合计56条候选，完整81项测试通过，仍未开始v0.2正式训练。
 
-- 新增data/candidates/dataset_v0.2/rules_batch_v0.1：32条原创成对规则候选，独立组件冻结；5个组件文件真实重复执行SHA/mtime不变，19个旧冻结文件SHA核验通过。无messages、未独立专家复核、不作为完整训练快照。
+- rules_batch_v0.1：32条规则候选、24训练侧/8验证侧，已冻结于1f19f28。
+- strategy_batch_v0.1：14条Strategy与10条Tactics原创候选，重点为证据更新、声称与事实区分、队友失信后的公开切割及反证后的撤回。
+- 当前正在推进完整v0.2的覆盖补齐与整合。两个组件均ready_for_training=false，无messages、未独立专家复核、不是最终Gold训练集。
 
 ## 已运行测试与结果
 
@@ -33,6 +35,9 @@
 - GitHub e7785d0的Ubuntu foundation与CPU Trainer工作流成功，证据reports/ci.json。
 
 - 2026-09-13新增规则组件5项针对测试通过；完整测试76 passed、9条PEFT测试夹具警告，47.42秒。规则假设不注入真实底牌，夜间public_response为空，成对分组不跨训练/验证侧。
+
+- 2026-09-13第二组件5项专项测试通过；完整81项测试通过、9条既有PEFT夹具警告，安静输出无耗时统计。覆盖成对信息先后、死目标拒绝、狼队私有名单与公开发言分离、场景族隔离、幂等补缺与损坏拒绝。
+- 第二组件真实重跑5个文件SHA/mtime不变；23个先前冻结文件及2个manifest也不变。报告见reports/dataset_v02_strategy_batch.*。
 
 ## 视频审核
 
@@ -48,6 +53,7 @@
 - README.md、DECISIONS.md、TODO.md及docs/{model_card,training,evaluation,video_review_policy,disk_recovery}.md。
 - configs/qlora_classic.yaml：NF4双量化、r8/alpha16、batch1/累积16、1024、1epoch、BF16自动、无packing。固定CPU媒体配置configs/media_asr_v01.json。
 - data/versions/dataset_v0.1.json，data/{gold,prepared}/dataset_v0.1；禁止覆盖。
+- data/candidates/dataset_v0.2/strategy_batch_v0.1/{samples,train,validation}.jsonl、pairs.json与manifest.json；src/werewolf_sft/strategy_repairs.py、tests/test_strategy_repairs.py、reports/dataset_v02_strategy_batch.*。
 - reports/dataset_v02_rules_batch.*、src/werewolf_sft/rule_repairs.py、tests/test_rule_repairs.py记录第一批规则组件及恢复校验。
 - reports/{base_model_baseline,qlora_v01,base_vs_qlora,dev_semantic_review_v01}.md及相关JSON；reports/runs/{base_primary,qlora_v01}完整case/原回答/progress/summary。
 - reports/base_progress.*与qlora_progress.*为早期partial历史，不是最终报告。
@@ -59,32 +65,37 @@
 ## 尚未完成任务与当前阻塞项
 
 - 没有外部阻塞，但当前模型未达能力验收。185条小种子、11个计划优化步的结果不能被包装为高手模型；未证明退化的唯一原因。
-- 按已保存dev诊断生成并冻结dataset_v0.2，做第二轮训练及评测；小批规则修正已完成，接着扩展策略。
+- 按已保存dev诊断生成并冻结dataset_v0.2，做第二轮训练及评测；规则32条与策略/战术24条修正已完成，接着补覆盖缺口并整合。
 - 若另立明确动作词典/清理非经典提示词的新协议，必须对Base与Adapter共同评测并另版保存，不能覆盖v0.1结果或改变一方Prompt。
 - 独立语义复核、保留集及真实人工复制粘贴对局验收；Phase2镜隐仍暂停。
 - 首局M01～M03完整逐字稿/当时合法历史校对、经典改写和视角验证，后续184素材审核。
 
 ## 磁盘状态
 
-2026-09-13末次检查：C44.91GiB、D101.48GiB，CONTINUE，无需迁移。恢复和大文件处理前检查。C不足时先保存checkpoint、结束活动写入，再按docs/disk_recovery.md迁整个项目到D；D也不足提醒租云服务器。没有声称会话结束后后台监控。
+2026-09-13末次检查：C44.70GiB、D101.48GiB，CONTINUE，无需迁移。恢复和大文件处理前检查。C不足时先保存checkpoint、结束活动写入，再按docs/disk_recovery.md迁整个项目到D；D也不足提醒租云服务器。没有声称会话结束后后台监控。
 
 ## Resume Here
 
 先读取README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status。v0.1三阶段及两方36题已完成，不重训、不重测、不重新选Base、不覆盖数据。已无本轮活动训练/评测/ASR进程。
 
-第一项工程任务：承接已冻结rules_batch_v0.1，按照reports/dev_semantic_review_v01.md中的策略类失败构造下一小批成对修正，覆盖“新证据后改判、公开主张与事实区分、狼队私有信息与公开切割”。保存到新的候选组件路径，沿用场景族隔离和不可覆盖检查。不要重新生成第一批、修改旧seed_data或直接训练这32条。
+第一项工程任务：基于已冻结的rules_batch_v0.1与strategy_batch_v0.1做完整v0.2能力覆盖表，再新增独立场景族补缺。第一批守卫记忆、自救轮次、角色能力边界仅在验证侧；第二批合法验人备选、票型关系修正仅在验证侧，战术没有验证族。保持现有族划分，不能拆同对、只换座位伪造独立场景或为分数改分组。新样本另建组件，不重复生成已有56条。
 
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-Get-Content reports/dataset_v02_rules_batch.md
+Get-Content reports/dataset_v02_strategy_batch.md
+Get-Content data/candidates/dataset_v0.2/rules_batch_v0.1/manifest.json
+Get-Content data/candidates/dataset_v0.2/strategy_batch_v0.1/manifest.json
 Get-Content reports/dev_semantic_review_v01.md
-Get-Content src/werewolf_sft/rule_repairs.py
-Get-Content src/werewolf_sft/seed_data.py
 ```
 
-第一批组件可按需复核：.venv/Scripts/python.exe scripts/prepare_dataset.py --version dataset_v0.2 。目前该命令仅创建/验证rules_batch_v0.1，不是完整v0.2训练集；ready_for_training=false，已有内容复用，异内容拒绝。扩展应新增组件，不修改已冻结组件。数据原始结构仍有未激活的扩展字段，最终Classic消息必须裁剪非经典内容；当前尚未生成messages或更改v0.1协议。
+按需校验已有组件：
 
-完整v0.2汇总前检查覆盖：第一批守卫记忆、自救轮次、角色能力边界全部在验证侧，不能把24条训练侧当作覆盖所有修正类型。应从独立场景族补充并审核完整训练集；不把同对样本拆开或因测试表现改分组。完整数据、消息格式、Tokenizer长度、训练配置与dry-run冻结并commit后才实际训练。
+```powershell
+.venv/Scripts/python.exe scripts/prepare_dataset.py --version dataset_v0.2
+.venv/Scripts/python.exe scripts/prepare_dataset.py --version dataset_v0.2 --component strategy
+```
+
+两条命令分别仅补缺/验证规则和策略组件，不是完整v0.2训练集。已有内容复用，异内容拒绝；不修改旧seed_data、v0.1消息或Benchmark。数据原始结构仍有未激活的扩展字段，最终Classic消息必须裁剪非经典内容。覆盖补齐后依次完成独立语义审核、Classic专用消息、Tokenizer长度、训练配置与dry-run，冻结完整版本并commit后才正式训练。新Prompt协议若用于评测，Base与Adapter必须共同另版测量，不覆盖v0.1。
 
 视频并行支线从reports/media/28287501902/review_v0.3.md与asr_evidence_v0.1.json继续校对M01～M03，无需再次下载或转录首局。必要时用.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数>补帧，旧帧复用；新审核另起版本，不擅自填补房规或私密信息。
 

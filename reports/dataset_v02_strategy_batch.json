@@ -1,0 +1,47 @@
+{
+  "component": "strategy_batch_v0.1",
+  "dataset_version": "dataset_v0.2",
+  "rows": 24,
+  "pairs": 12,
+  "families": 10,
+  "train_rows": 20,
+  "validation_rows": 4,
+  "stage_counts": {
+    "strategy": 14,
+    "tactics": 10
+  },
+  "ready_for_training": false,
+  "human_reviewed": false,
+  "protected_files_verified": 23,
+  "manifest_path": "data/candidates/dataset_v0.2/strategy_batch_v0.1/manifest.json",
+  "manifest_sha256": "f772e639671ee6bb9bc944b87b7c81c1dbe3e6b941aa265e1b45332f870475e8",
+  "actual_rerun_reused_files": 5,
+  "protected_files_and_manifests_mtime_unchanged": 25,
+  "targeted_tests": "5 passed",
+  "complete_suite": {
+    "passed": 81,
+    "warnings": 9,
+    "seconds": null,
+    "note": "pytest quiet output did not report elapsed seconds"
+  },
+  "split_stage_counts": {
+    "train": {
+      "strategy": 10,
+      "tactics": 10
+    },
+    "validation": {
+      "strategy": 4
+    }
+  },
+  "coverage_gaps": [
+    "rules guard_memory/witch_self_save/role_boundary only validation in first component",
+    "strategy legal_plan_update/relationship_votes only validation in second component",
+    "tactics has no validation family in second component"
+  ],
+  "semantic_review": "author_self_review_not_independent_expert",
+  "limitations": [
+    "24 original synthetic examples; not video Gold and not full dataset_v0.2",
+    "No final Classic messages, tokenizer length run, config or dry-run yet",
+    "Automatic validators do not establish expert strategy quality"
+  ]
+}
