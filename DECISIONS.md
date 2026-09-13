@@ -167,3 +167,7 @@
 - 源为original_synthetic，质量分是作者自评；非B站Gold，未独立专家审核。自动Schema、合法动作与私有字段检查不能证明策略最优或无所有语义泄漏，不据此宣布训练就绪。
 - 写入前后核验先前两份manifest覆盖的23文件；真实重跑确认5个新组件文件与25个先前文件/manifest的SHA和mtime不变。缺失仅补缺、异内容先拒绝。新增5测试，完整81项测试通过，9条既有PEFT测试夹具警告；输出未记录耗时，报告记null。
 - 两批合计56条候选，仍不生成最终messages或启动训练。下一阶段先补完整覆盖，再确定版本化Classic提示格式、实际Tokenizer长度与配置/dry-run。Base、QLoRA和规则版本继续沿用既定选择，不重复调研。
+
+## v0.2-core与视频池隔离（2026-09-13）
+
+用户固定dataset_v0.2为v0.1定向修复实验；视频仅进入data/candidates/video_distilled_v0.1/，禁止提前合并。沿当前覆盖缺口补齐并逐条审核core，冻结messages/Tokenizer长度/训练配置，commit后正式QLoRA，同v0.1协议比较。v0.3须等待v0.2比较且没有明显退化；具体门禁见docs/data_version_policy.md。
