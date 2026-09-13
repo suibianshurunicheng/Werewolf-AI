@@ -191,3 +191,7 @@ v0.2 Rule已完成2步/1epoch，最佳checkpoint-2，验证Loss3.0613351，峰�
 ## v0.2 Strategy完成
 
 v0.2 Strategy完成2步/1epoch，最佳checkpoint-2，验证Loss3.7053094，峰值3316.9MiB；相对Rule改变504个张量，完整导出见reports/training/strategy_v02。 保持冻结配置，17条训练中前16条位于预热零学习率步，最后1条形成有学习率更新；这一小步数限制需在评测解释中披露，不能把看过全部数据等同于全部产生有效优化。
+
+## v0.2 Tactics与完整训练结束
+
+v0.2 Tactics完成2步/1epoch，最佳checkpoint-2，验证Loss3.8002665，峰值3443.7MiB；相对Strategy改变504个张量，完整导出见reports/training/tactics_v02。 三阶段均保留step1/step2与final及配置、日志、SHA，无OOM；总6个计划步/3个非零学习率步。下一步同协议36题评测，不变更Prompt或别名评分，不因Loss下降先行开放v0.3。

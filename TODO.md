@@ -36,7 +36,7 @@
 - [ ] 独立人工专家复核作为进一步质量保障，不冒充已经完成。
 - [x] 保存版本化Classic专用消息格式，裁剪扩展角色/技能/规则内容，不改v0.1消息。
 - [x] 冻结v0.2数据版本、训练配置、Tokenizer长度与dry-run结果，commit后训练。
-- [ ] 第二轮Rule→Strategy→Tactics训练并保存各阶段完整checkpoint。
+- [x] 第二轮Rule→Strategy→Tactics各2步完成，全部checkpoint/final/日志/配置/哈希已保存。
 - [ ] 第二轮同协议比较；如另起动作词典协议，必须两方同测并保留v0.1。
 - [ ] 未用于修正的保留集及真实人工复制粘贴对局验收。
 
@@ -66,4 +66,4 @@
 
 - [x] v0.2 Rule真实2步训练及完整导出/权重核验。
 - [x] v0.2 Strategy真实训练与导出，504张量相对Rule改变。
-- [ ] v0.2 Tactics真实训练与导出。
+- [x] v0.2 Tactics真实训练与导出，504张量相对Strategy改变。

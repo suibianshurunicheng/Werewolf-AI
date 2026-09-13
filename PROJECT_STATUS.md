@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；Rule与Strategy正式训练完成，下一阶段Tactics。
+更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，等待完整同协议Benchmark验收。
 
 ## 已完成任务
 
@@ -24,11 +24,13 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 - 完整data/versions/dataset_v0.2.json与data/{gold,prepared}/dataset_v0.2冻结。只允许三个显式core组件，source与审核哈希校验，视频准入0。
 - Classic训练messages使用classic_core_sft_v0.2，裁剪扩展角色/技能；v0.1评测Prompt与输入保持原样，同协议指纹已核实。
 - configs/qlora_classic_v02.yaml为独立完整配置，保持同Base/revision/NF4/r8/1epoch/学习率；从Base重新开始，不续接v0.1 Adapter。每阶段计划2优化步，实际warmup1，总6步；不按结果临时改参。
-- reports/v02_training_readiness.json保存实际Tokenizer长度525～791、零截断过滤、完整配置/哈希与dry-run计划。Rule与Strategy已完成，导出核验通过；下一步Tactics。
+- reports/v02_training_readiness.json保存实际Tokenizer长度525～791、零截断过滤、完整配置/哈希与dry-run计划。Rule、Strategy、Tactics均已完成，导出核验通过；下一步36题同协议Benchmark。
 
 - v0.2 Rule已完成2步/1epoch，最佳checkpoint-2，验证Loss3.0613351，峰值3414.2MiB，252个LoRA B矩阵非零；配置、日志与权重SHA见reports/training/rules_v02。
 
 - v0.2 Strategy完成2步/1epoch，最佳checkpoint-2，验证Loss3.7053094，峰值3316.9MiB；相对Rule改变504个张量，完整导出见reports/training/strategy_v02。
+
+- v0.2 Tactics完成2步/1epoch，最佳checkpoint-2，验证Loss3.8002665，峰值3443.7MiB；相对Strategy改变504个张量，完整导出见reports/training/tactics_v02。
 
 ## 已运行测试与结果
 
@@ -95,23 +97,16 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 
 先读取README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status。v0.1三阶段及两方36题已完成，不重训、不重测、不重新选Base、不覆盖数据。已无本轮活动训练/评测/ASR进程。
 
-第一项任务：先检查outputs/classic_v02各阶段progress/training_result和活动进程；若没有活动进程，从最近完整checkpoint继续正式训练。当前数据、消息、配置和长度已冻结，无需重新生成或改分组。
+第一项任务：继续v0.2完整36题Benchmark。先检查reports/runs/qlora_v02/progress.json及活动评测进程；若正在运行不要启动第二份。若无活动进程，使用原命令，只补未完成case：
 
 ```powershell
-.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 6
-.venv/Scripts/python.exe scripts/check_core_ready.py
-.venv/Scripts/python.exe scripts/train_qlora.py --config configs/qlora_classic_v02.yaml --stage tactics --resume
-```
-
-Rule已完成，Strategy结束后用同配置--stage tactics --resume继续。每阶段结束导出reports/training/<stage>_v02、更新状态并commit。若训练已完成但final缺失，先用现有finalize_training工具核对，禁止重做已完成步。权重只留outputs/classic_v02。
-
-三阶段完成并commit后，同协议评测使用：
-
-```powershell
+.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
 .venv/Scripts/python.exe scripts/evaluate.py --config configs/qlora_classic_v02.yaml --adapter outputs/classic_v02/tactics/final --output reports/runs/qlora_v02 --compare-to reports/runs/qlora_v01 --report reports/qlora_v02.md --comparison-report reports/v01_vs_v02.md
 ```
 
-保留v0.1所有文件；Base与两Adapter协议必须同为1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569。最终逐题dev语义复核、报告规则/策略/反事实/Blind变化。若v0.2未通过无明显退化门禁，不构建v0.3；详见docs/data_version_policy.md。数据审核和长度通过不能提前宣布模型修复有效。
+v0.2三阶段均已真实完成2步/1epoch并核验导出，切勿重训。大权重在outputs/classic_v02，证据在reports/training/{rules,strategy,tactics}_v02。规则源提交f89d910，策略dc7357a，战术014c168。数据86条、messages、配置与Tokenizer已冻结，不修改生成协议或评分。Base与两Adapter协议必须同为1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569。
+
+完整Benchmark后逐题复核23条dev输出，区分接口、规则、证据利用、战术与Blind自主决策；保存v0.1 vs v0.2报告。若有明显退化，关闭v0.3门禁；没有退化也不等于高手验收。每阶段只有一次非零学习率更新，Strategy仅最后一个microbatch参与该更新，需如实披露实验限制。仍禁止视频混入v0.2。
 
 视频并行支线从reports/media/28287501902/review_v0.3.md与asr_evidence_v0.1.json继续校对M01～M03，无需再次下载或转录首局。必要时用.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数>补帧，旧帧复用；新审核另起版本，不擅自填补房规或私密信息。
 
