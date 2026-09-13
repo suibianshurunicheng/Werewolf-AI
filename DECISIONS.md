@@ -187,3 +187,7 @@
 ## v0.2 Rule完成
 
 v0.2 Rule已完成2步/1epoch，最佳checkpoint-2，验证Loss3.0613351，峰值3414.2MiB，252个LoRA B矩阵非零；配置、日志与权重SHA见reports/training/rules_v02。 首步为预热零学习率，第二步实际更新；不以Loss宣布规则修复有效，仍待同协议Benchmark。
+
+## v0.2 Strategy完成
+
+v0.2 Strategy完成2步/1epoch，最佳checkpoint-2，验证Loss3.7053094，峰值3316.9MiB；相对Rule改变504个张量，完整导出见reports/training/strategy_v02。 保持冻结配置，17条训练中前16条位于预热零学习率步，最后1条形成有学习率更新；这一小步数限制需在评测解释中披露，不能把看过全部数据等同于全部产生有效优化。
