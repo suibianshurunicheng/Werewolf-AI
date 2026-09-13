@@ -1,0 +1,21 @@
+{
+  "status": "rules_complete_full_run_partial",
+  "rules_completed": 12,
+  "total_cases": 36,
+  "rules_counts": {
+    "qlora_v01": {
+      "format_valid": 10,
+      "action_legal": 0,
+      "action_match": 0,
+      "truncated": 0
+    },
+    "qlora_v02": {
+      "format_valid": 12,
+      "action_legal": 1,
+      "action_match": 0,
+      "truncated": 0
+    }
+  },
+  "dev_reviews_completed": 7,
+  "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569"
+}

@@ -195,3 +195,7 @@ v0.2 Strategy完成2步/1epoch，最佳checkpoint-2，验证Loss3.7053094，峰�
 ## v0.2 Tactics与完整训练结束
 
 v0.2 Tactics完成2步/1epoch，最佳checkpoint-2，验证Loss3.8002665，峰值3443.7MiB；相对Strategy改变504个张量，完整导出见reports/training/tactics_v02。 三阶段均保留step1/step2与final及配置、日志、SHA，无OOM；总6个计划步/3个非零学习率步。下一步同协议36题评测，不变更Prompt或别名评分，不因Loss下降先行开放v0.3。
+
+## v0.2规则组评测检查点
+
+规则12/12已生成、7条规则dev已复核；守卫连守、退水票权、规则假设响应仍失败，猎人禁枪状态与女巫JSON结构有局部改善，动作词接口持续失败。仅保存阶段事实，不提前判定36题结果，继续同一运行目录。

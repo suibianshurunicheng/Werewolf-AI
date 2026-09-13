@@ -67,3 +67,5 @@
 - [x] v0.2 Rule真实2步训练及完整导出/权重核验。
 - [x] v0.2 Strategy真实训练与导出，504张量相对Rule改变。
 - [x] v0.2 Tactics真实训练与导出，504张量相对Strategy改变。
+
+- [x] v0.2 Benchmark规则12题及7条规则dev模型语义审核检查点保存。

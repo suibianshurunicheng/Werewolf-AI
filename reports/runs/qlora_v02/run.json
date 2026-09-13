@@ -1,0 +1,25 @@
+{
+  "protocol": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "cases_hash": "415d21bc4f2ff6770410c8188179545d3be6e572d764e3993e37e8c2ea3a69d0",
+    "system_prompt_hash": "fca8c04ef6f689617e48c5691e277fb779c0ea06c7b4b27fd92eea3a2463dce3",
+    "rendered_inputs_hash": "bbdf4a58a8c4abd115d6f7aac4b29e70dac37bbd2c5cac9b42766c51a216e785",
+    "generation": {
+      "max_input_tokens": 2048,
+      "max_new_tokens": 768,
+      "do_sample": false,
+      "use_cache": true
+    },
+    "quantization": {
+      "enabled": true,
+      "type": "nf4",
+      "double_quant": true,
+      "compute_dtype": "auto"
+    },
+    "cpu_offload": false,
+    "seed": 42
+  },
+  "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+  "adapter_digest": "26c8c6e3b9564f863923f31e068c29898ecadb3b0aefa02c03e1c609c7dab7c5"
+}

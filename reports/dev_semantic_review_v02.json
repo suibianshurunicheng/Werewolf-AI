@@ -1,0 +1,78 @@
+{
+  "status": "partial",
+  "review_kind": "model_semantic_review_not_independent_human",
+  "expected_dev_cases": 23,
+  "items": [
+    {
+      "id": "eval-rule-guard-repeat",
+      "observation": "v0.2仍称无技能使用记录并继续守上夜12，忽略last_guard_target；公开我守12并宣称技能生效。与v0.1同类连守/夜间公开缺陷持续，JSON结构有效不代表规则正确。",
+      "classification": "persistent_rule_and_public_boundary_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "1ba18d619cccb84cd345b321a94aae4e591fa4f4c142b6f3dcb4f5127b5d5464",
+        "qlora_v02": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d"
+      }
+    },
+    {
+      "id": "eval-rule-witch-spent",
+      "observation": "两版都正确认识两药耗尽，仍用未支持的none代替pass，且夜间公开药量。v0.2不再直接建议等待查验，但仍将不能查验与无药并列，角色边界表述不充分。",
+      "classification": "persistent_interface_and_public_boundary_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "531e05522f5216faebd1db694b094255c240e008c8c61a650e333b2a3cec9edd",
+        "qlora_v02": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d"
+      }
+    },
+    {
+      "id": "eval-rule-witch-current-target",
+      "observation": "v0.2身份座位类型/结构恢复有效，救12的语义目标仍正确；save仍不是接口heal，夜间仍公开救援并提前宣称救下。属于格式局部改善、接口与公开边界持续失败。",
+      "classification": "local_format_improvement_persistent_interface_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "d3ee2591c48d862197ebaec9ef255c4466f5a2fda941c322f0b7ef806434dfba",
+        "qlora_v02": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061"
+      }
+    },
+    {
+      "id": "eval-rule-hunter-no-permission",
+      "observation": "v0.2改为读取裁判禁枪，未再编造已用枪或猎人仅第一轮开枪，较v0.1有明确规则/状态改善；仍用none而非pass，且将已出局与不能开枪并列，权限解释尚不完全清晰。",
+      "classification": "local_rule_improvement_persistent_interface_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "65f77e8a482c036bdc9d94e488e8d3985d311789d5ecd81eb184352978142a57",
+        "qlora_v02": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d"
+      }
+    },
+    {
+      "id": "eval-rule-vote-dead",
+      "observation": "两版都未实际投死者。v0.2从none变为vote:null仍不合法，且公开理由退回无法确认12身份，而非强调死亡目标不可投；相对v0.1明确死亡理由出现解释退步，未发生新增投死者行动。",
+      "classification": "local_reasoning_regression_persistent_interface_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "6fea3696c827c7b942f4054db9f69f2d4387eacb4da05e7ee3a4c02f793cd969",
+        "qlora_v02": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca"
+      }
+    },
+    {
+      "id": "eval-rule-sheriff-withdrawn",
+      "observation": "两版都投12，未遵守上警退水仍无警徽票权。v0.2还遗漏自身报名/退水记录，只围绕候选12是否已确认警长讨论，状态读取未修复。",
+      "classification": "persistent_election_permission_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "e16f374d79b7fe373fe0400fbbc3879e00c93eb48d3fc7dd96ce991225fa4e0c",
+        "qlora_v02": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486"
+      }
+    },
+    {
+      "id": "eval-rule-parity",
+      "observation": "两版均未回答题设的屠边/人数持平规则假设，改为泛泛等待身份信息；v0.2有公开文字但没有任务所需规则解释，none仍不合法。",
+      "classification": "persistent_task_response_and_victory_rule_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "b7381473c54d1b1acb3dd1b32b800cb9696063d1f046a84e862469e6923acbb3",
+        "qlora_v02": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff"
+      }
+    }
+  ],
+  "note": "Only completed dev outputs reviewed; never use test text for repairs. Do not infer full-run success from partial metrics."
+}
