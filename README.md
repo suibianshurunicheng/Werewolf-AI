@@ -2,7 +2,7 @@
 
 3B～4B 中文狼人杀专项 SFT 工程，当前仅经典12人预女守猎。操作者人工输入合法视角，只复制正式公开发言。项目未提供自动竞技场、RL或Web前端。
 
-最新真实状态见 PROJECT_STATUS.md。目前已有185条原创种子、36题独立Benchmark和训练/评测工具；已在4GB完成Rule、Strategy、Tactics三阶段Adapter及完整Base基线；同协议36题Adapter比较已完成，参考动作2/36→0/36，未通过能力验收。23条dev诊断已保存，下一阶段修正dataset_v0.2；不宣称专项能力提升。
+最新真实状态见 PROJECT_STATUS.md。目前已有185条原创种子、36题独立Benchmark和训练/评测工具；已在4GB完成Rule、Strategy、Tactics三阶段Adapter及完整Base基线；同协议36题Adapter比较已完成，参考动作2/36→0/36，未通过能力验收。23条dev诊断已保存，v0.2第一批规则候选32条已独立保存（尚未训练），下一步扩展策略并整合完整v0.2；不宣称专项能力提升。
 
 ## 恢复
 
@@ -47,3 +47,7 @@ python scripts/inference.py --input-json data/examples/player_sample.json。自�
 规则及房规差异：docs/rules_classic.md、docs/rule_conflicts.md。数据、评测、模型选择及模型卡见docs目录。镜隐仅为Phase 2调研，禁止混入当前训练。
 
 代码MIT；原创合成种子CC-BY-4.0，未做独立专家复核。Primary Qwen3-4B-Instruct-2507为Apache-2.0；Backup Qwen2.5-3B-Instruct限非商业研究。Adapter和合并权重仍须遵守相应上游许可。
+
+## v0.2规则候选组件
+
+python scripts/prepare_dataset.py --version dataset_v0.2只验证或补齐data/candidates/dataset_v0.2/rules_batch_v0.1：32条、16对、10族，24训练侧/8验证侧；完整v0.2未冻结，不能直接作为训练配置。已有组件不覆盖，旧v0.1/eval不重建。检查和下一步见reports/dataset_v02_rules_batch.md及PROJECT_STATUS。

@@ -1,0 +1,21 @@
+{
+  "component": "rules_batch_v0.1",
+  "dataset_version": "dataset_v0.2",
+  "rows": 32,
+  "pairs": 16,
+  "families": 10,
+  "train_rows": 24,
+  "validation_rows": 8,
+  "actual_rerun_reused_files": 5,
+  "protected_files_verified": 19,
+  "ready_for_training": false,
+  "human_reviewed": false,
+  "manifest_path": "data/candidates/dataset_v0.2/rules_batch_v0.1/manifest.json",
+  "manifest_sha256": "28ef7ef12b2c27cc07303d8b3af048e17cfbb955a13083d2e18149951930807a",
+  "targeted_tests": "5 passed",
+  "complete_suite": {
+    "passed": 76,
+    "warnings": 9,
+    "seconds": 47.42
+  }
+}

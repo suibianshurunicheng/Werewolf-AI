@@ -1,0 +1,42 @@
+{
+  "dataset_version": "dataset_v0.2",
+  "files": {
+    "data/candidates/dataset_v0.2/rules_batch_v0.1/pairs.json": "1b4f4b6e38a3033fa556bf44e07993b27a90f0c700306962307ab8c39249f4d1",
+    "data/candidates/dataset_v0.2/rules_batch_v0.1/rules.jsonl": "b30bfff5f2197c2d319d43d7555209685f9883bf775cee226b10a23a669325ea",
+    "data/candidates/dataset_v0.2/rules_batch_v0.1/train.jsonl": "c141be79fea5b914049eb1194861f08361dbd7d379d322a4bdaac7eef644fce6",
+    "data/candidates/dataset_v0.2/rules_batch_v0.1/validation.jsonl": "883eced5e0ac2f861153277cc0c37b09397ef9d20ed32eda854ece40cc800887"
+  },
+  "component": "rules_batch_v0.1",
+  "status": "candidate_component_frozen",
+  "ready_for_training": false,
+  "source": "original_synthetic",
+  "human_reviewed": false,
+  "rows": 32,
+  "pairs": 16,
+  "families": 10,
+  "train_rows": 24,
+  "validation_rows": 8,
+  "split_families": {
+    "train": [
+      "v02-rules-election_registration",
+      "v02-rules-hunter_permission",
+      "v02-rules-living_target",
+      "v02-rules-public_boundary",
+      "v02-rules-victory_conditions",
+      "v02-rules-witch_resources",
+      "v02-rules-witch_target"
+    ],
+    "validation": [
+      "v02-rules-guard_memory",
+      "v02-rules-role_boundary",
+      "v02-rules-witch_self_save"
+    ]
+  },
+  "protected_manifest_sha256": "14f9f757381f4f666137a1b6e93df3a924effcf7f2834282a4e80c04dfb15a73",
+  "protected_files_verified": 19,
+  "diagnostic_source": {
+    "path": "reports/dev_semantic_review_v01.json",
+    "sha256": "061963e9e07c7856aec19e13b716f72eaf3ce61d2f4b914fd6086591f760fba3"
+  },
+  "notes": "Rules-only candidate component, not the final v0.2 training snapshot. No messages, tokenizer pass, independent review or training yet. Existing v0.1/eval remain unchanged."
+}

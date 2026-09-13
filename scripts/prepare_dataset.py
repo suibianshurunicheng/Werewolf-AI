@@ -13,8 +13,14 @@ from werewolf_sft.validation import validate_dataset, assert_disjoint
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--version", default="dataset_v0.1", choices=["dataset_v0.1"])
+    parser.add_argument("--version", default="dataset_v0.1", choices=["dataset_v0.1", "dataset_v0.2"])
     args = parser.parse_args()
+    if args.version == "dataset_v0.2":
+        from werewolf_sft.rule_repairs import prepare_rule_repair_batch
+        result = prepare_rule_repair_batch(ROOT)
+        print(json.dumps({k: result[k] for k in ("status", "component", "rows", "pairs", "families",
+                                               "train_rows", "validation_rows", "ready_for_training")}))
+        return
     groups = {"rules": rule_samples(), "strategy": strategy_samples(), "tactics": wolf_tactics()}
     training = [row for rows in groups.values() for row in rows]
     issues = validate_dataset(training)
