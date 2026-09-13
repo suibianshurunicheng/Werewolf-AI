@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；正式训练待启动。
+更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；Rule正式训练完成，下一阶段Strategy。
 
 ## 已完成任务
 
@@ -24,7 +24,9 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 - 完整data/versions/dataset_v0.2.json与data/{gold,prepared}/dataset_v0.2冻结。只允许三个显式core组件，source与审核哈希校验，视频准入0。
 - Classic训练messages使用classic_core_sft_v0.2，裁剪扩展角色/技能；v0.1评测Prompt与输入保持原样，同协议指纹已核实。
 - configs/qlora_classic_v02.yaml为独立完整配置，保持同Base/revision/NF4/r8/1epoch/学习率；从Base重新开始，不续接v0.1 Adapter。每阶段计划2优化步，实际warmup1，总6步；不按结果临时改参。
-- reports/v02_training_readiness.json保存实际Tokenizer长度525～791、零截断过滤、完整配置/哈希与dry-run计划。当前没有训练进程；提交完成后启动Rule→Strategy→Tactics。
+- reports/v02_training_readiness.json保存实际Tokenizer长度525～791、零截断过滤、完整配置/哈希与dry-run计划。Rule已完成，导出核验通过；下一步Strategy→Tactics。
+
+- v0.2 Rule已完成2步/1epoch，最佳checkpoint-2，验证Loss3.0613351，峰值3414.2MiB，252个LoRA B矩阵非零；配置、日志与权重SHA见reports/training/rules_v02。
 
 ## 已运行测试与结果
 
@@ -96,10 +98,10 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 6
 .venv/Scripts/python.exe scripts/check_core_ready.py
-.venv/Scripts/python.exe scripts/train_qlora.py --config configs/qlora_classic_v02.yaml --stage rules --resume
+.venv/Scripts/python.exe scripts/train_qlora.py --config configs/qlora_classic_v02.yaml --stage strategy --resume
 ```
 
-rules完成后依次以同配置--stage strategy --resume、--stage tactics --resume继续。每阶段结束导出reports/training/<stage>_v02、更新状态并commit。若训练已完成但final缺失，先用现有finalize_training工具核对，禁止重做已完成步。权重只留outputs/classic_v02。
+Rule已完成，Strategy结束后用同配置--stage tactics --resume继续。每阶段结束导出reports/training/<stage>_v02、更新状态并commit。若训练已完成但final缺失，先用现有finalize_training工具核对，禁止重做已完成步。权重只留outputs/classic_v02。
 
 三阶段完成并commit后，同协议评测使用：
 

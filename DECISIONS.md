@@ -183,3 +183,7 @@
 - 训练前保存commit；各阶段真实训练后导出日志、配置、step/epoch、最优checkpoint和Adapter SHA，提交再评测。Benchmark与v0.1完全同协议同评分；预先固定v0.3门禁，不观察成绩后改阈值。
 
 - 冻结前完整85项测试通过，9条既有PEFT夹具警告；完整v0.2的16个文件实际重跑SHA/mtime不变，v0.1的19文件SHA通过。详细报告reports/v02_preflight_tests.json。
+
+## v0.2 Rule完成
+
+v0.2 Rule已完成2步/1epoch，最佳checkpoint-2，验证Loss3.0613351，峰值3414.2MiB，252个LoRA B矩阵非零；配置、日志与权重SHA见reports/training/rules_v02。 首步为预热零学习率，第二步实际更新；不以Loss宣布规则修复有效，仍待同协议Benchmark。
