@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-13。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark规则组12题完成，其余组进行中。
+更新：2026-09-14。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark规则组12题完成，其余组进行中。
 
 ## 已完成任务
 
@@ -95,9 +95,13 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 
 用户固定dataset_v0.2为v0.1定向修复实验；视频仅进入data/candidates/video_distilled_v0.1/，禁止提前合并。沿当前覆盖缺口补齐并逐条审核core，冻结messages/Tokenizer长度/训练配置，commit后正式QLoRA，同v0.1协议比较。v0.3须等待v0.2比较且没有明显退化；具体门禁见docs/data_version_policy.md。
 
+## 2026-09-14恢复检查点
+
+评测已保存14/36，OS运行锁为空，原进程已结束；不重做已有14题，按相同命令续跑第15题。8条dev已复核。恢复前14文件SHA存于reports/v02_resume_20260914.json，恢复后须核验不变。C42.75GiB、D100.95GiB，无需迁盘。
+
 ## Resume Here
 
-先读取README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status。v0.1三阶段及两方36题已完成，不重训、不重测、不重新选Base、不覆盖数据。已无本轮活动训练/评测/ASR进程。
+先读取README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status。v0.1三阶段及两方36题已完成，不重训、不重测、不重新选Base、不覆盖数据。训练和ASR已结束；评测活动状态必须检查OS运行锁，不仅凭progress的running字段。
 
 第一项任务：继续v0.2完整36题Benchmark。先检查reports/runs/qlora_v02/progress.json及活动评测进程；若正在运行不要启动第二份。若无活动进程，使用原命令，只补未完成case：
 

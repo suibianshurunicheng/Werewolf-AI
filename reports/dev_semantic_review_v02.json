@@ -72,6 +72,16 @@
         "qlora_v01": "b7381473c54d1b1acb3dd1b32b800cb9696063d1f046a84e862469e6923acbb3",
         "qlora_v02": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff"
       }
+    },
+    {
+      "id": "eval-strategy-silver",
+      "observation": "v0.2开始引用12声称11被救且未认证阵营，较v0.1完全忽略公开主张有局部证据利用改善；仍未解释银水与自刀，也未提出具体核对问题，none不符合发言动作。",
+      "classification": "local_evidence_use_improvement_incomplete_strategy",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "f772ce230eb6190b4bda11af282dc695143f12c51f2d607c2429c08f190acbe5",
+        "qlora_v02": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc"
+      }
     }
   ],
   "note": "Only completed dev outputs reviewed; never use test text for repairs. Do not infer full-run success from partial metrics."

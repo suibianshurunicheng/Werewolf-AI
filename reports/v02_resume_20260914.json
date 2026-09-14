@@ -1,0 +1,22 @@
+{
+  "observed_date": "2026-09-14",
+  "completed_before_resume": 14,
+  "active_lock_before_resume": false,
+  "saved_cases": {
+    "reports/runs/qlora_v02/cases/eval-rule-badge.json": "ee63592afc37ae53c6aed474448eb4ec5f3f5198ac8565840eb79e96f1c389e9",
+    "reports/runs/qlora_v02/cases/eval-rule-guard-repeat.json": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d",
+    "reports/runs/qlora_v02/cases/eval-rule-hunter-no-permission.json": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d",
+    "reports/runs/qlora_v02/cases/eval-rule-hunter-permission.json": "f1af94d33b7465ae85b8cb4f80f55fb535ad9f94b2565f3505ed6b08988c1c0a",
+    "reports/runs/qlora_v02/cases/eval-rule-parity.json": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff",
+    "reports/runs/qlora_v02/cases/eval-rule-seer-dead.json": "b84353000d01f2d9b9a6c94d6b1fd414959d64c8a1dc7a4220b2cff9f9e547e5",
+    "reports/runs/qlora_v02/cases/eval-rule-self-save-night3.json": "3c9fa8824dd1fc1b2a1237eba95e7957d75f635fa8488dab4640300c5b3f9ed3",
+    "reports/runs/qlora_v02/cases/eval-rule-sheriff-withdrawn.json": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486",
+    "reports/runs/qlora_v02/cases/eval-rule-two-potions.json": "6bb5d41d12ae9ee7f0997cfbd3c2944ac46893861473b830254bb7b7f309b42f",
+    "reports/runs/qlora_v02/cases/eval-rule-vote-dead.json": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca",
+    "reports/runs/qlora_v02/cases/eval-rule-witch-current-target.json": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061",
+    "reports/runs/qlora_v02/cases/eval-rule-witch-spent.json": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d",
+    "reports/runs/qlora_v02/cases/eval-strategy-double-claim.json": "8036e3f0e323b384c3be13ee5c7ea82fd0f2e47d4fc4599a35260ac09d176d17",
+    "reports/runs/qlora_v02/cases/eval-strategy-silver.json": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc"
+  },
+  "note": "Stale progress said running; OS run lock was free. Resume same config/adapter/protocol and preserve existing cases."
+}
