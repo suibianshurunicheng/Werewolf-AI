@@ -247,6 +247,181 @@
         "control": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff",
         "treatment": "4592bdfa99522f4d3452594ca4e159b142b2496265b8040abb51c01d6ae6a9a6"
       }
+    },
+    {
+      "id": "eval-strategy-silver",
+      "change": "mixed",
+      "observation": "投影不再臆列12可能是守夜人这一非Classic角色，也减少了无依据的身份表；但仍错述女巫未确认刀口，未解释被救不能认证阵营/自刀可能，继续none和等待后续信息。存在无关角色措辞减少，策略任务仍未完成，公开回应进一步空泛。",
+      "errors": {
+        "role_skill": [
+          true,
+          false
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc",
+        "treatment": "fa1049ca9dfc3c9676247e8083ded284aa95cdefe562ddb2bbfe9ee7e0210e9a"
+      }
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "change": "regressed",
+      "observation": "投影能复述12因8补充而改站边，但未分析改判理由是否合理；反而输出vote8并公开称8发言逻辑更合理，同时又说暂不站边。输入没有8补充的具体内容，不能支持该比较。控制虽不消费证据但保持中立，投影出现新增无依据决策和内外矛盾；发言阶段投票仍非法。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "02e31d99c67ec7f6e3fe0a99f3fdd2372e26bffa7529fb9f4cec44538146af5f",
+        "treatment": "9bad5f07597dcc37583b03790ce5e8b27a1583283803dd595ff9068c69a1befb"
+      }
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "change": "mixed",
+      "observation": "投影更准确区分12转述双方完整验人解释与实际认证结果，并把none改成合法pass。仍未提出具体核对问题或当轮判断，公开变为无发言；未达到自主发言任务，不能把弃权合法视为站边能力改善。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          false
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5941c6a956f7f86c25beb6f22b0851cad34151be857fde9f3a34ddb9846b8fc6",
+        "treatment": "775aa0e55da0d203ba398c0d3cb35868077d2a484e8fce22c2d2d3d2a76f3e51"
+      }
+    },
+    {
+      "id": "eval-strategy-dead-dark",
+      "change": "regressed",
+      "observation": "两侧均把12的死亡主张与未确认的客观死亡记录区分，未直接采信锁定两狼。投影却从合法pass退为none，仍未解释暗牌死亡不能推出确定剩余狼数。虽恢复了泛泛公开回应，但没有具体追问，未抵消动作接口退步。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          false,
+          false
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "857483ff7390995aed4970d0ad51f6133df5b1e6e09677cd804f351081a979e3",
+        "treatment": "d65b218673436dbe76ba64fb16a6dee859ec041cb0cf15dde068058985011ee6"
+      }
+    },
+    {
+      "id": "eval-strategy-later-check",
+      "change": "unchanged",
+      "observation": "两侧仍未区分未来警徽流计划调整与篡改已报验人结果，投影还泛称警徽变动可能暗示篡改。动作从none换成vote:null，只减少未知词统计，依旧不合法且不匹配白天发言任务；没有具体核对或解释。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          false,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5d83b196784cdbd74a4e3095708ebc886de22dab0b192c0a1162e6570693ff99",
+        "treatment": "6c33fb6c0148aab2af1a0af8420645700daa8a636c8793f9ee3e888c6a3277ec"
+      }
     }
   ]
 }
