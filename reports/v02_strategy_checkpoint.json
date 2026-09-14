@@ -1,0 +1,20 @@
+{
+  "status": "rules_and_strategy_complete_full_run_partial",
+  "strategy_completed": 8,
+  "rules_completed": 12,
+  "counts_strategy": {
+    "qlora_v01": {
+      "format_valid": 8,
+      "action_legal": 1,
+      "action_match": 0,
+      "truncated": 0
+    },
+    "qlora_v02": {
+      "format_valid": 8,
+      "action_legal": 1,
+      "action_match": 0,
+      "truncated": 0
+    }
+  },
+  "dev_reviews_completed": 13
+}

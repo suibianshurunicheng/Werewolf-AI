@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-14。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark规则组12题完成，其余组进行中。
+更新：2026-09-14。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark规则12与策略8题完成，反事实/Blind进行中。
 
 ## 已完成任务
 
@@ -33,6 +33,8 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 - v0.2 Tactics完成2步/1epoch，最佳checkpoint-2，验证Loss3.8002665，峰值3443.7MiB；相对Strategy改变504个张量，完整导出见reports/training/tactics_v02。
 
 - v0.2 Benchmark规则12/12完成，完整评测仍partial；7条规则dev已逐题语义复核。快照见reports/v02_rules_checkpoint.json，后续原命令补未完成题。
+
+- 2026-09-14规则12和策略8题已完成；13条dev已复核（含首个反事实）。策略组快照见reports/v02_strategy_checkpoint.json，完整结果仍partial。
 
 ## 已运行测试与结果
 
@@ -112,7 +114,7 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 
 v0.2三阶段均已真实完成2步/1epoch并核验导出，切勿重训。大权重在outputs/classic_v02，证据在reports/training/{rules,strategy,tactics}_v02。规则源提交f89d910，策略dc7357a，战术014c168。数据86条、messages、配置与Tokenizer已冻结，不修改生成协议或评分。Base与两Adapter协议必须同为1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569。
 
-完整Benchmark后逐题复核23条dev输出，区分接口、规则、证据利用、战术与Blind自主决策；保存v0.1 vs v0.2报告。若有明显退化，关闭v0.3门禁；没有退化也不等于高手验收。每阶段只有一次非零学习率更新，Strategy仅最后一个microbatch参与该更新，需如实披露实验限制。仍禁止视频混入v0.2。
+完整Benchmark后逐题复核23条dev输出，区分接口、规则、证据利用、战术与Blind自主决策；保存v0.1 vs v0.2报告。若有明显退化，关闭v0.3门禁；没有退化也不等于高手验收。每阶段只有一次非零学习率参数更新；预热步梯度仍会积累Adam动量，不能认为只有最后microbatch影响模型。小步数限制仍需披露。仍禁止视频混入v0.2。
 
 视频并行支线从reports/media/28287501902/review_v0.3.md与asr_evidence_v0.1.json继续校对M01～M03，无需再次下载或转录首局。必要时用.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数>补帧，旧帧复用；新审核另起版本，不擅自填补房规或私密信息。
 

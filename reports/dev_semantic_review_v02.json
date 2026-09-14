@@ -82,6 +82,56 @@
         "qlora_v01": "f772ce230eb6190b4bda11af282dc695143f12c51f2d607c2429c08f190acbe5",
         "qlora_v02": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc"
       }
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "observation": "v0.2不再捏造1号发言更连贯，也未直接把已解释改判说成逻辑跳跃；但几乎不分析已有补充证据，只说以后观察12对8的变化，公开发言回避具体追问，且发言阶段给vote:null仍不合法。",
+      "classification": "hallucination_reduced_but_dynamic_reasoning_incomplete",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "7a8242658a9497d58da6013910650939b9f6be10aafb9f013eee68b70fd8ab16",
+        "qlora_v02": "02e31d99c67ec7f6e3fe0a99f3fdd2372e26bffa7529fb9f4cec44538146af5f"
+      }
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "observation": "两版都避免无依据硬定真预言家，保留不确定性方向合理；v0.2仍不给具体核对问题且用none等待，未完成发言任务。",
+      "classification": "persistent_nonresponsive_strategy",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "0e24f8a211508cf098774d0c102824d2b2275770b6965eafb0c07e3450c35f60",
+        "qlora_v02": "5941c6a956f7f86c25beb6f22b0851cad34151be857fde9f3a34ddb9846b8fc6"
+      }
+    },
+    {
+      "id": "eval-strategy-dead-dark",
+      "observation": "v0.2消除了每轮只能死1或2人的规则幻觉，并用当前存活列表核对玩家死亡主张；动作pass现在合法。但没有解释暗牌死亡不能推出确定狼数，白天仍沉默，策略参考未命中。",
+      "classification": "local_rule_and_interface_improvement_incomplete_reasoning",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "2ff7ebfa4d1e942a7b7ab7a178b0c380780e853c28249bd85f0b4b2ed24be077",
+        "qlora_v02": "857483ff7390995aed4970d0ad51f6133df5b1e6e09677cd804f351081a979e3"
+      }
+    },
+    {
+      "id": "eval-strategy-later-check",
+      "observation": "两版均未区分未来验人计划变化与篡改已报历史结果；v0.2仍泛泛等待，动作从合法pass退回none，是接口局部退步。",
+      "classification": "persistent_plan_vs_result_failure_interface_regression",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "49d9bfc807ce0d6fb2c3ef597b5b805914fc5d90610d7b0ec0ab54ae87c9c1de",
+        "qlora_v02": "5d83b196784cdbd74a4e3095708ebc886de22dab0b192c0a1162e6570693ff99"
+      }
+    },
+    {
+      "id": "eval-cf-guard-a",
+      "observation": "两版都把守卫当查验角色并公开夜间操作；v0.2更明确声称守卫技能为查验，读取无关checked_seats来授权check12，完全未使用连守状态。严重角色技能缺陷持续。",
+      "classification": "persistent_role_skill_and_state_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "1a6206d7587db0c2213dc0435e073eb3e765d4e78e16c57db4e16dbd879a1fcd",
+        "qlora_v02": "becb743e130c386a4c7c6fe9e02ca5a7cb688c2204788563b3a042052bca4357"
+      }
     }
   ],
   "note": "Only completed dev outputs reviewed; never use test text for repairs. Do not infer full-run success from partial metrics."

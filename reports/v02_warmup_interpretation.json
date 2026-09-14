@@ -1,0 +1,13 @@
+{
+  "scope": "CPU AdamW mathematical diagnostic; not another 4B training run or direct paged_adamw_8bit equivalence test",
+  "first_step_lr0": {
+    "parameter": 0.0,
+    "exp_avg": 0.10000000149011612,
+    "exp_avg_sq": 0.0010000000474974513
+  },
+  "second_step_zero_new_gradient": {
+    "parameter": -0.0006700583617202938,
+    "exp_avg": 0.09000000357627869
+  },
+  "conclusion": "Zero learning rate prevents immediate parameter movement, but Adam moment state retains gradients and can influence later nonzero-LR steps. Count three nonzero-LR parameter steps, not only last microbatches as contributing data."
+}
