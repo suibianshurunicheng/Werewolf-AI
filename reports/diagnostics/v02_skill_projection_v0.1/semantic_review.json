@@ -1,0 +1,252 @@
+{
+  "status": "partial",
+  "review_kind": "model_semantic_review_not_independent_human",
+  "dimension_values": "error present: true; absent: false; not applicable/not assessed: null",
+  "items": [
+    {
+      "id": "eval-rule-guard-repeat",
+      "change": "mixed",
+      "observation": "投影后能复述昨夜守12，修正旧回答无技能记录的状态遗漏；但仍执行guard12，并更明确声称守卫重复使用无限制。连守规则未修复，夜间继续公开守护历史和目标。不能把概念关键词命中2/2视为理解正确。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          false
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d",
+        "treatment": "c534660b1cb4de267ce09e2c8e820b247bd0f18b85b22f3a70320efcc82de808"
+      }
+    },
+    {
+      "id": "eval-rule-witch-spent",
+      "change": "improved",
+      "observation": "两侧均读到两药耗尽；投影把none改为pass，成为合法且命中参考的弃权。仍夜间公开无药信息，且两侧都把缺信息与不能查验并列，尚不足证明女巫/查验边界被清晰理解；该含混措辞不计作确定技能幻觉的消除。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          false,
+          false
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d",
+        "treatment": "14e85836f0253cb23d47daecc40c6cb904f0a4ea3bae7f50c2aa063f42ba6b32"
+      }
+    },
+    {
+      "id": "eval-rule-witch-current-target",
+      "change": "unchanged",
+      "observation": "两侧都读到可用解药和当夜刀口12，继续save12而非heal12，严格动作无改善；投影新增需判断是否需查验的含混措辞，没有明确证实角色边界变好。仍提前宣称已救下12并夜间公开刀口/用药。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          false,
+          false
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061",
+        "treatment": "a9a730efcc89e54f069b399f4fcb97740955fdbda4a3a9cb280ca4cc58da0f46"
+      }
+    },
+    {
+      "id": "eval-rule-hunter-no-permission",
+      "change": "regressed",
+      "observation": "两侧均遵守裁判禁枪但继续none而非pass。投影能读到技能未用，却新增无法发动夜间技能的错误猎人时机描述，并建议已出局玩家等待下一轮。last_words_allowed=false时两侧仍输出公开话语；这属于阶段/发言权限边界问题，不是夜间泄漏题。",
+      "errors": {
+        "role_skill": [
+          false,
+          true
+        ],
+        "state_reading": [
+          false,
+          false
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d",
+        "treatment": "535d5ae4cf33d58d579b0dc64ad9ed40c52bb46fdc841fc64b4153cf5b6cced4"
+      }
+    },
+    {
+      "id": "eval-rule-vote-dead",
+      "change": "improved",
+      "observation": "控制把不投12归因于身份未确认，投影明确按死亡目标不可投的规则解释，公开回应更切题。但两侧仍输出vote:null，未改成合法pass；严格动作分不变。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          false
+        ],
+        "permission": [
+          true,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca",
+        "treatment": "03f75376645db158a4e8507a82a9ad49b03551f09b10250b63ec0471e324e432"
+      }
+    },
+    {
+      "id": "eval-rule-sheriff-withdrawn",
+      "change": "improved",
+      "observation": "投影开始复述自己曾上警退水，公开投票也明确为警长票；比控制遗漏自身报名状态更完整。但仍投12，未理解退水不恢复警徽票权。此处改善仅为状态复述，不能视为权限修复。冻结题目轮次保持原样，未改题。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          false
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486",
+        "treatment": "703767737f54d30fcc3c4b0ed55f52b9189899c4759802db5575bfd3a00d5849"
+      }
+    },
+    {
+      "id": "eval-rule-parity",
+      "change": "mixed",
+      "observation": "投影把none变为合法pass，减少未知动作词，但两侧均回避3狼对3好人的屠边规则假设，未回答是否立即狼胜。投影公开无发言，比控制泛泛回应更沉默；合法动作改善不等于规则任务完成。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff",
+        "treatment": "4592bdfa99522f4d3452594ca4e159b142b2496265b8040abb51c01d6ae6a9a6"
+      }
+    }
+  ]
+}
