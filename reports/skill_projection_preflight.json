@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "tests": 5,
+  "command": ".venv/Scripts/python.exe -X utf8 -m pytest tests/test_skill_diagnostic.py -q",
+  "actual_check_only": "passed: 23 dev, frozen packet, sources, Adapter SHA and generation config",
+  "generation_started": false
+}

@@ -19,7 +19,7 @@
 
 ## 当前正在进行的任务
 
-本轮工程阶段已完成，无活动训练/评测/ASR进程。core离线失败诊断及23条dev单变量输入包已完成。下一小阶段是独立技能字段投影诊断运行器；处理侧推理尚未开始，不改已冻结v0.2。
+本轮工程阶段已完成，无活动训练/评测/ASR进程。core离线失败诊断及23条dev单变量输入包已完成。独立运行器和5项必要测试已完成，实际权重/配置/冻结输入包核验通过；先提交检查点，随后只生成23条dev处理侧。
 
 - 04608b1保存并推送完整v0.2评测。新增reports/v02_core_diagnosis.md/.json，核实训练/评测呈现差异、角色曝光和优化日程；未认定唯一因果。冻结v02_skill_projection_v0.1，仅裁剪无关skill_state，其余输入/系统/权重/生成/评分保持不变。
 
@@ -82,16 +82,13 @@
 
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO和最近Git提交。v0.1/v0.2训练及36题评测已完成，完整评测提交04608b1已推送。core离线诊断与单变量输入包也已冻结；没有活动模型推理或训练。不得重训重测已完成版本、重建候选或提前合并视频。
+已读取状态并完成独立运行器；5项测试通过，真实check-only确认23条dev与模型权重、配置、旧控制来源一致。提交后开始v02_skill_projection_v0.1。无需重训或重建输入包。
 
-下一次直接执行的第一项任务：读取reports/v02_core_diagnosis.md和data/diagnostics/v02_skill_projection_v0.1/experiment.json，实现独立诊断运行器。只加载冻结23条dev处理输入、复用已有控制输出，验证权重和源指纹、拒绝test和截断、逐题原子保存并可续跑。不要修改evaluate.py默认协议。运行器必要测试通过后先commit，再执行23条处理侧推理与全量模型语义配对复核。
+恢复第一项任务：读取reports/diagnostics/v02_skill_projection_v0.1/progress.json（若存在）和cases数量；用原命令继续，仅补缺。运行器OS锁拒绝重复进程；不得更换输出路径覆盖旧评测。
 
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-Get-Content -Encoding UTF8 reports/v02_core_diagnosis.md
-Get-Content -Encoding UTF8 data/diagnostics/v02_skill_projection_v0.1/experiment.json
-Get-Content -Encoding UTF8 src/werewolf_sft/runtime.py
-Get-Content -Encoding UTF8 scripts/evaluate.py
+.venv/Scripts/python.exe -X utf8 scripts/run_skill_projection.py
 ```
 
-需要核验离线输入包时执行.venv/Scripts/python.exe -X utf8 scripts/diagnose_v02_core.py；它仅载入本地Tokenizer，验证不可变快照，异内容拒绝，不生成回答。原验收仍未通过，v0.3门禁关闭。视频从独立池README恢复，不得混入此诊断或dataset_v0.2。
+完成后正式报告必须覆盖23题前后语义、严格动作/合法性/未知动作词、技能/权限/队伍知识、公开边界/夜漏、角色分组与反事实配对。不读取test答案，不修改评分。按用户A/B/C结果进入新Classic Schema设计或Training Schedule Diagnostic；不得提前宣称根因或解锁视频/v0.3/Persona/Phase2/RL。
