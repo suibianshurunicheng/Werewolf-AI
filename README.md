@@ -2,9 +2,9 @@
 
 3B～4B 中文狼人杀专项 SFT 工程，当前仅经典12人预女守猎。操作者人工输入合法视角，只复制正式公开发言。项目未提供自动竞技场、RL或Web前端。
 
-最新真实状态见 PROJECT_STATUS.md。v0.2-core的86条定向修复数据、messages、三阶段QLoRA和完整36题同协议比较均已完成。相比v0.1，严格结构27→34/36、合法动作1→5/36、参考命中0→2/36；反事实仍0/4。自动动作数量恢复至Base水平，但新增严重规则/队伍信息回归，定向修复能力验收未通过，不宣称高手模型。23条dev模型复核和权重证据已保存。视频候选池完全隔离，v0.3合并门禁关闭；下一步从Resume Here做core失败诊断。
+最新真实状态见 PROJECT_STATUS.md。v0.2-core的86条定向修复数据、messages、三阶段QLoRA和完整36题同协议比较均已完成。相比v0.1，严格结构27→34/36、合法动作1→5/36、参考命中0→2/36；反事实仍0/4。自动动作数量恢复至Base水平，但新增严重规则/队伍信息回归，定向修复能力验收未通过，不宣称高手模型。23条dev模型复核和权重证据已保存。视频候选池完全隔离，v0.3合并门禁关闭；core失败诊断和23条dev单变量输入包已保存，下一步从Resume Here实现独立诊断运行器。
 
-完整结果：[v0.1 vs v0.2](reports/v01_vs_v02.md)。训练数据冻结前85项测试通过；审核为模型语义审核，不等于独立专家认证。
+完整结果：[v0.1 vs v0.2](reports/v01_vs_v02.md)；[core诊断](reports/v02_core_diagnosis.md)。训练数据冻结前85项测试通过；审核为模型语义审核，不等于独立专家认证。
 
 ## 恢复
 
@@ -52,4 +52,4 @@ python scripts/inference.py --input-json data/examples/player_sample.json。自�
 
 ## v0.2规则候选组件
 
-python scripts/prepare_dataset.py --version dataset_v0.2只验证或补齐data/candidates/dataset_v0.2/rules_batch_v0.1：32条、16对、10族，24训练侧/8验证侧；完整v0.2未冻结，不能直接作为训练配置。已有组件不覆盖，旧v0.1/eval不重建。检查和下一步见reports/dataset_v02_rules_batch.md及PROJECT_STATUS。
+python scripts/prepare_dataset.py --version dataset_v0.2只验证或补齐data/candidates/dataset_v0.2/rules_batch_v0.1：32条、16对、10族，24训练侧/8验证侧；该命令仅处理组件，完整v0.2已另行冻结并完成训练，恢复时不要重新生成。已有组件不覆盖，旧v0.1/eval不重建。检查和下一步见reports/dataset_v02_rules_batch.md及PROJECT_STATUS。

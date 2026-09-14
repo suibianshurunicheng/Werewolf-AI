@@ -78,6 +78,8 @@
 
 - [x] v0.2 Blind8题完成；全部36个case/run指纹、恢复14题不变与三阶段final/最佳SHA核验。
 - [x] 保存v01_vs_v02完整报告与预先门禁判定；视频未入v0.2，v0.3未创建。
-- [ ] 完成reports/v02_core_diagnosis.md：只依据dev比较消息呈现、技能状态读取与训练日程，选择单一变量的后续core实验。
+- [x] 完成reports/v02_core_diagnosis.md/.json及23条dev投影对照输入；实际Tokenizer及三文件幂等核验通过。
+- [ ] 实现v02_skill_projection_v0.1独立诊断运行器，测试指纹拒绝/dev限制/逐题恢复，先commit后执行。
+- [ ] 完成23条dev处理側生成及全量配对模型语义复核；保持原36题结果和v0.3关闭状态。
 - [ ] 定向修复能力验收通过（当前未通过，不能勾选）。
 - [ ] v0.3-video：仅在core无明显退化门禁通过后再考虑，目前暂停。

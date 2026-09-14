@@ -19,7 +19,9 @@
 
 ## 当前正在进行的任务
 
-本轮工程阶段已完成，无活动训练/评测/ASR进程。当前需要继续的是core失败诊断，而不是重新训练完成阶段或合入视频。先保存下一小实验的证据和单一变量选择，再考虑新运行；不改已冻结v0.2。
+本轮工程阶段已完成，无活动训练/评测/ASR进程。core离线失败诊断及23条dev单变量输入包已完成。下一小阶段是独立技能字段投影诊断运行器；处理侧推理尚未开始，不改已冻结v0.2。
+
+- 04608b1保存并推送完整v0.2评测。新增reports/v02_core_diagnosis.md/.json，核实训练/评测呈现差异、角色曝光和优化日程；未认定唯一因果。冻结v02_skill_projection_v0.1，仅裁剪无关skill_state，其余输入/系统/权重/生成/评分保持不变。
 
 ## 已运行测试、核验与结果
 
@@ -40,6 +42,8 @@
 - 仍失败：守卫连守/查验混淆、票权、屠边假设响应、动态改判、验人计划与结果区分、夜间信息公开。猎人新增频次/时机幻觉，狼队反事实否定确定队友知识，4个相关dev案例触发预先严重回归门禁；不是4个独立统计实验。
 - 自动public_leak_flag=0不能否定语义复核发现的夜间公开泄漏。小样本、训练消息呈现变化、仅3个非零学习率参数步等限制不能用于反推唯一失败原因。
 - CPU AdamW诊断校正预热解释：零学习率步仍累积动量，不能说只有最后microbatch影响参数；未重做4B训练，亦未声称是paged_adamw_8bit等价实验。
+
+- 本轮离线核验通过：23条dev ID和原回答SHA一致，无assistant答案，投影外玩家视角与系统提示不变；固定Tokenizer控制559～766/处理459～666，均小于2048；v0.1/v0.2 manifest通过，三个新快照二次运行SHA/mtime不变。证据reports/v02_core_diagnosis_verification.json。未重新运行完整pytest或GPU生成。
 
 ## 视频支线
 
@@ -67,28 +71,27 @@
 ## 尚未完成任务与当前阻塞项
 
 - 无外部工程阻塞；v0.2定向修复能力未达标。不能宣称高手模型或视频数据已证明有效。
-- 下一core诊断：区分训练呈现差异、技能/状态读取和小步数日程问题，依据dev记录提出单一变量的小实验；不从test文本构造新训练数据。
+- core诊断已完成；尚待实现独立运行器并执行v02_skill_projection_v0.1的23条dev处理侧推理/配对复核。它是探索性诊断，不替代原验收，不解锁视频。
 - 独立人工语义盲审、未用于修正的保留集、真实复制粘贴对局验收仍未完成。
 - 视频M01～M03完整历史校对、合法经典化与Critic待做，其他184局待审核。
 - v0.3-video与Phase2镜隐均暂停，满足前置能力门禁后再考虑。
 
 ## 磁盘状态
 
-2026-09-14最近检查：C42.60GiB、D100.95GiB，CONTINUE，无需迁移。大文件任务与恢复前继续检查；C不足时先保存/结束写入再按docs/disk_recovery.md迁全项目到D，D也不足才提醒租云服务器。无会话结束后的后台监控承诺。
+2026-09-14最近检查：C41.74GiB、D100.94GiB，CONTINUE，无需迁移。大文件任务与恢复前继续检查；C不足时先保存/结束写入再按docs/disk_recovery.md迁全项目到D，D也不足才提醒租云服务器。无会话结束后的后台监控承诺。
 
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO和最近Git提交。v0.1/v0.2训练和所有36题评测均已完成，禁止重训重测或重建已有候选。当前无活动模型进程。
+先读README、PROJECT_STATUS、DECISIONS、TODO和最近Git提交。v0.1/v0.2训练及36题评测已完成，完整评测提交04608b1已推送。core离线诊断与单变量输入包也已冻结；没有活动模型推理或训练。不得重训重测已完成版本、重建候选或提前合并视频。
 
-下一次直接执行的第一项任务：基于现有dev复核，检查Classic训练消息与冻结评测输入呈现的差异、技能状态读取，以及实际优化日程，保存reports/v02_core_diagnosis.md。先形成可审查的core诊断和一个变量明确的小实验，不重新选Base、不改已冻结v0.2、不使用test文本调参，也不合并视频。
+下一次直接执行的第一项任务：读取reports/v02_core_diagnosis.md和data/diagnostics/v02_skill_projection_v0.1/experiment.json，实现独立诊断运行器。只加载冻结23条dev处理输入、复用已有控制输出，验证权重和源指纹、拒绝test和截断、逐题原子保存并可续跑。不要修改evaluate.py默认协议。运行器必要测试通过后先commit，再执行23条处理侧推理与全量模型语义配对复核。
 
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-Get-Content reports/v01_vs_v02.md
-Get-Content reports/dev_semantic_review_v02.md
-Get-Content reports/v02_training_readiness.json
-Get-Content src/werewolf_sft/classic_messages.py
-Get-Content src/werewolf_sft/perspective.py
+Get-Content -Encoding UTF8 reports/v02_core_diagnosis.md
+Get-Content -Encoding UTF8 data/diagnostics/v02_skill_projection_v0.1/experiment.json
+Get-Content -Encoding UTF8 src/werewolf_sft/runtime.py
+Get-Content -Encoding UTF8 scripts/evaluate.py
 ```
 
-若只需重新核对门禁并恢复报告，可执行.venv/Scripts/python.exe scripts/summarize_v02_gate.py；它只读取已完成结果，不加载模型或重新生成回答。视频支线从data/candidates/video_distilled_v0.1/README.md恢复，独立完成合法经典化及Critic，保持v0.2准入为false。
+需要核验离线输入包时执行.venv/Scripts/python.exe -X utf8 scripts/diagnose_v02_core.py；它仅载入本地Tokenizer，验证不可变快照，异内容拒绝，不生成回答。原验收仍未通过，v0.3门禁关闭。视频从独立池README恢复，不得混入此诊断或dataset_v0.2。

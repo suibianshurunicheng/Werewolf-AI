@@ -1,0 +1,857 @@
+{
+  "status": "offline_diagnosis_complete_generation_not_started",
+  "test_text_used": false,
+  "new_training": false,
+  "video_rows": 0,
+  "training": {
+    "rules": {
+      "train": {
+        "rows": 32,
+        "roles": {
+          "guard": 2,
+          "hunter": 7,
+          "seer": 2,
+          "villager": 13,
+          "witch": 8
+        },
+        "actions": {
+          "check": 1,
+          "guard": 2,
+          "heal": 3,
+          "pass": 10,
+          "poison": 2,
+          "shoot": 4,
+          "speak": 7,
+          "vote": 3
+        }
+      },
+      "validation": {
+        "rows": 10,
+        "roles": {
+          "guard": 5,
+          "seer": 1,
+          "villager": 1,
+          "witch": 3
+        },
+        "actions": {
+          "check": 1,
+          "guard": 3,
+          "heal": 1,
+          "pass": 5
+        }
+      },
+      "schedule": {
+        "optimizer_steps": 2,
+        "warmup_steps": 1,
+        "requested_warmup_ratio": 0.05
+      },
+      "logged_optimizer_steps": [
+        {
+          "epoch": 0.5,
+          "grad_norm": 3.826486110687256,
+          "learning_rate": 0.0,
+          "loss": 3.3469,
+          "step": 1
+        },
+        {
+          "epoch": 1.0,
+          "grad_norm": 3.942591905593872,
+          "learning_rate": 5e-05,
+          "loss": 3.3637,
+          "step": 2
+        }
+      ]
+    },
+    "strategy": {
+      "train": {
+        "rows": 17,
+        "roles": {
+          "hunter": 1,
+          "seer": 2,
+          "villager": 14
+        },
+        "actions": {
+          "check": 2,
+          "speak": 14,
+          "vote": 1
+        }
+      },
+      "validation": {
+        "rows": 5,
+        "roles": {
+          "seer": 2,
+          "villager": 3
+        },
+        "actions": {
+          "check": 2,
+          "speak": 2,
+          "vote": 1
+        }
+      },
+      "schedule": {
+        "optimizer_steps": 2,
+        "warmup_steps": 1,
+        "requested_warmup_ratio": 0.05
+      },
+      "logged_optimizer_steps": [
+        {
+          "epoch": 0.9411764705882353,
+          "grad_norm": 3.8993422985076904,
+          "learning_rate": 0.0,
+          "loss": 4.1254,
+          "step": 1
+        },
+        {
+          "epoch": 1.0,
+          "grad_norm": 3.862525701522827,
+          "learning_rate": 5e-05,
+          "loss": 3.7558,
+          "step": 2
+        }
+      ]
+    },
+    "tactics": {
+      "train": {
+        "rows": 21,
+        "roles": {
+          "werewolf": 21
+        },
+        "actions": {
+          "knife": 4,
+          "speak": 13,
+          "vote": 4
+        }
+      },
+      "validation": {
+        "rows": 1,
+        "roles": {
+          "werewolf": 1
+        },
+        "actions": {
+          "speak": 1
+        }
+      },
+      "schedule": {
+        "optimizer_steps": 2,
+        "warmup_steps": 1,
+        "requested_warmup_ratio": 0.05
+      },
+      "logged_optimizer_steps": [
+        {
+          "epoch": 0.7619047619047619,
+          "grad_norm": 3.28409481048584,
+          "learning_rate": 0.0,
+          "loss": 3.9921,
+          "step": 1
+        },
+        {
+          "epoch": 1.0,
+          "grad_norm": 3.444277048110962,
+          "learning_rate": 5e-05,
+          "loss": 3.9664,
+          "step": 2
+        }
+      ]
+    }
+  },
+  "dev": [
+    {
+      "id": "eval-rule-guard-repeat",
+      "role": "guard",
+      "stage": "night",
+      "kept_skill_state": {
+        "last_guard_target": 12,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 566,
+        "treatment": 473
+      },
+      "existing_prediction_sha256": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d"
+    },
+    {
+      "id": "eval-rule-witch-spent",
+      "role": "witch",
+      "stage": "night",
+      "kept_skill_state": {
+        "antidote_available": false,
+        "poison_available": false,
+        "potion_used_tonight": false,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 564,
+        "treatment": 489
+      },
+      "existing_prediction_sha256": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d"
+    },
+    {
+      "id": "eval-rule-witch-current-target",
+      "role": "witch",
+      "stage": "night",
+      "kept_skill_state": {
+        "antidote_available": true,
+        "poison_available": false,
+        "potion_used_tonight": false,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 604,
+        "treatment": 529
+      },
+      "existing_prediction_sha256": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061"
+    },
+    {
+      "id": "eval-rule-hunter-no-permission",
+      "role": "hunter",
+      "stage": "hunter_shot",
+      "kept_skill_state": {
+        "hunter_can_shoot": false,
+        "shot_used": false,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target"
+      ],
+      "input_tokens": {
+        "control": 562,
+        "treatment": 476
+      },
+      "existing_prediction_sha256": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d"
+    },
+    {
+      "id": "eval-rule-vote-dead",
+      "role": "villager",
+      "stage": "exile_vote",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 559,
+        "treatment": 459
+      },
+      "existing_prediction_sha256": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca"
+    },
+    {
+      "id": "eval-rule-sheriff-withdrawn",
+      "role": "villager",
+      "stage": "sheriff_vote",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 573,
+        "treatment": 473
+      },
+      "existing_prediction_sha256": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486"
+    },
+    {
+      "id": "eval-rule-parity",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 572,
+        "treatment": 472
+      },
+      "existing_prediction_sha256": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff"
+    },
+    {
+      "id": "eval-strategy-silver",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 622,
+        "treatment": 522
+      },
+      "existing_prediction_sha256": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc"
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 621,
+        "treatment": 521
+      },
+      "existing_prediction_sha256": "02e31d99c67ec7f6e3fe0a99f3fdd2372e26bffa7529fb9f4cec44538146af5f"
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 617,
+        "treatment": 517
+      },
+      "existing_prediction_sha256": "5941c6a956f7f86c25beb6f22b0851cad34151be857fde9f3a34ddb9846b8fc6"
+    },
+    {
+      "id": "eval-strategy-dead-dark",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 616,
+        "treatment": 516
+      },
+      "existing_prediction_sha256": "857483ff7390995aed4970d0ad51f6133df5b1e6e09677cd804f351081a979e3"
+    },
+    {
+      "id": "eval-strategy-later-check",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 624,
+        "treatment": 524
+      },
+      "existing_prediction_sha256": "5d83b196784cdbd74a4e3095708ebc886de22dab0b192c0a1162e6570693ff99"
+    },
+    {
+      "id": "eval-cf-guard-a",
+      "role": "guard",
+      "stage": "night",
+      "kept_skill_state": {
+        "last_guard_target": 12,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 570,
+        "treatment": 477
+      },
+      "existing_prediction_sha256": "becb743e130c386a4c7c6fe9e02ca5a7cb688c2204788563b3a042052bca4357"
+    },
+    {
+      "id": "eval-cf-guard-b",
+      "role": "guard",
+      "stage": "night",
+      "kept_skill_state": {
+        "last_guard_target": 6,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 569,
+        "treatment": 476
+      },
+      "existing_prediction_sha256": "7ef6ce0ba6e077aa737cf9846011256a619719f68bee48b620422defcc9e7fb1"
+    },
+    {
+      "id": "eval-cf-hunter-a",
+      "role": "hunter",
+      "stage": "hunter_shot",
+      "kept_skill_state": {
+        "hunter_can_shoot": false,
+        "shot_used": false,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target"
+      ],
+      "input_tokens": {
+        "control": 565,
+        "treatment": 479
+      },
+      "existing_prediction_sha256": "b823a6676250147196a7278d8703b6153794f8ea5b70c192bb163154080b782e"
+    },
+    {
+      "id": "eval-cf-hunter-b",
+      "role": "hunter",
+      "stage": "hunter_shot",
+      "kept_skill_state": {
+        "hunter_can_shoot": true,
+        "shot_used": false,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target"
+      ],
+      "input_tokens": {
+        "control": 565,
+        "treatment": 479
+      },
+      "existing_prediction_sha256": "ba0479b59ef7b1ad142e0c174cd30253287ee6fdc450d1798df801ee407fe67f"
+    },
+    {
+      "id": "eval-cf-team-a",
+      "role": "werewolf",
+      "stage": "exile_vote",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 766,
+        "treatment": 666
+      },
+      "existing_prediction_sha256": "d2e77750b75ca6513a0656f54c5da93a7c731ab80c6c8b8a819dd904e1139b71"
+    },
+    {
+      "id": "eval-cf-team-b",
+      "role": "werewolf",
+      "stage": "exile_vote",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 765,
+        "treatment": 665
+      },
+      "existing_prediction_sha256": "e1a1b8bfe81ff38f7d99816e7f72001d3b2d20e6c44e8aa9d87bc7c66c7288d1"
+    },
+    {
+      "id": "eval-blind-01",
+      "role": "werewolf",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 716,
+        "treatment": 616
+      },
+      "existing_prediction_sha256": "8b978f732a5752bd07149c2889514ea05a44c97c63eec554d38291eff1dbf976"
+    },
+    {
+      "id": "eval-blind-02",
+      "role": "werewolf",
+      "stage": "sheriff_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 717,
+        "treatment": 617
+      },
+      "existing_prediction_sha256": "f69b4c6b4a53ae50cbfa5f8ea3e08c5e1b74f2d47050d68adc700369cdecc082"
+    },
+    {
+      "id": "eval-blind-04",
+      "role": "seer",
+      "stage": "night",
+      "kept_skill_state": {
+        "checked_seats": [],
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 617,
+        "treatment": 523
+      },
+      "existing_prediction_sha256": "ec690991baa69fdb493aa1aad2386e83d90391fc2be15a319a0be45e6abe0fd1"
+    },
+    {
+      "id": "eval-blind-05",
+      "role": "guard",
+      "stage": "night",
+      "kept_skill_state": {
+        "last_guard_target": 12,
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 618,
+        "treatment": 525
+      },
+      "existing_prediction_sha256": "292b6a196f2730bf5bd9fc1d28ec383279f94e126565d12b7de24c5dc4566b27"
+    },
+    {
+      "id": "eval-blind-07",
+      "role": "villager",
+      "stage": "day_speech",
+      "kept_skill_state": {
+        "last_words_allowed": false
+      },
+      "removed_skill_keys": [
+        "antidote_available",
+        "checked_seats",
+        "extra_knife_available",
+        "hunter_can_shoot",
+        "knife_enabled",
+        "last_guard_target",
+        "mimic_role",
+        "mimic_round",
+        "mimic_used",
+        "poison_available",
+        "potion_used_tonight",
+        "selected_knife_target",
+        "shot_used"
+      ],
+      "input_tokens": {
+        "control": 616,
+        "treatment": 516
+      },
+      "existing_prediction_sha256": "337438088fdb10edeaf10e131338948b65cbbb3f77fd42412707b1c4fd5218f6"
+    }
+  ],
+  "prompt_hashes": {
+    "classic_training": "64195b3d625bcfcc76a613f51f36340e020d2887b7eea0bac231cfa2f969a3b1",
+    "frozen_evaluation": "fca8c04ef6f689617e48c5691e277fb779c0ea06c7b4b27fd92eea3a2463dce3"
+  },
+  "sources": {
+    "configs/qlora_classic_v02.yaml": "1d417ce9fbd0ff518de97b4cfc2c1c61deadf9926afbb9f80c4029b72e0acdcc",
+    "data/prepared/dataset_v0.2/rules/train.jsonl": "8e416136d167af12dfc5b66ff49627fd0e4611b85b3ff9fd0f01e4c3c729a534",
+    "data/prepared/dataset_v0.2/rules/validation.jsonl": "9c8d48701dc9f029af3746d3932306eb97e54862e4db005b739ca7764156512b",
+    "data/prepared/dataset_v0.2/strategy/train.jsonl": "4817a2a8f74260a0355dc7440ba0024a083fa55aed108b4d93f212a0849396f0",
+    "data/prepared/dataset_v0.2/strategy/validation.jsonl": "b11e9de64b8cf747cf8205644106091078c466cd8caa02159f9c548e36cc5d71",
+    "data/prepared/dataset_v0.2/tactics/train.jsonl": "fdb75a023d5e69bd7039f4f99b5d0d8947d185c90772ff3ade893affc30ee310",
+    "data/prepared/dataset_v0.2/tactics/validation.jsonl": "ae91b268b0afa5930f3323ad95664674b0f26a32b12b99a524a3ff84cf342025",
+    "data/versions/dataset_v0.1.json": "14f9f757381f4f666137a1b6e93df3a924effcf7f2834282a4e80c04dfb15a73",
+    "data/versions/dataset_v0.2.json": "494f518b4cfbfa072b113f99d42f5470d2fb1a16fd33d7c6ef68327137dcf6aa",
+    "eval/blind.jsonl": "955320b225a2fe19ef5fda0e11022b01d9827c2be679d28d8715860d4c3c7da9",
+    "eval/counterfactual.jsonl": "9789cb6473e31168f0ecd6e096c1892443087a9973c571259764812a98d4c0e4",
+    "eval/rules.jsonl": "ec2cd391eb868813815acf403b739c45ddb285b3e77a28b028c2e8ad74e287de",
+    "eval/strategy.jsonl": "14cf769069a394c8c679421369bb3fa3ab3a45a3fa6e524196b34671a7da5048",
+    "reports/dev_semantic_review_v02.json": "5509b24ea23300687e8e44fdb9d845b8c76b5c04255af11d3bc9dea5dba5752b",
+    "reports/runs/qlora_v02/cases/eval-blind-01.json": "8b978f732a5752bd07149c2889514ea05a44c97c63eec554d38291eff1dbf976",
+    "reports/runs/qlora_v02/cases/eval-blind-02.json": "f69b4c6b4a53ae50cbfa5f8ea3e08c5e1b74f2d47050d68adc700369cdecc082",
+    "reports/runs/qlora_v02/cases/eval-blind-04.json": "ec690991baa69fdb493aa1aad2386e83d90391fc2be15a319a0be45e6abe0fd1",
+    "reports/runs/qlora_v02/cases/eval-blind-05.json": "292b6a196f2730bf5bd9fc1d28ec383279f94e126565d12b7de24c5dc4566b27",
+    "reports/runs/qlora_v02/cases/eval-blind-07.json": "337438088fdb10edeaf10e131338948b65cbbb3f77fd42412707b1c4fd5218f6",
+    "reports/runs/qlora_v02/cases/eval-cf-guard-a.json": "becb743e130c386a4c7c6fe9e02ca5a7cb688c2204788563b3a042052bca4357",
+    "reports/runs/qlora_v02/cases/eval-cf-guard-b.json": "7ef6ce0ba6e077aa737cf9846011256a619719f68bee48b620422defcc9e7fb1",
+    "reports/runs/qlora_v02/cases/eval-cf-hunter-a.json": "b823a6676250147196a7278d8703b6153794f8ea5b70c192bb163154080b782e",
+    "reports/runs/qlora_v02/cases/eval-cf-hunter-b.json": "ba0479b59ef7b1ad142e0c174cd30253287ee6fdc450d1798df801ee407fe67f",
+    "reports/runs/qlora_v02/cases/eval-cf-team-a.json": "d2e77750b75ca6513a0656f54c5da93a7c731ab80c6c8b8a819dd904e1139b71",
+    "reports/runs/qlora_v02/cases/eval-cf-team-b.json": "e1a1b8bfe81ff38f7d99816e7f72001d3b2d20e6c44e8aa9d87bc7c66c7288d1",
+    "reports/runs/qlora_v02/cases/eval-rule-guard-repeat.json": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d",
+    "reports/runs/qlora_v02/cases/eval-rule-hunter-no-permission.json": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d",
+    "reports/runs/qlora_v02/cases/eval-rule-parity.json": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff",
+    "reports/runs/qlora_v02/cases/eval-rule-sheriff-withdrawn.json": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486",
+    "reports/runs/qlora_v02/cases/eval-rule-vote-dead.json": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca",
+    "reports/runs/qlora_v02/cases/eval-rule-witch-current-target.json": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061",
+    "reports/runs/qlora_v02/cases/eval-rule-witch-spent.json": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d",
+    "reports/runs/qlora_v02/cases/eval-strategy-ambiguous.json": "5941c6a956f7f86c25beb6f22b0851cad34151be857fde9f3a34ddb9846b8fc6",
+    "reports/runs/qlora_v02/cases/eval-strategy-dead-dark.json": "857483ff7390995aed4970d0ad51f6133df5b1e6e09677cd804f351081a979e3",
+    "reports/runs/qlora_v02/cases/eval-strategy-later-check.json": "5d83b196784cdbd74a4e3095708ebc886de22dab0b192c0a1162e6570693ff99",
+    "reports/runs/qlora_v02/cases/eval-strategy-silver.json": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc",
+    "reports/runs/qlora_v02/cases/eval-strategy-vote-change.json": "02e31d99c67ec7f6e3fe0a99f3fdd2372e26bffa7529fb9f4cec44538146af5f",
+    "reports/training/rules_v02/run_manifest.json": "b628cd5cb53c037a9a24a4a62dd7acac26df833901048d5e5cc6d64efdfc5289",
+    "reports/training/rules_v02/training.jsonl": "bdcc6bb676cc333dcee010405d8b1a53859fdd96cf30e2fef25f11b52d30dafd",
+    "reports/training/strategy_v02/run_manifest.json": "7e7f85ad17148e4f6113462a43caea1a33a331962ac925dd99dfa1454d3775be",
+    "reports/training/strategy_v02/training.jsonl": "2e534a0a742b31cfcf5efa2ca8585ecf4a5824808093d1f4065e45c855681e52",
+    "reports/training/tactics_v02/run_manifest.json": "6de2c37f638a55703890bfdb63d8c958590e4e984d37c4d87412561c7a5e14af",
+    "reports/training/tactics_v02/training.jsonl": "179908a08ffcdc35cafa42a9f89c9665bc213afe7caa4cdce3dda098c087707f",
+    "scripts/diagnose_v02_core.py": "ba4504b0b0cd53ace4b29bfadbb37926551003c1c3faba5602633a645dbe4e40",
+    "src/werewolf_sft/classic_messages.py": "4ae0ef8fe2be143f75d1c5de3871cb1477932f150f7b7845ac1f3f6e9e102ca7",
+    "src/werewolf_sft/encoding.py": "581b9a1275add8f54d600a5935346153556890051498e8aad0a9c65a740cba17",
+    "src/werewolf_sft/perspective.py": "fd91d8700da01d6109b75d64d379679ebb1babe72456912703b30ac2927a467d",
+    "src/werewolf_sft/training.py": "5ce75493df3e21f5096fb8740e68eb8e1bc01d91f6f60f5bbae41e052a795e33"
+  }
+}

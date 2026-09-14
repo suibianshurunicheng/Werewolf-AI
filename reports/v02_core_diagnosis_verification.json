@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    "23 dev only; no assistant answer",
+    "single skill_state projection; system and all other view fields unchanged",
+    "all input lengths below 2048 with pinned tokenizer",
+    "23 source predictions match completed dev review SHA",
+    "v0.1 and v0.2 manifests verified",
+    "second execution leaves three snapshot SHA and mtime unchanged"
+  ],
+  "snapshot_sha256": {
+    "reports\\v02_core_diagnosis.json": "8ece2012e7d96a138bc8e41a4d5bd8efbd9473ab1a98e5738a37998e7ee27b45",
+    "data\\diagnostics\\v02_skill_projection_v0.1\\experiment.json": "bb5db53c7bf1e871089906a823f653c5bdf417fa68cff70e41e10508253ded45",
+    "data\\diagnostics\\v02_skill_projection_v0.1\\inputs.jsonl": "571465162ddb6e2ad5224da972e1017b2d2fbcb14b59f1f4dd6d72f2fe0afb3d"
+  },
+  "gpu_generation_started": false
+}
