@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-14。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark规则12与策略8题完成，反事实/Blind进行中。
+更新：2026-09-14。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark前三组28题完成，Blind8题进行中。
 
 ## 已完成任务
 
@@ -35,6 +35,8 @@ v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条
 - v0.2 Benchmark规则12/12完成，完整评测仍partial；7条规则dev已逐题语义复核。快照见reports/v02_rules_checkpoint.json，后续原命令补未完成题。
 
 - 2026-09-14规则12和策略8题已完成；13条dev已复核（含首个反事实）。策略组快照见reports/v02_strategy_checkpoint.json，完整结果仍partial。
+
+- 规则/策略/反事实28题全部保存，18条dev已复核。反事实两版均0/4成对命中；v0.2新增猎人频次/时机幻觉与确定狼队知识退步，已记录为严重回归，v0.3门禁保持关闭。完整结论待Blind组完成。
 
 ## 已运行测试与结果
 

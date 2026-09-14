@@ -1,0 +1,64 @@
+{
+  "status": "counterfactual_complete_full_run_partial",
+  "completed_groups": [
+    "rules",
+    "strategy",
+    "counterfactual"
+  ],
+  "completed_cases_in_groups": 28,
+  "summaries": {
+    "qlora_v01": {
+      "status": "complete",
+      "expected_cases": 8,
+      "completed_cases": 8,
+      "metrics": {
+        "counterfactual": {
+          "total": 8,
+          "format_valid_rate": 0.5,
+          "action_legal_rate": 0.0,
+          "action_match_rate": 0.0,
+          "unknown_action_type_rate": 0.375,
+          "public_leak_flag_rate": 0.0,
+          "truncated_rate": 0.0
+        }
+      },
+      "counterfactual": {
+        "pairs": 4,
+        "both_correct": 0,
+        "action_changed": 1
+      },
+      "human_strategy_quality": "pending",
+      "note": "Automated action metrics are not a full Werewolf reasoning score."
+    },
+    "qlora_v02": {
+      "status": "complete",
+      "expected_cases": 8,
+      "completed_cases": 8,
+      "metrics": {
+        "counterfactual": {
+          "total": 8,
+          "format_valid_rate": 0.75,
+          "action_legal_rate": 0.0,
+          "action_match_rate": 0.0,
+          "unknown_action_type_rate": 0.625,
+          "public_leak_flag_rate": 0.0,
+          "truncated_rate": 0.0
+        }
+      },
+      "counterfactual": {
+        "pairs": 4,
+        "both_correct": 0,
+        "action_changed": 1
+      },
+      "human_strategy_quality": "pending",
+      "note": "Automated action metrics are not a full Werewolf reasoning score."
+    }
+  },
+  "dev_reviews_completed": 18,
+  "new_critical_regression_cases": [
+    "eval-cf-hunter-a",
+    "eval-cf-hunter-b",
+    "eval-cf-team-a",
+    "eval-cf-team-b"
+  ]
+}

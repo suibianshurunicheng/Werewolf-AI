@@ -132,6 +132,56 @@
         "qlora_v01": "1a6206d7587db0c2213dc0435e073eb3e765d4e78e16c57db4e16dbd879a1fcd",
         "qlora_v02": "becb743e130c386a4c7c6fe9e02ca5a7cb688c2204788563b3a042052bca4357"
       }
+    },
+    {
+      "id": "eval-cf-guard-b",
+      "observation": "两版在本可守12的条件下都称无明确查验目标并输出none。v0.2另称守卫技能未使用，忽略上一夜目标与任务已指定目标；与A组成的对照没有学会合法守护条件，虽动作变化也非正确重规划。",
+      "classification": "persistent_role_and_counterfactual_state_failure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "b27404cd0c536c959d30c75c00dfb4d8e0d09f75fca5bae10798eeae508b09ba",
+        "qlora_v02": "7ef6ce0ba6e077aa737cf9846011256a619719f68bee48b620422defcc9e7fb1"
+      }
+    },
+    {
+      "id": "eval-cf-hunter-a",
+      "observation": "v0.2结构有效、目标改为12，但禁枪条件仍被忽略，hunter_shot仍不是shoot，猎人查验混淆持续；新增明确规则幻觉“猎人每轮可查验一人”，把一次性技能扩展为每轮能力，记为新增严重规则回归。",
+      "classification": "format_improvement_new_hunter_frequency_hallucination",
+      "new_critical_regression": true,
+      "sources": {
+        "qlora_v01": "18123472fb381df50bf1c4eb7e369fd420b961e6fe1da1b3140b83d865a2edab",
+        "qlora_v02": "b823a6676250147196a7278d8703b6153794f8ea5b70c192bb163154080b782e"
+      }
+    },
+    {
+      "id": "eval-cf-hunter-b",
+      "observation": "v0.2结构有效、目标仍12，但仍将猎枪当查验并使用hunter_shot；新增“猎人只能在夜间查验一次”的时机/技能规则幻觉，和当前已授权开枪窗口不符，记新增严重规则回归。不能因目标相同而当成会开枪。",
+      "classification": "format_improvement_new_hunter_timing_hallucination",
+      "new_critical_regression": true,
+      "sources": {
+        "qlora_v01": "e9d4e1ba370b4d5256c9ac1183b61ce3360077bfef40350309e0a0c8ba2dff84",
+        "qlora_v02": "ba0479b59ef7b1ad142e0c174cd30253287ee6fdc450d1798df801ee407fe67f"
+      }
+    },
+    {
+      "id": "eval-cf-team-a",
+      "observation": "v0.1虽错误称狼人验人，但知道1/4/8是确定狼队，并针对12公开改票给出攻击理由。v0.2退为未确认队友、缺查验故无法确认，称白天放逐为夜投票，忽略队友矛盾和12票型，exile:null无目标。确定狼队知识被否定，是新增严重角色信息/状态回归，非仅接口差异。",
+      "classification": "new_team_knowledge_denial_and_decision_regression",
+      "new_critical_regression": true,
+      "sources": {
+        "qlora_v01": "d95a28d78cffe74e0f6379461d34057e473454d791d618ac30400114aa2f9f30",
+        "qlora_v02": "d2e77750b75ca6513a0656f54c5da93a7c731ab80c6c8b8a819dd904e1139b71"
+      }
+    },
+    {
+      "id": "eval-cf-team-b",
+      "observation": "v0.1能按确定狼队信息避开队友并给出投12的公开理由。v0.2再次将1/4/8降为未经证实的狼人嫌疑，忽略B条件的队友澄清与12公开问题，exile:null不决策；A/B均无目标，新增严重队伍知识与自主决策回归持续。",
+      "classification": "new_team_knowledge_denial_and_failed_replanning",
+      "new_critical_regression": true,
+      "sources": {
+        "qlora_v01": "d4401d3015d49df50b5d50925307b51167a93205ecccddf83e909ac2caf65c10",
+        "qlora_v02": "e1a1b8bfe81ff38f7d99816e7f72001d3b2d20e6c44e8aa9d87bc7c66c7288d1"
+      }
     }
   ],
   "note": "Only completed dev outputs reviewed; never use test text for repairs. Do not infer full-run success from partial metrics."
