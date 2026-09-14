@@ -1,6 +1,8 @@
 # Werewolf-3.5B-Classic V1 模型卡
 
-状态：4GB本机已完成Rule（3step）、Strategy（1step）、Tactics（7step）三阶段Adapter，各1epoch；同协议36题Adapter比较完成：严格结构有效33/36→27/36、合法动作5/36→1/36、参考匹配2/36→0/36，未通过能力验收。开发集语义复核仍发现角色技能/证据利用错误，不能宣称高手模型。Tactics最终权重从最佳checkpoint-7核验导出，验证Loss2.8225455，训练峰值显存未在中断前落盘。禁止把Base或CPU小模型单元测试当成专项模型成果。实时状态和实际分数以PROJECT_STATUS、reports为准。
+v0.1历史状态：4GB本机已完成Rule（3step）、Strategy（1step）、Tactics（7step）三阶段Adapter，各1epoch；同协议36题Adapter比较完成：严格结构有效33/36→27/36、合法动作5/36→1/36、参考匹配2/36→0/36，未通过能力验收。开发集语义复核仍发现角色技能/证据利用错误，不能宣称高手模型。Tactics最终权重从最佳checkpoint-7核验导出，验证Loss2.8225455，训练峰值显存未在中断前落盘。禁止把Base或CPU小模型单元测试当成专项模型成果。实时状态和实际分数以PROJECT_STATUS、reports为准。
+
+最新v0.2-core：86条原创修正样本，42规则/22策略/22战术，视频样本0；三阶段各2步/1epoch，最高实测PyTorch训练峰值3443.7MiB。36题同协议结构34/36、合法动作5/36、参考命中2/36、反事实0/4；相对v0.1部分恢复但未超过Base的自动动作数量，且有新增严重语义回归，能力验收未通过，v0.3-video门禁关闭。23条dev为模型语义复核，非独立人工。详细结果见reports/v01_vs_v02.md与PROJECT_STATUS.md。
 
 目标：3B～4B中文玩家视角决策，经典12人4狼4民预女守猎，ww-v1.0暗牌警长屠边。人工复制粘贴使用。镜隐不在Phase 1训练范围。
 

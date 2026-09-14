@@ -1,0 +1,59 @@
+{
+  "status": "complete",
+  "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+  "counts_out_of_36": {
+    "base_primary": {
+      "format_valid": 33,
+      "action_legal": 5,
+      "action_match": 2,
+      "counterfactual_both_correct": 0
+    },
+    "qlora_v01": {
+      "format_valid": 27,
+      "action_legal": 1,
+      "action_match": 0,
+      "counterfactual_both_correct": 0
+    },
+    "qlora_v02": {
+      "format_valid": 34,
+      "action_legal": 5,
+      "action_match": 2,
+      "counterfactual_both_correct": 0
+    }
+  },
+  "v02_minus_v01": {
+    "format_valid": 7,
+    "action_legal": 4,
+    "action_match": 2,
+    "counterfactual_both_correct": 0
+  },
+  "metric_denominators": {
+    "format_valid": 36,
+    "action_legal": 36,
+    "action_match": 36,
+    "counterfactual_both_correct": 4
+  },
+  "obvious_regression_gate_triggered": true,
+  "gate_reasons": [
+    "eval-cf-hunter-a",
+    "eval-cf-hunter-b",
+    "eval-cf-team-a",
+    "eval-cf-team-b"
+  ],
+  "v03_may_be_considered": false,
+  "v03_created": false,
+  "video_rows_in_v02": 0,
+  "review_kind": "model_semantic_review_not_independent_human",
+  "evidence_sha256": {
+    "base_primary": "6df727987eb587c61287ef75a5183d8ed0a68754ad7e5c12c84d9ebef73672cf",
+    "qlora_v01": "2094ec6c25b3a763cc1d6e2aef5fe4edf476f088a6b19baa79c18388a746ce42",
+    "qlora_v02": "609ea95f4737651d41a0972a7e186ea3a82bccc10b1cd312432c6e98c1201b20"
+  },
+  "review_sha256": "5509b24ea23300687e8e44fdb9d845b8c76b5c04255af11d3bc9dea5dba5752b",
+  "limitations": [
+    "Single small deterministic benchmark; no statistical significance claim.",
+    "No independent human gameplay acceptance.",
+    "Training had six scheduled steps, three nonzero-learning-rate updates; tactics validation had one example.",
+    "Passing the no-obvious-regression gate does not establish expert quality or that every targeted defect was repaired."
+  ]
+}

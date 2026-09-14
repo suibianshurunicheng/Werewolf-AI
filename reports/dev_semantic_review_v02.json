@@ -1,5 +1,5 @@
 {
-  "status": "partial",
+  "status": "complete",
   "review_kind": "model_semantic_review_not_independent_human",
   "expected_dev_cases": 23,
   "items": [
@@ -182,7 +182,58 @@
         "qlora_v01": "d4401d3015d49df50b5d50925307b51167a93205ecccddf83e909ac2caf65c10",
         "qlora_v02": "e1a1b8bfe81ff38f7d99816e7f72001d3b2d20e6c44e8aa9d87bc7c66c7288d1"
       }
+    },
+    {
+      "id": "eval-blind-01",
+      "observation": "v0.2结构有效，但speech:1仍不是speak:null；公开回答复读对自己的质询，未解释连续维护队友的历史，较v0.1至少提出1号矛盾的回应退步。私有分析还无依据称狼队成员已暴露，把自己知道队伍与公开身份混淆；未在公开文本实际泄露完整队伍名单。",
+      "classification": "local_autonomous_response_regression_and_public_private_confusion",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "f3d8d9dc5e259f4ec86ca65cbc86b959524e9fe55c147e2ba21f025106e1b317",
+        "qlora_v02": "8b978f732a5752bd07149c2889514ea05a44c97c63eec554d38291eff1dbf976"
+      }
+    },
+    {
+      "id": "eval-blind-02",
+      "observation": "v0.2不再把第1轮狼队记录当死亡，也开始引用8报验获认可；结构修复使pass成为合法动作。但仍对已知队友是否伪装摇摆，当前轮到警上发言却等待，没有利用队友局势选择配合或调整打法。",
+      "classification": "local_state_and_format_improvement_incomplete_team_coordination",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "1a15214fefe0e22be287ef9a17cecff491f419cb52d0f7590a309fd14c5842e2",
+        "qlora_v02": "f69b4c6b4a53ae50cbfa5f8ea3e08c5e1b74f2d47050d68adc700369cdecc082"
+      }
+    },
+    {
+      "id": "eval-blind-04",
+      "observation": "v0.2读取12与6的站边冲突并主动查未验12，较v0.1无目标check:null有明确自主决策改善；合法且命中参考动作。仍在夜间公开查验目标，公开边界未修复，不能判整个场景完全成功。",
+      "classification": "correct_autonomous_target_improvement_persistent_night_disclosure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "2be0a1fb85e085d3b21e128f9470eede72a156d1de9a4a67374b48d03f0b5a95",
+        "qlora_v02": "ec690991baa69fdb493aa1aad2386e83d90391fc2be15a319a0be45e6abe0fd1"
+      }
+    },
+    {
+      "id": "eval-blind-05",
+      "observation": "v0.1给guard:null虽不合法但没有实际指定连守目标；v0.2改为guard12，忽略上夜已守12，反而执行连守。仍混入查验、技能未使用等无依据措辞并夜间公开目标；守护记忆未修复，行动语义出现局部退步。",
+      "classification": "guard_memory_action_regression_persistent_night_disclosure",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "2a8beb41a1c6b1e718d7a70d2cb6315584784f804ca0ef5d1d40c4463e189bc1",
+        "qlora_v02": "292b6a196f2730bf5bd9fc1d28ec383279f94e126565d12b7de24c5dc4566b27"
+      }
+    },
+    {
+      "id": "eval-blind-07",
+      "observation": "v0.2公开发言开始引用互攻却同票并追问，较v0.1无发言有实际回应改善；但私有分析仍把互不信任误读为互信，团队关系解释不完整，speech仍不是speak，未通过严格动作判定。",
+      "classification": "local_public_evidence_response_improvement_with_inconsistent_analysis",
+      "new_critical_regression": false,
+      "sources": {
+        "qlora_v01": "90295d23066363b041c08f78566445378f47090006ee50679df90304abb0ec25",
+        "qlora_v02": "337438088fdb10edeaf10e131338948b65cbbb3f77fd42412707b1c4fd5218f6"
+      }
     }
   ],
-  "note": "Only completed dev outputs reviewed; never use test text for repairs. Do not infer full-run success from partial metrics."
+  "note": "23 frozen dev cases reviewed against saved v0.1 outputs; no test text used for repair. Model review, not independent human certification. Hypotheses about causes remain unproven.",
+  "completed_date": "2026-09-14"
 }

@@ -1,123 +1,94 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-14。当前Phase：Phase 1，v0.1验收未通过；v0.2-core完整86条已审核冻结并生成Classic messages，实际Tokenizer与配置检查完成；v0.2三阶段正式训练完成，同协议Benchmark前三组28题完成，Blind8题进行中。
+更新：2026-09-14。当前Phase：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
 
 ## 已完成任务
 
-- 仓库多阶段commit/push，沿既有Resume Here继续；没有重新初始化、重新选Base或覆盖冻结数据。
-- classic_12 / ww-v1.0、严格玩家视角Schema、规则纯函数、8模板和训练/评测/人工推理工具。
-- Primary Qwen/Qwen3-4B-Instruct-2507，固定revision cdbee75f17c01a7cc42f958dc650907174af0554；完整权重已缓存，不需再次下载。Backup仍未启用。
-- dataset_v0.1为185条原创合成种子：42规则、18策略、125战术；场景族划分，无独立专家复核，不宣称3000+高质量对局。
-- 独立Benchmark36题（rules12/strategy8/counterfactual8/blind8），23 dev/13 test；两方全部完成。没有把test文本用于本次修正建议。
-- Rule：35 train/7 val，3step/1epoch，最佳Loss2.9687984，峰值3376.9MiB，252个LoRA B矩阵非零。
-- Strategy：15/3，1step/1epoch，实际warmup0，最佳Loss3.0586383，峰值3315.8MiB，相对Rule改变504张量。
-- Tactics：105/20，7step/1epoch，最佳checkpoint-7 Loss2.8225455，相对Strategy改变504张量。最后checkpoint保存后中断，已核验SHA补齐final导出，未重跑完成步。训练峰值未持久化，记null；不把恢复片段聚合loss/runtime冒充全程统计。
-- 真实训练源Tactics为90a0416；完整导出及恢复工具提交e7785d0，规则组快照bf0638f，首局全音轨与画面纠错eecf348均已推送。
-- 23/23 dev逐题语义复核及两方原始回答SHA已保存reports/dev_semantic_review_v01.*；这是model_review，不是独立人工盲审。
+- Phase 0工程基础、classic_12 / ww-v1.0、严格Schema/合法动作/玩家视角、可恢复训练与评测工具。
+- Base继续固定Qwen/Qwen3-4B-Instruct-2507，revision cdbee75f17c01a7cc42f958dc650907174af0554；本地权重缓存已在，不重新调研或下载。
+- v0.1保留185条原创种子、三阶段Adapter和完整36题对照。Rule3步/Strategy1步/Tactics7步，旧Tactics最佳checkpoint-7，Loss2.8225455；旧训练峰值未记录，不补造。
+- v0.2-core冻结86条/50族：42 Rule、22 Strategy、22 Tactics。阶段train/val为32/10、17/5、21/1，11项覆盖能力两侧均非空。覆盖不等于规模充分，战术验证仅1例。
+- 原32条规则、24条策略候选不改；补充30条自主场景。初版3条警徽票轮次错误由core_supplement_v0.2修正，旧v0.1候选保留并标superseded，未重复入库。
+- 86条准入均有SHA和具体模型语义审核理由，另记录旧30条superseded；非独立人工专家或Gold认证。来源显式白名单，不读取视频候选目录合并，video_rows=0。
+- data/versions/dataset_v0.2.json、data/{gold,prepared}/dataset_v0.2和Classic训练messages完整冻结。专用训练消息移除扩展技能/角色内容，旧Benchmark Prompt/输入不变。
+- 实际Tokenizer525～791 tokens，1024内零过滤/截断；独立配置configs/qlora_classic_v02.yaml冻结并在f89d910提交推送后才训练。
+- v0.2同Base从头建Adapter，Rule→Strategy→Tactics各2步/1epoch；最佳均checkpoint-2。保持NF4、r8/alpha16、累积16、学习率5e-5，未使用旧v0.1 Adapter作为初始权重。
+- Rule Loss3.0613351/峰值3414.2MiB；Strategy Loss3.7053094/3316.9MiB；Tactics Loss3.8002665/3443.7MiB。全部252个LoRA B非零；后两阶段各相对前阶段改变504个张量。完整checkpoint、final、配置、step/epoch、日志与SHA已保存。
+- 2026-09-14发现评测停在14题且OS锁已释放，按原命令恢复，旧14文件SHA不变，只完成剩余22题；36/36已结束，运行锁空闲。
+- 23条dev全部完成模型语义复核，v0.1/v0.2原始回答SHA已保存；13条test仅冻结自动评分，未用test文本修正数据。
 
-## 当前正在进行
+## 当前正在进行的任务
 
-v0.2-core定向修复数据已完成：规则42、策略22、战术22，共86条/50族，训练70/验证16。对应阶段32/10、17/5、21/1；覆盖矩阵无空缺，但战术验证仅1例，不夸称统计充分。
+本轮工程阶段已完成，无活动训练/评测/ASR进程。当前需要继续的是core失败诊断，而不是重新训练完成阶段或合入视频。先保存下一小实验的证据和单一变量选择，再考虑新运行；不改已冻结v0.2。
 
-- 原rules_batch_v0.1和strategy_batch_v0.1保持不变；新增30条自主决策补充。审核发现三个警徽票轮次错误，以core_supplement_v0.2替代v0.1，旧候选不覆盖、不重复入库。
-- reports/dataset_v02_core_review.*逐条记录86条准入理由、哈希及30条旧候选superseded状态。审核为model_semantic_review，非独立人工专家或Gold认证。
-- 完整data/versions/dataset_v0.2.json与data/{gold,prepared}/dataset_v0.2冻结。只允许三个显式core组件，source与审核哈希校验，视频准入0。
-- Classic训练messages使用classic_core_sft_v0.2，裁剪扩展角色/技能；v0.1评测Prompt与输入保持原样，同协议指纹已核实。
-- configs/qlora_classic_v02.yaml为独立完整配置，保持同Base/revision/NF4/r8/1epoch/学习率；从Base重新开始，不续接v0.1 Adapter。每阶段计划2优化步，实际warmup1，总6步；不按结果临时改参。
-- reports/v02_training_readiness.json保存实际Tokenizer长度525～791、零截断过滤、完整配置/哈希与dry-run计划。Rule、Strategy、Tactics均已完成，导出核验通过；下一步36题同协议Benchmark。
+## 已运行测试、核验与结果
 
-- v0.2 Rule已完成2步/1epoch，最佳checkpoint-2，验证Loss3.0613351，峰值3414.2MiB，252个LoRA B矩阵非零；配置、日志与权重SHA见reports/training/rules_v02。
+- 冻结前完整85项pytest通过、9条既有PEFT夹具警告。含CPU梯度/损失、LoRA保存恢复、断点等价、运行锁、core来源拒绝、Classic消息边界、冻结审核/补缺/篡改拒绝。
+- 真实v0.2快照重跑16文件SHA/mtime不变；最终再次核验v0.1 manifest的19文件与v0.2 manifest的15数据文件；恢复前14个评测文件SHA不变。
+- 三阶段final权重与最佳checkpoint-2的实际SHA相同，分别匹配导出报告；36个唯一case和run指纹正确，无保存结果截断。
+- Base/v0.1/v0.2同协议1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569，评分strict-actions-v1.1。
 
-- v0.2 Strategy完成2步/1epoch，最佳checkpoint-2，验证Loss3.7053094，峰值3316.9MiB；相对Rule改变504个张量，完整导出见reports/training/strategy_v02。
+|指标|Base|v0.1|v0.2-core|
+|---|---:|---:|---:|
+|严格结构有效|33/36|27/36|34/36|
+|合法动作|5/36|1/36|5/36|
+|参考动作命中|2/36|0/36|2/36|
+|反事实双题同时命中|0/4|0/4|0/4|
 
-- v0.2 Tactics完成2步/1epoch，最佳checkpoint-2，验证Loss3.8002665，峰值3443.7MiB；相对Strategy改变504个张量，完整导出见reports/training/tactics_v02。
+- v0.2参考命中分组为Rule0/12、Strategy0/8、Counterfactual0/8、Blind2/8；自动动作数量恢复到Base水平，未证明超过Base。
+- 局部收益：猎人禁枪状态、女巫结构类型、部分公开主张核对、Blind预言家自主目标和票型公开追问。
+- 仍失败：守卫连守/查验混淆、票权、屠边假设响应、动态改判、验人计划与结果区分、夜间信息公开。猎人新增频次/时机幻觉，狼队反事实否定确定队友知识，4个相关dev案例触发预先严重回归门禁；不是4个独立统计实验。
+- 自动public_leak_flag=0不能否定语义复核发现的夜间公开泄漏。小样本、训练消息呈现变化、仅3个非零学习率参数步等限制不能用于反推唯一失败原因。
+- CPU AdamW诊断校正预热解释：零学习率步仍累积动量，不能说只有最后microbatch影响参数；未重做4B训练，亦未声称是paged_adamw_8bit等价实验。
 
-- v0.2 Benchmark规则12/12完成，完整评测仍partial；7条规则dev已逐题语义复核。快照见reports/v02_rules_checkpoint.json，后续原命令补未完成题。
+## 视频支线
 
-- 2026-09-14规则12和策略8题已完成；13条dev已复核（含首个反事实）。策略组快照见reports/v02_strategy_checkpoint.json，完整结果仍partial。
-
-- 规则/策略/反事实28题全部保存，18条dev已复核。反事实两版均0/4成对命中；v0.2新增猎人频次/时机幻觉与确定狼队知识退步，已记录为严重回归，v0.3门禁保持关闭。完整结论待Blind组完成。
-
-## 已运行测试与结果
-
-- 完整71项pytest通过（foundation37/dataset9/runtime21/finalization4）。包含CPU损失与梯度等价、LoRA保存重载、step1中断恢复至step4与连续训练等价、单step实际参数更新、运行锁与损坏checkpoint拒绝。
-- 新增最终导出4测试：完整检查点幂等导出、未完成拒绝、SHA损坏拒绝、已有异内容拒绝；实际Tactics final与checkpoint-7逐文件SHA一致。
-- 185种子实际Tokenizer长度649～931，1024内零过滤；三阶段均真实完成。CPU小模型测试不冒充4B训练成果。
-- 两方36题完全相同协议指纹1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569、评分strict-actions-v1.1；Adapter36个唯一case及run指纹核验通过，均未截断，没有生成失败/OOM。
-- Base→Adapter严格结构有效33/36→27/36，合法动作5/36→1/36，参考动作2/36→0/36。参考动作分组Base为0/12、0/8、0/8、2/8；Adapter四组全0。反事实成对命中均0/4，动作变化2/4→1/4。
-- Base生成速度中位6.22 tokens/s、PyTorch峰值2909.2MiB；Adapter中位5.18 tokens/s、峰值2973.4MiB。桌面/并行CPU媒体处理负载未控制，这不是严格吞吐基准；评测峰值不能代替Tactics训练峰值。
-- 语义复核证实角色技能混淆、忽略技能/公开历史、编造规则、夜间公开泄漏。也有个别目标/公开表态局部改善，但整体没有证明专项能力提升。未知动作词导致接口混淆，0匹配不等于所有狼人杀理解为0。
-- GitHub e7785d0的Ubuntu foundation与CPU Trainer工作流成功，证据reports/ci.json。
-
-- 2026-09-13新增规则组件5项针对测试通过；完整测试76 passed、9条PEFT测试夹具警告，47.42秒。规则假设不注入真实底牌，夜间public_response为空，成对分组不跨训练/验证侧。
-
-- 2026-09-13第二组件5项专项测试通过；完整81项测试通过、9条既有PEFT夹具警告，安静输出无耗时统计。覆盖成对信息先后、死目标拒绝、狼队私有名单与公开发言分离、场景族隔离、幂等补缺与损坏拒绝。
-- 第二组件真实重跑5个文件SHA/mtime不变；23个先前冻结文件及2个manifest也不变。报告见reports/dataset_v02_strategy_batch.*。
-
-- 新增core4项测试已通过：全部覆盖、来源拒绝、Classic消息视角/非经典裁剪、冻结恢复与审核篡改拒绝。完整回归85项通过，9条既有PEFT夹具警告；16个完整v0.2快照文件真实重跑SHA/mtime不变，19个旧v0.1文件核验通过。
-
-## 视频审核
-
-- D:/BiliDownload只读索引185条、77.98小时；catalog_v0.1不重建覆盖，弹幕不是发言逐字稿，多视角game_family仍需确认。
-- 首局28287501902 / BV1p4N5eJEtL：9人预女猎阵容，完整房规仍BOARD_UNKNOWN。累计37帧实际阅读；全音轨1146.7406875秒、10/10块ASR处理完成，全块指纹/SHA核验，首块复用确认。
-- ASR全文留cache/media/28287501902/transcript_v0.1，状态仍ASR_UNVERIFIED。Git只保存asr_evidence_v0.1配置/哈希/覆盖与少量审核引用，不上传整段转录或素材。
-- review_v0.1/v0.2/v0.3：3条B级TRANSFERABLE候选M01～M03，1条LOW_QUALITY复盘负例M04，CLASSIC_GOLD/BOARD_SPECIFIC/正式SFT入库均0。不是完整全局玩家评级；其余184条未审核。
-- 两轮票表、刀7/毒4字幕已核；382/406秒主持字幕支持9号→8号发言顺序，箭头冲突保留；754/755秒证实ASR漏掉“队友出局、只剩自己”，未据误转录误判玩家。
-- 遵守docs/video_review_policy.md：非经典不丢局，机制剥离、合法当时视角、避免结果/事后偏差；经典改写须验证后才入新数据版本。
-
-- 视频独立池data/candidates/video_distilled_v0.1已保存4个旧片段索引、M01局部视角和机制剥离、证据SHA、恢复入口。11文档/4帧校验通过；Critic待做、正式训练样本0。并行审核任务因额度结束，已有池可直接恢复，未混入core。
+- D:/BiliDownload只读索引185条、77.98小时，原catalog不重建。首局28287501902 / BV1p4N5eJEtL为9人预女猎，完整房规仍BOARD_UNKNOWN。
+- 首局10/10 ASR块、1146.7406875秒处理完成但全文ASR_UNVERIFIED；已读37帧，源码料/完整转录留本地cache。已纠正ASR漏掉死队友信息，未据误转录误判玩家。
+- data/candidates/video_distilled_v0.1独立保存M01～M04：3个B级TRANSFERABLE局部候选、1个LOW_QUALITY复盘负例候选；CLASSIC_GOLD/BOARD_SPECIFIC/正式训练样本/Critic通过均0。
+- M01局部合法视角与机制剥离已记录，未观察实际动态改判，不标adaptive_strategy。M02复用已核票表，M03排除泛化毒人建议。非经典不丢局，原ASR/原话不直接变SFT。
+- 独立池11源文档及4帧SHA核验通过；视频审核任务因额度结束，已落盘池可继续，不能冒称Critic已完成。
+- v0.2有严重回归，暂不创建dataset_v0.3或合并视频。视频池可继续单独审核。
 
 ## 重要文件
 
-- reports/dataset_v02_{core_review,coverage}.*、reports/v02_training_readiness.json、configs/qlora_classic_v02.yaml、scripts/{prepare_core,check_core_ready}.py、docs/data_version_policy.md。
-- README.md、DECISIONS.md、TODO.md及docs/{model_card,training,evaluation,video_review_policy,disk_recovery}.md。
-- configs/qlora_classic.yaml：NF4双量化、r8/alpha16、batch1/累积16、1024、1epoch、BF16自动、无packing。固定CPU媒体配置configs/media_asr_v01.json。
-- data/versions/dataset_v0.1.json，data/{gold,prepared}/dataset_v0.1；禁止覆盖。
-- data/candidates/dataset_v0.2/strategy_batch_v0.1/{samples,train,validation}.jsonl、pairs.json与manifest.json；src/werewolf_sft/strategy_repairs.py、tests/test_strategy_repairs.py、reports/dataset_v02_strategy_batch.*。
-- reports/dataset_v02_rules_batch.*、src/werewolf_sft/rule_repairs.py、tests/test_rule_repairs.py记录第一批规则组件及恢复校验。
-- reports/{base_model_baseline,qlora_v01,base_vs_qlora,dev_semantic_review_v01}.md及相关JSON；reports/runs/{base_primary,qlora_v01}完整case/原回答/progress/summary。
-- reports/base_progress.*与qlora_progress.*为早期partial历史，不是最终报告。
-- reports/training/{rules,strategy,tactics}_v01含配置、结果、日志、权重SHA；Tactics额外finalization.json。
-- scripts/finalize_training.py只补全已完成步数的导出；scripts/export_training.py导出紧凑证据。正常训练恢复仍由train_qlora --resume处理。
-- reports/media/28287501902/{review_v0.3.md,review_v0.3.json,probe_v0.3.json,asr_evidence_v0.1.json,asr_corrections_v0.1.json}。
-- 大权重与缓存仅在本机outputs/cache，不进Git。跨主机必须复制并按reports/training/*/artifacts.json校验；仅Git副本无法恢复optimizer/Adapter。
+- reports/v01_vs_v02.md：完整结论；reports/qlora_v02.md：自动逐题报告。
+- reports/dev_semantic_review_v02.{md,json}：23条dev审核；reports/v02_acceptance_gate.json：预先门禁结果。
+- reports/runs/{base_primary,qlora_v01,qlora_v02}：原始回答、protocol、summary、comparison。
+- reports/dataset_v02_{core_review,coverage}.*、reports/v02_training_readiness.json、reports/v02_preflight_tests.json。
+- reports/v02_final_verification.json、reports/v02_resume_20260914.json、reports/v02_warmup_interpretation.json。
+- reports/training/{rules,strategy,tactics}_v02：训练与权重证据；源提交分别f89d910、dc7357a、014c168。
+- data/versions/dataset_v0.{1,2}.json；data/{gold,prepared}/dataset_v0.2；configs/qlora_classic_v02.yaml。
+- scripts/{prepare_core,check_core_ready,inspect_v02_dev,summarize_v02_gate}.py；src/werewolf_sft/{classic_messages,core_dataset,core_supplement}.py。
+- docs/{data_version_policy,video_review_policy,disk_recovery,training,model_card}.md；视频池README和reports/video_distilled_v01.md。
+- 大权重只在outputs/classic_v0{1,2}和cache，不进Git。v0.2 Tactics final SHA：f7b0075954f1d3daa59677f994e68ea931b830a7e732585e060f07f5e787f687。
+- v0.1 Tactics final SHA仍为b1103c4bdb6600a04b3fa4dfe87de131a896a9a41e858fcdf342a8bce70cea6d。迁盘/跨主机须复制outputs/cache并按artifacts.json核验，单Git副本不足以恢复optimizer。
 
 ## 尚未完成任务与当前阻塞项
 
-- 没有外部阻塞，但当前模型未达能力验收。185条小种子、11个计划优化步的结果不能被包装为高手模型；未证明退化的唯一原因。
-- 按已保存dev诊断生成并冻结dataset_v0.2，做第二轮训练及评测；完整86条core及messages/配置检查已完成，接着实际训练与同协议评测。
-- 若另立明确动作词典/清理非经典提示词的新协议，必须对Base与Adapter共同评测并另版保存，不能覆盖v0.1结果或改变一方Prompt。
-- 独立语义复核、保留集及真实人工复制粘贴对局验收；Phase2镜隐仍暂停。
-- 首局M01～M03完整逐字稿/当时合法历史校对、经典改写和视角验证，后续184素材审核。
+- 无外部工程阻塞；v0.2定向修复能力未达标。不能宣称高手模型或视频数据已证明有效。
+- 下一core诊断：区分训练呈现差异、技能/状态读取和小步数日程问题，依据dev记录提出单一变量的小实验；不从test文本构造新训练数据。
+- 独立人工语义盲审、未用于修正的保留集、真实复制粘贴对局验收仍未完成。
+- 视频M01～M03完整历史校对、合法经典化与Critic待做，其他184局待审核。
+- v0.3-video与Phase2镜隐均暂停，满足前置能力门禁后再考虑。
 
 ## 磁盘状态
 
-2026-09-13末次检查：C44.69GiB、D101.48GiB，CONTINUE，无需迁移。恢复和大文件处理前检查。C不足时先保存checkpoint、结束活动写入，再按docs/disk_recovery.md迁整个项目到D；D也不足提醒租云服务器。没有声称会话结束后后台监控。
-
-
-## v0.2-core与视频池隔离（2026-09-13）
-
-用户固定dataset_v0.2为v0.1定向修复实验；视频仅进入data/candidates/video_distilled_v0.1/，禁止提前合并。沿当前覆盖缺口补齐并逐条审核core，冻结messages/Tokenizer长度/训练配置，commit后正式QLoRA，同v0.1协议比较。v0.3须等待v0.2比较且没有明显退化；具体门禁见docs/data_version_policy.md。
-
-## 2026-09-14恢复检查点
-
-评测已保存14/36，OS运行锁为空，原进程已结束；不重做已有14题，按相同命令续跑第15题。8条dev已复核。恢复前14文件SHA存于reports/v02_resume_20260914.json，恢复后须核验不变。C42.75GiB、D100.95GiB，无需迁盘。
+2026-09-14最近检查：C42.60GiB、D100.95GiB，CONTINUE，无需迁移。大文件任务与恢复前继续检查；C不足时先保存/结束写入再按docs/disk_recovery.md迁全项目到D，D也不足才提醒租云服务器。无会话结束后的后台监控承诺。
 
 ## Resume Here
 
-先读取README、PROJECT_STATUS、DECISIONS、TODO和git log -5 --oneline，再检查git status。v0.1三阶段及两方36题已完成，不重训、不重测、不重新选Base、不覆盖数据。训练和ASR已结束；评测活动状态必须检查OS运行锁，不仅凭progress的running字段。
+先读README、PROJECT_STATUS、DECISIONS、TODO和最近Git提交。v0.1/v0.2训练和所有36题评测均已完成，禁止重训重测或重建已有候选。当前无活动模型进程。
 
-第一项任务：继续v0.2完整36题Benchmark。先检查reports/runs/qlora_v02/progress.json及活动评测进程；若正在运行不要启动第二份。若无活动进程，使用原命令，只补未完成case：
+下一次直接执行的第一项任务：基于现有dev复核，检查Classic训练消息与冻结评测输入呈现的差异、技能状态读取，以及实际优化日程，保存reports/v02_core_diagnosis.md。先形成可审查的core诊断和一个变量明确的小实验，不重新选Base、不改已冻结v0.2、不使用test文本调参，也不合并视频。
 
 ```powershell
 .venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-.venv/Scripts/python.exe scripts/evaluate.py --config configs/qlora_classic_v02.yaml --adapter outputs/classic_v02/tactics/final --output reports/runs/qlora_v02 --compare-to reports/runs/qlora_v01 --report reports/qlora_v02.md --comparison-report reports/v01_vs_v02.md
+Get-Content reports/v01_vs_v02.md
+Get-Content reports/dev_semantic_review_v02.md
+Get-Content reports/v02_training_readiness.json
+Get-Content src/werewolf_sft/classic_messages.py
+Get-Content src/werewolf_sft/perspective.py
 ```
 
-v0.2三阶段均已真实完成2步/1epoch并核验导出，切勿重训。大权重在outputs/classic_v02，证据在reports/training/{rules,strategy,tactics}_v02。规则源提交f89d910，策略dc7357a，战术014c168。数据86条、messages、配置与Tokenizer已冻结，不修改生成协议或评分。Base与两Adapter协议必须同为1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569。
-
-完整Benchmark后逐题复核23条dev输出，区分接口、规则、证据利用、战术与Blind自主决策；保存v0.1 vs v0.2报告。若有明显退化，关闭v0.3门禁；没有退化也不等于高手验收。每阶段只有一次非零学习率参数更新；预热步梯度仍会积累Adam动量，不能认为只有最后microbatch影响模型。小步数限制仍需披露。仍禁止视频混入v0.2。
-
-视频并行支线从reports/media/28287501902/review_v0.3.md与asr_evidence_v0.1.json继续校对M01～M03，无需再次下载或转录首局。必要时用.media-venv/Scripts/python.exe scripts/probe_video.py --video-id 28287501902 --times <秒数>补帧，旧帧复用；新审核另起版本，不擅自填补房规或私密信息。
-
-Tactics final权重SHA b1103c4bdb6600a04b3fa4dfe87de131a896a9a41e858fcdf342a8bce70cea6d，本机outputs/classic_v01/{rules,strategy,tactics}保留完整checkpoint和final。跨主机或迁盘必须复制、验证后再切换；Git仓库只有报告和哈希。
+若只需重新核对门禁并恢复报告，可执行.venv/Scripts/python.exe scripts/summarize_v02_gate.py；它只读取已完成结果，不加载模型或重新生成回答。视频支线从data/candidates/video_distilled_v0.1/README.md恢复，独立完成合法经典化及Critic，保持v0.2准入为false。

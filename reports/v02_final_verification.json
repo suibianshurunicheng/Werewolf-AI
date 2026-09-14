@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "completed_cases": 36,
+  "matching_case_and_run_fingerprints": true,
+  "truncated": 0,
+  "pre_resume_cases_unchanged": 14,
+  "old_v01_manifest_verified_files": 19,
+  "v02_manifest_verified_files": 15,
+  "evaluation_lock_free": true,
+  "final_adapters_equal_best_checkpoint_sha256": {
+    "rules": "902534dd531f0bda5d0070283cfd139807d3f0fa4c611cf3688d41fed615f25f",
+    "strategy": "3597bbc8bbd64fa1ab18c90bfe9fedbe08f3c30bbe3be60b8c4e3cafe3634fbb",
+    "tactics": "f7b0075954f1d3daa59677f994e68ea931b830a7e732585e060f07f5e787f687"
+  },
+  "note": "No regenerated predictions or retraining. Git stores evidence, while large adapter and optimizer files remain in local outputs."
+}
