@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-15。当前Phase：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
+更新：2026-09-15。当前Phase：Training Schedule Diagnostic B，三阶段真实训练已完成，原23-dev生成/语义复核进行中（规则7题已完成）。历史主线：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
 
 ## 已完成任务
 
@@ -19,7 +19,7 @@
 
 ## 当前正在进行的任务
 
-投影诊断23/23生成和23/23模型语义复核已完成，OS锁空闲，无需补跑。完整报告reports/diagnostics/v02_skill_projection_v0.1/report.md，选择分支B（混合结果、局部动作收益但核心技能没有稳定改善）。Training Schedule Diagnostic最小矩阵、B/C/D独立配置和离线预检已完成。下一小阶段只启动B_warmup0的Rule诊断训练，不重训已完成版本、不覆盖冻结数据；当前无新诊断训练进程。
+B_warmup0 Rule→Strategy→Tactics已真实完成并逐阶段推送，实际6步/6非零LR更新。当前进程仅生成B final的冻结原23-dev；规则7题已全部语义复核，均未改善合法动作（A/B均0/7）。策略/反事实/Blind继续生成与审核；C/D尚未启动。无当前阻塞。
 
 ## 已运行测试、核验与结果
 
@@ -123,9 +123,13 @@
 - 已验证：每步LR符合矩阵、checkpoint文件SHA、final=best、初始Adapter链、数据冻结SHA；新23-dev入口预检通过，复用原输入和原原子保存运行器（5项恢复/防篡改测试通过）。
 - 重要证据：reports/diagnostics/schedule_v0.1/B_warmup0/training_report.md、training_comparison.json、各阶段目录以及dev/preflight.json；新训练全部完成，未生成任何新dev答案。
 
+## B dev规则组检查点
+
+规则7题已生成/逐题语义复核：2 mixed、3 unchanged、2 regressed；动作合法0/7→0/7、严格命中0/7→0/7，未知动作4/7→4/7。所有回答已原子保存。策略推理继续；这些是局部检查点，不是B最终结论。
+
 ## Resume Here
 
-当前Phase：Training Schedule Diagnostic B同23-dev评测。下一项：确认Tactics与推理预检已commit/push，执行以下命令；原子跳过已完成题，不重跑训练。
+当前Phase：Training Schedule Diagnostic B同23-dev评测。规则7题审核已保存；下一项首先检查dev/progress.json和OS运行锁，若进程仍运行继续审核已生成且未审核的策略题；若锁已释放则用下列原命令恢复，自动跳过已完成题，不重跑训练。
 
 ```powershell
 .venv/Scripts/python.exe -X utf8 scripts/run_schedule_dev.py --arm B_warmup0

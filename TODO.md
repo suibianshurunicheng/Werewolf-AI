@@ -100,3 +100,6 @@
 - [x] B Rule真实2步/2非零LR完成，checkpoint/final权重、完整日志和SHA导出核验。
 - [x] B Strategy接Rule final训练与逐步权重核验完成，证据已导出。
 - [x] B Tactics接Strategy final训练与导出核验完成。
+
+- [x] B dev规则7条全量生成和模型语义复核，包含全部变化方向。
+- [ ] B dev策略5条、反事实6条、Blind5条全量审核和最终分支报告。

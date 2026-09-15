@@ -1,0 +1,934 @@
+{
+  "status": "partial",
+  "experiment_id": "training_schedule_v0.1/B_warmup0",
+  "scoring_version": "strict-actions-v1.1",
+  "expected": 23,
+  "compared": 10,
+  "reviewed": 7,
+  "summary": {
+    "count": 10,
+    "control": {
+      "format_valid": 10,
+      "action_legal": 0,
+      "action_match": 0,
+      "unknown_action_type": 6,
+      "public_leak_flag": 0,
+      "truncated": 0,
+      "unknown_raw_action_word": 6,
+      "raw_word_unavailable": 0,
+      "unknown_words": {
+        "none": 5,
+        "save": 1
+      }
+    },
+    "treatment": {
+      "format_valid": 10,
+      "action_legal": 0,
+      "action_match": 0,
+      "unknown_action_type": 7,
+      "public_leak_flag": 0,
+      "truncated": 0,
+      "unknown_raw_action_word": 7,
+      "raw_word_unavailable": 0,
+      "unknown_words": {
+        "none": 6,
+        "save": 1
+      }
+    },
+    "semantic_changes": {
+      "mixed": 2,
+      "unchanged": 3,
+      "regressed": 2
+    }
+  },
+  "by_role": {
+    "guard": {
+      "count": 1,
+      "control": {
+        "format_valid": 1,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 0,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 0,
+        "raw_word_unavailable": 0,
+        "unknown_words": {}
+      },
+      "treatment": {
+        "format_valid": 1,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 0,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 0,
+        "raw_word_unavailable": 0,
+        "unknown_words": {}
+      },
+      "semantic_changes": {
+        "mixed": 1
+      }
+    },
+    "hunter": {
+      "count": 1,
+      "control": {
+        "format_valid": 1,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 1,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 1,
+        "raw_word_unavailable": 0,
+        "unknown_words": {
+          "none": 1
+        }
+      },
+      "treatment": {
+        "format_valid": 1,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 1,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 1,
+        "raw_word_unavailable": 0,
+        "unknown_words": {
+          "none": 1
+        }
+      },
+      "semantic_changes": {
+        "unchanged": 1
+      }
+    },
+    "villager": {
+      "count": 6,
+      "control": {
+        "format_valid": 6,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 3,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 3,
+        "raw_word_unavailable": 0,
+        "unknown_words": {
+          "none": 3
+        }
+      },
+      "treatment": {
+        "format_valid": 6,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 4,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 4,
+        "raw_word_unavailable": 0,
+        "unknown_words": {
+          "none": 4
+        }
+      },
+      "semantic_changes": {
+        "mixed": 1,
+        "regressed": 1,
+        "unchanged": 1
+      }
+    },
+    "witch": {
+      "count": 2,
+      "control": {
+        "format_valid": 2,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 2,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 2,
+        "raw_word_unavailable": 0,
+        "unknown_words": {
+          "none": 1,
+          "save": 1
+        }
+      },
+      "treatment": {
+        "format_valid": 2,
+        "action_legal": 0,
+        "action_match": 0,
+        "unknown_action_type": 2,
+        "public_leak_flag": 0,
+        "truncated": 0,
+        "unknown_raw_action_word": 2,
+        "raw_word_unavailable": 0,
+        "unknown_words": {
+          "none": 1,
+          "save": 1
+        }
+      },
+      "semantic_changes": {
+        "unchanged": 1,
+        "regressed": 1
+      }
+    }
+  },
+  "semantic_errors": {
+    "role_skill": {
+      "paired_rated": 2,
+      "control_error": 1,
+      "treatment_error": 1
+    },
+    "state_reading": {
+      "paired_rated": 7,
+      "control_error": 4,
+      "treatment_error": 2
+    },
+    "permission": {
+      "paired_rated": 6,
+      "control_error": 3,
+      "treatment_error": 2
+    },
+    "team_knowledge": {
+      "paired_rated": 0,
+      "control_error": 0,
+      "treatment_error": 0
+    },
+    "public_private": {
+      "paired_rated": 6,
+      "control_error": 3,
+      "treatment_error": 3
+    },
+    "night_leak": {
+      "paired_rated": 3,
+      "control_error": 3,
+      "treatment_error": 3
+    }
+  },
+  "counterfactual": {
+    "control": {
+      "pairs": 0,
+      "both_correct": 0,
+      "action_changed": 0
+    },
+    "treatment": {
+      "pairs": 0,
+      "both_correct": 0,
+      "action_changed": 0
+    }
+  },
+  "rows": [
+    {
+      "id": "eval-rule-guard-repeat",
+      "role": "guard",
+      "stage": "night",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 2,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "guard",
+            "target": 12
+          }
+        },
+        "raw_action_word": "guard",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 2,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "guard",
+            "target": 12
+          }
+        },
+        "raw_action_word": "guard",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "09603be0885753a545be6e16092d7ddc5bde01b83a626776f9d3199d405cc4e3"
+      },
+      "semantic": {
+        "id": "eval-rule-guard-repeat",
+        "change": "mixed",
+        "observation": "B能明确复述昨夜守12，修正A的无技能使用记录遗漏；但两侧仍执行非法guard12，B更明确声称技能重复使用无其他限制，并出现暂不需查验的角色混淆措辞。连守规则未修复，夜间公开守护目标仍泄漏。状态读取局部改善不能视为合法决策改善。",
+        "errors": {
+          "role_skill": [
+            true,
+            true
+          ],
+          "state_reading": [
+            true,
+            false
+          ],
+          "permission": [
+            true,
+            true
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            true,
+            true
+          ],
+          "night_leak": [
+            true,
+            true
+          ]
+        },
+        "sources": {
+          "control": "1bad34f4593359e84421488add83b185946876b691c10c21fa3eac783086a52d",
+          "treatment": "09603be0885753a545be6e16092d7ddc5bde01b83a626776f9d3199d405cc4e3"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-witch-spent",
+      "role": "witch",
+      "stage": "night",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "1b814b2478dcea9cbdd356337f98ee0e3087b43066b0367fb3c2d5304af835e2"
+      },
+      "semantic": {
+        "id": "eval-rule-witch-spent",
+        "change": "unchanged",
+        "observation": "两侧均读到两药耗尽且不能救人，但仍输出未知动作none，B未转成合法pass。B公开不能救昨夜死者，更贴合题意，但继续夜间泄露药量，并说白天判断是否需要查验，仍有含混的技能边界表达；不足以认定技能理解已修复。核心动作和信息边界缺陷未变。",
+        "errors": {
+          "role_skill": [
+            null,
+            null
+          ],
+          "state_reading": [
+            false,
+            false
+          ],
+          "permission": [
+            false,
+            false
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            true,
+            true
+          ],
+          "night_leak": [
+            true,
+            true
+          ]
+        },
+        "sources": {
+          "control": "b96449cfb9c9ca3333b906684465f78f38e7fb57064351ccd9e7e905807c849d",
+          "treatment": "1b814b2478dcea9cbdd356337f98ee0e3087b43066b0367fb3c2d5304af835e2"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-witch-current-target",
+      "role": "witch",
+      "stage": "night",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "save",
+            "target": 12
+          }
+        },
+        "raw_action_word": "save",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "save",
+            "target": 12
+          }
+        },
+        "raw_action_word": "save",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "a947679e08eab040d61322580d70e3bc463e1d0b4908cd098e72a8170ad28ff0"
+      },
+      "semantic": {
+        "id": "eval-rule-witch-current-target",
+        "change": "regressed",
+        "observation": "两侧都识别当夜刀口12和解药可用，并选择救12，但未知动作save未修正成原协议heal。B新增刀口可能是守夜人的非Classic角色表述，较A泛称狼人或好人的身份边界退步；继续夜间公开救人并声称12已安全，仍把拟执行行动写成确定结果。",
+        "errors": {
+          "role_skill": [
+            null,
+            true
+          ],
+          "state_reading": [
+            false,
+            false
+          ],
+          "permission": [
+            false,
+            false
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            true,
+            true
+          ],
+          "night_leak": [
+            true,
+            true
+          ]
+        },
+        "sources": {
+          "control": "009d0a78d73b8ef65841c46c64bc4becaabbd86fe570cce38ecdd6967ecd0061",
+          "treatment": "a947679e08eab040d61322580d70e3bc463e1d0b4908cd098e72a8170ad28ff0"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-hunter-no-permission",
+      "role": "hunter",
+      "stage": "hunter_shot",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "f4012616759df9d5df61df3ad894f52b73f9b28e5ceef09168b6bd3c651c165c"
+      },
+      "semantic": {
+        "id": "eval-rule-hunter-no-permission",
+        "change": "unchanged",
+        "observation": "两侧都读到裁判禁止开枪并没有执行射击，但继续使用未知none而非pass。B补充存活座位却未改善权限到合法动作的映射；仍把出局与禁止开枪并列解释，并承诺后续讨论。猎人技能阶段的宣告不直接当作无遗言权泄漏，public/private维度保持未评估。",
+        "errors": {
+          "role_skill": [
+            false,
+            false
+          ],
+          "state_reading": [
+            false,
+            false
+          ],
+          "permission": [
+            false,
+            false
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            null,
+            null
+          ],
+          "night_leak": [
+            null,
+            null
+          ]
+        },
+        "sources": {
+          "control": "b427dd09d9161b14600bd66efbb862ccca9ab012175ecaaa064d3f365feddc3d",
+          "treatment": "f4012616759df9d5df61df3ad894f52b73f9b28e5ceef09168b6bd3c651c165c"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-vote-dead",
+      "role": "villager",
+      "stage": "exile_vote",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "vote",
+            "target": null
+          }
+        },
+        "raw_action_word": "vote",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 1,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "vote",
+            "target": null
+          }
+        },
+        "raw_action_word": "vote",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "49852ed592cca9f273798dfafc44e8d48c1b2f3e0959fa88facc33eee89b2af7"
+      },
+      "semantic": {
+        "id": "eval-rule-vote-dead",
+        "change": "mixed",
+        "observation": "A以无法确认12身份为主要不投理由；B明确提出避免投死亡玩家，应考虑存活者，死亡目标约束的语义有所改善。但分析仍先说无已知死亡信息，且将死亡玩家不能参与投票与不能被投混在一句，表述不严谨；最终仍是非法vote:null，没有转成原协议pass。保留语义局部改善与执行失败。",
+        "errors": {
+          "role_skill": [
+            null,
+            null
+          ],
+          "state_reading": [
+            true,
+            false
+          ],
+          "permission": [
+            true,
+            false
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            false,
+            false
+          ],
+          "night_leak": [
+            null,
+            null
+          ]
+        },
+        "sources": {
+          "control": "c6ed07d1ac4c689380c1e54a859b6883bb2ab0ecda6ac7af8234b6beca3f58ca",
+          "treatment": "49852ed592cca9f273798dfafc44e8d48c1b2f3e0959fa88facc33eee89b2af7"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-sheriff-withdrawn",
+      "role": "villager",
+      "stage": "sheriff_vote",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "vote",
+            "target": 12
+          }
+        },
+        "raw_action_word": "vote",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "vote",
+            "target": 12
+          }
+        },
+        "raw_action_word": "vote",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "ac4a3ad4873619c808519048ef503192099f0ac7c11083ef19b2ab28b361b986"
+      },
+      "semantic": {
+        "id": "eval-rule-sheriff-withdrawn",
+        "change": "regressed",
+        "observation": "两侧仍忽略自己曾上警退水的历史，错误执行vote12，票权缺陷没有改善。B在身份表中把已知候选12写成可能候选且无直接证据，尽管其他段落承认唯一候选；新增对公开确定事实的内部矛盾，语义略退步。支持警长与证明身份仍未区分清楚。",
+        "errors": {
+          "role_skill": [
+            null,
+            null
+          ],
+          "state_reading": [
+            true,
+            true
+          ],
+          "permission": [
+            true,
+            true
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            false,
+            false
+          ],
+          "night_leak": [
+            null,
+            null
+          ]
+        },
+        "sources": {
+          "control": "5d6706d5c0393f71dc33108300982a64611e7f81f339b3a527e2c8095483c486",
+          "treatment": "ac4a3ad4873619c808519048ef503192099f0ac7c11083ef19b2ab28b361b986"
+        }
+      }
+    },
+    {
+      "id": "eval-rule-parity",
+      "role": "villager",
+      "stage": "day_speech",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "905e812df3636a0e3a18efeaecdffa9c3a11ab9d115a272c835e51de2064a6d0"
+      },
+      "semantic": {
+        "id": "eval-rule-parity",
+        "change": "unchanged",
+        "observation": "两侧都忽略三狼一民两神的规则假设，没有回答人数3比3是否立即狼胜或经典屠边条件。B把泛泛观望改成无发言，仍输出未知none。假设问题响应和规则知识调用未改善，不能从未犯出显式错误判断其已掌握胜负规则。",
+        "errors": {
+          "role_skill": [
+            null,
+            null
+          ],
+          "state_reading": [
+            true,
+            true
+          ],
+          "permission": [
+            null,
+            null
+          ],
+          "team_knowledge": [
+            null,
+            null
+          ],
+          "public_private": [
+            false,
+            false
+          ],
+          "night_leak": [
+            null,
+            null
+          ]
+        },
+        "sources": {
+          "control": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff",
+          "treatment": "905e812df3636a0e3a18efeaecdffa9c3a11ab9d115a272c835e51de2064a6d0"
+        }
+      }
+    },
+    {
+      "id": "eval-strategy-silver",
+      "role": "villager",
+      "stage": "day_speech",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "0c97d63a65116d60e2be2d43b5ce0b9f6229787a600e3189d0bb2776f83e5063"
+      },
+      "semantic": null
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "role": "villager",
+      "stage": "day_speech",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": false,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "vote",
+            "target": null
+          }
+        },
+        "raw_action_word": "vote",
+        "unknown_raw_action_word": false,
+        "prediction_sha256": "02e31d99c67ec7f6e3fe0a99f3fdd2372e26bffa7529fb9f4cec44538146af5f"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "37b9848cbf722e6456c2196a3e78f0e48e03e74a0c3502c25b5e0ef0087ccd8e"
+      },
+      "semantic": null
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "role": "villager",
+      "stage": "day_speech",
+      "pair_id": null,
+      "control": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "5941c6a956f7f86c25beb6f22b0851cad34151be857fde9f3a34ddb9846b8fc6"
+      },
+      "treatment": {
+        "strict": {
+          "format_valid": true,
+          "action_legal": false,
+          "action_match": false,
+          "unknown_action_type": true,
+          "public_leak_flag": false,
+          "concept_hits": 0,
+          "concept_total": 1,
+          "truncated": false,
+          "human_review": "pending",
+          "parsed_action": {
+            "type": "none",
+            "target": null
+          }
+        },
+        "raw_action_word": "none",
+        "unknown_raw_action_word": true,
+        "prediction_sha256": "5b18969b2c64788948f0f3e261df3dce27337209c5ab9b565b57df449bedfa38"
+      },
+      "semantic": null
+    }
+  ],
+  "branch": "pending",
+  "conclusion": "尚未完成全量审查",
+  "evidence_levels": {},
+  "held_out_claim": false,
+  "review_kind": "model_semantic_review_not_independent_human"
+}
