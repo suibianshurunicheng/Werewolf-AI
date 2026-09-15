@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "date": "2026-09-15",
+  "scope": "offline matrix preflight only; no new model training",
+  "immutable_files": 6,
+  "second_run_sha_mtime_unchanged": true,
+  "file_sha256": {
+    "reports\\training_schedule_v01_preflight.json": "bed5d88bb1a3e6d25010f4fe01a18d664f4dad34c0d8c97f12371e0d6e3e81d8",
+    "configs\\diagnostics\\schedule_v0.1\\B_warmup0.yaml": "c0340fe34358094aac937e3468cf6c0907093198daa76c510bb271decccaa071",
+    "configs\\diagnostics\\schedule_v0.1\\C_accum8.yaml": "8a8d70c1dadde7d236c87e299a6076acd277df37071879675e482be8d0257e2d",
+    "configs\\diagnostics\\schedule_v0.1\\D_epochs2.yaml": "1323547e90e3157c7c34227aa70c7d83e4efefa739fefc7c88174af06d308ce4",
+    "data\\diagnostics\\training_schedule_v0.1\\A_current.config.json": "66c6df3cfe81b03b7720fc3350c1f840241bed2e896bfa331e3ed3a96ff33a73",
+    "data\\diagnostics\\training_schedule_v0.1\\dev_protocol.json": "2d098051075dda9c2ff30ccb8ecab637ab8bb100c538663d526a1f6cce74aa5c"
+  },
+  "checks": [
+    "B differs from A only warmup plus output path",
+    "C differs from B only accumulation plus output path",
+    "D differs from B only epochs plus output path",
+    "original 23-dev control input and scoring protocol retained",
+    "frozen dataset messages pass actual tokenizer encoding without drops",
+    "CPU cosine step LR matches existing A actual logs",
+    "B/C/D actual training and weights remain absent"
+  ]
+}

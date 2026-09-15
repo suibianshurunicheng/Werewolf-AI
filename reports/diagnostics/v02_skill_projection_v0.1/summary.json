@@ -101,6 +101,7 @@
     "human_strategy_quality": "pending",
     "note": "Automated action metrics are not a full Werewolf reasoning score."
   },
-  "semantic_review": "pending",
-  "held_out_claim": false
+  "semantic_review": "complete_model_review_not_independent_human",
+  "held_out_claim": false,
+  "semantic_review_file": "semantic_review.json"
 }

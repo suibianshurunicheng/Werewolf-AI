@@ -19,7 +19,7 @@
 
 ## 当前正在进行的任务
 
-投影诊断23/23生成和23/23模型语义复核已完成，OS锁空闲，无需补跑。完整报告reports/diagnostics/v02_skill_projection_v0.1/report.md，选择分支B（混合结果、局部动作收益但核心技能没有稳定改善）。下一小阶段设计Training Schedule Diagnostic最小矩阵，不重训已完成版本、不覆盖冻结数据。
+投影诊断23/23生成和23/23模型语义复核已完成，OS锁空闲，无需补跑。完整报告reports/diagnostics/v02_skill_projection_v0.1/report.md，选择分支B（混合结果、局部动作收益但核心技能没有稳定改善）。Training Schedule Diagnostic最小矩阵、B/C/D独立配置和离线预检已完成。下一小阶段只启动B_warmup0的Rule诊断训练，不重训已完成版本、不覆盖冻结数据；当前无新诊断训练进程。
 
 ## 已运行测试、核验与结果
 
@@ -69,7 +69,7 @@
 ## 尚未完成任务与当前阻塞项
 
 - 无外部工程阻塞；v0.2定向修复能力未达标。不能宣称高手模型或视频数据已证明有效。
-- 投影诊断已完成；尚待设计并静态预检最小训练日程矩阵，先warmup=0，其他新实验按结果有条件推进。尚未证实日程是主因。
+- 日程矩阵与预检已完成；B/C/D尚未训练，无新Adapter/训练日志/成绩。下一步B启动前dry-run与状态提交，再只执行B；C/D按B结果有条件推进。尚未证实日程是主因。
 - 独立人工语义盲审、未用于修正的保留集、真实复制粘贴对局验收仍未完成。
 - 视频M01～M03完整历史校对、合法经典化与Critic待做，其他184局待审核。
 - v0.3-video与Phase2镜隐均暂停，满足前置能力门禁后再考虑。
@@ -87,16 +87,27 @@
 - 5项运行器测试此前通过；最终23题/指纹/权重/旧manifest核验通过，峰值2908.9MiB，生成时间合计1582.27秒。详见final_verification.json。
 - 报告逐题列技能/权限/队伍知识/信息边界、角色分组和三组反事实。猎人技能宣告不自动按无遗言权判泄漏，未知维度记null。Blind-04含公开目标提示，命中不单独证明自主选人。
 
+## 训练日程矩阵已保存
+
+- reports/training_schedule_diagnostic_v01.md及training_schedule_v01_preflight.json记录A复用、B仅warmup=0、C相对B仅accum16→8、D相对B仅epoch1→2；输出目录独立。
+- 三阶段计划optimizer步总数A/B/C/D=6/6/10/12，计划非零LR=3/6/10/12；只有A有真实训练日志，B/C/D仍未执行。B的LR计划为每阶段[5e-5,2.5e-5]，不是两个5e-5。
+- 6个配置/协议/预检快照二次运行SHA/mtime不变；真实Tokenizer/冻结manifest/配置差异白名单/CPU scheduler与A日志核验通过。CPU scheduler检查不等于模型训练或8bit优化器等价实测。
+- configs/diagnostics/schedule_v0.1/{B_warmup0,C_accum8,D_epochs2}.yaml，旧控制dev协议固定在data/diagnostics/training_schedule_v0.1/dev_protocol.json。
+- 保留按阶段验证Loss选best/final的原规则，未来报告同时列真实总更新数与所选checkpoint的累计更新数；不把后续步计入早期best。阶段遗忘待用已有阶段Adapter的同dev对照验证，暂不合并阶段或改框架。
+
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO及最近Git提交。v0.1/v0.2训练和原36题评测完成；投影诊断也已23/23完成，不得重跑或修改题目救分。
+先读README、PROJECT_STATUS、DECISIONS、TODO及最近Git提交。v0.1/v0.2训练和原36题评测完成；投影诊断已23/23完成，选择B。最小日程矩阵及六个不可变快照已保存，不再重建已有数据/旧训练或重复投影推理。
 
-下一次第一项任务：读取投影正式报告，进入分支B，保存最小Training Schedule Diagnostic矩阵及独立配置。固定Base、86条冻结数据、Chat Template、标签和原dev协议；先比较当前A与仅warmup=0的B，额外更新次数/epoch实验有条件推进，不做网格搜索。矩阵静态检查、状态更新和commit后才考虑新诊断训练，旧v0.1/v0.2不重训。
+下一次第一项任务：读取reports/training_schedule_diagnostic_v01.md，按独立B_warmup0配置做启动前dry-run，保存核验与状态并commit；之后只运行B Rule新诊断。当前B/C/D均未训练，不能报告新模型成绩。
 
 ```powershell
-Get-Content -Encoding UTF8 reports/diagnostics/v02_skill_projection_v0.1/report.md
-Get-Content -Encoding UTF8 configs/qlora_classic_v02.yaml
-Get-Content -Encoding UTF8 src/werewolf_sft/training.py
+.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage rules --dry-run
+# 保存检查结果并commit后执行新诊断；不要换成旧v0.2配置。
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage rules
 ```
 
-原完整回答在reports/diagnostics/v02_skill_projection_v0.1/cases，审核与SHA见semantic_review.json及final_verification.json。只需重建报告可运行scripts/summarize_skill_projection.py，不加载模型。视频、Persona、Phase2、RL和新Base均不进入当前工作。
+B每阶段完成后按既有工具导出日志/实际LR更新数/step/epoch/best/final/权重SHA并commit，再继续Strategy/Tactics；B Rule从Base起步，不接旧Adapter。中断恢复用同一配置加--resume。B最终在冻结旧23条dev输入协议上评测并全量复核，控制侧复用原v0.2；C/D有条件推进，不同时铺开。
+
+原投影报告：reports/diagnostics/v02_skill_projection_v0.1/report.md。只重建报告可运行scripts/summarize_skill_projection.py，不加载模型。数据/Prompt/标签/原评分不变，test不用于调参，视频/Persona/Phase2/RL/竞技场/换Base全部暂停。仓库保存恢复状态，大权重仍在outputs/cache，迁移时须一并复制。

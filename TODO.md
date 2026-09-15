@@ -90,4 +90,9 @@
 
 - [x] 投影诊断6条反事实生成/模型复核完成，三对双正确仍0/3；剩余5条Blind。
 
-- [ ] 分支B：保存最小Training Schedule Diagnostic矩阵、独立配置和静态日程预检，commit后再考虑新诊断训练。
+- [x] 分支B：保存最小日程矩阵、B/C/D独立配置及CPU scheduler/真实Tokenizer预检，六快照重复运行不变。
+
+- [ ] B_warmup0启动前dry-run，保存检查记录并commit，然后只运行Rule新诊断。
+- [ ] B Rule/Strategy/Tactics逐阶段保存日志、实际LR与checkpoint证据、导出并commit。
+- [ ] B最终在同23条旧dev协议上生成/全量模型复核，对照A已有输出，不使用test调参。
+- [ ] C_accum8和D_epochs2仅依据前一诊断结果条件推进，当前未开始。

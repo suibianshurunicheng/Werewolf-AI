@@ -1,0 +1,405 @@
+{
+  "experiment_id": "training_schedule_v0.1",
+  "status": "matrix_preflight_complete_no_new_training",
+  "date": "2026-09-15",
+  "matrix": {
+    "A_current": {
+      "status": "existing_reference_do_not_retrain",
+      "comparator": "A_current",
+      "config_changes": {},
+      "stages": {
+        "rules": {
+          "optimizer_steps": 2,
+          "warmup_steps": 1,
+          "requested_warmup_ratio": 0.05,
+          "train_rows": 32,
+          "planned_lr_at_optimizer_step": [
+            0.0,
+            5e-05
+          ],
+          "planned_nonzero_lr_steps": 1,
+          "actual_training_evidence": {
+            "logged_lrs": [
+              0.0,
+              5e-05
+            ],
+            "nonzero_lr_steps": 1
+          }
+        },
+        "strategy": {
+          "optimizer_steps": 2,
+          "warmup_steps": 1,
+          "requested_warmup_ratio": 0.05,
+          "train_rows": 17,
+          "planned_lr_at_optimizer_step": [
+            0.0,
+            5e-05
+          ],
+          "planned_nonzero_lr_steps": 1,
+          "actual_training_evidence": {
+            "logged_lrs": [
+              0.0,
+              5e-05
+            ],
+            "nonzero_lr_steps": 1
+          }
+        },
+        "tactics": {
+          "optimizer_steps": 2,
+          "warmup_steps": 1,
+          "requested_warmup_ratio": 0.05,
+          "train_rows": 21,
+          "planned_lr_at_optimizer_step": [
+            0.0,
+            5e-05
+          ],
+          "planned_nonzero_lr_steps": 1,
+          "actual_training_evidence": {
+            "logged_lrs": [
+              0.0,
+              5e-05
+            ],
+            "nonzero_lr_steps": 1
+          }
+        }
+      },
+      "total_planned_optimizer_steps": 6,
+      "total_planned_nonzero_lr_steps": 3
+    },
+    "B_warmup0": {
+      "status": "planned_not_trained",
+      "comparator": "A_current",
+      "config_changes": {
+        "training.warmup_ratio": {
+          "control": 0.05,
+          "variant": 0.0
+        },
+        "training.output_root": {
+          "control": "outputs/classic_v02",
+          "variant": "outputs/diagnostics/schedule_v0.1/B_warmup0"
+        }
+      },
+      "stages": {
+        "rules": {
+          "optimizer_steps": 2,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 32,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            2.5e-05
+          ],
+          "planned_nonzero_lr_steps": 2,
+          "actual_training_evidence": null
+        },
+        "strategy": {
+          "optimizer_steps": 2,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 17,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            2.5e-05
+          ],
+          "planned_nonzero_lr_steps": 2,
+          "actual_training_evidence": null
+        },
+        "tactics": {
+          "optimizer_steps": 2,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 21,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            2.5e-05
+          ],
+          "planned_nonzero_lr_steps": 2,
+          "actual_training_evidence": null
+        }
+      },
+      "total_planned_optimizer_steps": 6,
+      "total_planned_nonzero_lr_steps": 6
+    },
+    "C_accum8": {
+      "status": "planned_not_trained",
+      "comparator": "B_warmup0",
+      "config_changes": {
+        "training.gradient_accumulation_steps": {
+          "control": 16,
+          "variant": 8
+        },
+        "training.output_root": {
+          "control": "outputs/diagnostics/schedule_v0.1/B_warmup0",
+          "variant": "outputs/diagnostics/schedule_v0.1/C_accum8"
+        }
+      },
+      "stages": {
+        "rules": {
+          "optimizer_steps": 4,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 32,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            4.267766952966369e-05,
+            2.5e-05,
+            7.3223304703363135e-06
+          ],
+          "planned_nonzero_lr_steps": 4,
+          "actual_training_evidence": null
+        },
+        "strategy": {
+          "optimizer_steps": 3,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 17,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            3.7500000000000003e-05,
+            1.2500000000000006e-05
+          ],
+          "planned_nonzero_lr_steps": 3,
+          "actual_training_evidence": null
+        },
+        "tactics": {
+          "optimizer_steps": 3,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 21,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            3.7500000000000003e-05,
+            1.2500000000000006e-05
+          ],
+          "planned_nonzero_lr_steps": 3,
+          "actual_training_evidence": null
+        }
+      },
+      "total_planned_optimizer_steps": 10,
+      "total_planned_nonzero_lr_steps": 10
+    },
+    "D_epochs2": {
+      "status": "planned_not_trained",
+      "comparator": "B_warmup0",
+      "config_changes": {
+        "training.epochs": {
+          "control": 1,
+          "variant": 2
+        },
+        "training.output_root": {
+          "control": "outputs/diagnostics/schedule_v0.1/B_warmup0",
+          "variant": "outputs/diagnostics/schedule_v0.1/D_epochs2"
+        }
+      },
+      "stages": {
+        "rules": {
+          "optimizer_steps": 4,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 32,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            4.267766952966369e-05,
+            2.5e-05,
+            7.3223304703363135e-06
+          ],
+          "planned_nonzero_lr_steps": 4,
+          "actual_training_evidence": null
+        },
+        "strategy": {
+          "optimizer_steps": 4,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 17,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            4.267766952966369e-05,
+            2.5e-05,
+            7.3223304703363135e-06
+          ],
+          "planned_nonzero_lr_steps": 4,
+          "actual_training_evidence": null
+        },
+        "tactics": {
+          "optimizer_steps": 4,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0,
+          "train_rows": 21,
+          "planned_lr_at_optimizer_step": [
+            5e-05,
+            4.267766952966369e-05,
+            2.5e-05,
+            7.3223304703363135e-06
+          ],
+          "planned_nonzero_lr_steps": 4,
+          "actual_training_evidence": null
+        }
+      },
+      "total_planned_optimizer_steps": 12,
+      "total_planned_nonzero_lr_steps": 12
+    }
+  },
+  "encoded_data": {
+    "rules": {
+      "train_rows": 32,
+      "validation_rows": 10,
+      "data_info": {
+        "version": "dataset_v0.2",
+        "train_hash": "3f5abe66644b2cca9eaacfd23c4f5769f8b4602a8f515acf2d151038b77a4174",
+        "validation_hash": "b4cd9858726ccc3f3f6968889daf2cadfe6cc2c5eb0ae35cdde58b5727559a45",
+        "train_rows": 32,
+        "validation_rows": 10,
+        "dropped_train": [],
+        "dropped_validation": [],
+        "train_lengths": [
+          541,
+          553,
+          547,
+          541,
+          564,
+          555,
+          558,
+          571,
+          601,
+          601,
+          546,
+          548,
+          551,
+          556,
+          528,
+          532,
+          589,
+          618,
+          627,
+          635,
+          611,
+          619,
+          579,
+          591,
+          563,
+          556,
+          597,
+          600,
+          525,
+          561,
+          547,
+          561
+        ]
+      },
+      "validation_lengths": [
+        569,
+        545,
+        546,
+        549,
+        578,
+        562,
+        538,
+        533,
+        573,
+        561
+      ]
+    },
+    "strategy": {
+      "train_rows": 17,
+      "validation_rows": 5,
+      "data_info": {
+        "version": "dataset_v0.2",
+        "train_hash": "30e3ecab10770af380b71ce6b57a074dae11bcd5ec302b7bd5aff95bb98b6f0d",
+        "validation_hash": "fd804232e337a1838772c0fb23d73f6b4aa11ead8c2609d4c8b414bfbdb1693f",
+        "train_rows": 17,
+        "validation_rows": 5,
+        "dropped_train": [],
+        "dropped_validation": [],
+        "train_lengths": [
+          622,
+          683,
+          596,
+          664,
+          677,
+          731,
+          686,
+          720,
+          604,
+          655,
+          592,
+          595,
+          571,
+          619,
+          606,
+          588,
+          582
+        ]
+      },
+      "validation_lengths": [
+        607,
+        678,
+        593,
+        635,
+        598
+      ]
+    },
+    "tactics": {
+      "train_rows": 21,
+      "validation_rows": 1,
+      "data_info": {
+        "version": "dataset_v0.2",
+        "train_hash": "f30b2d8cffa64c60cdbf0cca654149af69230a29d4693ac16b49d3882688c200",
+        "validation_hash": "2dcbc7e99b1bb55cca52cf4517f279069d44b5d757cffa7074aeab776b246c61",
+        "train_rows": 21,
+        "validation_rows": 1,
+        "dropped_train": [],
+        "dropped_validation": [],
+        "train_lengths": [
+          722,
+          791,
+          689,
+          744,
+          710,
+          760,
+          702,
+          761,
+          683,
+          751,
+          705,
+          696,
+          672,
+          671,
+          695,
+          659,
+          687,
+          673,
+          706,
+          653,
+          692
+        ]
+      },
+      "validation_lengths": [
+        725
+      ]
+    }
+  },
+  "config_sha256": {
+    "A_current": "7ebe119fbf33219f5e82708a5447ad800bd251c58e1a5fd6c190f16b0dae7ea2",
+    "B_warmup0": "b8b4fac9fcc138ee3590604e227c8ce307b95bac7986123d17c66869b79ed148",
+    "C_accum8": "9e86190eea6147387594106ffd73d3562bc9950a0a2f280a5b478e8439356768",
+    "D_epochs2": "8ed60c369e559558dccdddc8a568ff24a403a36056ba194d9345eff351186855"
+  },
+  "dataset_manifest_sha256": "494f518b4cfbfa072b113f99d42f5470d2fb1a16fd33d7c6ef68327137dcf6aa",
+  "dev_protocol_fingerprint": "c438c0f6db2f2d01fbfa52c5171c0287fbe2f657da11181da3466072891311f6",
+  "cpu_scheduler_scope": "LR-at-step verification using installed cosine scheduler; no Base loaded, no 4B training, not paged_adamw_8bit equivalence",
+  "transformers_version": "4.57.6",
+  "trainer_source_sha256": "c3eac8fa28bda6330fd4dee131e7fe7d9bdc0fa35d9de944fce52cb97b379bab",
+  "project_training_source_sha256": "5ce75493df3e21f5096fb8740e68eb8e1bc01d91f6f60f5bbae41e052a795e33",
+  "execution_order": [
+    "A reuse",
+    "B first",
+    "C conditional after B dev review",
+    "D conditional after B/C review"
+  ],
+  "unverified": [
+    "schedule as primary cause",
+    "more epochs benefit",
+    "stage forgetting",
+    "held-out improvement"
+  ]
+}

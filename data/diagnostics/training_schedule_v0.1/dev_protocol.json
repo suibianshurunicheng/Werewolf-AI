@@ -1,0 +1,56 @@
+{
+  "scope": "exact 23 existing dev only",
+  "case_ids": [
+    "eval-rule-guard-repeat",
+    "eval-rule-witch-spent",
+    "eval-rule-witch-current-target",
+    "eval-rule-hunter-no-permission",
+    "eval-rule-vote-dead",
+    "eval-rule-sheriff-withdrawn",
+    "eval-rule-parity",
+    "eval-strategy-silver",
+    "eval-strategy-vote-change",
+    "eval-strategy-ambiguous",
+    "eval-strategy-dead-dark",
+    "eval-strategy-later-check",
+    "eval-cf-guard-a",
+    "eval-cf-guard-b",
+    "eval-cf-hunter-a",
+    "eval-cf-hunter-b",
+    "eval-cf-team-a",
+    "eval-cf-team-b",
+    "eval-blind-01",
+    "eval-blind-02",
+    "eval-blind-04",
+    "eval-blind-05",
+    "eval-blind-07"
+  ],
+  "dev_cases_hash": "c5d0aa91588c5146580c354cd4685151bec414e5b3640d84cd4ce9986eda06e9",
+  "messages_source": "data/diagnostics/v02_skill_projection_v0.1/inputs.jsonl:control_messages",
+  "control_messages_hash": "3c8e70e39304082e0f3451422a017e1d6cfbda1ebf30970bf0a4b37bab366c1d",
+  "parent_protocol": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "cases_hash": "415d21bc4f2ff6770410c8188179545d3be6e572d764e3993e37e8c2ea3a69d0",
+    "system_prompt_hash": "fca8c04ef6f689617e48c5691e277fb779c0ea06c7b4b27fd92eea3a2463dce3",
+    "rendered_inputs_hash": "bbdf4a58a8c4abd115d6f7aac4b29e70dac37bbd2c5cac9b42766c51a216e785",
+    "generation": {
+      "max_input_tokens": 2048,
+      "max_new_tokens": 768,
+      "do_sample": false,
+      "use_cache": true
+    },
+    "quantization": {
+      "enabled": true,
+      "type": "nf4",
+      "double_quant": true,
+      "compute_dtype": "auto"
+    },
+    "cpu_offload": false,
+    "seed": 42
+  },
+  "scoring_version": "strict-actions-v1.1",
+  "original_control_predictions": "reports/runs/qlora_v02/cases",
+  "test_inference": false,
+  "video_data": false
+}
