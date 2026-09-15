@@ -98,5 +98,5 @@
 - [ ] C_accum8和D_epochs2仅依据前一诊断结果条件推进，当前未开始。
 
 - [x] B Rule真实2步/2非零LR完成，checkpoint/final权重、完整日志和SHA导出核验。
-- [ ] B Strategy接Rule final训练并导出、提交/推送。
+- [x] B Strategy接Rule final训练与逐步权重核验完成，证据已导出。
 - [ ] B Tactics接Strategy final训练并导出、提交/推送。

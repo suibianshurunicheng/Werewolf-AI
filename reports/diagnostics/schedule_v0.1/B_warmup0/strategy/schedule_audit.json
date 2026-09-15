@@ -1,0 +1,87 @@
+{
+  "status": "verified",
+  "arm": "B_warmup0",
+  "stage": "strategy",
+  "optimizer_steps": 2,
+  "nonzero_lr_steps": 2,
+  "step_epoch": [
+    2,
+    1.0
+  ],
+  "peak_vram_mib": 3316.93798828125,
+  "train_loss": 3.7815603017807007,
+  "validation_loss": 3.4914474487304688,
+  "checkpoints": [
+    {
+      "step": 1,
+      "epoch": 0.9411764705882353,
+      "applied_lr": 5e-05,
+      "train_loss": 4.0391,
+      "validation_losses": [
+        3.58381986618042
+      ],
+      "path": "outputs/diagnostics/schedule_v0.1/B_warmup0/strategy/checkpoint-1",
+      "adapter_sha256": "64139e7b9067a5b1c7c610a488ebd0923a5c0655c5c826528749f9bb214b5ed5",
+      "nonzero_lora_B_tensors": 252,
+      "changed_tensors_from_previous_checkpoint_or_initial": 504,
+      "fresh_rule_first_update_proof": null
+    },
+    {
+      "step": 2,
+      "epoch": 1.0,
+      "applied_lr": 2.5e-05,
+      "train_loss": 3.5241,
+      "validation_losses": [
+        3.4914474487304688,
+        3.4914474487304688
+      ],
+      "path": "outputs/diagnostics/schedule_v0.1/B_warmup0/strategy/checkpoint-2",
+      "adapter_sha256": "ea4799d04f57919ac7d92ec23cd856b6f2db3bc8c1a2ae1049f782c0dc2cb287",
+      "nonzero_lora_B_tensors": 252,
+      "changed_tensors_from_previous_checkpoint_or_initial": 504,
+      "fresh_rule_first_update_proof": null
+    }
+  ],
+  "best_checkpoint": "outputs/diagnostics/schedule_v0.1/B_warmup0/strategy/checkpoint-2",
+  "best_step": 2,
+  "best_checkpoint_nonzero_updates_this_stage": 2,
+  "final_checkpoint": "outputs/diagnostics/schedule_v0.1/B_warmup0/strategy/final",
+  "final_adapter_sha256": "ea4799d04f57919ac7d92ec23cd856b6f2db3bc8c1a2ae1049f782c0dc2cb287",
+  "final_equals_best": true,
+  "weights_actually_changed": true,
+  "dataset": {
+    "version": "dataset_v0.2",
+    "train_hash": "30e3ecab10770af380b71ce6b57a074dae11bcd5ec302b7bd5aff95bb98b6f0d",
+    "validation_hash": "fd804232e337a1838772c0fb23d73f6b4aa11ead8c2609d4c8b414bfbdb1693f",
+    "train_rows": 17,
+    "validation_rows": 5,
+    "dropped_train": [],
+    "dropped_validation": [],
+    "train_lengths": [
+      622,
+      683,
+      596,
+      664,
+      677,
+      731,
+      686,
+      720,
+      604,
+      655,
+      592,
+      595,
+      571,
+      619,
+      606,
+      588,
+      582
+    ]
+  },
+  "dataset_manifest_sha256": "494f518b4cfbfa072b113f99d42f5470d2fb1a16fd33d7c6ef68327137dcf6aa",
+  "base_model": "Qwen/Qwen3-4B-Instruct-2507",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "initial_adapter_source": "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final",
+  "initial_adapter_sha256": "b7c6e157a5bcf722fac53aa88e0e6fcfdad5049d5d6d2c9c9d505bd1ba6894fc",
+  "initial_adapter_digest": "a1c90cd37779374f575b96db1201e8e87dc2bcdc2f7bea09c5036b3859d41b5c",
+  "capability_success": "not assessed by loss; requires paired dev review"
+}

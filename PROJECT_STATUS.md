@@ -109,12 +109,18 @@
 - trainLoss=3.273305，valLoss=2.971962；峰值显存=3414.2MiB；final Adapter SHA=b7c6e157a5bcf722fac53aa88e0e6fcfdad5049d5d6d2c9c9d505bd1ba6894fc。
 - 两个checkpoint均完整校验；252个LoRA B矩阵从零变非零，后续步张量变化已核验。数据SHA、初始来源和全部日志见reports/diagnostics/schedule_v0.1/B_warmup0/rules/；能力尚未评测。
 
+
+## B Strategy完成（2026-09-15）
+
+- 实测2步/2非零LR=[5e-5,2.5e-5]，epoch=1，best=checkpoint-2，final同best。trainLoss=3.781560，valLoss=3.491447；峰值显存=3316.9MiB。
+- final SHA=ea4799d04f57919ac7d92ec23cd856b6f2db3bc8c1a2ae1049f782c0dc2cb287；初始为B Rule final，504个张量实际改变；checkpoint逐文件SHA验证通过。完整日志/数据SHA/来源位于reports/diagnostics/schedule_v0.1/B_warmup0/strategy/。
+- 复用原子推理运行器的5项测试通过，新日程入口/报告脚本编译通过；原运行器、评分和训练框架未改。
 ## Resume Here
 
-当前Phase：Training Schedule Diagnostic B。启动检查和Rule已完成；当前下一任务：提交/push Rule证据后运行Strategy，接B Rule final，不接旧Adapter。Strategy/Tactics和23-dev全量复核未完成；无阻塞。
+当前Phase：Training Schedule Diagnostic B。启动检查、Rule和Strategy已完成；当前下一任务：提交/push Strategy证据后运行Tactics，接B Strategy final，不接旧Adapter。Tactics和23-dev全量复核未完成；无阻塞。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage strategy --resume
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage tactics --resume
 ```
 
-恢复先读README、三状态文档、日程诊断报告和最近commits；检查当前stage的training_result.json，已完成则只导出，未完成从完整checkpoint恢复。导出scripts/export_training.py后执行scripts/audit_schedule_stage.py --arm B_warmup0 --stage strategy，更新文档commit/push才运行Tactics。所有训练源未改。原23条dev评测用scripts/run_schedule_dev.py（Tactics完成后先--preflight-only，保存commit再生成）。不重跑旧A，不覆盖冻结数据，不使用13条test、视频或Persona；C/D仍有条件门禁。
+恢复先读README、三状态文档、日程诊断报告和最近commits；检查当前stage的training_result.json，已完成则只导出，未完成从完整checkpoint恢复。导出scripts/export_training.py后执行scripts/audit_schedule_stage.py --arm B_warmup0 --stage tactics，更新文档commit/push再进行dev预检与评测。所有训练源未改。原23条dev评测用scripts/run_schedule_dev.py（Tactics完成后先--preflight-only，保存commit再生成）。不重跑旧A，不覆盖冻结数据，不使用13条test、视频或Persona；C/D仍有条件门禁。
