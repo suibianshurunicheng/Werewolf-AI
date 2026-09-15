@@ -102,14 +102,19 @@
 - 正在进行：提交启动检查后启动B Rule。尚未完成：B三阶段实际训练、23-dev生成与全量语义复核；无当前阻塞。
 - 权重、冻结数据、旧评测未覆盖。启动检查记录C/D磁盘余量；当前无需迁移。
 
+
+## B rules完成（2026-09-15）
+
+- 实测optimizer=2、非零LR=2，每步LR=[5e-5,2.5e-5]；epoch=1，best=checkpoint-2，final与best SHA相同。
+- trainLoss=3.273305，valLoss=2.971962；峰值显存=3414.2MiB；final Adapter SHA=b7c6e157a5bcf722fac53aa88e0e6fcfdad5049d5d6d2c9c9d505bd1ba6894fc。
+- 两个checkpoint均完整校验；252个LoRA B矩阵从零变非零，后续步张量变化已核验。数据SHA、初始来源和全部日志见reports/diagnostics/schedule_v0.1/B_warmup0/rules/；能力尚未评测。
+
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO、reports/training_schedule_diagnostic_v01.md和最近提交。当前启动检查已完成；下一项仅执行B Rule（新诊断），Rule从Base新建Adapter。
+当前Phase：Training Schedule Diagnostic B。启动检查和Rule已完成；当前下一任务：提交/push Rule证据后运行Strategy，接B Rule final，不接旧Adapter。Strategy/Tactics和23-dev全量复核未完成；无阻塞。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage rules --resume
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage strategy --resume
 ```
 
-先检查outputs/diagnostics/schedule_v0.1/B_warmup0/rules/progress.json与training_result.json；如已完成只导出，绝不重训。每阶段导出export_training.py和audit_schedule_stage.py证据，更新三文档并commit/push，再进入下一阶段Strategy、Tactics。同一配置加--resume仅恢复当前阶段。
-
-B final只跑冻结原23条dev并与A逐题语义比较。稳定核心改善则停在B；否则保存完整报告并commit后才条件进入C_accum8。test、视频、Persona、v0.3、D均不提前启动。大权重在本地outputs/cache，迁移须一并复制。
+恢复先读README、三状态文档、日程诊断报告和最近commits；检查当前stage的training_result.json，已完成则只导出，未完成从完整checkpoint恢复。导出scripts/export_training.py后执行scripts/audit_schedule_stage.py --arm B_warmup0 --stage strategy，更新文档commit/push才运行Tactics。所有训练源未改。原23条dev评测用scripts/run_schedule_dev.py（Tactics完成后先--preflight-only，保存commit再生成）。不重跑旧A，不覆盖冻结数据，不使用13条test、视频或Persona；C/D仍有条件门禁。

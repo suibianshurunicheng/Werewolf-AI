@@ -96,3 +96,7 @@
 - [ ] B Rule/Strategy/Tactics逐阶段保存日志、实际LR与checkpoint证据、导出并commit。
 - [ ] B最终在同23条旧dev协议上生成/全量模型复核，对照A已有输出，不使用test调参。
 - [ ] C_accum8和D_epochs2仅依据前一诊断结果条件推进，当前未开始。
+
+- [x] B Rule真实2步/2非零LR完成，checkpoint/final权重、完整日志和SHA导出核验。
+- [ ] B Strategy接Rule final训练并导出、提交/推送。
+- [ ] B Tactics接Strategy final训练并导出、提交/推送。

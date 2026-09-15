@@ -1,0 +1,24 @@
+{
+  "status": "trained",
+  "stage": "rules",
+  "global_step": 2,
+  "epoch": 1.0,
+  "best_checkpoint": "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2",
+  "peak_vram_mib": 3414.15380859375,
+  "metrics": {
+    "train_runtime": 122.4341,
+    "train_samples_per_second": 0.261,
+    "train_steps_per_second": 0.016,
+    "total_flos": 400159760941056.0,
+    "train_loss": 3.2733051776885986,
+    "epoch": 1.0
+  },
+  "validation": {
+    "eval_loss": 2.9719624519348145,
+    "eval_runtime": 8.6157,
+    "eval_samples_per_second": 1.161,
+    "eval_steps_per_second": 1.161,
+    "epoch": 1.0
+  },
+  "model_benchmark": "not_run"
+}

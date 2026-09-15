@@ -1,0 +1,215 @@
+{
+  "training_source_commit": "446b2e7",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "files": {
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/adapter_config.json": {
+      "bytes": 1140,
+      "sha256": "854f91b43f0fe361048e5434b36ccc2dd6ae32d0c1dd9fab5a589a781510ff14"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/adapter_model.safetensors": {
+      "bytes": 66126768,
+      "sha256": "8c65b90bf455cd3e5f983fe4f28156d7abc2a34058de80cfee57da8a7ac18cde"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/added_tokens.json": {
+      "bytes": 735,
+      "sha256": "79f6ec6fcc423d3a82bfac8b9033b1daac7b7bce06a5f5f441637b480cc605de"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/chat_template.jinja": {
+      "bytes": 2690,
+      "sha256": "0ab115e84509e86db2bb05a63edf63778ae7fe624972cdfa982b1e59053d6710"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/checkpoint_complete.json": {
+      "bytes": 1492,
+      "sha256": "ad283f08a42c05fb7e8ee4b70c64445dd47ca508b32400a2edb7677a509d7262"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/merges.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/optimizer.pt": {
+      "bytes": 34136296,
+      "sha256": "7f84e71b371876d211ab860173810fcec554852f9fe390ad546cb112378f3f62"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/README.md": {
+      "bytes": 5208,
+      "sha256": "a5f45a17df561d29585f8dd6ef95ea61a70787ca0558c4ba27f0e87979e3e984"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/rng_state.pth": {
+      "bytes": 14168,
+      "sha256": "712f3beffd6457e86832f9ffce1c71793db02fd6c2e42b935a8e5644198dee4a"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/run_manifest.json": {
+      "bytes": 3085,
+      "sha256": "869bbfa976d19647e2be6515fb44da50ea5421aea7bed4031cfcd89faee118e9"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/scheduler.pt": {
+      "bytes": 1056,
+      "sha256": "ea89ada68715fa23ae6cd96292b33d046ee905d2e3b816586cc79aa3cc88b374"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/special_tokens_map.json": {
+      "bytes": 644,
+      "sha256": "57255613bbe23c9497211ca68561ff429a51e871dbaf5a59998fa4c8f7fe168a"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/tokenizer.json": {
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/tokenizer_config.json": {
+      "bytes": 5644,
+      "sha256": "e1ff43043fd7fbe07a7656d301d3c59352984be693c69c4becd4b670f52a374b"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/trainer_state.json": {
+      "bytes": 1285,
+      "sha256": "80559d0909c8062cc1879a9854702bd6b0328669596c83e4e35547b485576080"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/training_args.bin": {
+      "bytes": 5536,
+      "sha256": "b89aa35e722028c3e6b588d269984a3630734223194eeb8d328300be43ee7e49"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-1/vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/adapter_config.json": {
+      "bytes": 1140,
+      "sha256": "854f91b43f0fe361048e5434b36ccc2dd6ae32d0c1dd9fab5a589a781510ff14"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/adapter_model.safetensors": {
+      "bytes": 66126768,
+      "sha256": "b7c6e157a5bcf722fac53aa88e0e6fcfdad5049d5d6d2c9c9d505bd1ba6894fc"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/added_tokens.json": {
+      "bytes": 735,
+      "sha256": "79f6ec6fcc423d3a82bfac8b9033b1daac7b7bce06a5f5f441637b480cc605de"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/chat_template.jinja": {
+      "bytes": 2690,
+      "sha256": "0ab115e84509e86db2bb05a63edf63778ae7fe624972cdfa982b1e59053d6710"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/checkpoint_complete.json": {
+      "bytes": 1492,
+      "sha256": "32ac7a3cdc321d73fc33fcd2dfc0ebd632dddf545798db6a84aca3c0fc0f0f64"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/merges.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/optimizer.pt": {
+      "bytes": 34136296,
+      "sha256": "356215f8900d9da56a6db42a1948593d1d81750fc2e4c49a6790763cfd008c60"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/README.md": {
+      "bytes": 5208,
+      "sha256": "a5f45a17df561d29585f8dd6ef95ea61a70787ca0558c4ba27f0e87979e3e984"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/rng_state.pth": {
+      "bytes": 14168,
+      "sha256": "27db7bf19297f6e21b33ac8731d6901256b2f17ebf32d615a4e31365e6d81db1"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/run_manifest.json": {
+      "bytes": 3085,
+      "sha256": "869bbfa976d19647e2be6515fb44da50ea5421aea7bed4031cfcd89faee118e9"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/scheduler.pt": {
+      "bytes": 1056,
+      "sha256": "2156a92e5f5af92251db10161932ca82e2af84f677c1adfd18bd8be9c5de7e99"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/special_tokens_map.json": {
+      "bytes": 644,
+      "sha256": "57255613bbe23c9497211ca68561ff429a51e871dbaf5a59998fa4c8f7fe168a"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/tokenizer.json": {
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/tokenizer_config.json": {
+      "bytes": 5644,
+      "sha256": "e1ff43043fd7fbe07a7656d301d3c59352984be693c69c4becd4b670f52a374b"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/trainer_state.json": {
+      "bytes": 1637,
+      "sha256": "c1b083a1faafcc5653f499f6a1479cc819f2ae8fb0c5ecb6ee1300cbb929118e"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/training_args.bin": {
+      "bytes": 5536,
+      "sha256": "b89aa35e722028c3e6b588d269984a3630734223194eeb8d328300be43ee7e49"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/checkpoint-2/vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/adapter_config.json": {
+      "bytes": 1140,
+      "sha256": "854f91b43f0fe361048e5434b36ccc2dd6ae32d0c1dd9fab5a589a781510ff14"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/adapter_model.safetensors": {
+      "bytes": 66126768,
+      "sha256": "b7c6e157a5bcf722fac53aa88e0e6fcfdad5049d5d6d2c9c9d505bd1ba6894fc"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/added_tokens.json": {
+      "bytes": 735,
+      "sha256": "79f6ec6fcc423d3a82bfac8b9033b1daac7b7bce06a5f5f441637b480cc605de"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/chat_template.jinja": {
+      "bytes": 2690,
+      "sha256": "0ab115e84509e86db2bb05a63edf63778ae7fe624972cdfa982b1e59053d6710"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/merges.txt": {
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/README.md": {
+      "bytes": 5208,
+      "sha256": "a5f45a17df561d29585f8dd6ef95ea61a70787ca0558c4ba27f0e87979e3e984"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/run_manifest.json": {
+      "bytes": 3085,
+      "sha256": "869bbfa976d19647e2be6515fb44da50ea5421aea7bed4031cfcd89faee118e9"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/special_tokens_map.json": {
+      "bytes": 644,
+      "sha256": "57255613bbe23c9497211ca68561ff429a51e871dbaf5a59998fa4c8f7fe168a"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/tokenizer.json": {
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/tokenizer_config.json": {
+      "bytes": 5644,
+      "sha256": "e1ff43043fd7fbe07a7656d301d3c59352984be693c69c4becd4b670f52a374b"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/training_args.bin": {
+      "bytes": 5536,
+      "sha256": "b89aa35e722028c3e6b588d269984a3630734223194eeb8d328300be43ee7e49"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/final/vocab.json": {
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/progress.json": {
+      "bytes": 690,
+      "sha256": "6f8382f316d9ea6c24c61c809ab52e8945bd02ce66b63c64c90c4da9a1471128"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/run_manifest.json": {
+      "bytes": 3085,
+      "sha256": "869bbfa976d19647e2be6515fb44da50ea5421aea7bed4031cfcd89faee118e9"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/trainer_state.json": {
+      "bytes": 2091,
+      "sha256": "30acdfd5004a3ef58b331f54fe13f551bdd91f82f2055db5c516f29809bfffa0"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/training.jsonl": {
+      "bytes": 774,
+      "sha256": "6d9484edd7b2a423a86b2483344689ac5cb3a7fee57dd677876f40ec81dec184"
+    },
+    "outputs/diagnostics/schedule_v0.1/B_warmup0/rules/training_result.json": {
+      "bytes": 690,
+      "sha256": "6f8382f316d9ea6c24c61c809ab52e8945bd02ce66b63c64c90c4da9a1471128"
+    }
+  },
+  "adapter_tensors": 504,
+  "nonzero_lora_B_tensors": 252,
+  "changed_tensors_from_initial_adapter": null,
+  "weights_location": "outputs/diagnostics/schedule_v0.1/B_warmup0/rules",
+  "portability": "Weights stay in local outputs; copy this directory and verify hashes when moving hosts."
+}
