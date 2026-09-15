@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-14。当前Phase：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
+更新：2026-09-15。当前Phase：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
 
 ## 已完成任务
 
@@ -19,9 +19,7 @@
 
 ## 当前正在进行的任务
 
-v0.2正式训练和原评测阶段已完成；当前投影诊断推理运行中，以OS锁和诊断progress为准。core离线失败诊断及23条dev单变量输入包已完成。独立运行器和5项必要测试已完成，实际权重/配置/冻结输入包核验通过；先提交检查点，随后只生成23条dev处理侧。
-
-- 04608b1保存并推送完整v0.2评测。新增reports/v02_core_diagnosis.md/.json，核实训练/评测呈现差异、角色曝光和优化日程；未认定唯一因果。冻结v02_skill_projection_v0.1，仅裁剪无关skill_state，其余输入/系统/权重/生成/评分保持不变。
+投影诊断23/23生成和23/23模型语义复核已完成，OS锁空闲，无需补跑。完整报告reports/diagnostics/v02_skill_projection_v0.1/report.md，选择分支B（混合结果、局部动作收益但核心技能没有稳定改善）。下一小阶段设计Training Schedule Diagnostic最小矩阵，不重训已完成版本、不覆盖冻结数据。
 
 ## 已运行测试、核验与结果
 
@@ -71,36 +69,34 @@ v0.2正式训练和原评测阶段已完成；当前投影诊断推理运行中�
 ## 尚未完成任务与当前阻塞项
 
 - 无外部工程阻塞；v0.2定向修复能力未达标。不能宣称高手模型或视频数据已证明有效。
-- core诊断已完成；尚待实现独立运行器并执行v02_skill_projection_v0.1的23条dev处理侧推理/配对复核。它是探索性诊断，不替代原验收，不解锁视频。
+- 投影诊断已完成；尚待设计并静态预检最小训练日程矩阵，先warmup=0，其他新实验按结果有条件推进。尚未证实日程是主因。
 - 独立人工语义盲审、未用于修正的保留集、真实复制粘贴对局验收仍未完成。
 - 视频M01～M03完整历史校对、合法经典化与Critic待做，其他184局待审核。
 - v0.3-video与Phase2镜隐均暂停，满足前置能力门禁后再考虑。
 
 ## 磁盘状态
 
-2026-09-14最近检查：C41.74GiB、D100.94GiB，CONTINUE，无需迁移。大文件任务与恢复前继续检查；C不足时先保存/结束写入再按docs/disk_recovery.md迁全项目到D，D也不足才提醒租云服务器。无会话结束后的后台监控承诺。
+2026-09-15最近检查：C43.23GiB、D100.95GiB，CONTINUE，无需迁移。大文件任务与恢复前继续检查；C不足时先保存/结束写入再按docs/disk_recovery.md迁全项目到D，D也不足才提醒租云服务器。无会话结束后的后台监控承诺。
 
-## 投影诊断规则组检查点
+## 投影诊断最终结果
 
-规则dev 7题已生成并完成模型语义复核；全部7题结构有效，合法0→2、严格参考0→1，未知动作词4→2。守卫连守和夜间泄漏持续，猎人出现错误夜间技能措辞；部分状态复述改善。完整分支尚未判定，继续策略与反事实/Blind。运行已在reports/diagnostics/v02_skill_projection_v0.1逐题保存；日志progress为实时状态。
-
-## 投影诊断策略组检查点
-
-规则+策略12条dev已复核，另首个守卫反事实已保存。5条策略题出现更准确的主张转述，也有无依据支持8、pass退回none及继续不回应任务；不据未知词下降宣布能力提升。继续原运行完成6条反事实与5条Blind，再选择A/B/C。
-
-## 投影诊断反事实检查点
-
-18条dev已生成并完成模型语义复核；三组成对参考命中仍0/3。守卫B出现合法guard7但违背指定12任务，猎人B由查验变击杀仍有每轮击杀幻觉/shot未知词，狼队A具体投票却仍否定确定队伍信息。剩余5条Blind按原运行继续，全量后才定分支。
+- 23条dev独立生成、零截断；原控制输出、23题输入、模型与配置SHA核验通过，v0.1/v0.2 manifest不变。恢复检查时已23/23完成，没有重复生成。
+- 结构23→23、合法动作3→7、严格参考1→2、未知动作词14→10（分母23）。反事实双正确0/3→0/3，动作变化1/3→3/3不是正确重规划。
+- 模型语义复核：4局部改善、8混合、4无变化、7退步；均保留。技能错误7/9→8/9、相关状态读取错误18/23→12/23、权限错误10/17→7/17、队伍确定知识错误3/4→4/4、夜间泄漏7/7→7/7。维度重叠、可评估分母不同，非独立人工评分。
+- 已证实这批dev局部动作变化；有支持证据说明表示影响部分状态读取；暂不支持投影稳定修复核心技能；日程不足/遗忘/覆盖是否主因尚未验证。保守进入B，不声称全面无效或全面退化。
+- 5项运行器测试此前通过；最终23题/指纹/权重/旧manifest核验通过，峰值2908.9MiB，生成时间合计1582.27秒。详见final_verification.json。
+- 报告逐题列技能/权限/队伍知识/信息边界、角色分组和三组反事实。猎人技能宣告不自动按无遗言权判泄漏，未知维度记null。Blind-04含公开目标提示，命中不单独证明自主选人。
 
 ## Resume Here
 
-已读取状态并完成独立运行器；5项测试通过，真实check-only确认23条dev与模型权重、配置、旧控制来源一致。提交后开始v02_skill_projection_v0.1。无需重训或重建输入包。
+先读README、PROJECT_STATUS、DECISIONS、TODO及最近Git提交。v0.1/v0.2训练和原36题评测完成；投影诊断也已23/23完成，不得重跑或修改题目救分。
 
-恢复第一项任务：读取reports/diagnostics/v02_skill_projection_v0.1/progress.json（若存在）和cases数量；用原命令继续，仅补缺。运行器OS锁拒绝重复进程；不得更换输出路径覆盖旧评测。
+下一次第一项任务：读取投影正式报告，进入分支B，保存最小Training Schedule Diagnostic矩阵及独立配置。固定Base、86条冻结数据、Chat Template、标签和原dev协议；先比较当前A与仅warmup=0的B，额外更新次数/epoch实验有条件推进，不做网格搜索。矩阵静态检查、状态更新和commit后才考虑新诊断训练，旧v0.1/v0.2不重训。
 
 ```powershell
-.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-.venv/Scripts/python.exe -X utf8 scripts/run_skill_projection.py
+Get-Content -Encoding UTF8 reports/diagnostics/v02_skill_projection_v0.1/report.md
+Get-Content -Encoding UTF8 configs/qlora_classic_v02.yaml
+Get-Content -Encoding UTF8 src/werewolf_sft/training.py
 ```
 
-完成后正式报告必须覆盖23题前后语义、严格动作/合法性/未知动作词、技能/权限/队伍知识、公开边界/夜漏、角色分组与反事实配对。不读取test答案，不修改评分。按用户A/B/C结果进入新Classic Schema设计或Training Schedule Diagnostic；不得提前宣称根因或解锁视频/v0.3/Persona/Phase2/RL。
+原完整回答在reports/diagnostics/v02_skill_projection_v0.1/cases，审核与SHA见semantic_review.json及final_verification.json。只需重建报告可运行scripts/summarize_skill_projection.py，不加载模型。视频、Persona、Phase2、RL和新Base均不进入当前工作。

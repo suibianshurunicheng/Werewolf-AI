@@ -1,8 +1,8 @@
 # v02_skill_projection_v0.1 正式诊断报告
 
-状态：partial；已比较19/23，语义审核18/23。仅dev探索，非held-out能力验收。
+状态：complete；已比较23/23，语义审核23/23。仅dev探索，非held-out能力验收。
 
-尚未完成全量审查
+选择分支B：投影有局部动作收益，但未稳定改善核心技能与策略。合法动作3/23→7/23、严格参考命中1/23→2/23，未知动作词14/23→10/23；三组反事实双正确仍0/3。守卫/猎人机制幻觉持续，队伍确定知识有退步，夜间公开泄漏未减少。不满足分支A，亦不将混合结果笼统写成全面退化或完全无作用。保留旧Schema主线，下一阶段设计Training Schedule Diagnostic；不重训旧版本、不用test调参、不解锁视频或v0.3。
 
 ## 实验控制
 
@@ -14,25 +14,26 @@ strict action score在本报告指合法且命中原参考动作（action_match�
 
 |指标|控制|投影|
 |---|---:|---:|
-|format_valid|19/19|19/19|
-|action_legal|1/19|5/19|
-|action_match|0/19|1/19|
-|unknown_action_type|13/19|9/19|
-|public_leak_flag|0/19|0/19|
-|truncated|0/19|0/19|
-|unknown_raw_action_word|13/19|9/19|
-|raw_word_unavailable|0/19|0/19|
+|format_valid|23/23 (100.0%)|23/23 (100.0%)|
+|action_legal|3/23 (13.0%)|7/23 (30.4%)|
+|action_match|1/23 (4.3%)|2/23 (8.7%)|
+|unknown_action_type|14/23 (60.9%)|10/23 (43.5%)|
+|public_leak_flag|0/23 (0.0%)|0/23 (0.0%)|
+|truncated|0/23 (0.0%)|0/23 (0.0%)|
+|unknown_raw_action_word|14/23 (60.9%)|10/23 (43.5%)|
+|raw_word_unavailable|0/23 (0.0%)|0/23 (0.0%)|
 
-未知词分布：{"control": {"none": 7, "save": 1, "hunter_shot": 2, "exile": 2, "speech": 1}, "treatment": {"save": 1, "none": 4, "guard_check": 1, "hunter_shot": 1, "shot": 1, "exile": 1}}
+未知词分布：{"control": {"none": 7, "save": 1, "hunter_shot": 2, "exile": 2, "speech": 2}, "treatment": {"save": 1, "none": 5, "guard_check": 1, "hunter_shot": 1, "shot": 1, "exile": 1}}
 
 ## 角色分组
 
 |角色/题数|合法 控制→投影|严格命中 控制→投影|语义变化|
 |---|---|---|---|
-|guard/3|0→1|0→0|{"mixed": 2, "regressed": 1}|
+|guard/4|0→1|0→0|{"mixed": 3, "regressed": 1}|
 |hunter/3|0→0|0→0|{"regressed": 1, "unchanged": 1, "mixed": 1}|
-|villager/8|1→2|0→0|{"improved": 2, "mixed": 3, "regressed": 2, "unchanged": 1}|
-|werewolf/3|0→1|0→0|{"improved": 1, "unchanged": 1}|
+|seer/1|1→1|1→1|{"regressed": 1}|
+|villager/9|1→2|0→0|{"improved": 2, "mixed": 3, "regressed": 3, "unchanged": 1}|
+|werewolf/4|1→2|0→0|{"improved": 1, "unchanged": 1, "mixed": 1, "regressed": 1}|
 |witch/2|0→1|0→1|{"improved": 1, "unchanged": 1}|
 
 ## 语义错误复核
@@ -41,12 +42,12 @@ strict action score在本报告指合法且命中原参考动作（action_match�
 
 |维度|配对可评估|控制错误|投影错误|
 |---|---:|---:|---:|
-|role_skill|7|6|6|
-|state_reading|18|14|9|
-|permission|14|9|6|
-|team_knowledge|2|2|2|
-|public_private|15|5|5|
-|night_leak|5|5|5|
+|role_skill|9|7|8|
+|state_reading|23|18|12|
+|permission|17|10|7|
+|team_knowledge|4|3|4|
+|public_private|20|8|7|
+|night_leak|7|7|7|
 
 public_leak_flag是原有限正则；夜间泄漏由逐题语义审核判断，不能把正则0理解成无泄漏。
 
@@ -55,6 +56,12 @@ public_leak_flag是原有限正则；夜间泄漏由逐题语义审核判断，�
 {"control": {"pairs": 3, "both_correct": 0, "action_changed": 1}, "treatment": {"pairs": 3, "both_correct": 0, "action_changed": 3}}
 
 只含dev守卫/猎人/狼队三对，不含test对；动作变化本身不代表合理动态调整。以下逐题内容保留配对方向及错误。
+
+|配对|控制 A / B|投影 A / B|
+|---|---|---|
+|guard|{"type": "check", "target": 12} / {"type": "none", "target": null}|{"type": "guard_check", "target": 12} / {"type": "guard", "target": 7}|
+|hunter|{"type": "hunter_shot", "target": 12} / {"type": "hunter_shot", "target": 12}|{"type": "hunter_shot", "target": 12} / {"type": "shot", "target": 12}|
+|team|{"type": "exile", "target": null} / {"type": "exile", "target": null}|{"type": "vote", "target": 12} / {"type": "exile", "target": null}|
 
 ## 全部案例（不筛选）
 
@@ -208,8 +215,65 @@ unchanged：投影开始引用1首验一致、改口指控不成立，也修正�
 
 动作：{"control": {"type": "speech", "target": 1}, "treatment": {"type": "none", "target": null}}
 
-语义审核待完成。
+mixed：投影明确4/8为真队友，也不再无依据说狼队成员已经公开暴露，私有与公开状态区分有局部改善。但仍把1当身份嫌疑，未把其队友身份固定；从复读别人对自己的质询退为none/无发言，两侧都未解释自己连续维护1，未完成自主切割回应。
+
+### eval-blind-02
+
+角色：werewolf；sheriff_speech；pair=None。
+
+动作：{"control": {"type": "pass", "target": null}, "treatment": {"type": "pass", "target": null}}
+
+regressed：控制在身份表和狼坑中已明确1/4/8为狼人，虽对8伪装措辞摇摆；投影直接把三人降为未确认的高概率狼人，明确称8可能是狼但无法确认，确定队伍知识退化。投影清楚说自己无查验技能，这是局部角色边界表述，但不抵消核心知识丢失。两侧仍pass等待，未利用队友站边优势进行当轮发言。
+
+### eval-blind-04
+
+角色：seer；night；pair=None。
+
+动作：{"control": {"type": "check", "target": 12}, "treatment": {"type": "check", "target": 12}}
+
+regressed：两侧均check12、合法且命中参考，夜间仍公开查验目标。投影新增12可能是守夜人的非Classic角色措辞，动作成功未消除角色知识污染。另须限制解释：冻结公开资料明确包含本次比较先选择12，因此本题命中不能单独证明完全自主选人；没有改题或评分。
+
+### eval-blind-05
+
+角色：guard；night；pair=None。
+
+动作：{"control": {"type": "guard", "target": 12}, "treatment": {"type": "guard", "target": 12}}
+
+mixed：投影正确读取上一晚守12，消除控制技能未使用的状态遗漏；但把连续守12解释为维持一致性，仍执行非法连守。角色规则和夜间目标公开均未修复，不能把简短回答或正确复述状态视为合法决策。
+
+### eval-blind-07
+
+角色：villager；day_speech；pair=None。
+
+动作：{"control": {"type": "speech", "target": null}, "treatment": {"type": "none", "target": null}}
+
+regressed：投影纠正了控制把互不信任读为互信的字面错误，却把互相攻击与互不信任本身当成矛盾，遗漏关键同向投票。控制至少公开追问互攻却同票；投影退为none与泛泛观察，没有实际追问，推理和自主回应整体退步。
+
+## 已证实
+
+- 23条处理侧完成，模型/系统提示/输入布局/任务/公开私有信息/生成参数/原评分固定，干预仅为skill_state投影。
+- 在这批dev上，动作合法化改善但反事实双正确未增加；删除checked_seats后守卫查验幻觉仍出现。
+
+## 有支持证据
+
+- 输入表示影响状态复述和输出动作词；但效果依角色/案例而异，不能推广为核心根因已确定。
+- 每阶段只有一次非零学习率参数更新、最后阶段验证只有一条狼人发言，是值得优先控制检验的训练日程/选择限制。
+
+## 暂不支持
+
+- 不支持把删除无关skill_state作为已证明能稳定修复角色技能、权限和队伍知识的方案；不作分支A的重要干扰因素已证实结论。
+- 不支持把未知词下降或pass增加等同策略提升；不支持仅因这批dev改变主线Schema或提前引入视频。
+
+## 尚未验证
+
+- warmup=0、更少梯度累积、更多epoch或阶段间遗忘是否为主要失败原因；下一矩阵先只设计和预检。
+- 未用于选择的held-out提升、独立人工审核及真实对局水平。
+- 猎人技能宣告与遗言的具体公开渠道边界未作统一裁决，该维度记null而非自动判漏。
 
 ## 证据与限制
 
 原始回答、输入指纹和逐题SHA见本目录cases、run.json、paired_analysis.json及semantic_review.json。skill_state裁剪是一个组合干预（包括序列长度变化），不能区分每个字段的因果贡献。当前权重上的dev结果不能证明训练覆盖或训练日程是唯一主因；后续分支的未执行实验必须明确记为尚未验证。
+
+角色技能错误包含明确的错误角色/技能规则；state_reading包括相关状态、公开历史和任务信息使用；permission关注语义权限，不把未知动作拼写直接当作不懂权限。维度可重叠，不相加作为总错误数。mixed表示同题同时有局部改善与退步/主要缺陷持续。语义等级是模型复核，不是独立人工评分。
+
+Blind-04的冻结公开资料包含本次比较先选择12，因此其命中不能独立证明无目标提示的自主决策。保持题目原样来控制实验，不对已有分数追溯修改。

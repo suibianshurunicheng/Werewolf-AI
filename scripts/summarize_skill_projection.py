@@ -73,6 +73,7 @@ def main():
               "expected": 23, "compared": len(rows), "reviewed": len(reviews), "summary": aggregate(rows),
               "by_role": by_role, "semantic_errors": semantic_errors, "counterfactual": pair_summary,
               "rows": rows, "branch": review.get("branch", "pending"), "conclusion": review.get("conclusion", "尚未完成全量审查"),
+              "evidence_levels": review.get("evidence_levels", {}),
               "held_out_claim": False, "review_kind": "model_semantic_review_not_independent_human"}
     write_json(ROOT / OUTPUT / "paired_analysis.json", report)
     lines = ["# v02_skill_projection_v0.1 正式诊断报告", "", f"状态：{report['status']}；已比较{len(rows)}/23，语义审核{len(reviews)}/23。仅dev探索，非held-out能力验收。", "", report["conclusion"], "",
@@ -80,7 +81,8 @@ def main():
              "## 自动动作指标", "", "strict action score在本报告指合法且命中原参考动作（action_match）；合法动作单列。未知动作token/word指action.type字符串，不是模型词表中的token计数。原严格解析失败的输出不会计入unknown_action_type，另列宽松JSON提取的unknown raw action word，二者不改评分、不做别名纠正。", "",
              "|指标|控制|投影|", "|---|---:|---:|"]
     for key in fields + ("unknown_raw_action_word", "raw_word_unavailable"):
-        lines.append(f"|{key}|{report['summary']['control'][key]}/{len(rows)}|{report['summary']['treatment'][key]}/{len(rows)}|")
+        values = [f"{report['summary'][side][key]}/{len(rows)} ({100 * report['summary'][side][key] / len(rows):.1f}%)" for side in predictions] if rows else ["0/0", "0/0"]
+        lines.append(f"|{key}|{values[0]}|{values[1]}|")
     lines += ["", "未知词分布：" + json.dumps({s: report["summary"][s]["unknown_words"] for s in predictions}, ensure_ascii=False), "",
               "## 角色分组", "", "|角色/题数|合法 控制→投影|严格命中 控制→投影|语义变化|", "|---|---|---|---|"]
     for role, g in by_role.items():
@@ -89,11 +91,18 @@ def main():
     for key, g in semantic_errors.items():
         lines.append(f"|{key}|{g['paired_rated']}|{g['control_error']}|{g['treatment_error']}|")
     lines += ["", "public_leak_flag是原有限正则；夜间泄漏由逐题语义审核判断，不能把正则0理解成无泄漏。", "", "## 反事实", "", json.dumps(pair_summary, ensure_ascii=False), "", "只含dev守卫/猎人/狼队三对，不含test对；动作变化本身不代表合理动态调整。以下逐题内容保留配对方向及错误。", "", "## 全部案例（不筛选）", ""]
+    lines[-2:-2] = ["|配对|控制 A / B|投影 A / B|", "|---|---|---|"] + [
+        "|" + pair + "|" + "|".join(" / ".join(json.dumps(r[side]["strict"].get("parsed_action"), ensure_ascii=False) for r in rows if r["pair_id"] == pair) for side in predictions) + "|"
+        for pair in sorted({r["pair_id"] for r in rows if r["pair_id"]})] + [""]
     for row in rows:
         lines += ["### " + row["id"], "", f"角色：{row['role']}；{row['stage']}；pair={row['pair_id']}。", "",
                   "动作：" + json.dumps({s: row[s]["strict"].get("parsed_action", {"parse_error": row[s]["strict"].get("parse_error")}) for s in predictions}, ensure_ascii=False), "",
                   (row["semantic"]["change"] + "：" + row["semantic"]["observation"]) if row["semantic"] else "语义审核待完成。", ""]
-    lines += ["## 证据与限制", "", "原始回答、输入指纹和逐题SHA见本目录cases、run.json、paired_analysis.json及semantic_review.json。skill_state裁剪是一个组合干预（包括序列长度变化），不能区分每个字段的因果贡献。当前权重上的dev结果不能证明训练覆盖或训练日程是唯一主因；后续分支的未执行实验必须明确记为尚未验证。", ""]
+    for level, findings in report["evidence_levels"].items():
+        lines += ["## " + level, ""] + ["- " + finding for finding in findings] + [""]
+    lines += ["## 证据与限制", "", "原始回答、输入指纹和逐题SHA见本目录cases、run.json、paired_analysis.json及semantic_review.json。skill_state裁剪是一个组合干预（包括序列长度变化），不能区分每个字段的因果贡献。当前权重上的dev结果不能证明训练覆盖或训练日程是唯一主因；后续分支的未执行实验必须明确记为尚未验证。", "",
+              "角色技能错误包含明确的错误角色/技能规则；state_reading包括相关状态、公开历史和任务信息使用；permission关注语义权限，不把未知动作拼写直接当作不懂权限。维度可重叠，不相加作为总错误数。mixed表示同题同时有局部改善与退步/主要缺陷持续。语义等级是模型复核，不是独立人工评分。", "",
+              "Blind-04的冻结公开资料包含本次比较先选择12，因此其命中不能独立证明无目标提示的自主决策。保持题目原样来控制实验，不对已有分数追溯修改。", ""]
     (ROOT / OUTPUT / "report.md").write_text("\n".join(lines), encoding="utf-8")
     print(json.dumps({k: report[k] for k in ("status", "compared", "reviewed", "summary", "counterfactual", "branch")}, ensure_ascii=False))
 
