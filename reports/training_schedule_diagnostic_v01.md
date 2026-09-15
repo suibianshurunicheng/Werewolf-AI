@@ -74,3 +74,7 @@ B完成并提交后，在原23条dev协议上评测final，复用A已有23条控
 ```
 
 未开始时不要添加--resume；如果同一阶段已有完整检查点而未完成，则原命令添加--resume。训练/导出结束后才推进下一阶段。旧数据、旧权重、旧评测都保持冻结。
+
+## 2026-09-15 执行追加记录
+
+上文矩阵冻结时B尚未训练；现B已按冻结配置完成Rule→Strategy→Tactics，真实6 optimizer步/6非零LR更新，每阶段best在step2。详见diagnostics/schedule_v0.1/B_warmup0/training_report.md。23-dev原输入预检已通过，接下来仅评测B final；C/D仍未启动。矩阵六个不可变快照保持原SHA，不更新历史预检中的planned标记。

@@ -1,0 +1,72 @@
+{
+  "experiment_id": "training_schedule_v0.1/B_warmup0",
+  "status": "prepared_not_run",
+  "single_variable": "skill_state keys retained by current Classic role plus last_words_allowed",
+  "control": "existing qlora_v02 dev predictions; original renderer and system prompt",
+  "treatment": "same renderer and system prompt; only skill_state projection changes",
+  "adapter": "outputs/diagnostics/schedule_v0.1/B_warmup0/tactics/final",
+  "adapter_safetensors_sha256": "da5172fa95537b65a59c50e7edb603f96436dee051ed5de56daeadffda855777",
+  "source_run": {
+    "protocol": {
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "cases_hash": "415d21bc4f2ff6770410c8188179545d3be6e572d764e3993e37e8c2ea3a69d0",
+      "system_prompt_hash": "fca8c04ef6f689617e48c5691e277fb779c0ea06c7b4b27fd92eea3a2463dce3",
+      "rendered_inputs_hash": "bbdf4a58a8c4abd115d6f7aac4b29e70dac37bbd2c5cac9b42766c51a216e785",
+      "generation": {
+        "max_input_tokens": 2048,
+        "max_new_tokens": 768,
+        "do_sample": false,
+        "use_cache": true
+      },
+      "quantization": {
+        "enabled": true,
+        "type": "nf4",
+        "double_quant": true,
+        "compute_dtype": "auto"
+      },
+      "cpu_offload": false,
+      "seed": 42
+    },
+    "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+    "adapter_digest": "26c8c6e3b9564f863923f31e068c29898ecadb3b0aefa02c03e1c609c7dab7c5"
+  },
+  "case_ids": [
+    "eval-rule-guard-repeat",
+    "eval-rule-witch-spent",
+    "eval-rule-witch-current-target",
+    "eval-rule-hunter-no-permission",
+    "eval-rule-vote-dead",
+    "eval-rule-sheriff-withdrawn",
+    "eval-rule-parity",
+    "eval-strategy-silver",
+    "eval-strategy-vote-change",
+    "eval-strategy-ambiguous",
+    "eval-strategy-dead-dark",
+    "eval-strategy-later-check",
+    "eval-cf-guard-a",
+    "eval-cf-guard-b",
+    "eval-cf-hunter-a",
+    "eval-cf-hunter-b",
+    "eval-cf-team-a",
+    "eval-cf-team-b",
+    "eval-blind-01",
+    "eval-blind-02",
+    "eval-blind-04",
+    "eval-blind-05",
+    "eval-blind-07"
+  ],
+  "case_count": 23,
+  "packet_sha256": "571465162ddb6e2ad5224da972e1017b2d2fbcb14b59f1f4dd6d72f2fe0afb3d",
+  "generation": {
+    "max_input_tokens": 2048,
+    "max_new_tokens": 768,
+    "do_sample": false,
+    "use_cache": true
+  },
+  "seed": 42,
+  "outcome_policy": "Report all 23 paired dev cases with original strict scoring and semantic role/state/private-information review. No post-hoc action aliases. Improvement is diagnostic, not held-out acceptance or permission to merge video.",
+  "stop_policy": "Abort on source/adapter/packet mismatch or truncation; save per-case outputs atomically and resume missing cases only.",
+  "limits": "Tests combined sensitivity to irrelevant skill keys, not individual-key causality. System wording, action dictionary and user layout remain unchanged. No new dataset, test inference or training.",
+  "intervention": "training schedule only; original control messages"
+}

@@ -93,10 +93,10 @@
 - [x] 分支B：保存最小日程矩阵、B/C/D独立配置及CPU scheduler/真实Tokenizer预检，六快照重复运行不变。
 
 - [x] B_warmup0三阶段启动前dry-run、NF4硬件和冻结协议检查通过，记录已保存。
-- [ ] B Rule/Strategy/Tactics逐阶段保存日志、实际LR与checkpoint证据、导出并commit。
+- [x] B Rule/Strategy/Tactics逐阶段日志、实际LR、权重SHA和checkpoint证据已保存。
 - [ ] B最终在同23条旧dev协议上生成/全量模型复核，对照A已有输出，不使用test调参。
 - [ ] C_accum8和D_epochs2仅依据前一诊断结果条件推进，当前未开始。
 
 - [x] B Rule真实2步/2非零LR完成，checkpoint/final权重、完整日志和SHA导出核验。
 - [x] B Strategy接Rule final训练与逐步权重核验完成，证据已导出。
-- [ ] B Tactics接Strategy final训练并导出、提交/推送。
+- [x] B Tactics接Strategy final训练与导出核验完成。

@@ -115,12 +115,24 @@
 - 实测2步/2非零LR=[5e-5,2.5e-5]，epoch=1，best=checkpoint-2，final同best。trainLoss=3.781560，valLoss=3.491447；峰值显存=3316.9MiB。
 - final SHA=ea4799d04f57919ac7d92ec23cd856b6f2db3bc8c1a2ae1049f782c0dc2cb287；初始为B Rule final，504个张量实际改变；checkpoint逐文件SHA验证通过。完整日志/数据SHA/来源位于reports/diagnostics/schedule_v0.1/B_warmup0/strategy/。
 - 复用原子推理运行器的5项测试通过，新日程入口/报告脚本编译通过；原运行器、评分和训练框架未改。
+
+## B三阶段训练完成（2026-09-15）
+
+- Rule/Strategy/Tactics均实际2 optimizer步、2非零LR步，三阶段总计6/6；全部best=checkpoint-2，链中保留全部6次有效更新。A对应6/3。
+- Tactics final SHA=da5172fa95537b65a59c50e7edb603f96436dee051ed5de56daeadffda855777；trainLoss=3.705547、valLoss=3.568643；峰值显存=3443.7MiB。相对B Strategy改变504张量。
+- 已验证：每步LR符合矩阵、checkpoint文件SHA、final=best、初始Adapter链、数据冻结SHA；新23-dev入口预检通过，复用原输入和原原子保存运行器（5项恢复/防篡改测试通过）。
+- 重要证据：reports/diagnostics/schedule_v0.1/B_warmup0/training_report.md、training_comparison.json、各阶段目录以及dev/preflight.json；新训练全部完成，未生成任何新dev答案。
+
 ## Resume Here
 
-当前Phase：Training Schedule Diagnostic B。启动检查、Rule和Strategy已完成；当前下一任务：提交/push Strategy证据后运行Tactics，接B Strategy final，不接旧Adapter。Tactics和23-dev全量复核未完成；无阻塞。
+当前Phase：Training Schedule Diagnostic B同23-dev评测。下一项：确认Tactics与推理预检已commit/push，执行以下命令；原子跳过已完成题，不重跑训练。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage tactics --resume
+.venv/Scripts/python.exe -X utf8 scripts/run_schedule_dev.py --arm B_warmup0
+.venv/Scripts/python.exe -X utf8 scripts/inspect_schedule_dev.py --arm B_warmup0 --limit 3
+.venv/Scripts/python.exe -X utf8 scripts/summarize_schedule_dev.py --arm B_warmup0
 ```
 
-恢复先读README、三状态文档、日程诊断报告和最近commits；检查当前stage的training_result.json，已完成则只导出，未完成从完整checkpoint恢复。导出scripts/export_training.py后执行scripts/audit_schedule_stage.py --arm B_warmup0 --stage tactics，更新文档commit/push再进行dev预检与评测。所有训练源未改。原23条dev评测用scripts/run_schedule_dev.py（Tactics完成后先--preflight-only，保存commit再生成）。不重跑旧A，不覆盖冻结数据，不使用13条test、视频或Persona；C/D仍有条件门禁。
+推理输出：reports/diagnostics/schedule_v0.1/B_warmup0/dev/。只跑冻结23条dev，输入为旧control_messages，绝不采用投影输入；A复用原v0.2对应题输出。每题原子保存；原始输出和全部语义变化都保留。语义复核用review_schedule_cases.py写入，汇总对比A后决定分支。当前无阻塞，剩余为生成、23题全量复核、正式报告和分支决策。
+
+若B一致改善且无新严重退化，记录有限支持证据并停止C/D；若B无稳定改善，完整报告commit/push后才进入C_accum8。不用13条test调参，不加入视频/Persona/v0.3。恢复首先读取README、三状态文档、日程报告和最近提交；旧A/v0.1/v0.2、投影诊断均已完成，禁止重训/覆盖冻结数据。

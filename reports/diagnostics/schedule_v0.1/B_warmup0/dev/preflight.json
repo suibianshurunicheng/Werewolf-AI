@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "case_count": 23,
+  "original_control_messages": true,
+  "run": {
+    "experiment_id": "training_schedule_v0.1/B_warmup0",
+    "config": {
+      "project": "Werewolf-3.5B-Classic",
+      "model": {
+        "name": "Qwen/Qwen3-4B-Instruct-2507",
+        "revision_manifest": "reports/models/Qwen3-4B-Instruct-2507.json",
+        "trust_remote_code": false
+      },
+      "data": {
+        "version": "dataset_v0.2",
+        "root": "data/prepared/dataset_v0.2",
+        "board": "classic_12",
+        "max_length": 1024,
+        "packing": false,
+        "overlength": "reject"
+      },
+      "quantization": {
+        "enabled": true,
+        "type": "nf4",
+        "double_quant": true,
+        "compute_dtype": "auto"
+      },
+      "lora": {
+        "rank": 8,
+        "alpha": 16,
+        "dropout": 0.05,
+        "target_modules": [
+          "q_proj",
+          "k_proj",
+          "v_proj",
+          "o_proj",
+          "gate_proj",
+          "up_proj",
+          "down_proj"
+        ]
+      },
+      "training": {
+        "seed": 42,
+        "batch_size": 1,
+        "gradient_accumulation_steps": 16,
+        "gradient_checkpointing": true,
+        "epochs": 1,
+        "learning_rate": 5e-05,
+        "warmup_ratio": 0.0,
+        "weight_decay": 0.01,
+        "max_grad_norm": 1.0,
+        "optimizer": "paged_adamw_8bit",
+        "save_steps": 1,
+        "logging_steps": 1,
+        "save_total_limit": 3,
+        "max_steps": -1,
+        "output_root": "outputs/diagnostics/schedule_v0.1/B_warmup0",
+        "cpu_offload": false
+      },
+      "inference": {
+        "max_input_tokens": 2048,
+        "max_new_tokens": 768,
+        "do_sample": false,
+        "use_cache": true
+      },
+      "evaluation": {
+        "suites": [
+          "rules",
+          "strategy",
+          "counterfactual",
+          "blind"
+        ],
+        "benchmark_version": "classic_benchmark_v0.1",
+        "baseline_dir": "reports/runs/base_primary"
+      }
+    },
+    "dev_protocol_sha256": "2d098051075dda9c2ff30ccb8ecab637ab8bb100c538663d526a1f6cce74aa5c",
+    "adapter_digest": "18c659b026299164aecdc8f4a3dd7dbc129b9a744b9419f5cee0f417a165f538",
+    "adapter_sha256": "da5172fa95537b65a59c50e7edb603f96436dee051ed5de56daeadffda855777",
+    "dev_cases_hash": "c5d0aa91588c5146580c354cd4685151bec414e5b3640d84cd4ce9986eda06e9",
+    "control_predictions_hash": "9003fd7f1f967d6a16235d1e0ffc857349156f9521b8bdda8dea6b99831e774f",
+    "input_messages_hash": "3c8e70e39304082e0f3451422a017e1d6cfbda1ebf30970bf0a4b37bab366c1d",
+    "source_hashes": {
+      "skill_diagnostic": "ff13e91ec895301316a99f5c8874056d3639dd377f3aaed194464bbaf0bd9a52",
+      "runtime": "d78d3317f838d4bd9d37ac4ae58d0f9d8b4bfc36d8ed00afe420880204162ebe",
+      "modeling": "4f23d7b0be86dbc8f9ff9df82a3df2d376c71f9392b1de619c9d90e3eaea6f56",
+      "perspective": "fd91d8700da01d6109b75d64d379679ebb1babe72456912703b30ac2927a467d",
+      "evaluation": "8cea1606f78b6a3faf7f77428d40272185b25394859485ce9a439bbe78db9768",
+      "rules": "c3f7c9268268cf41e0a9eb740b4873e80b29cfc18a39e8a2440782aaafd9bf0d",
+      "schedule_runner": "632f481088101952e8da8d5250183a4f655e3c16a6f7642b454040f308b7881e"
+    },
+    "source_run": {
+      "protocol": {
+        "model": "Qwen/Qwen3-4B-Instruct-2507",
+        "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+        "cases_hash": "415d21bc4f2ff6770410c8188179545d3be6e572d764e3993e37e8c2ea3a69d0",
+        "system_prompt_hash": "fca8c04ef6f689617e48c5691e277fb779c0ea06c7b4b27fd92eea3a2463dce3",
+        "rendered_inputs_hash": "bbdf4a58a8c4abd115d6f7aac4b29e70dac37bbd2c5cac9b42766c51a216e785",
+        "generation": {
+          "max_input_tokens": 2048,
+          "max_new_tokens": 768,
+          "do_sample": false,
+          "use_cache": true
+        },
+        "quantization": {
+          "enabled": true,
+          "type": "nf4",
+          "double_quant": true,
+          "compute_dtype": "auto"
+        },
+        "cpu_offload": false,
+        "seed": 42
+      },
+      "protocol_fingerprint": "1edff4b7a2e8ae73f0294e2988ae69f50cdc58b329eca266a755db848626d569",
+      "adapter_digest": "26c8c6e3b9564f863923f31e068c29898ecadb3b0aefa02c03e1c609c7dab7c5"
+    },
+    "scoring_version": "strict-actions-v1.1"
+  }
+}
