@@ -95,19 +95,21 @@
 - configs/diagnostics/schedule_v0.1/{B_warmup0,C_accum8,D_epochs2}.yaml，旧控制dev协议固定在data/diagnostics/training_schedule_v0.1/dev_protocol.json。
 - 保留按阶段验证Loss选best/final的原规则，未来报告同时列真实总更新数与所选checkpoint的累计更新数；不把后续步计入早期best。阶段遗忘待用已有阶段Adapter的同dev对照验证，暂不合并阶段或改框架。
 
+## B_warmup0 启动检查已完成（2026-09-15）
+
+- 当前Phase：Training Schedule Diagnostic B。三阶段dry-run、冻结六文件SHA、仅warmup配置差异、86条真实tokenizer编码、原23条dev输入逐条一致性、GPU NF4前反向检查全部通过。
+- 重要文件：reports/diagnostics/schedule_v0.1/B_warmup0/launch_preflight.json；scripts/preflight_schedule_b.py；scripts/audit_schedule_stage.py。
+- 正在进行：提交启动检查后启动B Rule。尚未完成：B三阶段实际训练、23-dev生成与全量语义复核；无当前阻塞。
+- 权重、冻结数据、旧评测未覆盖。启动检查记录C/D磁盘余量；当前无需迁移。
+
 ## Resume Here
 
-先读README、PROJECT_STATUS、DECISIONS、TODO及最近Git提交。v0.1/v0.2训练和原36题评测完成；投影诊断已23/23完成，选择B。最小日程矩阵及六个不可变快照已保存，不再重建已有数据/旧训练或重复投影推理。
-
-下一次第一项任务：读取reports/training_schedule_diagnostic_v01.md，按独立B_warmup0配置做启动前dry-run，保存核验与状态并commit；之后只运行B Rule新诊断。当前B/C/D均未训练，不能报告新模型成绩。
+先读README、PROJECT_STATUS、DECISIONS、TODO、reports/training_schedule_diagnostic_v01.md和最近提交。当前启动检查已完成；下一项仅执行B Rule（新诊断），Rule从Base新建Adapter。
 
 ```powershell
-.venv/Scripts/python.exe scripts/check_disk.py --needed-gib 3
-.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage rules --dry-run
-# 保存检查结果并commit后执行新诊断；不要换成旧v0.2配置。
-.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage rules
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/B_warmup0.yaml --stage rules --resume
 ```
 
-B每阶段完成后按既有工具导出日志/实际LR更新数/step/epoch/best/final/权重SHA并commit，再继续Strategy/Tactics；B Rule从Base起步，不接旧Adapter。中断恢复用同一配置加--resume。B最终在冻结旧23条dev输入协议上评测并全量复核，控制侧复用原v0.2；C/D有条件推进，不同时铺开。
+先检查outputs/diagnostics/schedule_v0.1/B_warmup0/rules/progress.json与training_result.json；如已完成只导出，绝不重训。每阶段导出export_training.py和audit_schedule_stage.py证据，更新三文档并commit/push，再进入下一阶段Strategy、Tactics。同一配置加--resume仅恢复当前阶段。
 
-原投影报告：reports/diagnostics/v02_skill_projection_v0.1/report.md。只重建报告可运行scripts/summarize_skill_projection.py，不加载模型。数据/Prompt/标签/原评分不变，test不用于调参，视频/Persona/Phase2/RL/竞技场/换Base全部暂停。仓库保存恢复状态，大权重仍在outputs/cache，迁移时须一并复制。
+B final只跑冻结原23条dev并与A逐题语义比较。稳定核心改善则停在B；否则保存完整报告并commit后才条件进入C_accum8。test、视频、Persona、v0.3、D均不提前启动。大权重在本地outputs/cache，迁移须一并复制。

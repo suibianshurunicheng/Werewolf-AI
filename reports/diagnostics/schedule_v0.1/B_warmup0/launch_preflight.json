@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "utc": "2026-09-15T02:09:26.059054+00:00",
+  "config_diff": {
+    "training.warmup_ratio": {
+      "A": 0.05,
+      "B": 0.0
+    },
+    "training.output_root": {
+      "A": "outputs/classic_v02",
+      "B": "outputs/diagnostics/schedule_v0.1/B_warmup0"
+    }
+  },
+  "frozen_files": {
+    "reports\\training_schedule_v01_preflight.json": "bed5d88bb1a3e6d25010f4fe01a18d664f4dad34c0d8c97f12371e0d6e3e81d8",
+    "configs\\diagnostics\\schedule_v0.1\\B_warmup0.yaml": "c0340fe34358094aac937e3468cf6c0907093198daa76c510bb271decccaa071",
+    "configs\\diagnostics\\schedule_v0.1\\C_accum8.yaml": "8a8d70c1dadde7d236c87e299a6076acd277df37071879675e482be8d0257e2d",
+    "configs\\diagnostics\\schedule_v0.1\\D_epochs2.yaml": "1323547e90e3157c7c34227aa70c7d83e4efefa739fefc7c88174af06d308ce4",
+    "data\\diagnostics\\training_schedule_v0.1\\A_current.config.json": "66c6df3cfe81b03b7720fc3350c1f840241bed2e896bfa331e3ed3a96ff33a73",
+    "data\\diagnostics\\training_schedule_v0.1\\dev_protocol.json": "2d098051075dda9c2ff30ccb8ecab637ab8bb100c538663d526a1f6cce74aa5c"
+  },
+  "source_sha256": {
+    "src/werewolf_sft/training.py": "5ce75493df3e21f5096fb8740e68eb8e1bc01d91f6f60f5bbae41e052a795e33",
+    "src/werewolf_sft/modeling.py": "4f23d7b0be86dbc8f9ff9df82a3df2d376c71f9392b1de619c9d90e3eaea6f56",
+    "src/werewolf_sft/encoding.py": "581b9a1275add8f54d600a5935346153556890051498e8aad0a9c65a740cba17",
+    "src/werewolf_sft/dataset.py": "59a19393196ded4d64bddd948876fe1e0a6c978e550d7fd255c9cc5704f7c3ad",
+    "src/werewolf_sft/evaluation.py": "8cea1606f78b6a3faf7f77428d40272185b25394859485ce9a439bbe78db9768",
+    "src/werewolf_sft/runtime.py": "d78d3317f838d4bd9d37ac4ae58d0f9d8b4bfc36d8ed00afe420880204162ebe"
+  },
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "dataset_manifest_sha256": "494f518b4cfbfa072b113f99d42f5470d2fb1a16fd33d7c6ef68327137dcf6aa",
+  "original_dev_messages_verified": 23,
+  "dev_cases_hash": "c5d0aa91588c5146580c354cd4685151bec414e5b3640d84cd4ce9986eda06e9",
+  "free_disk_gib": {
+    "C:\\": 43.8279914855957,
+    "D:\\": 100.94676971435547
+  },
+  "commands": [
+    {
+      "arguments": [
+        "scripts/check_environment.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\"python\": \"3.12.14\", \"os\": \"Windows\", \"packages\": {\"torch\": \"2.6.0+cu118\", \"transformers\": \"4.57.6\", \"peft\": \"0.18.1\", \"accelerate\": \"1.12.0\", \"bitsandbytes\": \"0.49.2\", \"safetensors\": \"0.7.0\", \"pytest\": \"8.3.5\", \"PyYAML\": \"6.0.2\"}, \"cuda_available\": true, \"cuda_build\": \"11.8\", \"gpu\": \"NVIDIA GeForce RTX 3050 Ti Laptop GPU\", \"vram_mib\": 4095.5, \"bf16\": true, \"compute_capability\": [8, 6], \"nf4_forward_backward\": true}\n",
+      "stderr": "",
+      "result": {
+        "python": "3.12.14",
+        "os": "Windows",
+        "packages": {
+          "torch": "2.6.0+cu118",
+          "transformers": "4.57.6",
+          "peft": "0.18.1",
+          "accelerate": "1.12.0",
+          "bitsandbytes": "0.49.2",
+          "safetensors": "0.7.0",
+          "pytest": "8.3.5",
+          "PyYAML": "6.0.2"
+        },
+        "cuda_available": true,
+        "cuda_build": "11.8",
+        "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+        "vram_mib": 4095.5,
+        "bf16": true,
+        "compute_capability": [
+          8,
+          6
+        ],
+        "nf4_forward_backward": true
+      }
+    },
+    {
+      "arguments": [
+        "scripts/train_qlora.py",
+        "--config",
+        "configs/diagnostics/schedule_v0.1/B_warmup0.yaml",
+        "--stage",
+        "rules",
+        "--dry-run"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"dry_run\", \"stage\": \"rules\", \"effective_schedule\": {\"optimizer_steps\": 2, \"warmup_steps\": 0, \"requested_warmup_ratio\": 0.0}, \"version\": \"dataset_v0.2\", \"train_hash\": \"3f5abe66644b2cca9eaacfd23c4f5769f8b4602a8f515acf2d151038b77a4174\", \"validation_hash\": \"b4cd9858726ccc3f3f6968889daf2cadfe6cc2c5eb0ae35cdde58b5727559a45\", \"train_rows\": 32, \"validation_rows\": 10, \"dropped_train\": [], \"dropped_validation\": [], \"train_lengths\": [541, 553, 547, 541, 564, 555, 558, 571, 601, 601, 546, 548, 551, 556, 528, 532, 589, 618, 627, 635, 611, 619, 579, 591, 563, 556, 597, 600, 525, 561, 547, 561]}\n",
+      "stderr": "",
+      "result": {
+        "status": "dry_run",
+        "stage": "rules",
+        "effective_schedule": {
+          "optimizer_steps": 2,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0
+        },
+        "version": "dataset_v0.2",
+        "train_hash": "3f5abe66644b2cca9eaacfd23c4f5769f8b4602a8f515acf2d151038b77a4174",
+        "validation_hash": "b4cd9858726ccc3f3f6968889daf2cadfe6cc2c5eb0ae35cdde58b5727559a45",
+        "train_rows": 32,
+        "validation_rows": 10,
+        "dropped_train": [],
+        "dropped_validation": [],
+        "train_lengths": [
+          541,
+          553,
+          547,
+          541,
+          564,
+          555,
+          558,
+          571,
+          601,
+          601,
+          546,
+          548,
+          551,
+          556,
+          528,
+          532,
+          589,
+          618,
+          627,
+          635,
+          611,
+          619,
+          579,
+          591,
+          563,
+          556,
+          597,
+          600,
+          525,
+          561,
+          547,
+          561
+        ]
+      }
+    },
+    {
+      "arguments": [
+        "scripts/train_qlora.py",
+        "--config",
+        "configs/diagnostics/schedule_v0.1/B_warmup0.yaml",
+        "--stage",
+        "strategy",
+        "--dry-run"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"dry_run\", \"stage\": \"strategy\", \"effective_schedule\": {\"optimizer_steps\": 2, \"warmup_steps\": 0, \"requested_warmup_ratio\": 0.0}, \"version\": \"dataset_v0.2\", \"train_hash\": \"30e3ecab10770af380b71ce6b57a074dae11bcd5ec302b7bd5aff95bb98b6f0d\", \"validation_hash\": \"fd804232e337a1838772c0fb23d73f6b4aa11ead8c2609d4c8b414bfbdb1693f\", \"train_rows\": 17, \"validation_rows\": 5, \"dropped_train\": [], \"dropped_validation\": [], \"train_lengths\": [622, 683, 596, 664, 677, 731, 686, 720, 604, 655, 592, 595, 571, 619, 606, 588, 582]}\n",
+      "stderr": "",
+      "result": {
+        "status": "dry_run",
+        "stage": "strategy",
+        "effective_schedule": {
+          "optimizer_steps": 2,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0
+        },
+        "version": "dataset_v0.2",
+        "train_hash": "30e3ecab10770af380b71ce6b57a074dae11bcd5ec302b7bd5aff95bb98b6f0d",
+        "validation_hash": "fd804232e337a1838772c0fb23d73f6b4aa11ead8c2609d4c8b414bfbdb1693f",
+        "train_rows": 17,
+        "validation_rows": 5,
+        "dropped_train": [],
+        "dropped_validation": [],
+        "train_lengths": [
+          622,
+          683,
+          596,
+          664,
+          677,
+          731,
+          686,
+          720,
+          604,
+          655,
+          592,
+          595,
+          571,
+          619,
+          606,
+          588,
+          582
+        ]
+      }
+    },
+    {
+      "arguments": [
+        "scripts/train_qlora.py",
+        "--config",
+        "configs/diagnostics/schedule_v0.1/B_warmup0.yaml",
+        "--stage",
+        "tactics",
+        "--dry-run"
+      ],
+      "returncode": 0,
+      "stdout": "{\"status\": \"dry_run\", \"stage\": \"tactics\", \"effective_schedule\": {\"optimizer_steps\": 2, \"warmup_steps\": 0, \"requested_warmup_ratio\": 0.0}, \"version\": \"dataset_v0.2\", \"train_hash\": \"f30b2d8cffa64c60cdbf0cca654149af69230a29d4693ac16b49d3882688c200\", \"validation_hash\": \"2dcbc7e99b1bb55cca52cf4517f279069d44b5d757cffa7074aeab776b246c61\", \"train_rows\": 21, \"validation_rows\": 1, \"dropped_train\": [], \"dropped_validation\": [], \"train_lengths\": [722, 791, 689, 744, 710, 760, 702, 761, 683, 751, 705, 696, 672, 671, 695, 659, 687, 673, 706, 653, 692]}\n",
+      "stderr": "",
+      "result": {
+        "status": "dry_run",
+        "stage": "tactics",
+        "effective_schedule": {
+          "optimizer_steps": 2,
+          "warmup_steps": 0,
+          "requested_warmup_ratio": 0.0
+        },
+        "version": "dataset_v0.2",
+        "train_hash": "f30b2d8cffa64c60cdbf0cca654149af69230a29d4693ac16b49d3882688c200",
+        "validation_hash": "2dcbc7e99b1bb55cca52cf4517f279069d44b5d757cffa7074aeab776b246c61",
+        "train_rows": 21,
+        "validation_rows": 1,
+        "dropped_train": [],
+        "dropped_validation": [],
+        "train_lengths": [
+          722,
+          791,
+          689,
+          744,
+          710,
+          760,
+          702,
+          761,
+          683,
+          751,
+          705,
+          696,
+          672,
+          671,
+          695,
+          659,
+          687,
+          673,
+          706,
+          653,
+          692
+        ]
+      }
+    }
+  ],
+  "test_used_for_selection": false,
+  "actual_B_training_started": false
+}
