@@ -1,0 +1,106 @@
+{
+  "run_fingerprint": "a734397889696b467793218e62bcc8e0e4cbc7eda32403b37af350465095233b",
+  "scoring_version": "strict-actions-v1.1",
+  "control": {
+    "status": "complete",
+    "expected_cases": 23,
+    "completed_cases": 23,
+    "metrics": {
+      "rules": {
+        "total": 7,
+        "format_valid_rate": 1.0,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.5714285714285714,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "strategy": {
+        "total": 5,
+        "format_valid_rate": 1.0,
+        "action_legal_rate": 0.2,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.6,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "counterfactual": {
+        "total": 6,
+        "format_valid_rate": 1.0,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.8333333333333334,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "blind": {
+        "total": 5,
+        "format_valid_rate": 1.0,
+        "action_legal_rate": 0.4,
+        "action_match_rate": 0.2,
+        "unknown_action_type_rate": 0.4,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      }
+    },
+    "counterfactual": {
+      "pairs": 3,
+      "both_correct": 0,
+      "action_changed": 1
+    },
+    "human_strategy_quality": "pending",
+    "note": "Automated action metrics are not a full Werewolf reasoning score."
+  },
+  "treatment": {
+    "status": "complete",
+    "expected_cases": 23,
+    "completed_cases": 23,
+    "metrics": {
+      "rules": {
+        "total": 7,
+        "format_valid_rate": 1.0,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.5714285714285714,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "strategy": {
+        "total": 5,
+        "format_valid_rate": 0.8,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.8,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "counterfactual": {
+        "total": 6,
+        "format_valid_rate": 0.6666666666666666,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.5,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      },
+      "blind": {
+        "total": 5,
+        "format_valid_rate": 0.0,
+        "action_legal_rate": 0.0,
+        "action_match_rate": 0.0,
+        "unknown_action_type_rate": 0.0,
+        "public_leak_flag_rate": 0.0,
+        "truncated_rate": 0.0
+      }
+    },
+    "counterfactual": {
+      "pairs": 3,
+      "both_correct": 0,
+      "action_changed": 1
+    },
+    "human_strategy_quality": "pending",
+    "note": "Automated action metrics are not a full Werewolf reasoning score."
+  },
+  "semantic_review": "pending",
+  "held_out_claim": false
+}

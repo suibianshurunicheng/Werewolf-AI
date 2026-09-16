@@ -1,6 +1,6 @@
 # Werewolf-3.5B-Classic V1 工程状态
 
-更新：2026-09-15。当前Phase：Training Schedule Diagnostic B，三阶段真实训练已完成，原23-dev生成/语义复核进行中（规则7题已完成）。历史主线：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
+更新：2026-09-16。当前Phase：Training Schedule Diagnostic B已完成并未改善，进入已冻结C_accum8启动门禁。历史主线：Phase 1，v0.2-core数据、三阶段正式训练、36题同协议评测和23条dev模型语义审核全部完成；定向修复能力验收未通过，v0.3视频合并门禁关闭。
 
 ## 已完成任务
 
@@ -19,7 +19,7 @@
 
 ## 当前正在进行的任务
 
-B_warmup0 Rule→Strategy→Tactics已真实完成并逐阶段推送，实际6步/6非零LR更新。当前进程仅生成B final的冻结原23-dev；规则7题已全部语义复核，均未改善合法动作（A/B均0/7）。策略/反事实/Blind继续生成与审核；C/D尚未启动。无当前阻塞。
+B三阶段与23/23-dev生成、全量模型语义复核和正式报告均完成。B未稳定改善：结构23→15、合法3→0、strict命中1→0。当前任务先提交/push B完整报告，再对冻结C_accum8做三阶段dry-run与启动检查。C/D尚未训练，无阻塞。
 
 ## 已运行测试、核验与结果
 
@@ -127,16 +127,24 @@ B_warmup0 Rule→Strategy→Tactics已真实完成并逐阶段推送，实际6�
 
 规则7题已生成/逐题语义复核：2 mixed、3 unchanged、2 regressed；动作合法0/7→0/7、严格命中0/7→0/7，未知动作4/7→4/7。所有回答已原子保存。策略推理继续；这些是局部检查点，不是B最终结论。
 
+## B正式诊断完成（2026-09-16）
+
+- 已完成23/23生成、23/23模型语义审核，全部结果保留：7 mixed、6 unchanged、10 regressed；无纯improved。不是独立人工或held-out验收。
+- A→B：format_valid 23→15；action_legal 3→0；action_match 1→0；unknown_action_type 14→11，但宽松未知词仍14→14，另1条JSON不可解析；不能把格式失败遮蔽当成未知动作减少。
+- 配对语义错误：role_skill 7/9→7/9；state_reading 18/23→16/23；permission 10/17→6/17；team_knowledge 3/4→3/4；public_private 8/20→7/20；night_leak 7/7→7/7。维度不同分母且重叠，局部措辞改善未形成可执行能力。
+- 反事实三对双正确均0/3；严格动作变化1/3保持；狼队原始vote1局部变化被seat字符串格式失败和队伍知识错误伴随，不纠正评分救分。
+- 正式报告：reports/diagnostics/schedule_v0.1/B_warmup0/dev/report.md；配对细节paired_analysis.json、semantic_review.json；训练证据training_report.md和每阶段schedule_audit.json。
+- 最终核验passed：23题ID/输入/预测指纹/权重/旧数据manifest；0截断；已完成恢复不调用loader/generator且23文件SHA/mtime不变。final_verification.json保存全部证据。
+- 结论：仅取消warmup不足以稳定修复该批Classic能力，不能说多epoch一定有效或根因已全部找到。按用户条件分支，只进入冻结C_accum8；D继续暂停。
+
 ## Resume Here
 
-当前Phase：Training Schedule Diagnostic B同23-dev评测。规则7题审核已保存；下一项首先检查dev/progress.json和OS运行锁，若进程仍运行继续审核已生成且未审核的策略题；若锁已释放则用下列原命令恢复，自动跳过已完成题，不重跑训练。
+第一项：确认B全量正式报告已commit/push，然后读取冻结C配置和reports/training_schedule_diagnostic_v01.md，执行C三阶段dry-run，保存预检、更新三文档并commit/push；再启动C Rule。C相对B唯一训练改变gradient_accumulation_steps 16→8（warmup仍0），不改变其他字段。
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 scripts/run_schedule_dev.py --arm B_warmup0
-.venv/Scripts/python.exe -X utf8 scripts/inspect_schedule_dev.py --arm B_warmup0 --limit 3
-.venv/Scripts/python.exe -X utf8 scripts/summarize_schedule_dev.py --arm B_warmup0
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/C_accum8.yaml --stage rules --dry-run
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/C_accum8.yaml --stage strategy --dry-run
+.venv/Scripts/python.exe -X utf8 scripts/train_qlora.py --config configs/diagnostics/schedule_v0.1/C_accum8.yaml --stage tactics --dry-run
 ```
 
-推理输出：reports/diagnostics/schedule_v0.1/B_warmup0/dev/。只跑冻结23条dev，输入为旧control_messages，绝不采用投影输入；A复用原v0.2对应题输出。每题原子保存；原始输出和全部语义变化都保留。语义复核用review_schedule_cases.py写入，汇总对比A后决定分支。当前无阻塞，剩余为生成、23题全量复核、正式报告和分支决策。
-
-若B一致改善且无新严重退化，记录有限支持证据并停止C/D；若B无稳定改善，完整报告commit/push后才进入C_accum8。不用13条test调参，不加入视频/Persona/v0.3。恢复首先读取README、三状态文档、日程报告和最近提交；旧A/v0.1/v0.2、投影诊断均已完成，禁止重训/覆盖冻结数据。
+C尚未实际训练。每阶段保存完整日志/实际LR/step/epoch/VRAM/checkpoint/best/final/Adapter SHA/初始来源并commit/push再进入下一阶段。Rule从同Base新建，不接A/B。中断只恢复当前C阶段；已完成A、B和原v0.1/v0.2绝不重训，23题B绝不重新生成。C仍仅同23-dev，沿用run_schedule_dev.py --arm C_accum8；D未获本次启动门禁。test不用于调参，视频/Persona/v0.3均关闭。

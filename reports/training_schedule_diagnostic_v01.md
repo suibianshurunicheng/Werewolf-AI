@@ -78,3 +78,7 @@ B完成并提交后，在原23条dev协议上评测final，复用A已有23条控
 ## 2026-09-15 执行追加记录
 
 上文矩阵冻结时B尚未训练；现B已按冻结配置完成Rule→Strategy→Tactics，真实6 optimizer步/6非零LR更新，每阶段best在step2。详见diagnostics/schedule_v0.1/B_warmup0/training_report.md。23-dev原输入预检已通过，接下来仅评测B final；C/D仍未启动。矩阵六个不可变快照保持原SHA，不更新历史预检中的planned标记。
+
+## 2026-09-16 B正式结论
+
+B已23/23生成并全量语义审核，结构23→15、合法3→0、严格命中1→0，反事实双正确仍0/3。没有稳定核心改善；不是Loss成功。正式逐题报告见diagnostics/schedule_v0.1/B_warmup0/dev/report.md。按冻结条件分支，B完整报告提交推送后进入C_accum8启动检查，D继续暂停，旧六个快照保持不变。

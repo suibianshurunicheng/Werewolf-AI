@@ -1,8 +1,8 @@
 # Training Schedule Diagnostic A vs B_warmup0 正式诊断报告
 
-状态：partial；已比较10/23，语义审核7/23。仅dev探索，非held-out能力验收。
+状态：complete；已比较23/23，语义审核23/23。仅dev探索，非held-out能力验收。
 
-尚未完成全量审查
+仅取消warmup未让冻结v0.2-core在本组23-dev上学得更有效：出现局部语义变化，但输出结构和动作合法性退化，角色技能/队伍确定知识/夜间信息边界没有稳定修复。B不足以通过继续使用的门禁；按冻结计划，在本报告commit/push后只进入C_accum8，D暂停。
 
 ## 实验控制
 
@@ -14,24 +14,26 @@ strict action score在本报告指合法且命中原参考动作（action_match�
 
 |指标|控制|当前日程|
 |---|---:|---:|
-|format_valid|10/10 (100.0%)|10/10 (100.0%)|
-|action_legal|0/10 (0.0%)|0/10 (0.0%)|
-|action_match|0/10 (0.0%)|0/10 (0.0%)|
-|unknown_action_type|6/10 (60.0%)|7/10 (70.0%)|
-|public_leak_flag|0/10 (0.0%)|0/10 (0.0%)|
-|truncated|0/10 (0.0%)|0/10 (0.0%)|
-|unknown_raw_action_word|6/10 (60.0%)|7/10 (70.0%)|
-|raw_word_unavailable|0/10 (0.0%)|0/10 (0.0%)|
+|format_valid|23/23 (100.0%)|15/23 (65.2%)|
+|action_legal|3/23 (13.0%)|0/23 (0.0%)|
+|action_match|1/23 (4.3%)|0/23 (0.0%)|
+|unknown_action_type|14/23 (60.9%)|11/23 (47.8%)|
+|public_leak_flag|0/23 (0.0%)|0/23 (0.0%)|
+|truncated|0/23 (0.0%)|0/23 (0.0%)|
+|unknown_raw_action_word|14/23 (60.9%)|14/23 (60.9%)|
+|raw_word_unavailable|0/23 (0.0%)|1/23 (4.3%)|
 
-未知词分布：{"control": {"none": 5, "save": 1}, "treatment": {"none": 6, "save": 1}}
+未知词分布：{"control": {"none": 7, "save": 1, "hunter_shot": 2, "exile": 2, "speech": 2}, "treatment": {"none": 10, "save": 1, "hunter_shot": 2, "exile": 1}}
 
 ## 角色分组
 
 |角色/题数|合法 控制→当前日程|严格命中 控制→当前日程|语义变化|
 |---|---|---|---|
-|guard/1|0→0|0→0|{"mixed": 1}|
-|hunter/1|0→0|0→0|{"unchanged": 1}|
-|villager/6|0→0|0→0|{"mixed": 1, "regressed": 1, "unchanged": 1}|
+|guard/4|0→0|0→0|{"mixed": 1, "regressed": 2, "unchanged": 1}|
+|hunter/3|0→0|0→0|{"unchanged": 3}|
+|seer/1|1→0|1→0|{"regressed": 1}|
+|villager/9|1→0|0→0|{"mixed": 3, "regressed": 5, "unchanged": 1}|
+|werewolf/4|1→0|0→0|{"mixed": 3, "regressed": 1}|
 |witch/2|0→0|0→0|{"unchanged": 1, "regressed": 1}|
 
 ## 语义错误复核
@@ -40,23 +42,26 @@ strict action score在本报告指合法且命中原参考动作（action_match�
 
 |维度|配对可评估|控制错误|当前日程错误|
 |---|---:|---:|---:|
-|role_skill|2|1|1|
-|state_reading|7|4|2|
-|permission|6|3|2|
-|team_knowledge|0|0|0|
-|public_private|6|3|3|
-|night_leak|3|3|3|
+|role_skill|9|7|7|
+|state_reading|23|18|16|
+|permission|17|10|6|
+|team_knowledge|4|3|3|
+|public_private|20|8|7|
+|night_leak|7|7|7|
 
 public_leak_flag是原有限正则；夜间泄漏由逐题语义审核判断，不能把正则0理解成无泄漏。
 
 ## 反事实
 
-{"control": {"pairs": 0, "both_correct": 0, "action_changed": 0}, "treatment": {"pairs": 0, "both_correct": 0, "action_changed": 0}}
+{"control": {"pairs": 3, "both_correct": 0, "action_changed": 1}, "treatment": {"pairs": 3, "both_correct": 0, "action_changed": 1}}
 
 只含dev守卫/猎人/狼队三对，不含test对；动作变化本身不代表合理动态调整。以下逐题内容保留配对方向及错误。
 
 |配对|控制 A / B|当前日程 A / B|
 |---|---|---|
+|guard|{"type": "check", "target": 12} / {"type": "none", "target": null}|{"type": "check", "target": 12} / {"type": "none", "target": null}|
+|hunter|{"type": "hunter_shot", "target": 12} / {"type": "hunter_shot", "target": 12}|{"type": "hunter_shot", "target": 12} / {"type": "hunter_shot", "target": 12}|
+|team|{"type": "exile", "target": null} / {"type": "exile", "target": null}|null / null|
 
 ## 全部案例（不筛选）
 
@@ -122,7 +127,7 @@ unchanged：两侧都忽略三狼一民两神的规则假设，没有回答人�
 
 动作：{"control": {"type": "none", "target": null}, "treatment": {"type": "none", "target": null}}
 
-语义审核待完成。
+regressed：B省掉A中11/12相关身份分析，也没有解释被救不等于好人；答复缩为无，完全未处理现有公开主张。A有守夜人污染，B虽删除该名称，却新增女巫未查验的技能混淆表述。未知none不变，内容缩短不是更好的信息边界处理。
 
 ### eval-strategy-vote-change
 
@@ -130,7 +135,7 @@ unchanged：两侧都忽略三狼一民两神的规则假设，没有回答人�
 
 动作：{"control": {"type": "vote", "target": null}, "treatment": {"type": "none", "target": null}}
 
-语义审核待完成。
+regressed：A至少提到观察12对8的立场调整；B丢失具体改站边线索，仅泛称无信息并回答无。vote:null改为未知none仍不合法；语义上不再试图在发言阶段投票，但没有使用8补充这一新证据完成动态判断，任务响应明显退步。
 
 ### eval-strategy-ambiguous
 
@@ -138,7 +143,134 @@ unchanged：两侧都忽略三狼一民两神的规则假设，没有回答人�
 
 动作：{"control": {"type": "none", "target": null}, "treatment": {"type": "none", "target": null}}
 
-语义审核待完成。
+mixed：两侧均保留对1/8对跳的谨慎判断，未强行定狼；B删除A对转述者12无依据的神职推测，但未利用双方有完整验人解释来提出具体比较。B把警长与猎人并列为神职信息，新增身份/警徽职务混淆，none和泛泛等待未修复。
+
+### eval-strategy-dead-dark
+
+角色：villager；day_speech；pair=None。
+
+动作：{"control": {"type": "pass", "target": null}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+regressed：两侧都质疑死亡主张与存活状态不符，没有据此锁定狼坑；B身份表seat写成字符串，新增严格结构失败，且把A合法pass改成未知none。保留公开主张核对这一局部能力，但输出协议发生明确退化；未解释暗牌死亡本身不足以确定剩余狼数。
+
+### eval-strategy-later-check
+
+角色：villager；day_speech；pair=None。
+
+动作：{"control": {"type": "none", "target": null}, "treatment": {"type": "none", "target": null}}
+
+regressed：B仍未区分警徽流未来计划与已发生查验，也没处理12死亡后的改验逻辑。相较A至少列出6/8相关读人和观察方向，B删除具体对象并回答无，动作仍未知none；策略任务响应变弱。
+
+### eval-cf-guard-a
+
+角色：guard；night；pair=guard。
+
+动作：{"control": {"type": "check", "target": 12}, "treatment": {"type": "check", "target": 12}}
+
+regressed：两侧都把守卫当成查验角色，忽略昨夜守12的连守约束，仍执行check12。B进一步在公开发言编造12身份为守卫且无异常，在没有任何查验结果时捏造技能结果，并与自己守卫身份冲突。夜间泄漏与技能幻觉更严重。
+
+### eval-cf-guard-b
+
+角色：guard；night；pair=guard。
+
+动作：{"control": {"type": "none", "target": null}, "treatment": {"type": "none", "target": null}}
+
+unchanged：两侧均忽略last_guard_target=6，声称技能未使用且无查验目标。指定12本可执行guard，B仍因无信息输出未知none并公开守卫身份，角色技能、状态和任务权限理解未改善。
+
+### eval-cf-hunter-a
+
+角色：hunter；hunter_shot；pair=hunter。
+
+动作：{"control": {"type": "hunter_shot", "target": 12}, "treatment": {"type": "hunter_shot", "target": 12}}
+
+unchanged：B原始回答与A逐字相同：仍声称猎人每轮可查验一人，忽略hunter_can_shoot=false，输出未知hunter_shot12并声称查验。取消warmup未改变该反事实禁枪侧的错误。
+
+### eval-cf-hunter-b
+
+角色：hunter；hunter_shot；pair=hunter。
+
+动作：{"control": {"type": "hunter_shot", "target": 12}, "treatment": {"type": "hunter_shot", "target": 12}}
+
+unchanged：两侧都声称猎人只能夜间查验一次，继续输出未知hunter_shot12。B调整了无依据风险描述，却没有修正技能时机/类型；允许开枪侧与禁枪侧最终动作相同，不能证明读取权限后动态改变行动。
+
+### eval-cf-team-a
+
+角色：werewolf；exile_vote；pair=team。
+
+动作：{"control": {"type": "exile", "target": null}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+mixed：B改为投票阶段并在原始action中选择vote1，公开理由引用1的验人矛盾，较A无目标exile有局部任务响应改善。但seat字符串令严格结构失败，不能计作合法/命中；私下仍把已知1/4/8狼人当作待验证嫌疑，strategy还称暂不明确目标，与最终vote1矛盾，不能视为完整狼队切割推理。
+
+### eval-cf-team-b
+
+角色：werewolf；exile_vote；pair=team。
+
+动作：{"control": {"type": "exile", "target": null}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+mixed：B不再称夜投票，修正阶段措辞；但仍将确定队友知识降格为嫌疑，不使用1首验完整一致的新公开证据来调整目标。最终exile:null不变，且新增seat字符串结构错误。与A侧原始动作出现差异，只能算局部响应变化，原严格反事实双正确仍未达到。
+
+### eval-blind-01
+
+角色：werewolf；day_speech；pair=None。
+
+动作：{"control": {"type": "speech", "target": 1}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+mixed：B在wolf_pit和身份表明确1/4/8是狼人，改善A对1确定知识的降格，也未再声称团队已公开暴露。但无依据把2/5/9定为普通村民，忽略当前逼问与记录冲突，策略称避免攻击却在发言阶段vote1；seat字符串新增格式失败，公开回答仍照抄对自己的问题。确定知识局部恢复伴随执行和视角任务失败。
+
+### eval-blind-02
+
+角色：werewolf；sheriff_speech；pair=None。
+
+动作：{"control": {"type": "pass", "target": null}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+regressed：A的身份表和wolf_pit保留1/4/8确定狼队知识；B明确说高概率且未验证，确定知识退化。原始pass虽仍存在，却因seat字符串导致严格格式/合法动作失分；仍未利用8被认可的局面规划狼队发言，只有等待。
+
+### eval-blind-04
+
+角色：seer；night；pair=None。
+
+动作：{"control": {"type": "check", "target": 12}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+regressed：B保留原始check12及站边冲突依据，但seat字符串令结构失败，失去A唯一strict action命中；分析把当前夜间行动说成下一轮查验，时点表述变差。夜间公开目标仍泄漏。冻结题目原本含先选择12提示，此处不能把原始选12当作自主选人提升。
+
+### eval-blind-05
+
+角色：guard；night；pair=None。
+
+动作：{"control": {"type": "guard", "target": 12}, "treatment": {"parse_error": "Expecting ':' delimiter: line 17 column 19 (char 373)"}}
+
+regressed：两侧均无视昨夜已守12，继续把守卫与查验混淆，原始动作仍非法guard12且夜间公开目标。B新增JSON缺少键值分隔的语法错误；自己为守卫却猜6可能守卫，神职唯一性也不稳。守卫核心技能和执行协议均未修复。
+
+### eval-blind-07
+
+角色：villager；day_speech；pair=None。
+
+动作：{"control": {"type": "speech", "target": null}, "treatment": {"parse_error": "invalid identity seat/assessment"}}
+
+mixed：B准确复述互不信任、互攻却同票，改善A分析中的互信误读；但seat字符串导致结构失败，speech改为未知none，公开回答从A的具体追问退为无。新证据理解局部改善没有落实到当前发言决策。
+
+## 已证实
+
+- B真实6 optimizer步/6非零LR步，A为6/3；每阶段B LR=[5e-5,2.5e-5]，所有best=step2且final相同，实际张量发生变化。
+- 同23-dev严格结构23→15、合法动作3→0、严格命中1→0；反事实双正确0/3→0/3，无截断。
+- 8个结构失败包括7个identity seat字符串和1个JSON语法错误；不能用修改评分或修正输出来追回分数。
+
+## 有支持证据
+
+- 日程改变会改变此模型的输出行为：部分状态/权限表述改善，同时出现结构退化和更少的具体策略回应。
+- 7个mixed、6个unchanged、10个regressed；没有无伴随退化的整体improved案例。语义是模型复核而非独立人工盲评。
+
+## 暂不支持
+
+- 仅取消warmup足以稳定修复Classic核心能力。Loss下降不足以证明技能学会。
+- unknown_action_type从14降11不代表动作词改善：格式失败先被拒绝；宽松JSON读取未知词仍14个，另1个JSON语法错误无法读取。
+- 技能错误配对统计7/9→7/9、队伍知识3/4→3/4、夜漏7/7→7/7，不支持稳定核心能力改善。
+
+## 尚未验证
+
+- 当前失败是否主要由更新次数过少引起；C_accum8和D_epochs2尚未实际执行。
+- 阶段间遗忘、更多epoch、多个随机种子及held-out泛化；不得解锁test、视频、Persona或v0.3。
+- B同时改变cosine LR轨迹、积分和Adam历史；无法单独归因于有效步数。
 
 ## 证据与限制
 

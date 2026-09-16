@@ -94,12 +94,14 @@
 
 - [x] B_warmup0三阶段启动前dry-run、NF4硬件和冻结协议检查通过，记录已保存。
 - [x] B Rule/Strategy/Tactics逐阶段日志、实际LR、权重SHA和checkpoint证据已保存。
-- [ ] B最终在同23条旧dev协议上生成/全量模型复核，对照A已有输出，不使用test调参。
-- [ ] C_accum8和D_epochs2仅依据前一诊断结果条件推进，当前未开始。
+- [x] B同23-dev全部生成/逐题模型语义审核/正式报告与恢复完整性核验完成，未稳定改善。
+- [ ] C_accum8：B无稳定改善，完整报告提交后做C启动检查及三阶段dry-run。
+- [ ] C Rule→Strategy→Tactics按阶段训练、导出/提交/推送，最后同23-dev对照。
+- [ ] D_epochs2仍暂停，不能与C同时运行。
 
 - [x] B Rule真实2步/2非零LR完成，checkpoint/final权重、完整日志和SHA导出核验。
 - [x] B Strategy接Rule final训练与逐步权重核验完成，证据已导出。
 - [x] B Tactics接Strategy final训练与导出核验完成。
 
 - [x] B dev规则7条全量生成和模型语义复核，包含全部变化方向。
-- [ ] B dev策略5条、反事实6条、Blind5条全量审核和最终分支报告。
+- [x] B dev策略5条、反事实6条、Blind5条全量审核及条件进入C结论保存。

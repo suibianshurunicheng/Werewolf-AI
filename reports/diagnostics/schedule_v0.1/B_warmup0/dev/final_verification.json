@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "date": "2026-09-16",
+  "case_count": 23,
+  "test_case_count": 0,
+  "completed_resume_calls_loader": false,
+  "completed_resume_case_sha_mtime_unchanged": true,
+  "run_fingerprint": "a734397889696b467793218e62bcc8e0e4cbc7eda32403b37af350465095233b",
+  "adapter_sha256": "da5172fa95537b65a59c50e7edb603f96436dee051ed5de56daeadffda855777",
+  "dataset_manifest_sha256": {
+    "dataset_v0.1": "14f9f757381f4f666137a1b6e93df3a924effcf7f2834282a4e80c04dfb15a73",
+    "dataset_v0.2": "494f518b4cfbfa072b113f99d42f5470d2fb1a16fd33d7c6ef68327137dcf6aa"
+  },
+  "case_sha256": {
+    "eval-blind-01.json": "aa813c5f1eeb4a31fb5fed67b9f2b61ceb72ffa78b56a00030ba471f7ee92a2d",
+    "eval-blind-02.json": "0e72d378ffd8c5e4e913a5ab44839ba85bc5647bb59acbce44cfa5eaff1a9719",
+    "eval-blind-04.json": "9161154ed6e22f5134039170f3e8f173d28c8bc0321cbc2e8a900b57c7efe34a",
+    "eval-blind-05.json": "11bb4c0c7247294477cde740d2612fc60828e25ce6cb907e34d1460f39d084ac",
+    "eval-blind-07.json": "fcf8f4697ecfe871b3c94c2c8b64bb4dc7cde825ca8d0428261ff83df199bbce",
+    "eval-cf-guard-a.json": "3b04c60c7ea909e142c7583321cfce11c9aa8ea9f86ca311106328bedd44261c",
+    "eval-cf-guard-b.json": "4c822cb523575b7385292c4e1a6db5450bb10e5ee8ddb709d2d99315c6b4af4c",
+    "eval-cf-hunter-a.json": "08a9ce84a93792cee7a80b761992621a86f962d7d11eb38e9a3dc03008bb2c87",
+    "eval-cf-hunter-b.json": "717972c9a0e555d21c5c6c1e5d51b0bc2335cb94da4f61257b72e55971f4f093",
+    "eval-cf-team-a.json": "8fd455d770851e7f3510df9cf0ff634f36667e57b2e23f7deff4eab88b605b4d",
+    "eval-cf-team-b.json": "c1fbfa1a5ff220a693bfcac27a50830bd2938dada405e482bb86b11d7d7c770f",
+    "eval-rule-guard-repeat.json": "09603be0885753a545be6e16092d7ddc5bde01b83a626776f9d3199d405cc4e3",
+    "eval-rule-hunter-no-permission.json": "f4012616759df9d5df61df3ad894f52b73f9b28e5ceef09168b6bd3c651c165c",
+    "eval-rule-parity.json": "905e812df3636a0e3a18efeaecdffa9c3a11ab9d115a272c835e51de2064a6d0",
+    "eval-rule-sheriff-withdrawn.json": "ac4a3ad4873619c808519048ef503192099f0ac7c11083ef19b2ab28b361b986",
+    "eval-rule-vote-dead.json": "49852ed592cca9f273798dfafc44e8d48c1b2f3e0959fa88facc33eee89b2af7",
+    "eval-rule-witch-current-target.json": "a947679e08eab040d61322580d70e3bc463e1d0b4908cd098e72a8170ad28ff0",
+    "eval-rule-witch-spent.json": "1b814b2478dcea9cbdd356337f98ee0e3087b43066b0367fb3c2d5304af835e2",
+    "eval-strategy-ambiguous.json": "5b18969b2c64788948f0f3e261df3dce27337209c5ab9b565b57df449bedfa38",
+    "eval-strategy-dead-dark.json": "43aeacecd485a61633e2a2b34b00ac0ae296ac5272788ee2f17ca1127248d7f9",
+    "eval-strategy-later-check.json": "ad818e51d75dc5391f123989910c5f0791e46b5bc427630af182377e2d25e982",
+    "eval-strategy-silver.json": "0c97d63a65116d60e2be2d43b5ce0b9f6229787a600e3189d0bb2776f83e5063",
+    "eval-strategy-vote-change.json": "37b9848cbf722e6456c2196a3e78f0e48e03e74a0c3502c25b5e0ef0087ccd8e"
+  },
+  "source_packet_and_A_controls": "verified by frozen load_experiment and load_arm",
+  "scoring_and_generation_sources": "unchanged frozen SHA",
+  "truncated": 0,
+  "generation_seconds": 2288.9389468000445,
+  "peak_vram_mib": 2978.9873046875,
+  "free_disk_gib": {
+    "C:\\": 42.871944427490234,
+    "D:\\": 100.93988800048828
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "status": "partial",
+  "status": "complete",
   "review_kind": "model_semantic_review_not_independent_human",
   "dimension_values": "error present true; absent false; not applicable/not assessed null",
   "control_review_source": "reports/diagnostics/v02_skill_projection_v0.1/semantic_review.json",
@@ -249,6 +249,589 @@
         "control": "a87a9e1c9cfe8ea6784a930b84cd987a87299c15936b23bbd6cb370d2fb201ff",
         "treatment": "905e812df3636a0e3a18efeaecdffa9c3a11ab9d115a272c835e51de2064a6d0"
       }
+    },
+    {
+      "id": "eval-strategy-silver",
+      "change": "regressed",
+      "observation": "B省掉A中11/12相关身份分析，也没有解释被救不等于好人；答复缩为无，完全未处理现有公开主张。A有守夜人污染，B虽删除该名称，却新增女巫未查验的技能混淆表述。未知none不变，内容缩短不是更好的信息边界处理。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5db599b9f392eb16e3a4a9058d999e7f4b2f55f0151b57ae44299fccfb6327cc",
+        "treatment": "0c97d63a65116d60e2be2d43b5ce0b9f6229787a600e3189d0bb2776f83e5063"
+      }
+    },
+    {
+      "id": "eval-strategy-vote-change",
+      "change": "regressed",
+      "observation": "A至少提到观察12对8的立场调整；B丢失具体改站边线索，仅泛称无信息并回答无。vote:null改为未知none仍不合法；语义上不再试图在发言阶段投票，但没有使用8补充这一新证据完成动态判断，任务响应明显退步。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "02e31d99c67ec7f6e3fe0a99f3fdd2372e26bffa7529fb9f4cec44538146af5f",
+        "treatment": "37b9848cbf722e6456c2196a3e78f0e48e03e74a0c3502c25b5e0ef0087ccd8e"
+      }
+    },
+    {
+      "id": "eval-strategy-ambiguous",
+      "change": "mixed",
+      "observation": "两侧均保留对1/8对跳的谨慎判断，未强行定狼；B删除A对转述者12无依据的神职推测，但未利用双方有完整验人解释来提出具体比较。B把警长与猎人并列为神职信息，新增身份/警徽职务混淆，none和泛泛等待未修复。",
+      "errors": {
+        "role_skill": [
+          null,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5941c6a956f7f86c25beb6f22b0851cad34151be857fde9f3a34ddb9846b8fc6",
+        "treatment": "5b18969b2c64788948f0f3e261df3dce27337209c5ab9b565b57df449bedfa38"
+      }
+    },
+    {
+      "id": "eval-strategy-dead-dark",
+      "change": "regressed",
+      "observation": "两侧都质疑死亡主张与存活状态不符，没有据此锁定狼坑；B身份表seat写成字符串，新增严格结构失败，且把A合法pass改成未知none。保留公开主张核对这一局部能力，但输出协议发生明确退化；未解释暗牌死亡本身不足以确定剩余狼数。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          false,
+          false
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "857483ff7390995aed4970d0ad51f6133df5b1e6e09677cd804f351081a979e3",
+        "treatment": "43aeacecd485a61633e2a2b34b00ac0ae296ac5272788ee2f17ca1127248d7f9"
+      }
+    },
+    {
+      "id": "eval-strategy-later-check",
+      "change": "regressed",
+      "observation": "B仍未区分警徽流未来计划与已发生查验，也没处理12死亡后的改验逻辑。相较A至少列出6/8相关读人和观察方向，B删除具体对象并回答无，动作仍未知none；策略任务响应变弱。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "5d83b196784cdbd74a4e3095708ebc886de22dab0b192c0a1162e6570693ff99",
+        "treatment": "ad818e51d75dc5391f123989910c5f0791e46b5bc427630af182377e2d25e982"
+      }
+    },
+    {
+      "id": "eval-cf-guard-a",
+      "change": "regressed",
+      "observation": "两侧都把守卫当成查验角色，忽略昨夜守12的连守约束，仍执行check12。B进一步在公开发言编造12身份为守卫且无异常，在没有任何查验结果时捏造技能结果，并与自己守卫身份冲突。夜间泄漏与技能幻觉更严重。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "becb743e130c386a4c7c6fe9e02ca5a7cb688c2204788563b3a042052bca4357",
+        "treatment": "3b04c60c7ea909e142c7583321cfce11c9aa8ea9f86ca311106328bedd44261c"
+      }
+    },
+    {
+      "id": "eval-cf-guard-b",
+      "change": "unchanged",
+      "observation": "两侧均忽略last_guard_target=6，声称技能未使用且无查验目标。指定12本可执行guard，B仍因无信息输出未知none并公开守卫身份，角色技能、状态和任务权限理解未改善。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "7ef6ce0ba6e077aa737cf9846011256a619719f68bee48b620422defcc9e7fb1",
+        "treatment": "4c822cb523575b7385292c4e1a6db5450bb10e5ee8ddb709d2d99315c6b4af4c"
+      }
+    },
+    {
+      "id": "eval-cf-hunter-a",
+      "change": "unchanged",
+      "observation": "B原始回答与A逐字相同：仍声称猎人每轮可查验一人，忽略hunter_can_shoot=false，输出未知hunter_shot12并声称查验。取消warmup未改变该反事实禁枪侧的错误。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          null,
+          null
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "b823a6676250147196a7278d8703b6153794f8ea5b70c192bb163154080b782e",
+        "treatment": "08a9ce84a93792cee7a80b761992621a86f962d7d11eb38e9a3dc03008bb2c87"
+      }
+    },
+    {
+      "id": "eval-cf-hunter-b",
+      "change": "unchanged",
+      "observation": "两侧都声称猎人只能夜间查验一次，继续输出未知hunter_shot12。B调整了无依据风险描述，却没有修正技能时机/类型；允许开枪侧与禁枪侧最终动作相同，不能证明读取权限后动态改变行动。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          null,
+          null
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "ba0479b59ef7b1ad142e0c174cd30253287ee6fdc450d1798df801ee407fe67f",
+        "treatment": "717972c9a0e555d21c5c6c1e5d51b0bc2335cb94da4f61257b72e55971f4f093"
+      }
+    },
+    {
+      "id": "eval-cf-team-a",
+      "change": "mixed",
+      "observation": "B改为投票阶段并在原始action中选择vote1，公开理由引用1的验人矛盾，较A无目标exile有局部任务响应改善。但seat字符串令严格结构失败，不能计作合法/命中；私下仍把已知1/4/8狼人当作待验证嫌疑，strategy还称暂不明确目标，与最终vote1矛盾，不能视为完整狼队切割推理。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          false
+        ],
+        "team_knowledge": [
+          true,
+          true
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "d2e77750b75ca6513a0656f54c5da93a7c731ab80c6c8b8a819dd904e1139b71",
+        "treatment": "8fd455d770851e7f3510df9cf0ff634f36667e57b2e23f7deff4eab88b605b4d"
+      }
+    },
+    {
+      "id": "eval-cf-team-b",
+      "change": "mixed",
+      "observation": "B不再称夜投票，修正阶段措辞；但仍将确定队友知识降格为嫌疑，不使用1首验完整一致的新公开证据来调整目标。最终exile:null不变，且新增seat字符串结构错误。与A侧原始动作出现差异，只能算局部响应变化，原严格反事实双正确仍未达到。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          false
+        ],
+        "team_knowledge": [
+          true,
+          true
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "e1a1b8bfe81ff38f7d99816e7f72001d3b2d20e6c44e8aa9d87bc7c66c7288d1",
+        "treatment": "c1fbfa1a5ff220a693bfcac27a50830bd2938dada405e482bb86b11d7d7c770f"
+      }
+    },
+    {
+      "id": "eval-blind-01",
+      "change": "mixed",
+      "observation": "B在wolf_pit和身份表明确1/4/8是狼人，改善A对1确定知识的降格，也未再声称团队已公开暴露。但无依据把2/5/9定为普通村民，忽略当前逼问与记录冲突，策略称避免攻击却在发言阶段vote1；seat字符串新增格式失败，公开回答仍照抄对自己的问题。确定知识局部恢复伴随执行和视角任务失败。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          null,
+          true
+        ],
+        "team_knowledge": [
+          true,
+          false
+        ],
+        "public_private": [
+          true,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "8b978f732a5752bd07149c2889514ea05a44c97c63eec554d38291eff1dbf976",
+        "treatment": "aa813c5f1eeb4a31fb5fed67b9f2b61ceb72ffa78b56a00030ba471f7ee92a2d"
+      }
+    },
+    {
+      "id": "eval-blind-02",
+      "change": "regressed",
+      "observation": "A的身份表和wolf_pit保留1/4/8确定狼队知识；B明确说高概率且未验证，确定知识退化。原始pass虽仍存在，却因seat字符串导致严格格式/合法动作失分；仍未利用8被认可的局面规划狼队发言，只有等待。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          false,
+          true
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "f69b4c6b4a53ae50cbfa5f8ea3e08c5e1b74f2d47050d68adc700369cdecc082",
+        "treatment": "0e72d378ffd8c5e4e913a5ab44839ba85bc5647bb59acbce44cfa5eaff1a9719"
+      }
+    },
+    {
+      "id": "eval-blind-04",
+      "change": "regressed",
+      "observation": "B保留原始check12及站边冲突依据，但seat字符串令结构失败，失去A唯一strict action命中；分析把当前夜间行动说成下一轮查验，时点表述变差。夜间公开目标仍泄漏。冻结题目原本含先选择12提示，此处不能把原始选12当作自主选人提升。",
+      "errors": {
+        "role_skill": [
+          false,
+          false
+        ],
+        "state_reading": [
+          false,
+          true
+        ],
+        "permission": [
+          false,
+          false
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "ec690991baa69fdb493aa1aad2386e83d90391fc2be15a319a0be45e6abe0fd1",
+        "treatment": "9161154ed6e22f5134039170f3e8f173d28c8bc0321cbc2e8a900b57c7efe34a"
+      }
+    },
+    {
+      "id": "eval-blind-05",
+      "change": "regressed",
+      "observation": "两侧均无视昨夜已守12，继续把守卫与查验混淆，原始动作仍非法guard12且夜间公开目标。B新增JSON缺少键值分隔的语法错误；自己为守卫却猜6可能守卫，神职唯一性也不稳。守卫核心技能和执行协议均未修复。",
+      "errors": {
+        "role_skill": [
+          true,
+          true
+        ],
+        "state_reading": [
+          true,
+          true
+        ],
+        "permission": [
+          true,
+          true
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          true,
+          true
+        ],
+        "night_leak": [
+          true,
+          true
+        ]
+      },
+      "sources": {
+        "control": "292b6a196f2730bf5bd9fc1d28ec383279f94e126565d12b7de24c5dc4566b27",
+        "treatment": "11bb4c0c7247294477cde740d2612fc60828e25ce6cb907e34d1460f39d084ac"
+      }
+    },
+    {
+      "id": "eval-blind-07",
+      "change": "mixed",
+      "observation": "B准确复述互不信任、互攻却同票，改善A分析中的互信误读；但seat字符串导致结构失败，speech改为未知none，公开回答从A的具体追问退为无。新证据理解局部改善没有落实到当前发言决策。",
+      "errors": {
+        "role_skill": [
+          null,
+          null
+        ],
+        "state_reading": [
+          true,
+          false
+        ],
+        "permission": [
+          null,
+          null
+        ],
+        "team_knowledge": [
+          null,
+          null
+        ],
+        "public_private": [
+          false,
+          false
+        ],
+        "night_leak": [
+          null,
+          null
+        ]
+      },
+      "sources": {
+        "control": "337438088fdb10edeaf10e131338948b65cbbb3f77fd42412707b1c4fd5218f6",
+        "treatment": "fcf8f4697ecfe871b3c94c2c8b64bb4dc7cde825ca8d0428261ff83df199bbce"
+      }
     }
-  ]
+  ],
+  "branch": "C_accum8_after_B_report_committed",
+  "conclusion": "仅取消warmup未让冻结v0.2-core在本组23-dev上学得更有效：出现局部语义变化，但输出结构和动作合法性退化，角色技能/队伍确定知识/夜间信息边界没有稳定修复。B不足以通过继续使用的门禁；按冻结计划，在本报告commit/push后只进入C_accum8，D暂停。",
+  "evidence_levels": {
+    "已证实": [
+      "B真实6 optimizer步/6非零LR步，A为6/3；每阶段B LR=[5e-5,2.5e-5]，所有best=step2且final相同，实际张量发生变化。",
+      "同23-dev严格结构23→15、合法动作3→0、严格命中1→0；反事实双正确0/3→0/3，无截断。",
+      "8个结构失败包括7个identity seat字符串和1个JSON语法错误；不能用修改评分或修正输出来追回分数。"
+    ],
+    "有支持证据": [
+      "日程改变会改变此模型的输出行为：部分状态/权限表述改善，同时出现结构退化和更少的具体策略回应。",
+      "7个mixed、6个unchanged、10个regressed；没有无伴随退化的整体improved案例。语义是模型复核而非独立人工盲评。"
+    ],
+    "暂不支持": [
+      "仅取消warmup足以稳定修复Classic核心能力。Loss下降不足以证明技能学会。",
+      "unknown_action_type从14降11不代表动作词改善：格式失败先被拒绝；宽松JSON读取未知词仍14个，另1个JSON语法错误无法读取。",
+      "技能错误配对统计7/9→7/9、队伍知识3/4→3/4、夜漏7/7→7/7，不支持稳定核心能力改善。"
+    ],
+    "尚未验证": [
+      "当前失败是否主要由更新次数过少引起；C_accum8和D_epochs2尚未实际执行。",
+      "阶段间遗忘、更多epoch、多个随机种子及held-out泛化；不得解锁test、视频、Persona或v0.3。",
+      "B同时改变cosine LR轨迹、积分和Adam历史；无法单独归因于有效步数。"
+    ]
+  }
 }
